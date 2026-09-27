@@ -256,3 +256,13 @@ Kết quả chốt: 2/6 ô Bonferroni sign-separated và resolved (color ảnh, 
 Thuật ngữ: population tipping floor (Proposition 2), plug-in point tipping floor, bootstrap stability threshold; Table S39 và mục S7 gọi là "plug-in bounds". Câu overlap: "was not restored after standardizing the supported lesions on the five measured concepts under this weighting model".
 
 Claim không được phép thêm: "3 of 6 cells" hoặc color bảng là Bonferroni sign-separated; ngưỡng 0,65 như sàn chính trong Conclusion; bootstrap stability threshold là sàn được định danh.
+
+## 19. Vòng kiểm chứng thứ mười ba (2026-09-27)
+
+Không huấn luyện thêm. `vr44_dose_estimand.py` định nghĩa và ước lượng estimand can thiệp τ_j(η₁, η₀) = E_ξ[Δ_j(ξ; η₁) − Δ_j(ξ; η₀)] từ các lần lặp đã lưu của vr32 (ghép cặp: ác tính train/val và seed cố định qua η; nhãn âm train và val rút theo η). `vr45_support_retention.py` lưu tỉ lệ tổn thương test giữ lại ở ngưỡng hỗ trợ để bài dựng lại được từ repo mà không cần `vl_nuisance.npz`.
+
+Kết quả chốt: τ̂(1, −1) của concept được chọn: bảng −5,29 đến −3,53, ảnh −2,65 đến −1,22; mọi khoảng 95% < −1,15; đổi dấu trong cùng lần lặp 118/120. Khoảng chỉ phản ánh tính ngẫu nhiên của huấn luyện trên cohort cố định.
+
+Trình bày: Proposition 2 viết trực tiếp ψ_L = E[a_k·L], ψ_U = E[a_k·H] (L chọn logit q khi a_k ≥ 0); công thức theo tertile là Corollary. "Sharp" chỉ tương đối với mô hình phi tham số của dữ liệu quan sát với Y = D·S và sàn theo điểm. Phân tích biên là mục IV-G riêng, không phải ước lượng hay kiểm tra ψ. Tên ngưỡng biên: "95 percent resampling stability threshold". Chuẩn hóa theo site là estimand hỗn hợp. Ghi rõ trong III-G: thống kê bootstrap chính đổi từ một seed sang trung bình ba seed sau khi xem kết quả.
+
+Claim không được phép thêm: τ̂ có khoảng theo bệnh nhân; learner reversal là hiệu ứng của quy tắc chọn mẫu; kết quả biên xác nhận Proposition 2; đảo dấu biên đúng ở từng site.

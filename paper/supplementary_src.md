@@ -420,6 +420,7 @@ Table {{T:repro}} maps every reported result to the script that produces it. The
 | Tables {{T:arms21}}, {{T:dose21}} and {{T:ess21}} | `vr21_dose_calibrated.py` | `vr21_dose_calibrated.json` |
 | Table {{T:gumbel26}} | `vr26_dose_poisson.py` | `vr26_dose_poisson.json` |
 | Table {{T:tau44}}; τ̂ in Section IV-B | `vr44_dose_estimand.py` | `vr44_dose_estimand.json` |
+| Share of test lesions retained at each support threshold, Section IV-D | `vr45_support_retention.py` | `vr45_support_retention.json` |
 | Table {{T:eiv27}} | `vr27_bridge_eiv.py` | `vr27_bridge_eiv.json` |
 | Table 3; Tables {{T:full30}} and {{T:qdiag30}} | `vr30_q_bootstrap.py` | `vr30_q_bootstrap.json`, `vr30/` |
 | Table {{T:sub36}} | `vr36_subsample.py` | `vr36_subsample.json`, `vr36/` |

@@ -292,12 +292,7 @@ def psi_sentence():
 
 
 def _ret():
-    import numpy as np
-    nz = np.load(os.path.join(RES, "vl_nuisance.npz"), allow_pickle=True)
-    sig, fold = nz["sigma"], nz["fold"]
-    thr = _v19()["families"]["tabular"]["support_thresholds"]
-    te = fold == "test"
-    return {q: float((sig[te] >= v).mean()) for q, v in thr.items()}
+    return J("vr45_support_retention.json")["retained"]
 
 
 def _ord(q):

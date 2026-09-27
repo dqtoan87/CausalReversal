@@ -933,6 +933,7 @@ Table S50 maps every reported result to the script that produces it. The analysi
 | Tables S21, S26 and S27 | `vr21_dose_calibrated.py` | `vr21_dose_calibrated.json` |
 | Table S25 | `vr26_dose_poisson.py` | `vr26_dose_poisson.json` |
 | Table S23; τ̂ in Section IV-B | `vr44_dose_estimand.py` | `vr44_dose_estimand.json` |
+| Share of test lesions retained at each support threshold, Section IV-D | `vr45_support_retention.py` | `vr45_support_retention.json` |
 | Table S29 | `vr27_bridge_eiv.py` | `vr27_bridge_eiv.json` |
 | Table 3; Tables S16 and S43 | `vr30_q_bootstrap.py` | `vr30_q_bootstrap.json`, `vr30/` |
 | Table S17 | `vr36_subsample.py` | `vr36_subsample.json`, `vr36/` |
