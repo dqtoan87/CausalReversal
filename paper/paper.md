@@ -171,8 +171,8 @@ In Table 2, size-matched intervals are 2.5 and 97.5 percentiles over replicates,
 | --- | --- | --- |
 | Size-matched control, color variegation | tabular; recorded negatives from all / flagged / verified lesions | +1.22 [0.60, 2.14] / −0.79 [−1.21, −0.38] / −0.94 [−1.12, −0.70]; positive in 20 / 0 / 0 of 20 |
 | Size-matched control, color variegation | image; same three sources | +0.59 [0.31, 0.90] / −0.82 [−1.05, −0.58] / −0.63 [−0.81, −0.40]; positive in 20 / 0 / 0 of 20 |
-| Selection dose on training lesions only, validation fixed | tabular; 320 selected recorded negatives; three primary concepts | τ̂(1, −1) −4.72 to −2.59; sign change in 60 of 60 replicates; descriptive slope ratio 0.99 to 1.14 |
-| Selection dose on training lesions only, validation fixed | image; 320 selected recorded negatives; three primary concepts, ridge conditional mean | τ̂(1, −1) −3.04 to −1.11; sign change in 60 of 60 replicates; descriptive slope ratio 0.88 to 1.10 |
+| Selection dose on training only; replicate-specific validation shared across doses | tabular; 320 selected recorded negatives; three primary concepts | τ̂(1, −1) −4.72 to −2.59; sign change in 60 of 60 replicates; descriptive slope ratio 0.99 to 1.14 |
+| Selection dose on training only; replicate-specific validation shared across doses | image; 320 selected recorded negatives; three primary concepts, ridge conditional mean | τ̂(1, −1) −3.04 to −1.11; sign change in 60 of 60 replicates; descriptive slope ratio 0.88 to 1.10 |
 | Selection dose, learning curve | tabular; color variegation | 1,000: τ̂ −3.95 [−4.17, −3.72], sign change in 20 of 20, mean crosses zero, ratio 0.93; 3,000: τ̂ −3.69 [−3.90, −3.47], sign change in 19 of 20, mean crosses zero, ratio 0.86 |
 | Selection dose, learning curve | image; color variegation | 1,000: τ̂ −1.60 [−1.78, −1.44], sign change in 18 of 20, mean crosses zero, ratio 0.78; 3,000: τ̂ −1.79 [−2.05, −1.51], sign change in 8 of 20, mean does not cross zero, ratio 0.91 |
 | Verified against random recorded negatives, predicted shift | tabular; five concepts | sign 5 of 5; calibration slope 1.38 |
@@ -245,7 +245,7 @@ We asked whether selective verification changes what a classifier learns. Select
 
 **Data availability.** Both data sets are public. ISIC-2024 is distributed through the ISIC Archive [1] and PAD-UFES-20 through Mendeley Data [9]. No new patient data were collected.
 
-**Code availability.** The scripts that produce every number, table and figure in this paper, the symbolic checks, the unit tests and the analysis lock are available at https://github.com/dqtoan87/CausalReversal; the version reported here is release v1.4-submission. Supplementary Section S8 maps each result to its script.
+**Code availability.** The scripts that produce every number, table and figure in this paper, the symbolic checks, the unit tests and the analysis lock are available at https://github.com/dqtoan87/CausalReversal; the version reported here is release v1.5-submission. Supplementary Section S8 maps each result to its script.
 
 **Ethics.** This is a secondary analysis of two de-identified public data sets released under the approvals documented by their providers. No further approval was required.
 

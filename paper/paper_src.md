@@ -217,7 +217,7 @@ We asked whether selective verification changes what a classifier learns. Select
 
 **Data availability.** Both data sets are public. ISIC-2024 is distributed through the ISIC Archive [@kurtansky] and PAD-UFES-20 through Mendeley Data [@pacheco]. No new patient data were collected.
 
-**Code availability.** The scripts that produce every number, table and figure in this paper, the symbolic checks, the unit tests and the analysis lock are available at https://github.com/dqtoan87/CausalReversal; the version reported here is release v1.4-submission. Supplementary Section S8 maps each result to its script.
+**Code availability.** The scripts that produce every number, table and figure in this paper, the symbolic checks, the unit tests and the analysis lock are available at https://github.com/dqtoan87/CausalReversal; the version reported here is release v1.5-submission. Supplementary Section S8 maps each result to its script.
 
 **Ethics.** This is a secondary analysis of two de-identified public data sets released under the approvals documented by their providers. No further approval was required.
 

@@ -661,7 +661,7 @@ def table2_dose_rows():
         rat = [d[f][f"{k}|320"]["pred"]["ratio_raw"] for k in PRIMARY]
         tau = [d[f][f"{k}|320"]["raw"] for k in PRIMARY]
         nsc = sum(x["n_sign_change"] for x in tau)
-        rows.append(f"| Selection dose on training lesions only, validation fixed | {f}; 320 selected recorded negatives; three primary concepts"
+        rows.append(f"| Selection dose on training only; replicate-specific validation shared across doses | {f}; 320 selected recorded negatives; three primary concepts"
                     f"{'' if f == 'tabular' else ', ridge conditional mean'} | τ̂(1, −1) {s(min(x['tau_hat'] for x in tau))} to "
                     f"{s(max(x['tau_hat'] for x in tau))}; sign change in {nsc} of 60 replicates; descriptive slope ratio {u(min(rat))} to {u(max(rat))} |")
     for f in FAMS:
