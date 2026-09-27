@@ -266,3 +266,13 @@ Kết quả chốt: τ̂(1, −1) của concept được chọn: bảng −5,29 
 Trình bày: Proposition 2 viết trực tiếp ψ_L = E[a_k·L], ψ_U = E[a_k·H] (L chọn logit q khi a_k ≥ 0); công thức theo tertile là Corollary. "Sharp" chỉ tương đối với mô hình phi tham số của dữ liệu quan sát với Y = D·S và sàn theo điểm. Phân tích biên là mục IV-G riêng, không phải ước lượng hay kiểm tra ψ. Tên ngưỡng biên: "95 percent resampling stability threshold". Chuẩn hóa theo site là estimand hỗn hợp. Ghi rõ trong III-G: thống kê bootstrap chính đổi từ một seed sang trung bình ba seed sau khi xem kết quả.
 
 Claim không được phép thêm: τ̂ có khoảng theo bệnh nhân; learner reversal là hiệu ứng của quy tắc chọn mẫu; kết quả biên xác nhận Proposition 2; đảo dấu biên đúng ở từng site.
+
+## 20. Vòng kiểm chứng thứ mười bốn (2026-09-27)
+
+Thí nghiệm liều chạy lại (`vr46_dose_fixed_val.py`, driver `run_round14.sh`) để can thiệp CHỈ lên tập huấn luyện: validation (ác tính và nhãn âm rút đều) cố định trong mỗi lần lặp, dừng sớm và Platt trên cùng tập đó; số ngẫu nhiên chung U_i cho việc chọn nhãn âm qua các mức η; tập ác tính train và seed dùng chung. Estimand: τ_j(η₁, η₀) = E_ω[Δ_j(η₁, ω) − Δ_j(η₀, ω)], có điều kiện trên cohort, split, validation và quần thể test.
+
+Kết cục chính là tương phản logit thô (đối tượng của Proposition 1). Platt trên validation cố định nhắm phân phối chưa chọn; ở η = 1 hệ số Platt âm ở 29/200 lần khớp (không có ở mức khác), nên tương phản hiệu chỉnh chỉ báo ở phụ lục. Quyết định này đặt sau khi xem kết quả.
+
+Kết quả chốt (n = 320): đường trung bình qua 0 ở 6/6; đổi dấu trong cùng lần lặp 120/120; lan sang đúng hướng 29/30; tỉ số quan sát/dự đoán Bayes-tối-ưu: bảng 0,99–1,14, ảnh 0,88–1,10; τ̂(1, −1) bảng −4,72 đến −2,59, ảnh −3,04 đến −1,11, mọi khoảng 95% < −0,99. Đường học color bảng: 0,99 → 0,93 → 0,86 (320 → 1.000 → 3.000), nên KHÔNG còn nói độ lớn tiến về dự đoán khi mẫu tăng. Thiết kế liều chung train+validation (vr32, vr44, vr21, vr26) giữ ở phụ lục như hiệu ứng của quy tắc chọn dữ liệu phát triển chung.
+
+Claim không được phép thêm: τ là hiệu ứng siêu quần thể; khoảng của τ̂ phản ánh lấy mẫu bệnh nhân; độ lớn khớp chính xác với learner hữu hạn; tương phản hiệu chỉnh trên validation cố định là kết cục chính.

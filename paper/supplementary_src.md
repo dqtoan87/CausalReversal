@@ -26,9 +26,9 @@ Table {{T:notation}} fixes the notation. The code uses the same names, so each s
 | *s*(*x*), *s*_min | P(*S* = 1 \| *D* = 1, *x*) and its assumed pointwise floor | `s`, `s_min` |
 | M0, M2 | learner on all lesions with *Y*; learner on verified lesions only | `erm_y`, `erm_verified` |
 | Δ_{m,k} | learned contrast of learner *m* for concept *k* | `vr9_closing` |
-| η | selection dose on recorded-negative training and validation lesions | `vr26_dose_poisson`, `vr21_dose_calibrated` |
-| ξ | randomness of training other than the selection rule: draw of lesions and optimizer seed | `vr32_dose_nuisance` |
-| τ_j(η₁, η₀) | training-selection effect, E_ξ[Δ_j(ξ; η₁) − Δ_j(ξ; η₀)] | `vr44_dose_estimand` |
+| η | selection dose on recorded-negative training lesions | `vr26_dose_poisson`, `vr21_dose_calibrated` |
+| ω | exogenous random numbers of the pipeline: inclusion uniforms, malignant training draw and optimizer seed | `vr46_dose_fixed_val` |
+| τ_j(η₁, η₀) | training-selection effect, E_ω[Δ_j(η₁, ω) − Δ_j(η₀, ω)] | `vr46_dose_fixed_val` |
 
 **Positivity.** Throughout, P(*D* = 1 | *x*) ∈ (0, 1), π¹, π⁰ ∈ (0, 1] and *r*₁ > 0. If a verification probability is zero, the verified-only odds ratio is undefined. A unit test checks that the code does not return a finite value in that case.
 
@@ -229,23 +229,31 @@ Concept decodability was the same under both regimes. Cross-validated R² ranged
 
 {{TABLE:arms21}}
 
-**Controlled selection dose.** Script `vr32_dose_nuisance.py` gives the primary version. For each of the three primary concepts and both frozen-feature families, 20 replicates drew 178 malignant training lesions and included each recorded-negative training lesion independently with probability π_η = min{1, κ_η exp(η*z*_k)}, for η ∈ {−1, −0.5, 0, 0.5, 1}, with κ_η set so that 320 are expected. Color variegation was repeated with 1,000 and 3,000 expected recorded negatives. Validation lesions were drawn by the same rule. Each learner was Platt-calibrated on its own validation lesions. The prediction for the tabular learner is minus the stratum contrast of log π_η(*z*_k) on the test population, which is exact. For the image learner it is the first-order input-aware form of Section S1, with the conditional mean *m*_k estimated in two ways, by ridge regression and by a two-layer perceptron on the image features, both refitted on recorded negatives of resampled training patients in each replicate. Intervals for the ratio of observed to predicted slope resample the 20 replicates. Table {{T:dose32}} reports all cells, and Table {{T:spill32}} compares observed and predicted slopes for all five concepts. Script `vr26_dose_poisson.py` ran the same design with 10 replicates and the ridge prediction only, with the same pattern.
+**Controlled selection dose.** Script `vr46_dose_fixed_val.py` gives the primary version. For each of the three primary concepts and both frozen-feature families, 20 replicates drew 178 malignant training lesions and a validation set of malignant lesions and uniformly drawn recorded negatives, both shared by all doses of the replicate. Each recorded-negative training lesion *i* received one uniform variable *U*_i per replicate and entered training at dose η when *U*_i < π_η,i = min{1, κ_η exp(η*z*_k,i)}, for η ∈ {−1, −0.5, 0, 0.5, 1}, with κ_η set so that 320 are expected; these common random numbers make the draws at different doses coupled. The optimizer seed was also shared, so a replicate fixes ω of Section III-B and the five fits are paired potential outcomes. Color variegation was repeated with 1,000 and 3,000 expected recorded negatives. Early stopping used the fixed validation set. The outcome is the raw logit contrast. Platt calibration on the fixed validation set targets the unselected distribution rather than the selected training distribution of Proposition 1, and at η = 1 its fitted slope was negative in 29 of 200 fits, and at no other dose, which reverses the sign of a calibrated contrast; calibrated contrasts are therefore reported for completeness only. The prediction for the tabular learner is minus the stratum contrast of log π_η(*z*_k) on the test population, the exact Bayes-optimal shift of the training distribution. For the image learner it is the first-order input-aware form of Section S1, with the conditional mean *m*_k estimated by ridge regression on recorded negatives of resampled training patients in each replicate. τ̂_k(1, −1) is the mean over replicates of the paired difference Δ_k(1, ω) − Δ_k(−1, ω), with a percentile bootstrap over the 20 replicates, 10,000 resamples; ratio intervals use 2,000. These intervals are conditional on the cohort, split, validation set and test population. Table {{T:dose46}} reports all cells, and Table {{T:spill46}} compares observed and predicted slopes for all five concepts.
 
-**TABLE {{T:dose32}}. Response of the learned contrast to a selection dose with known inclusion probabilities, 20 replicates. Ranges are 2.5 and 97.5 percentiles over replicates.**
+**TABLE {{T:dose46}}. Selection dose on training lesions only, validation fixed, 20 paired replicates. Slopes and τ̂(1, −1) are for the raw logit contrast of the selected concept; ranges are 2.5 and 97.5 percentiles over replicates, and bracketed intervals are bootstrap intervals over the 20 replicates, conditional on the fixed cohort. The prediction is the Bayes-optimal training-distribution shift.**
+
+{{TABLE:dose46}}
+
+**TABLE {{T:spill46}}. Dose slopes of all five concepts, observed / predicted, raw logit contrasts, 320 selected recorded negatives, validation fixed.**
+
+{{TABLE:spill46}}
+
+**Joint training-and-validation dose.** Script `vr32_dose_nuisance.py` ran a second design in which validation negatives were drawn under the same rule as training negatives, without common random numbers, and each learner was Platt-calibrated on its own validation lesions. The dose then acts on training, early stopping and calibration together, so this design estimates the effect of a joint selection rule for development data rather than the training-selection effect, and its agreement in magnitude with Proposition 1 is only diagnostic. Its calibrated contrast crossed zero in the same six combinations, and script `vr44_dose_estimand.py` gives its paired effects. Table {{T:dose32}} reports it, Table {{T:tau44}} gives the paired effects and Table {{T:spill32}} the slopes of all five concepts. Script `vr26_dose_poisson.py` ran the same joint design with 10 replicates and the ridge prediction only, with the same pattern.
+
+**TABLE {{T:dose32}}. Joint training-and-validation dose, calibrated contrasts, 20 replicates. Ranges are 2.5 and 97.5 percentiles over replicates.**
 
 {{TABLE:dose32}}
 
-**Training-selection effect.** Script `vr44_dose_estimand.py` reuses the stored replicates of the dose experiment without further training. Within replicate *r*, the malignant training and validation lesions and the seed are fixed across the five doses, and only the recorded negatives in training and validation are drawn under each dose, so the difference Δ_k(η = 1) − Δ_k(η = −1) of the calibrated contrast of the selected concept is paired. Its mean over the 20 replicates estimates τ_k(1, −1) of Section III-B, and a percentile bootstrap over replicates, 10,000 resamples, gives the 95 percent interval. The interval reflects the randomness of training on the fixed cohort and does not resample patients. The prediction is the Proposition 1 slope times η₁ − η₀ = 2, exact for tabular features and from the ridge estimate of the conditional concept mean for image features. Table {{T:tau44}} reports the results.
-
-**TABLE {{T:tau44}}. Training-selection effect τ_k(1, −1) of the selected concept, 320 selected recorded negatives, 20 paired replicates.**
+**TABLE {{T:tau44}}. Effect of the joint training-and-validation dose on the calibrated contrast of the selected concept, 320 selected recorded negatives, 20 replicates, bootstrap intervals over replicates conditional on the fixed cohort.**
 
 {{TABLE:tau44}}
 
-**TABLE {{T:spill32}}. Dose slopes of all five concepts, observed / predicted, 320 selected recorded negatives.**
+**TABLE {{T:spill32}}. Joint training-and-validation dose: slopes of all five concepts, observed / predicted, 320 selected recorded negatives.**
 
 {{TABLE:spill32}}
 
-**Sampling without replacement.** Script `vr21_dose_calibrated.py` ran the same experiment with exactly 320 recorded negatives drawn without replacement by the Gumbel top-*k* construction, for η up to 3. Its inclusion probabilities are not proportional to *w* (Section S1). Table {{T:gumbel26}} compares the nominal and actual expected number of upper-tertile lesions, checked by 300 Monte Carlo draws, and the predicted change in the contrast. For size, a few lesions with extreme area would have nominal probabilities above one, so the composition of the sample differs from the nominal one at η = 0.5. The predicted contrast changes by less than one percent in every case, because it averages log π over the test population. Table {{T:dose21}} gives the results of this design, which agree with Table {{T:dose32}}, and Table {{T:ess21}} gives the effective sample size of its selection weights, which fell steeply for η > 1.
+**Sampling without replacement.** Script `vr21_dose_calibrated.py` ran the same experiment with exactly 320 recorded negatives drawn without replacement by the Gumbel top-*k* construction, for η up to 3. Its inclusion probabilities are not proportional to *w* (Section S1). Table {{T:gumbel26}} compares the nominal and actual expected number of upper-tertile lesions, checked by 300 Monte Carlo draws, and the predicted change in the contrast. For size, a few lesions with extreme area would have nominal probabilities above one, so the composition of the sample differs from the nominal one at η = 0.5. The predicted contrast changes by less than one percent in every case, because it averages log π over the test population. Table {{T:dose21}} gives the results of this design, which also drew validation lesions by the same rule and agrees with Table {{T:dose32}}, and Table {{T:ess21}} gives the effective sample size of its selection weights, which fell steeply for η > 1.
 
 **TABLE {{T:gumbel26}}. Inclusion probabilities under sampling without replacement, recorded-negative training pool of 241,263 lesions, 320 draws.**
 
@@ -419,12 +427,13 @@ Table {{T:repro}} maps every reported result to the script that produces it. The
 | Plug-in point tipping floor in Table {{T:psi}} | `vr24_full_bootstrap.py` | `vr24_full_bootstrap.json` |
 | Tables {{T:arms21}}, {{T:dose21}} and {{T:ess21}} | `vr21_dose_calibrated.py` | `vr21_dose_calibrated.json` |
 | Table {{T:gumbel26}} | `vr26_dose_poisson.py` | `vr26_dose_poisson.json` |
-| Table {{T:tau44}}; τ̂ in Section IV-B | `vr44_dose_estimand.py` | `vr44_dose_estimand.json` |
+| Table {{T:tau44}} | `vr44_dose_estimand.py` | `vr44_dose_estimand.json` |
 | Share of test lesions retained at each support threshold, Section IV-D | `vr45_support_retention.py` | `vr45_support_retention.json` |
 | Table {{T:eiv27}} | `vr27_bridge_eiv.py` | `vr27_bridge_eiv.json` |
 | Table 3; Tables {{T:full30}} and {{T:qdiag30}} | `vr30_q_bootstrap.py` | `vr30_q_bootstrap.json`, `vr30/` |
 | Table {{T:sub36}} | `vr36_subsample.py` | `vr36_subsample.json`, `vr36/` |
-| Fig. 3(a); Tables {{T:dose32}} and {{T:spill32}} | `vr32_dose_nuisance.py` | `vr32_dose_nuisance.json` |
+| Fig. 3(a); dose results of Section IV-B; Tables {{T:dose46}} and {{T:spill46}} | `vr46_dose_fixed_val.py` | `vr46_dose_fixed_val.json`, `vr46/` |
+| Tables {{T:dose32}} and {{T:spill32}} (joint training-and-validation dose) | `vr32_dose_nuisance.py` | `vr32_dose_nuisance.json` |
 | Table {{T:bridge33}} | `vr33_bridge_alt.py` | `vr33_bridge_alt.json` |
 | Tables {{T:semi34}} and {{T:semibridge34}} | `vr34_semisynth.py` (argument `mlp` or `gbm`) | `vr34_semisynth.json`, `vr34_semisynth_gbm.json` |
 | Table {{T:sigma37}} | `vr37_overlap_sigma.py` | `vr37_overlap_sigma.json` |

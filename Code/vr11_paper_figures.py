@@ -161,21 +161,22 @@ def fig3():
 
 
 def fig4():
-    d = J("vr32_dose_nuisance.json")
+    d = J("vr46_dose_fixed_val.json")
     br = J("vr22_pointwise_bridge.json")["families"] if os.path.exists(os.path.join(R.RES, "vr22_pointwise_bridge.json")) else None
     fig, (a, b) = plt.subplots(1, 2, figsize=(7.6, 3.3))
     etas = np.array(d["etas"])
     for fam, col, mk in (("tabular", BLUE, "o"), ("image", ORANGE, "^")):
         r = d["families"][fam]["color_variegation|320"]
-        M_ = np.array([rp["mean_by_eta"] for rp in r["per_rep"]])
+        reps = json.load(open(os.path.join(R.RES, "vr46", f"{fam}_color_variegation_320.json")))["reps"].values()
+        M_ = np.array([[o["color_variegation"] for o in rp["raw"]] for rp in reps])      # tương phản logit thô, validation cố định
         m, lo, hi = M_.mean(0), np.percentile(M_, 2.5, 0), np.percentile(M_, 97.5, 0)
         a.fill_between(etas, lo, hi, color=col, alpha=0.15, lw=0)
         a.plot(etas, m, marker=mk, color=col, lw=1.6, ms=5, label=f"{fam}, learned")
         d0 = m[list(etas).index(0.0)]
-        sl = r["pred"]["exact" if fam == "tabular" else "ridge"]["slope"]
+        sl = r["pred"]["slope"]
         a.plot(etas, d0 + sl * etas, color=col, lw=1.1, ls="--", label=f"{fam}, predicted from input")
     a.axhline(0, color=INK2, lw=0.9); a.grid(color=GRID, lw=0.6); a.set_xlim(etas.min() - 0.2, etas.max() + 0.2)
-    a.set_xlabel(r"Selection dose $\eta$ on recorded negatives"); a.set_ylabel(r"Calibrated $\Delta$, color variegation")
+    a.set_xlabel(r"Selection dose $\eta$ on recorded-negative training lesions"); a.set_ylabel(r"Learned logit $\Delta$, color variegation")
     a.legend(frameon=False, fontsize=6.6)
     a.text(etas.min() - 0.75, a.get_ylim()[1], "a", fontsize=11, fontweight="bold")
     lim = 2.6

@@ -150,18 +150,17 @@ def abs_inference():
 
 
 def tau_sentence():
-    d = J("vr44_dose_estimand.json")["families"]
-    rng_ = lambda f, key: (min(d[f][k][key] for k in PRIMARY), max(d[f][k][key] for k in PRIMARY))
-    hi_ci = max(d[f][k]["tau_ci95"][1] for f in FAMS for k in PRIMARY)
+    d = _v46()
+    c = {f: [d[f][f"{k}|320"]["raw"] for k in PRIMARY] for f in FAMS}
+    hi_ci = max(x["tau_ci95"][1] for f in FAMS for x in c[f])
     assert hi_ci < 0
-    nsc = sum(d[f][k]["n_sign_change"] for f in FAMS for k in PRIMARY); ntot = 20 * 6
-    ratio = {f: [d[f][k]["tau_hat"] / d[f][k]["tau_pred"] for k in PRIMARY] for f in FAMS}
-    t_, i_ = rng_("tabular", "tau_hat"), rng_("image", "tau_hat")
-    return (f"In terms of the training-selection effect of Section III-B, τ̂_k(1, −1), the change in the calibrated contrast of the "
-            f"selected concept from η = −1 to η = 1, was between {s(t_[0])} and {s(t_[1])} with tabular features and between "
-            f"{s(i_[0])} and {s(i_[1])} with image features; every 95 percent interval lay below {s(hi_ci)}, and the contrast "
-            f"changed sign within the same replicate in {nsc} of {ntot} replicates. These intervals resample the 20 replicates, so they reflect the "
-            f"randomness of training on the fixed cohort and not patient resampling (Supplementary Section S6).")
+    t_ = (min(x["tau_hat"] for x in c["tabular"]), max(x["tau_hat"] for x in c["tabular"]))
+    i_ = (min(x["tau_hat"] for x in c["image"]), max(x["tau_hat"] for x in c["image"]))
+    return (f"The estimated training-selection effect τ̂_k(1, −1) of Section III-B was between {s(t_[0])} and {s(t_[1])} with "
+            f"tabular features and between {s(i_[0])} and {s(i_[1])} with image features, and every 95 percent interval lay below "
+            f"{s(hi_ci)}. These intervals are bootstrap intervals over the 20 paired replicates, conditional on the fixed cohort, split, "
+            f"validation set and test population, so they describe the algorithmic randomness ω and not patient sampling "
+            f"(Supplementary Section S6).")
 
 
 def mc_rule():
@@ -583,14 +582,17 @@ def _v32():
     return J("vr32_dose_nuisance.json")["families"]
 
 
+def _v46():
+    return J("vr46_dose_fixed_val.json")["families"]
+
+
 def _lc_tab():
-    d = _v32()["tabular"]
-    return {n: d[f"color_variegation|{n}"]["pred"]["exact"] for n in ("320", "1000", "3000")}
+    d = _v46()["tabular"]
+    return {n: d[f"color_variegation|{n}"]["pred"] for n in ("320", "1000", "3000")}
 
 
 def _tab_converges():
-    lc = _lc_tab()
-    return lc["320"]["ratio"] > lc["1000"]["ratio"] > lc["3000"]["ratio"] and lc["3000"]["ratio_ci95"][0] <= 1 <= lc["3000"]["ratio_ci95"][1] + 0.02
+    return False
 
 
 def abs_dose2():
@@ -614,37 +616,41 @@ def _cross(curve):
 
 
 def dose_sentence():
-    d = _v32(); lc = _lc_tab()
-    tab = {k: d["tabular"][f"{k}|320"]["pred"]["exact"] for k in PRIMARY}
-    img = {sp: {k: d["image"][f"{k}|320"]["pred"][sp] for k in PRIMARY} for sp in ("ridge", "mlp")}
-    rng_ = lambda v: f"{u(min(x['ratio'] for x in v.values()))} to {u(max(x['ratio'] for x in v.values()))}"
-    lci = {n: d["image"][f"color_variegation|{n}"]["pred"]["ridge"] for n in ("1000", "3000")}
-    assert _tab_converges() and max(abs(img["ridge"][k]["ratio"] - img["mlp"][k]["ratio"]) for k in PRIMARY) < 0.15
-    ncross = sum(_cross(np.mean([rp["mean_by_eta"] for rp in d[f][f"{k}|320"]["per_rep"]], 0)) for f in FAMS for k in PRIMARY)
-    sp_key = {"tabular": "exact", "image": "ridge"}
-    ag = sum(np.sign(v[0]) == np.sign(v[1]) for f in FAMS for k in PRIMARY for v in d[f][f"{k}|320"]["pred"][sp_key[f]]["spill"].values())
-    lo = min(x["ratio"] for sp in img for x in img[sp].values()); hi = max(x["ratio"] for sp in img for x in img[sp].values())
-    return (f"For η from −1 to 1 and 320 selected recorded negatives, the selected contrast crossed zero in {ncross} of 6 combinations of "
-            f"concept and family, and the contrasts of the five concepts moved in the predicted direction in {ag} of the 30 combinations of family, selected concept and responding concept. With tabular features the "
-            f"selected contrast fell at {rng_(tab)} times the rate predicted from the known inclusion probabilities, and for color variegation the ratio fell to "
-            f"{u(lc['1000']['ratio'])} {ci(lc['1000']['ratio_ci95'])} with 1,000 and {u(lc['3000']['ratio'])} {ci(lc['3000']['ratio_ci95'])} "
-            f"with 3,000, consistent with a finite-sample excess. With image features, whose prediction needs a regression of the concept "
-            f"on the features, the ratio was {u(lo)} to {u(hi)} with ridge or perceptron estimates but fell to {u(lci['1000']['ratio'])} and "
-            f"{u(lci['3000']['ratio'])} with 1,000 and 3,000. The learning curve thus does not validate the Gaussian approximation in "
-            f"magnitude, and for image features we claim the direction and the crossing only.")
+    d = _v46()
+    c = {f: {k: d[f][f"{k}|320"] for k in PRIMARY} for f in FAMS}
+    ncross = sum(c[f][k]["raw"]["crosses_zero"] for f in FAMS for k in PRIMARY)
+    nsc = sum(c[f][k]["raw"]["n_sign_change"] for f in FAMS for k in PRIMARY)
+    ag = sum(c[f][k]["pred"]["spill_sign_agreement_raw"] for f in FAMS for k in PRIMARY)
+    rat = {f: [c[f][k]["pred"]["ratio_raw"] for k in PRIMARY] for f in FAMS}
+    lc = _lc_tab()
+    li = {n: d["image"][f"color_variegation|{n}"]["pred"] for n in ("1000", "3000")}
+    return (f"For η from −1 to 1 and 320 selected recorded negatives, the mean learned contrast of the selected concept crossed zero in "
+            f"{ncross} of 6 combinations of concept and family, and it changed sign within the same replicate in {nsc} of {20 * 6} "
+            f"replicates. The contrasts of the five concepts moved in the predicted direction in {ag} of the 30 combinations of family, "
+            f"selected concept and responding concept. Against the exact Bayes-optimal prediction for the training-distribution shift, "
+            f"the observed slope was {u(min(rat['tabular']))} to {u(max(rat['tabular']))} times the prediction with tabular features; "
+            f"with image features, where the prediction needs a ridge regression of the concept on the features, it was "
+            f"{u(min(rat['image']))} to {u(max(rat['image']))} times. For color variegation with tabular features the ratio was "
+            f"{u(lc['320']['ratio_raw'])} {ci(lc['320']['ratio_raw_ci95'])} with 320, {u(lc['1000']['ratio_raw'])} "
+            f"{ci(lc['1000']['ratio_raw_ci95'])} with 1,000 and {u(lc['3000']['ratio_raw'])} {ci(lc['3000']['ratio_raw_ci95'])} with "
+            f"3,000 selected recorded negatives, and with image features {u(li['1000']['ratio_raw'])} and {u(li['3000']['ratio_raw'])} "
+            f"with 1,000 and 3,000, so magnitude agreement with a finite trained learner is approximate and does not improve "
+            f"systematically with sample size. We therefore claim the direction and the crossing, and approximate size only.")
+
 
 def table2_dose_rows():
-    d = _v32(); rows = []
+    d = _v46(); rows = []
     for f in FAMS:
-        sp = "exact" if f == "tabular" else "ridge"
-        c = d[f]["color_variegation|320"]; v = c["pred"][sp]
-        rat = [d[f][f"{k}|320"]["pred"][sp]["ratio"] for k in PRIMARY]
-        rows.append(f"| Selection dose, known inclusion probabilities | {f}; 320 selected recorded negatives; color variegation, then ratio over "
-                    f"three concepts{'' if f == 'tabular' else ', ridge conditional mean'} | {s(c['obs_slope'])} {ci(c['obs_range95'])} against "
-                    f"{s(v['slope'])}; ratio {u(min(rat))} to {u(max(rat))} |")
+        c = d[f]["color_variegation|320"]
+        rat = [d[f][f"{k}|320"]["pred"]["ratio_raw"] for k in PRIMARY]
+        tau = [d[f][f"{k}|320"]["raw"]["tau_hat"] for k in PRIMARY]
+        rows.append(f"| Selection dose on training only, known inclusion probabilities, validation fixed | {f}; 320 selected recorded negatives; "
+                    f"color variegation slope, then τ̂(1, −1) and ratio over three concepts{'' if f == 'tabular' else ', ridge conditional mean'} | "
+                    f"{s(c['raw']['obs_slope'])} {ci(c['raw']['obs_range95'])} against {s(c['pred']['slope'])}; τ̂ {s(min(tau))} to {s(max(tau))}; "
+                    f"ratio {u(min(rat))} to {u(max(rat))} |")
     lc = _lc_tab()
     rows.append(f"| Selection dose, learning curve | tabular; color variegation; 1,000 and 3,000 selected recorded negatives | ratio "
-                f"{u(lc['1000']['ratio'])} {ci(lc['1000']['ratio_ci95'])} and {u(lc['3000']['ratio'])} {ci(lc['3000']['ratio_ci95'])} |")
+                f"{u(lc['1000']['ratio_raw'])} {ci(lc['1000']['ratio_raw_ci95'])} and {u(lc['3000']['ratio_raw'])} {ci(lc['3000']['ratio_raw_ci95'])} |")
     return "\n".join(rows)
 
 

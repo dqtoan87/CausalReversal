@@ -455,6 +455,33 @@ def t_sub36():
     return "\n".join(out)
 
 
+def t_dose46():
+    d = J("vr46_dose_fixed_val.json")["families"]
+    out = ["| Features | Selected concept | Recorded negatives | Observed slope [range] | Predicted slope | Observed over predicted [95% CI] | τ̂(1, −1) [95% CI] | Mean contrast crosses zero | Replicates changing sign | Calibrated τ̂(1, −1) |",
+           "| --- | --- | ---: | --- | ---: | --- | --- | --- | ---: | ---: |"]
+    for f in FAMS2:
+        for k in PRIMARY_SUPP:
+            for n in ("320", "1000", "3000"):
+                c = d.get(f, {}).get(f"{k}|{n}")
+                if c is None:
+                    continue
+                r, p = c["raw"], c["pred"]
+                out.append(f"| {f} | {CL[k]} | {int(n):,} | {s(r['obs_slope'])} {ci(r['obs_range95'])} | {s(p['slope'])} | "
+                           f"{u(p['ratio_raw'])} {ci(p['ratio_raw_ci95'])} | {s(r['tau_hat'])} {ci(r['tau_ci95'])} | "
+                           f"{'yes' if r['crosses_zero'] else 'no'} | {r['n_sign_change']} of {c['n_rep']} | {s(c['cal']['tau_hat'])} |")
+    return "\n".join(out)
+
+
+def t_spill46():
+    d = J("vr46_dose_fixed_val.json")["families"]
+    out = ["| Features | Selected concept | " + " | ".join(CL[j] for j in CL) + " |", "| --- | --- | " + " | ".join("---" for _ in CL) + " |"]
+    for f in FAMS2:
+        for k in PRIMARY_SUPP:
+            c = d[f][f"{k}|320"]
+            out.append(f"| {f} | {CL[k]} | " + " | ".join(f"{s(c['raw']['spill_obs'][j])} / {s(c['pred']['spill_pred'][j])}" for j in CL) + " |")
+    return "\n".join(out)
+
+
 def t_dose32():
     d = J("vr32_dose_nuisance.json")["families"]
     out = ["| Features | Selected concept | Recorded negatives | Observed slope [range] | Prediction | Predicted slope [range] | Observed over predicted [95% CI] |",
@@ -767,7 +794,7 @@ TABLES = {"theory": t_theory, "definitions": t_definitions, "size_matched": t_si
           "pad": t_pad, "headswap": t_headswap, "icdl": t_icdl, "repr": t_repr, "dose": t_dose, "bridge": t_bridge,
           "within": t_within, "sites": t_sites, "overlap": t_overlap, "joint": t_joint, "joint19": t_joint19, "psi": t_psi,
           "support19": t_support19, "dose21": t_dose21, "ess21": t_ess21, "arms21": t_arms21, "pointwise22": t_pointwise22,
-          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25}
+          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "dose46": t_dose46, "spill46": t_spill46, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25}
 
 
 def n_platt():
