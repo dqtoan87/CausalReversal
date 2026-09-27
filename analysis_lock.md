@@ -290,3 +290,7 @@ Claim không được phép thêm: tỉ số quan sát/dự đoán là ước l�
 ## 23. Vòng kiểm chứng thứ mười sáu (2026-09-27)
 
 Không chạy thêm thí nghiệm; chỉ sửa cách diễn đạt. Logit thô của mạng hữu hạn "need not equal the Bayes-optimal log-odds of the selected training distribution" (không nói "không nằm trên thang log-odds"); tỉ số quan sát/dự đoán "does not test the magnitude predicted by Proposition 1". Câu kết thu hẹp về "learned concept contrast". IV-D: "coincided with", không "reflects"; hạn chế vùng hỗ trợ không định danh nguyên nhân. Tag v1.0-submission (d20501c) đã chứa vr46; sẽ dời tag khi đẩy bản mới.
+
+## 24. Vòng kiểm chứng thứ mười bảy (2026-09-27)
+
+Không chạy thêm thí nghiệm. Câu đầu Abstract giữ phân biệt D, S, Y = D·S: bệnh chỉ được xác nhận ở tổn thương sinh thiết, tổn thương chưa xác minh vào huấn luyện như nhãn âm ghi nhận; III-A: "disease is missing not at random among unverified lesions" (nhãn Y không thiếu). Tiêu đề IV-B: "Controlled selection of recorded negatives can induce the reversal". Bảng tái lập S8 đối chiếu với tệp thật trong repo; các .npz và checkpoint ghi rõ "not distributed".

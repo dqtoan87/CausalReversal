@@ -953,7 +953,7 @@ Table S52 maps every reported result to the script that produces it. The analysi
 | Table S5 | `vr23_psi_sim.py` | `vr23_psi_sim.json` |
 | Table S6 | `vr28_psi_stress.py` | `vr28_psi_stress.json` |
 | Fig. S3 | `vr2_phase_diagram.py` | `vr2_phase_diagram.json` |
-| Fig. 2; Table S10 | `vr9_closing.py` | `vr9_closing.json`, `closing_heads.npz` |
+| Fig. 2; Table S10 | `vr9_closing.py` | `vr9_closing.json`; `closing_heads.npz`, not distributed |
 | Table 1 point estimates (original fits, seeds 0 to 2); one-seed check in Tables S15, S37 and S43 | `vr19_primary_bootstrap.py` | `vr19_primary_bootstrap.json`, `vr19/` |
 | Plug-in point tipping floor in Table S43 | `vr24_full_bootstrap.py` | `vr24_full_bootstrap.json` |
 | Tables S21, S28 and S29 | `vr21_dose_calibrated.py` | `vr21_dose_calibrated.json` |
@@ -971,7 +971,7 @@ Table S52 maps every reported result to the script that produces it. The analysi
 | Table S46 | `vr38_logit_tail.py` | `vr38_logit_tail.json` |
 | Two further seeds per replicate for the three-seed bootstrap; Table S14 | `vr39_seed_variance.py` | `vr39/`, `vr39_seed_variance.json` |
 | Table S9 | `vr34_semisynth.py` (argument `local`) | `vr34_semisynth_local.json` |
-| Tables S40 and S41 | `vr40_support_composition.py` | `vr40_support_composition.json`, `vr40_sigma.npz` |
+| Tables S40 and S41 | `vr40_support_composition.py` | `vr40_support_composition.json`; `vr40_sigma.npz`, not distributed |
 | Table S49, Fig. S4 | `vr41_marginal_site.py` | `vr41_marginal_site.json` |
 | Tables S2 and S44 | `vr42_sharp_weighted.py` | `vr42_sharp_weighted.json` |
 | Table 1 intervals and labels (primary three-seed bootstrap, from `vr19/` and `vr39/`); Table S18 | `vr43_three_seed_primary.py` | `vr43_three_seed_primary.json` |
@@ -983,7 +983,7 @@ Table S52 maps every reported result to the script that produces it. The analysi
 | Tables S35 and S36; PAD-UFES-20 counts | `vr20_audit.py` | `vr20_audit.json` |
 | Tables S20 and S42 | `vr12_claim_validation.py` | `vr12_claim_validation.json` |
 | Slope version of the gap | `vr12_claim_validation.py --parts b` | `vr12_quantitative.json` |
-| Fine-tuned and linear-probe models | `vr4_finetune.py` | `finetune/*.npz`, `vr4_finetune.json` |
+| Fine-tuned and linear-probe models | `vr4_finetune.py` | `vr4_finetune.json`; `finetune/*.npz` and checkpoints, not distributed |
 | Table S12; Fig. S1 | `vr5_representation.py` | `vr5_representation.json` |
 | Table S13 | `vr13_headswap.py` | `vr13_headswap.json` |
 | Fig. 4; PAD-UFES-20 associations | `vr6_pad_boundary.py`; ISIC-2024 reference positions from `sv2_bracket.py` | `vr6_pad_boundary.json`, `sv2_bracket.json` |
