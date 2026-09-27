@@ -470,11 +470,11 @@ Concept decodability was the same under both regimes. Cross-validated R² ranged
 
 | Features | Selected concept | Recorded negatives | Observed slope [range] | Prediction | Predicted slope [range] | Observed over predicted [95% CI] |
 | --- | --- | ---: | --- | --- | --- | --- |
-| tabular | Color variegation | 320 | −2.58 [−3.37, −2.01] | exact, concept in input | −2.09 [−2.09, −2.09] | 1.24 [1.16, 1.32] |
-| tabular | Size | 320 | −1.80 [−2.26, −1.31] | exact, concept in input | −1.38 [−1.38, −1.38] | 1.31 [1.21, 1.40] |
-| tabular | Lesion-skin contrast | 320 | −2.65 [−3.45, −2.23] | exact, concept in input | −2.05 [−2.05, −2.05] | 1.30 [1.23, 1.37] |
-| tabular | Color variegation | 1,000 | −2.38 [−2.80, −1.97] | exact, concept in input | −2.09 [−2.09, −2.09] | 1.14 [1.09, 1.19] |
-| tabular | Color variegation | 3,000 | −2.10 [−2.63, −1.63] | exact, concept in input | −2.09 [−2.09, −2.09] | 1.01 [0.95, 1.06] |
+| tabular | Color variegation | 320 | −2.58 [−3.37, −2.01] | Bayes-optimal shift, concept in input | −2.09 [−2.09, −2.09] | 1.24 [1.16, 1.32] |
+| tabular | Size | 320 | −1.80 [−2.26, −1.31] | Bayes-optimal shift, concept in input | −1.38 [−1.38, −1.38] | 1.31 [1.21, 1.40] |
+| tabular | Lesion-skin contrast | 320 | −2.65 [−3.45, −2.23] | Bayes-optimal shift, concept in input | −2.05 [−2.05, −2.05] | 1.30 [1.23, 1.37] |
+| tabular | Color variegation | 1,000 | −2.38 [−2.80, −1.97] | Bayes-optimal shift, concept in input | −2.09 [−2.09, −2.09] | 1.14 [1.09, 1.19] |
+| tabular | Color variegation | 3,000 | −2.10 [−2.63, −1.63] | Bayes-optimal shift, concept in input | −2.09 [−2.09, −2.09] | 1.01 [0.95, 1.06] |
 | image | Color variegation | 320 | −1.01 [−1.22, −0.85] | ridge conditional mean | −1.03 [−1.04, −1.02] | 0.99 [0.95, 1.03] |
 | image | Color variegation | 320 | −1.01 [−1.22, −0.85] | perceptron conditional mean | −1.02 [−1.09, −0.93] | 0.99 [0.94, 1.05] |
 | image | Size | 320 | −0.67 [−0.79, −0.54] | ridge conditional mean | −0.71 [−0.72, −0.70] | 0.94 [0.89, 0.98] |
@@ -501,9 +501,9 @@ Concept decodability was the same under both regimes. Cross-validated R² ranged
 
 | Features | Selected concept | Prediction | Color variegation | Size | Lesion-skin contrast | Asymmetry | Border irregularity |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| tabular | Color variegation | exact | −2.58 / −2.09 | −1.67 / −1.45 | −1.70 / −1.40 | +0.88 / +0.82 | +0.68 / +0.65 |
-| tabular | Size | exact | −1.50 / −1.06 | −1.80 / −1.38 | −0.81 / −0.61 | +0.46 / +0.31 | +0.02 / −0.05 |
-| tabular | Lesion-skin contrast | exact | −1.96 / −1.40 | −0.96 / −0.84 | −2.65 / −2.05 | +1.56 / +1.19 | +1.55 / +1.18 |
+| tabular | Color variegation | Bayes-optimal shift | −2.58 / −2.09 | −1.67 / −1.45 | −1.70 / −1.40 | +0.88 / +0.82 | +0.68 / +0.65 |
+| tabular | Size | Bayes-optimal shift | −1.50 / −1.06 | −1.80 / −1.38 | −0.81 / −0.61 | +0.46 / +0.31 | +0.02 / −0.05 |
+| tabular | Lesion-skin contrast | Bayes-optimal shift | −1.96 / −1.40 | −0.96 / −0.84 | −2.65 / −2.05 | +1.56 / +1.19 | +1.55 / +1.18 |
 | image | Color variegation | ridge | −1.01 / −1.03 | −0.59 / −0.67 | −1.14 / −1.08 | +0.81 / +0.64 | +0.79 / +0.59 |
 | image | Color variegation | mlp | −1.01 / −1.02 | −0.59 / −0.67 | −1.14 / −1.08 | +0.81 / +0.65 | +0.79 / +0.60 |
 | image | Size | ridge | −0.42 / −0.54 | −0.67 / −0.71 | −0.18 / −0.42 | +0.02 / +0.27 | −0.19 / +0.11 |

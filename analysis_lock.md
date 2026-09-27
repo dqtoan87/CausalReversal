@@ -276,3 +276,7 @@ Kết cục chính là tương phản logit thô (đối tượng của Proposit
 Kết quả chốt (n = 320): đường trung bình qua 0 ở 6/6; đổi dấu trong cùng lần lặp 120/120; lan sang đúng hướng 29/30; tỉ số quan sát/dự đoán Bayes-tối-ưu: bảng 0,99–1,14, ảnh 0,88–1,10; τ̂(1, −1) bảng −4,72 đến −2,59, ảnh −3,04 đến −1,11, mọi khoảng 95% < −0,99. Đường học color bảng: 0,99 → 0,93 → 0,86 (320 → 1.000 → 3.000), nên KHÔNG còn nói độ lớn tiến về dự đoán khi mẫu tăng. Thiết kế liều chung train+validation (vr32, vr44, vr21, vr26) giữ ở phụ lục như hiệu ứng của quy tắc chọn dữ liệu phát triển chung.
 
 Claim không được phép thêm: τ là hiệu ứng siêu quần thể; khoảng của τ̂ phản ánh lấy mẫu bệnh nhân; độ lớn khớp chính xác với learner hữu hạn; tương phản hiệu chỉnh trên validation cố định là kết cục chính.
+
+## 21. Rà soát trình bày (2026-09-27)
+
+Không chạy thêm phân tích. Năm lượt rà soát: bỏ lặp giữa các mục (đoạn "Why two concepts", MC SE lặp giữa chữ và chú thích Table 1, số 0,84 lặp, hai câu cùng ý ở IV-D, hai dòng Table 2 trùng IV-C, định nghĩa ngưỡng ổn định lặp trong chú thích Table 3); IV-D viết lại gọn; IV-F đổi tên "Learner-scale disease target"; Discussion và Conclusion rút gọn, tách rõ hai estimand về bệnh. Sửa: Δ_j(η, ω) là tương phản của một lần khớp; định nghĩa f₀, f₂; "Platt applied to M0 and M2"; nhãn "exact" trong bảng thiết kế liều chung đổi thành "Bayes-optimal shift". Các số không đổi.

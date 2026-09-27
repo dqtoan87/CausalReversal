@@ -486,7 +486,7 @@ def t_dose32():
     d = J("vr32_dose_nuisance.json")["families"]
     out = ["| Features | Selected concept | Recorded negatives | Observed slope [range] | Prediction | Predicted slope [range] | Observed over predicted [95% CI] |",
            "| --- | --- | ---: | --- | --- | --- | --- |"]
-    lab = {"exact": "exact, concept in input", "ridge": "ridge conditional mean", "mlp": "perceptron conditional mean"}
+    lab = {"exact": "Bayes-optimal shift, concept in input", "ridge": "ridge conditional mean", "mlp": "perceptron conditional mean"}
     for f in FAMS2:
         for key, c in d.get(f, {}).items():
             k, n = key.split("|")
@@ -504,7 +504,7 @@ def t_spill32():
             if n != "320":
                 continue
             for sp, v in c["pred"].items():
-                out.append(f"| {f} | {CL[k]} | {sp} | " + " | ".join(f"{s(v['spill'][j][0])} / {s(v['spill'][j][1])}" for j in CL) + " |")
+                out.append(f"| {f} | {CL[k]} | {dict(exact='Bayes-optimal shift').get(sp, sp)} | " + " | ".join(f"{s(v['spill'][j][0])} / {s(v['spill'][j][1])}" for j in CL) + " |")
     return "\n".join(out)
 
 

@@ -207,7 +207,7 @@ def jb_sentence():
             parts.append(f"for {lower(CL[c])} with {f} features the lower Bonferroni endpoint of Δ_M0 was {s(e['d0_ci_bonf'][0])}, "
                          f"so the two intervals {'were' if e['robust_bonf'] else 'were not'} sign-separated in the full set of replicates, but this label was reproduced in only "
                          f"{pct(v)} of Monte Carlo resamples, and we report it as unresolved")
-        txt.append(f"The Monte Carlo standard error of the Bonferroni endpoints was at most {u(se)}; " + "; ".join(parts) + ".")
+        txt.append(("; ".join(parts) + ".")[0].upper() + ("; ".join(parts) + ".")[1:])
     else:
         mn = min(d["families"][f]["concepts"][c]["label_stability"] for f in FAMS for c in PRIMARY)
         txt.append(f"The Monte Carlo standard error of the Bonferroni endpoints was at most {u(se)}, and every primary label was "
@@ -455,9 +455,6 @@ def table2_rows():
         ev = J("vr27_bridge_eiv.json")["families"][fam]["iv"]
         rows.append(f"| Proposition 1, lesion-level gap on log ĝ | {fam}; calibrated; least squares, then split-sample errors-in-variables diagnostic | "
                     f"{u(f['pointwise_slope'])} {ci(f['pointwise_slope_ci'])}; {u(ev['median'])} {ci(ev['ci95'])} |")
-    rows.append("| Within-patient against between-patient verification, color variegation | recorded negatives; log odds per standard deviation | +0.93 (SE 0.04) against +0.10 (SE 0.15) |")
-    h = J("vr20_audit.json")["site_heterogeneity"]["color_variegation"]
-    rows.append(f"| Verified-benign contrast across sites, color variegation | {h['k']} estimable sites | pooled log *B*_V {u(h['pooled_DL'])} {ci(h['pooled_ci'])}; I² = {u(h['I2'])} |")
     d19 = _v19()
     for fam in FAMS:
         e = d19["families"][fam]["concepts"]["color_variegation"]["support"]
@@ -635,7 +632,7 @@ def dose_sentence():
             f"{ci(lc['1000']['ratio_raw_ci95'])} with 1,000 and {u(lc['3000']['ratio_raw'])} {ci(lc['3000']['ratio_raw_ci95'])} with "
             f"3,000 selected recorded negatives, and with image features {u(li['1000']['ratio_raw'])} and {u(li['3000']['ratio_raw'])} "
             f"with 1,000 and 3,000, so magnitude agreement with a finite trained learner is approximate and does not improve "
-            f"systematically with sample size. We therefore claim the direction and the crossing, and approximate size only.")
+            f"systematically with sample size.")
 
 
 def table2_dose_rows():
@@ -660,7 +657,7 @@ def bridge_sentence():
     sg = {k: sum(a[f][k]["n_concepts_975"] for f in FAMS) for k in ("mlp|all", "gbm|all")}
     cal = {k: [a[f][k]["concept_calibration"] for f in FAMS] for k in ("mlp|all", "gbm|all")}
     bs = {f: sm[f]["summary"]["bridge_slope"]["median"] for f in FAMS}; bg = {f: sm[f]["summary"]["bridge_slope_gbm"]["median"] for f in FAMS}
-    return (f"Proposition 1 is exact only for Bayes-optimal learners, so for trained networks we test direction first. The predicted "
+    return (f"Proposition 1 is exact only for Bayes-optimal learners, so for trained networks we examine direction first. The predicted "
             f"concept-level gap had the observed sign in at least 97.5 percent of joint resamples in {sg['mlp|all']} of 10 combinations of "
             f"concept and family with a perceptron for ĝ and {sg['gbm|all']} of 10 with gradient boosting. Magnitude depended on the "
             f"propensity model, with calibration slopes of observed on predicted gap of {u(min(cal['mlp|all']))} to {u(max(cal['mlp|all']))} "
@@ -865,7 +862,7 @@ def psi_est_sentence():
             f"target was {u(pt['tabular']['mlp_iso'])} with isotonic calibration and {u(pt['tabular']['gbm_platt'])} with gradient boosting, "
             f"against {u(pt['tabular']['mlp_platt'])} with Platt calibration, and {u(pt['image']['mlp_iso'])} and {u(pt['image']['gbm_platt'])} "
             f"against {u(pt['image']['mlp_platt'])} for the image-feature target. With "
-            f"gradient boosting for the image-feature target the point floor was {u(pt['image']['gbm_platt'])}, but no floor up to one made "
+            f"gradient boosting for the image-feature target, no floor up to one made "
             f"ψ_L positive in 95 percent of replicates, so nuisance uncertainty cannot be summarized by one threshold. Gradient boosting had the poorest calibration of "
             f"tertile-level event counts among the three and the most conservative tipping behavior (Supplementary Section S7); we "
             f"report it as a sensitivity specification rather than privileging any nuisance model.")
@@ -955,8 +952,7 @@ def composition_sentence():
             f"{s(max(tr0['tabular']))} with tabular and from {s(min(tr0['image']))} to {s(max(tr0['image']))} with image features, "
             f"against {s(full['tabular'])} and {s(full['image'])} on the full population, whereas the reweighted M2 contrast stayed "
             f"between {s(min(tr2))} and {s(max(tr2))} (Supplementary Section S6). The loss of the color learner reversal in "
-            f"better-supported regions was thus accompanied by a smaller M0 contrast among lesions that are more likely to be "
-            f"verified, and the M0 contrast was not restored after standardizing the supported lesions on the five measured concepts under this weighting model.")
+            f"better-supported regions thus reflects a smaller M0 contrast among lesions that are more likely to be verified.")
 
 
 def partial_sentence():
@@ -983,13 +979,14 @@ def site_sentence_marg():
     nmiss = len(d["by_site"]) - len(est)
     big = sorted(d["by_site"].values(), key=lambda v: -sum(v["n_pos"]))[:2]
     word = {1: "one", 2: "two", 3: "three"}
+    w6 = {5: "five", 6: "six", 7: "seven"}
     return (f"Under a common lower-tertile floor assumed to hold within every observed site, the site-standardized whole-cohort "
             f"threshold was {u(st['joint_floor'])}, and leaving out one site at a time it ranged from {u(min(lo))} to {u(max(lo))}. "
-            f"This is a mixture estimand for the observed sites, not evidence of a reversal that holds in each site. Site-specific RR_Y "
-            f"ranged from {u(min(v['rr_y'] for v in est))} to {u(max(v['rr_y'] for v in est))} across the {len(est)} sites where it "
-            f"could be estimated, {word[nmiss]} site could not be estimated, and in {word[npos_or]} site the verified-only log odds "
-            f"ratio was positive. In the two sites with the most malignant lesions the risk ratios were {u(big[0]['rr_y'])} and "
-            f"{u(big[1]['rr_y'])}, implying point floors of {u(big[0]['floor'])} and {u(big[1]['floor'])} (Supplementary Section S7).")
+            f"This is a mixture estimand for the observed sites, not evidence of a reversal that holds in each site: site-specific RR_Y "
+            f"ranged from {u(min(v['rr_y'] for v in est))} to {u(max(v['rr_y'] for v in est))} across the {w6[len(est)]} estimable sites, "
+            f"the two sites with the most malignant lesions had {u(big[0]['rr_y'])} and {u(big[1]['rr_y'])}, implying point floors of "
+            f"{u(big[0]['floor'])} and {u(big[1]['floor'])}, {word[nmiss]} site could not be estimated, and in {word[npos_or]} site "
+            f"the verified-only log odds ratio was positive (Supplementary Section S7).")
 
 
 def benchmark_sentence():
@@ -1020,13 +1017,50 @@ def sharp_sentence():
     c = "color_variegation"
     tb, im = d[f"tabular|{c}"], d[f"image|{c}"]
     assert tb["sharp_plugin"]["s_star"] == tb["tertile_formula"]["s_star"] and im["sharp_plugin"]["s_star"] < im["tertile_formula"]["s_star"]
-    return ("For the image-feature target these floors come from the stratum formula, an outer set, because the sharp set needs the "
-            "true sign of *a*_k. An exploratory estimated-weight approximation produced narrower bounds, but its finite-sample validity "
-            "and weight-estimation uncertainty were not established, so it is not used for certification (Supplementary Section S7). "
-            "For the tabular-input target the two coincide.")
+    return ("For the image-feature target these floors come from the outer stratum formula; an exploratory estimated-weight "
+            "approximation to the sharp set gave narrower bounds, but its finite-sample validity was not established, so it is not "
+            "used for certification (Supplementary Section S7).")
 
 
-NUM = {"sharp_sentence": sharp_sentence, "balanced_sentence": balanced_sentence, "composition_sentence": composition_sentence, "partial_sentence": partial_sentence, "local_sentence": local_sentence, "site_sentence_marg": site_sentence_marg, "benchmark_sentence": benchmark_sentence, "floor_tab": lambda: _floor_rng("tabular"), "floor_img": lambda: _floor_rng("image"), "abs_boot": abs_boot, "size_defs_sentence": size_defs_sentence, "seed_sentence": seed_sentence, "resample_sentence": resample_sentence, "sigma_sentence": sigma_sentence, "abs_primary": lambda: abs_primary(), "abs_marg_floor": abs_marg_floor, "tail_sentence": tail_sentence, "concl_dose": lambda: ", and with tabular features at a rate that approached the predicted one as the training sample grew" if _tab_converges() else "", "abs_dose2": abs_dose2, "contrib_dose2": contrib_dose2, "overshoot_detail": overshoot_detail, "abs_floor_lo": lambda: abs_floor()[0], "abs_floor_hi": lambda: abs_floor()[1], "B30": B30, "subsample_sentence": subsample_sentence, "psi_primary_sentence": psi_primary_sentence, "psi_est_sentence": psi_est_sentence, "psi_support_sentence": psi_support_sentence, "val_sentence": val_sentence, "rr_sentence": rr_sentence, "B_primary": B_primary, "B19": B19, "mc_sentence": mc_sentence, "abs_dose": abs_dose, "contrib_dose": contrib_dose, "abs_robust": abs_robust, "abs_sstar": abs_sstar, "jb_sentence": jb_sentence, "mc_rule": mc_rule, "abs_inference": abs_inference, "tau_sentence": tau_sentence, "table1_mc": table1_mc, "psi_sentence": psi_sentence,
+def overlap_paragraph():
+    d37 = J("vr37_overlap_sigma.json"); qs = ("0.01", "0.05", "0.1")
+    own = {"tabular": "mlp_tab", "image": "mlp_img"}
+    ret = [d37["thresholds"][f"{own[f]}|{q}"]["retained"] for f in FAMS for q in qs]
+    assert all(v["m2_below"] for v in d37["contrasts"].values())
+    c = {f: [d37["contrasts"][f"{f}|{own[f]}|{q}|color_variegation"] for q in qs] for f in FAMS}
+    assert all(c[f][0]["d0"] > 0 and all(x["d0"] < 0 for x in c[f][1:]) for f in FAMS)
+    assert all(d37["contrasts"][f"image|{nm}|{q}|size"]["robust_95"] for nm in d37["estimators"] for q in qs)
+    neg = [x["d0"] for f in FAMS for x in c[f][1:]]
+    d = _v19(); rt = _ret(); qq = sorted(rt, key=float)
+    n_m2 = n_cells = m0zero = 0
+    for fam in FAMS:
+        for k in PRIMARY:
+            for q in qq:
+                v = d["families"][fam]["concepts"][k]["support"][q]; n_cells += 1
+                n_m2 += v["d2_ci95"][1] < 0; m0zero += v["d0_ci95"][0] <= 0
+    d40 = J("vr40_support_composition.json"); ests = ("nuisance", "mlp_tab", "mlp_img"); cc = "color_variegation"
+    full = {f: d40["full"][f"{f}|M0|{cc}"]["est"] for f in FAMS}
+    tr0 = [d40["support"][f"{f}|M0|{nm}|{q}|{cc}"]["transported"] for f in FAMS for nm in ests for q in qs]
+    tr2 = [d40["support"][f"{f}|M2|{nm}|{q}|{cc}"]["transported"] for f in FAMS for nm in ests for q in qs]
+    assert max(tr2) < 0 and all(max(d40["support"][f"{f}|M0|{nm}|{q}|{cc}"]["transported"] for nm in ests for q in qs) < full[f] for f in FAMS)
+    return (f"M2 learns from verified lesions but is evaluated on the whole test population, which could force extrapolation. We "
+            f"restricted the test population to lesions whose estimated verification propensity σ̂ reached the 1st, 5th or 10th "
+            f"percentile among verified training lesions, with σ̂ fitted on each learner's own input, as in Proposition 2, which kept "
+            f"{round(100 * min(ret))} to {pct(max(ret))} of test lesions, or on the tabular features, a common support that admits "
+            f"joint intervals. The M2 contrast stayed below zero throughout, with joint intervals below zero in {n_m2} of {n_cells} "
+            f"combinations of primary comparison and threshold, and size with image features kept 95 percent intervals on opposite "
+            f"sides of zero at every threshold under every estimate of σ. "
+            f"The M0 contrast of color variegation fell instead: with the input-matched σ̂ it was between {s(min(neg))} and "
+            f"{s(max(neg))} at the 5th and 10th thresholds, and under the common support the joint interval of M0 reached zero in "
+            f"{m0zero} of {n_cells} combinations. Standardizing the supported lesions on the five measured concepts did not restore it "
+            f"(from {s(min(tr0))} to {s(max(tr0))}, against {s(full['tabular'])} and {s(full['image'])} on the full population), while "
+            f"the standardized M2 contrast stayed between {s(min(tr2))} and {s(max(tr2))}. The loss of the color learner reversal in "
+            f"better-supported regions thus reflects a smaller M0 contrast among lesions more likely to be verified. The "
+            f"full-population learner reversal describes the held-out test population; the thresholds are a sensitivity analysis, not "
+            f"a proof of positivity (Supplementary Section S6).")
+
+
+NUM = {"overlap_paragraph": overlap_paragraph, "sharp_sentence": sharp_sentence, "balanced_sentence": balanced_sentence, "composition_sentence": composition_sentence, "partial_sentence": partial_sentence, "local_sentence": local_sentence, "site_sentence_marg": site_sentence_marg, "benchmark_sentence": benchmark_sentence, "floor_tab": lambda: _floor_rng("tabular"), "floor_img": lambda: _floor_rng("image"), "abs_boot": abs_boot, "size_defs_sentence": size_defs_sentence, "seed_sentence": seed_sentence, "resample_sentence": resample_sentence, "sigma_sentence": sigma_sentence, "abs_primary": lambda: abs_primary(), "abs_marg_floor": abs_marg_floor, "tail_sentence": tail_sentence, "concl_dose": lambda: ", and with tabular features at a rate that approached the predicted one as the training sample grew" if _tab_converges() else "", "abs_dose2": abs_dose2, "contrib_dose2": contrib_dose2, "overshoot_detail": overshoot_detail, "abs_floor_lo": lambda: abs_floor()[0], "abs_floor_hi": lambda: abs_floor()[1], "B30": B30, "subsample_sentence": subsample_sentence, "psi_primary_sentence": psi_primary_sentence, "psi_est_sentence": psi_est_sentence, "psi_support_sentence": psi_support_sentence, "val_sentence": val_sentence, "rr_sentence": rr_sentence, "B_primary": B_primary, "B19": B19, "mc_sentence": mc_sentence, "abs_dose": abs_dose, "contrib_dose": contrib_dose, "abs_robust": abs_robust, "abs_sstar": abs_sstar, "jb_sentence": jb_sentence, "mc_rule": mc_rule, "abs_inference": abs_inference, "tau_sentence": tau_sentence, "table1_mc": table1_mc, "psi_sentence": psi_sentence,
        "support_sentence": support_sentence, "dose_sentence": dose_sentence, "arms_sentence": arms_sentence,
        "bridge_sentence": bridge_sentence, "site_sentence": site_sentence, "psi_sim_sentence": psi_sim_sentence,
        "table2_rows": table2_rows}
