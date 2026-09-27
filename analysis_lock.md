@@ -286,3 +286,7 @@ Không chạy thêm phân tích. Năm lượt rà soát: bỏ lặp giữa các 
 Không chạy thêm thí nghiệm. Kết quả nhân quả chính của thí nghiệm liều là τ̂(1, −1); "qua 0" chỉ khẳng định ở cỡ 320 nhãn âm (gần cỡ huấn luyện của M2). Với 3.000 nhãn âm, color ảnh có τ̂ = −1,79 [−2,05; −1,51] nhưng đường trung bình không qua 0 (đổi dấu 8/20). Tỉ số quan sát/dự đoán trên logit thô chỉ là mô tả (logit mạng hữu hạn không nằm trên thang log-odds quần thể). τ được định danh bởi thiết kế; Proposition 1 chỉ dự đoán hướng của dịch chuyển Bayes-tối-ưu. Validation cố định chỉ dùng cho dừng sớm; hiệu chỉnh không thuộc kết cục chính. "Post-inspection" ghi ngay ở lần đầu trình bày thí nghiệm (Abstract, Contribution 2).
 
 Claim không được phép thêm: tỉ số quan sát/dự đoán là ước lượng tỉ lệ hiệu ứng nhân quả; "qua 0" ở mọi cỡ mẫu; Proposition 1 là lý do τ được định danh.
+
+## 23. Vòng kiểm chứng thứ mười sáu (2026-09-27)
+
+Không chạy thêm thí nghiệm; chỉ sửa cách diễn đạt. Logit thô của mạng hữu hạn "need not equal the Bayes-optimal log-odds of the selected training distribution" (không nói "không nằm trên thang log-odds"); tỉ số quan sát/dự đoán "does not test the magnitude predicted by Proposition 1". Câu kết thu hẹp về "learned concept contrast". IV-D: "coincided with", không "reflects"; hạn chế vùng hỗ trợ không định danh nguyên nhân. Tag v1.0-submission (d20501c) đã chứa vr46; sẽ dời tag khi đẩy bản mới.

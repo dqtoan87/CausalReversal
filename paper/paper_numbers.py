@@ -639,8 +639,8 @@ def dose_sentence():
             f"mean contrast did not cross zero and changed sign in {big['n_sign_change']} of 20 replicates. The raw-logit slopes had "
             f"the direction of the Bayes-optimal training-distribution shift, and their magnitudes were similar in this implementation, "
             f"at {u(min(rat))} to {u(max(rat))} times the prediction with 320 recorded negatives and {u(min(lcr))} to {u(max(lcr))} "
-            f"times with 1,000 or 3,000. Raw finite-network logits are not on an identified population log-odds scale, so these "
-            f"ratios are descriptive rather than estimates of a causal effect ratio. Thus the paired experiment identifies the "
+            f"times with 1,000 or 3,000. Raw finite-network logits need not equal the Bayes-optimal log-odds of the selected training "
+            f"distribution, so these ratios are descriptive and do not test the magnitude predicted by Proposition 1. Thus the paired experiment identifies the "
             f"finite-pipeline effect τ, while Proposition 1 separately predicts the direction of the corresponding Bayes-optimal shift; "
             f"their numerical agreement is diagnostic rather than an identification result (Supplementary Section S6).")
 
@@ -965,7 +965,7 @@ def composition_sentence():
             f"{s(max(tr0['tabular']))} with tabular and from {s(min(tr0['image']))} to {s(max(tr0['image']))} with image features, "
             f"against {s(full['tabular'])} and {s(full['image'])} on the full population, whereas the reweighted M2 contrast stayed "
             f"between {s(min(tr2))} and {s(max(tr2))} (Supplementary Section S6). The loss of the color learner reversal in "
-            f"better-supported regions thus reflects a smaller M0 contrast among lesions that are more likely to be verified.")
+            f"better-supported regions coincided with a smaller M0 contrast among lesions that are more likely to be verified.")
 
 
 def partial_sentence():
@@ -1068,7 +1068,8 @@ def overlap_paragraph():
             f"{m0zero} of {n_cells} combinations. Standardizing the supported lesions on the five measured concepts did not restore it "
             f"(from {s(min(tr0))} to {s(max(tr0))}, against {s(full['tabular'])} and {s(full['image'])} on the full population), while "
             f"the standardized M2 contrast stayed between {s(min(tr2))} and {s(max(tr2))}. The loss of the color learner reversal in "
-            f"better-supported regions thus reflects a smaller M0 contrast among lesions more likely to be verified. The "
+            f"better-supported regions coincided with a smaller M0 contrast among lesions more likely to be verified; the "
+            f"restriction changes the evaluation population and does not identify why. The "
             f"full-population learner reversal describes the held-out test population; the thresholds are a sensitivity analysis, not "
             f"a proof of positivity (Supplementary Section S6).")
 
