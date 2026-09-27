@@ -28,7 +28,7 @@ from scipy.optimize import minimize
 HERE = os.path.dirname(os.path.abspath(__file__))
 BASE = os.path.dirname(HERE)
 RES = os.path.join(BASE, "Result")
-DATA_CSV = os.path.join(os.environ.get("CAUSALREVERSAL_DATA", "/mnt/data2/Toan/Causal_ML_XAI/data"), "data_ISIC2024", "train-metadata.csv")
+DATA_CSV = os.path.join(os.environ.get("CAUSALREVERSAL_DATA", os.path.join(BASE, "data")), "data_ISIC2024", "train-metadata.csv")
 GROUP = "patient_id"
 SEED = 42
 

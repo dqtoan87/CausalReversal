@@ -23,7 +23,7 @@ The two data sets are public and are not redistributed here.
 * ISIC-2024 (SLICE-3D), from the ISIC Archive. Place `train-metadata.csv` and the image file under `data_ISIC2024/`.
 * PAD-UFES-20, from Mendeley Data.
 
-Set `CAUSALREVERSAL_DATA` to the folder that holds both:
+Place both under `data/` at the repository root, or set `CAUSALREVERSAL_DATA` to the folder that holds them:
 
 ```bash
 export CAUSALREVERSAL_DATA=/path/to/data

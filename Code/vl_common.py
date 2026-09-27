@@ -25,7 +25,7 @@ import sv_common as SV
 
 HERE = SV.HERE
 RES = SV.RES
-DATA = os.environ.get("CAUSALREVERSAL_DATA", "/mnt/data2/Toan/Causal_ML_XAI/data")   # thư mục chứa data_ISIC2024/ và PAD-UFES-20
+DATA = os.environ.get("CAUSALREVERSAL_DATA", os.path.join(SV.BASE, "data"))   # thư mục chứa data_ISIC2024/ và PAD-UFES-20
 EMB = os.path.join(RES, "embeddings")
 SEED = 42
 log = SV.log
