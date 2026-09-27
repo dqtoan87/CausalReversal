@@ -11,7 +11,7 @@ VR41 — Độ nhạy của kết quả liên hệ biên (vr35) theo cơ sở th
 (c) Bỏ từng cơ sở: RR_Y toàn cohort và sàn đồng thời.
 (d) Mốc so sánh theo gradient logit: với γ = log B_V, A(p₀, γ) = expit(logit p₀ + γ)/p₀; tìm p₀ nhỏ nhất để A ≤ A_max95
     (từ vr35), và vẽ đường biên trên mặt phẳng (p₀, γ). Đây là một mốc độ nhạy, không phải giả định được dữ liệu định danh.
-Out -> Result/vr41_marginal_site.json ; paper/figures/figS4_logit_benchmark.png
+Out -> Result/vr41_marginal_site.json ; paper/figures/figS3_logit_benchmark.png
 """
 from __future__ import annotations
 
@@ -122,8 +122,8 @@ def main():
     ax.legend(fontsize=7, loc="upper left")
     fig.tight_layout()
     figd = os.path.join(os.path.dirname(R.RES), "paper", "figures"); os.makedirs(figd, exist_ok=True)
-    fig.savefig(os.path.join(figd, "figS4_logit_benchmark.png"), dpi=200)
-    R.log("wrote figS4_logit_benchmark.png")
+    fig.savefig(os.path.join(figd, "figS3_logit_benchmark.png"), dpi=200)
+    R.log("wrote figS3_logit_benchmark.png")
 
 
 if __name__ == "__main__":

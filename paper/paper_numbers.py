@@ -168,6 +168,16 @@ def mc_rule():
             "label resolved at the Monte Carlo resolution when at least 95 percent of these resamples reproduce it.")
 
 
+def mc_text():
+    d = _vp()
+    se = max(v for f in FAMS for c in PRIMARY for v in d["families"][f]["concepts"][c]["mc_se_endpoints"])
+    ok = [d["families"][f]["concepts"][c]["label_stability"] for f in FAMS for c in PRIMARY
+          if d["families"][f]["concepts"][c]["label_stability"] >= 0.95]
+    word = {5: "five", 6: "six", 4: "four"}
+    return (f"The Monte Carlo standard error of the Bonferroni endpoints was at most {u(se)}, and the other {word[len(ok)]} "
+            f"primary labels were reproduced in " + ("every Monte Carlo resample." if min(ok) == 1 else f"at least {pct(min(ok))} of Monte Carlo resamples."))
+
+
 def table1_mc():
     d = _vp()
     se = max(v for f in FAMS for c in PRIMARY for v in d["families"][f]["concepts"][c]["mc_se_endpoints"])
@@ -1008,7 +1018,7 @@ def benchmark_sentence():
     return (f"Whether such a floor is plausible depends on how appearance dependence is transported from benign to malignant "
             f"verification, which the data cannot identify. The crude whole-cohort benign ratio *B*_V was {u(c['B_V'])} {ci(c['B_V_ci95'])}. On a "
             f"ratio scale this would exceed every *A* compatible with π₀¹ above {u(d['ratio_ceiling_p0'])}; with the same logit gradient, "
-            f"log *B*_V, *A* stays below {u(d['A_max95'])} once π₀¹ ≥ {u(d['p0_threshold'])} (Supplementary Fig. S4). Both are "
+            f"log *B*_V, *A* stays below {u(d['A_max95'])} once π₀¹ ≥ {u(d['p0_threshold'])} (Supplementary Fig. S3). Both are "
             f"benchmarks, not estimates of *A*.")
 
 
@@ -1074,7 +1084,7 @@ def overlap_paragraph():
             f"a proof of positivity (Supplementary Section S6).")
 
 
-NUM = {"overlap_paragraph": overlap_paragraph, "sharp_sentence": sharp_sentence, "balanced_sentence": balanced_sentence, "composition_sentence": composition_sentence, "partial_sentence": partial_sentence, "local_sentence": local_sentence, "site_sentence_marg": site_sentence_marg, "benchmark_sentence": benchmark_sentence, "floor_tab": lambda: _floor_rng("tabular"), "floor_img": lambda: _floor_rng("image"), "abs_boot": abs_boot, "size_defs_sentence": size_defs_sentence, "seed_sentence": seed_sentence, "resample_sentence": resample_sentence, "sigma_sentence": sigma_sentence, "abs_primary": lambda: abs_primary(), "abs_marg_floor": abs_marg_floor, "tail_sentence": tail_sentence, "concl_dose": lambda: ", and with tabular features at a rate that approached the predicted one as the training sample grew" if _tab_converges() else "", "abs_dose2": abs_dose2, "contrib_dose2": contrib_dose2, "overshoot_detail": overshoot_detail, "abs_floor_lo": lambda: abs_floor()[0], "abs_floor_hi": lambda: abs_floor()[1], "B30": B30, "subsample_sentence": subsample_sentence, "psi_primary_sentence": psi_primary_sentence, "psi_est_sentence": psi_est_sentence, "psi_support_sentence": psi_support_sentence, "val_sentence": val_sentence, "rr_sentence": rr_sentence, "B_primary": B_primary, "B19": B19, "mc_sentence": mc_sentence, "abs_dose": abs_dose, "contrib_dose": contrib_dose, "abs_robust": abs_robust, "abs_sstar": abs_sstar, "jb_sentence": jb_sentence, "mc_rule": mc_rule, "abs_inference": abs_inference, "tau_sentence": tau_sentence, "table1_mc": table1_mc, "psi_sentence": psi_sentence,
+NUM = {"overlap_paragraph": overlap_paragraph, "sharp_sentence": sharp_sentence, "balanced_sentence": balanced_sentence, "composition_sentence": composition_sentence, "partial_sentence": partial_sentence, "local_sentence": local_sentence, "site_sentence_marg": site_sentence_marg, "benchmark_sentence": benchmark_sentence, "floor_tab": lambda: _floor_rng("tabular"), "floor_img": lambda: _floor_rng("image"), "abs_boot": abs_boot, "size_defs_sentence": size_defs_sentence, "seed_sentence": seed_sentence, "resample_sentence": resample_sentence, "sigma_sentence": sigma_sentence, "abs_primary": lambda: abs_primary(), "abs_marg_floor": abs_marg_floor, "tail_sentence": tail_sentence, "concl_dose": lambda: ", and with tabular features at a rate that approached the predicted one as the training sample grew" if _tab_converges() else "", "abs_dose2": abs_dose2, "contrib_dose2": contrib_dose2, "overshoot_detail": overshoot_detail, "abs_floor_lo": lambda: abs_floor()[0], "abs_floor_hi": lambda: abs_floor()[1], "B30": B30, "subsample_sentence": subsample_sentence, "psi_primary_sentence": psi_primary_sentence, "psi_est_sentence": psi_est_sentence, "psi_support_sentence": psi_support_sentence, "val_sentence": val_sentence, "rr_sentence": rr_sentence, "B_primary": B_primary, "B19": B19, "mc_sentence": mc_sentence, "abs_dose": abs_dose, "contrib_dose": contrib_dose, "abs_robust": abs_robust, "abs_sstar": abs_sstar, "jb_sentence": jb_sentence, "mc_rule": mc_rule, "abs_inference": abs_inference, "tau_sentence": tau_sentence, "table1_mc": table1_mc, "mc_text": mc_text, "psi_sentence": psi_sentence,
        "support_sentence": support_sentence, "dose_sentence": dose_sentence, "arms_sentence": arms_sentence,
        "bridge_sentence": bridge_sentence, "site_sentence": site_sentence, "psi_sim_sentence": psi_sim_sentence,
        "table2_rows": table2_rows}

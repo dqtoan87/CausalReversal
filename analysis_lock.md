@@ -294,3 +294,7 @@ Không chạy thêm thí nghiệm; chỉ sửa cách diễn đạt. Logit thô c
 ## 24. Vòng kiểm chứng thứ mười bảy (2026-09-27)
 
 Không chạy thêm thí nghiệm. Câu đầu Abstract giữ phân biệt D, S, Y = D·S: bệnh chỉ được xác nhận ở tổn thương sinh thiết, tổn thương chưa xác minh vào huấn luyện như nhãn âm ghi nhận; III-A: "disease is missing not at random among unverified lesions" (nhãn Y không thiếu). Tiêu đề IV-B: "Controlled selection of recorded negatives can induce the reversal". Bảng tái lập S8 đối chiếu với tệp thật trong repo; các .npz và checkpoint ghi rõ "not distributed".
+
+## 25. Vòng kiểm chứng thứ mười tám (2026-09-27)
+
+Không chạy thêm thí nghiệm. III-C: "For the Bayes-optimal learners, a reversal occurs exactly when…". Mọi chú thích hình và bảng (bài chính và phụ lục) chỉ còn một câu; phần mô tả chuyển vào bài, ngay trước bảng/hình ở phụ lục. Hình phụ lục đánh số lại theo thứ tự xuất hiện (phase diagram S1, fine-tune S2, logit benchmark S3, constrained learner S4) và đổi tên tệp tương ứng. Fig. 1(b) và Fig. 3(b) nay được nhắc trong phần chữ. Thêm trích dẫn cho Platt, isotonic, gradient boosting, percentile bootstrap (bài chính) và danh mục tài liệu phụ lục (Kish, DerSimonian-Laird, Kool, Kull, Meurer, Politis). Release v1.1-submission đã kiểm tra đầy đủ; bản này trích v1.2-submission.

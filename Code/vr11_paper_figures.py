@@ -4,7 +4,7 @@
 VR11 — Hình cho bản thảo, chỉ đọc JSON đã khóa. Ghi vào Causal_VILRR/paper/figures/.
 
 Main:  fig1_mechanism.png, fig2_phase_diagram.png, fig3_learned_reversal.png, fig4_boundary.png
-Supp:  figS1_finetune.png, figS2_icdl.png, figS3_identified_sets.png
+Supp:  figS1_phase_diagram.png, figS2_finetune.png, figS4_icdl.png (figS3 from vr41)
 Bảng màu: khe categorical đã kiểm (dataviz validate_palette); mọi chuỗi có hình dấu và chú giải riêng.
 """
 from __future__ import annotations
@@ -111,7 +111,7 @@ def fig2():
     a.set_xlim(-0.3, 3.0); a.set_ylim(-1.5, 9)
     a.set_xlabel(r"$\theta = \log \mathrm{OR}_D$"); a.set_ylabel(r"$\delta = \log B - \log A$")
     a.legend(frameon=False, fontsize=7, loc="upper left")
-    fig.tight_layout(); save(fig, "figS3_phase_diagram.png")
+    fig.tight_layout(); save(fig, "figS1_phase_diagram.png")
 
 
 def fig_external():
@@ -220,7 +220,7 @@ def figS1():
         ax.set_title(t, loc="left", fontsize=8)
     h, l = axes[0].get_legend_handles_labels()
     fig.legend(h, ["M0 fine-tuned on Y", "M2 fine-tuned on verified lesions"], loc="upper center", ncol=2, frameon=False)
-    fig.tight_layout(rect=(0, 0, 1, 0.86)); save(fig, "figS1_finetune.png")
+    fig.tight_layout(rect=(0, 0, 1, 0.86)); save(fig, "figS2_finetune.png")
 
 
 def figS2():
@@ -242,7 +242,7 @@ def figS2():
         ax.set_yticks(range(len(st))); ax.set_yticklabels([f"{s:g}" for s in st])
         ax.set_xlabel(r"assumed $s_{\min}$"); ax.set_ylabel(r"true $s_{\min}$"); ax.set_title(title, loc="left", fontsize=8.5)
         fig.colorbar(im, ax=ax, shrink=0.8)
-    fig.tight_layout(); save(fig, "figS2_icdl.png")
+    fig.tight_layout(); save(fig, "figS4_icdl.png")
 
 
 def figS3():
