@@ -280,3 +280,9 @@ Claim không được phép thêm: τ là hiệu ứng siêu quần thể; kho�
 ## 21. Rà soát trình bày (2026-09-27)
 
 Không chạy thêm phân tích. Năm lượt rà soát: bỏ lặp giữa các mục (đoạn "Why two concepts", MC SE lặp giữa chữ và chú thích Table 1, số 0,84 lặp, hai câu cùng ý ở IV-D, hai dòng Table 2 trùng IV-C, định nghĩa ngưỡng ổn định lặp trong chú thích Table 3); IV-D viết lại gọn; IV-F đổi tên "Learner-scale disease target"; Discussion và Conclusion rút gọn, tách rõ hai estimand về bệnh. Sửa: Δ_j(η, ω) là tương phản của một lần khớp; định nghĩa f₀, f₂; "Platt applied to M0 and M2"; nhãn "exact" trong bảng thiết kế liều chung đổi thành "Bayes-optimal shift". Các số không đổi.
+
+## 22. Vòng kiểm chứng thứ mười lăm (2026-09-27)
+
+Không chạy thêm thí nghiệm. Kết quả nhân quả chính của thí nghiệm liều là τ̂(1, −1); "qua 0" chỉ khẳng định ở cỡ 320 nhãn âm (gần cỡ huấn luyện của M2). Với 3.000 nhãn âm, color ảnh có τ̂ = −1,79 [−2,05; −1,51] nhưng đường trung bình không qua 0 (đổi dấu 8/20). Tỉ số quan sát/dự đoán trên logit thô chỉ là mô tả (logit mạng hữu hạn không nằm trên thang log-odds quần thể). τ được định danh bởi thiết kế; Proposition 1 chỉ dự đoán hướng của dịch chuyển Bayes-tối-ưu. Validation cố định chỉ dùng cho dừng sớm; hiệu chỉnh không thuộc kết cục chính. "Post-inspection" ghi ngay ở lần đầu trình bày thí nghiệm (Abstract, Contribution 2).
+
+Claim không được phép thêm: tỉ số quan sát/dự đoán là ước lượng tỉ lệ hiệu ứng nhân quả; "qua 0" ở mọi cỡ mẫu; Proposition 1 là lý do τ được định danh.
