@@ -302,3 +302,7 @@ Không chạy thêm thí nghiệm. III-C: "For the Bayes-optimal learners, a rev
 ## 26. Vòng kiểm chứng thứ mười chín (2026-09-27)
 
 Không chạy thêm thí nghiệm. Nguồn định danh của τ: nhà phân tích trực tiếp thực thi từng quy tắc chọn mẫu trên cùng ω (không nói "assignment of η"); sửa đồng bộ ở III-B, Introduction, Conclusion. Mười chú thích bảng phụ lục dài hơn 14 từ được rút gọn, bổ sung vào câu chú giải trước bảng. Release v1.2-submission đã kiểm tra từ GitHub (đủ vr46, analysis_lock, vl_split; bảng S8 không thiếu tệp; dựng lại không đổi). Bài trích v1.3-submission.
+
+## 27. Vòng kiểm chứng thứ hai mươi (2026-09-27)
+
+Không chạy thêm thí nghiệm. Trong vr46, tập validation được rút lại ở mỗi lần lặp và dùng chung cho mọi mức η: ω nay gồm cả "validation-set draw used for early stopping"; τ và các khoảng của nó có điều kiện trên cohort, patient split và quần thể test (không còn "conditional on the validation set"); η không đổi validation, nên vẫn là training-selection effect. "Fixed validation set" trong thí nghiệm liều đổi thành "replicate-specific validation set shared across doses". Kết luận Table 1 vẫn có điều kiện trên tập validation thực tế (đúng). Theo quyết định của tác giả: tên hình/bảng giữ một câu; lưu ý suy diễn đặt thành đoạn "In Table x, …"/"In Fig. x, …" ngay trước hình/bảng (Table 1–3, Fig. 2–4; phụ lục S22, S43, S44, S50 kèm B_V là mốc tham chiếu). Bài trích v1.4-submission.

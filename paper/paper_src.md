@@ -64,7 +64,7 @@ Because *p* depends on the input, ψ_k is specific to a learner family. The tabu
 
 A **learner reversal** is a difference in sign between Δ_{M0,k} and Δ_{M2,k}. It is observable, but M0 and M2 differ in more than one respect, so it is not by itself the effect of a selection rule. That effect is defined next. A **learner-scale disease-relative reversal** is a difference in sign between Δ_{M2,k} and ψ_k. It can be established only as far as the identified set for ψ_k determines the sign of ψ_k. We also use the marginal disease contrast θ_k = log OR_D between the strata, the classical object of selection bias. A **marginal association reversal** is a positive θ_k with a negative verified-only association log OR_{D|S} (Lemma 1), or the reverse.
 
-**Training-selection effect.** Let η index a rule, set by the analyst, for selecting recorded negatives into the training set only, with the validation set used for early stopping held fixed; calibration is not part of this outcome. Let ω collect the exogenous random numbers of the pipeline: the uniform variables that decide inclusion, the draw of malignant training lesions and the optimizer seed. The contrast of a single fit is then a potential outcome Δ_j(η, ω), and the training-selection effect on concept *j* is τ_j(η₁, η₀) = E_ω[Δ_j(η₁, ω) − Δ_j(η₀, ω)]. Because the analyst directly implements each selection rule while holding the paired algorithmic randomness ω fixed, τ_j is identified by design, conditional on the realized cohort, split, validation set and evaluation population, without assumptions about clinical verification. It is an effect of an experimental selection rule on what a learner learns, not an effect of a concept on disease or of a clinical biopsy policy, and not a superpopulation effect over repeated patient samples.
+**Training-selection effect.** Let η index a rule, set by the analyst, for selecting recorded negatives into the training set only; the validation set used for early stopping is not changed by η, and calibration is not part of this outcome. Let ω collect the exogenous random numbers of the pipeline: the uniform variables that decide inclusion, the draw of malignant training lesions, the validation-set draw used for early stopping and the optimizer seed. The contrast of a single fit is then a potential outcome Δ_j(η, ω), and the training-selection effect on concept *j* is τ_j(η₁, η₀) = E_ω[Δ_j(η₁, ω) − Δ_j(η₀, ω)]. Because the analyst directly implements each selection rule while holding the paired algorithmic randomness ω fixed within a replicate, τ_j is identified by design, conditional on the realized cohort, patient split and evaluation population, without assumptions about clinical verification. It is an effect of an experimental selection rule on what a learner learns, not an effect of a concept on disease or of a clinical biopsy policy, and not a superpopulation effect over repeated patient samples.
 
 ### C. The training-selection offset
 
@@ -128,23 +128,31 @@ Proposition 2 assumes *q* and σ known. On ISIC-2024 we replace *q* by the calib
 
 ### A. Learner reversal on ISIC-2024
 
-Table 1 reports the learned contrasts. Its upper block holds the six primary cells with Bonferroni-adjusted percentile intervals at level 1 − 0.05/6, by which the label is judged, and its lower block the secondary concepts with 95 percent intervals; the same-sign count is descriptive and is not a test. {{N:jb_sentence}} {{N:mc_text}} {{N:resample_sentence}} Fig. 2 shows all four families, with M0 as circles and M2 as triangles on panel-specific scales; its bars are test-only bootstrap intervals conditional on the fitted models, unlike the joint intervals of Table 1. The linear-probe and fine-tuned families also reversed color variegation, with no test bootstrap resample of the same sign, conditional on the fitted models. {{N:size_defs_sentence}} {{N:balanced_sentence}}
+Table 1 reports the learned contrasts. {{N:jb_sentence}} {{N:mc_text}} {{N:resample_sentence}} Fig. 2 shows all four families. The linear-probe and fine-tuned families also reversed color variegation, with no test bootstrap resample of the same sign, conditional on the fitted models. {{N:size_defs_sentence}} {{N:balanced_sentence}}
+
+In Table 1, the primary rows show Bonferroni-adjusted percentile intervals at level 1 − 0.05/6 from the three-seed joint bootstrap, conditional on the realized validation set, and the secondary rows show 95 percent intervals. "Unresolved" marks a sign-separation label of the full replicate set that was reproduced in fewer than 95 percent of Monte Carlo resamples of the stored replicates, and the same-sign count is descriptive, not a test.
 
 **TABLE 1. Learned contrasts of the frozen-feature learners on the ISIC-2024 test population.**
 
 {{TABLE:main_reversal}}
 
+In Fig. 2, M0 is shown as circles and M2 as triangles on panel-specific scales. Its bars are test-patient bootstrap intervals conditional on the fitted models and therefore differ from the joint training-and-test bootstrap intervals of the primary inference in Table 1.
+
 **Fig. 2.** Learned contrasts of M0 and M2 in the four learner families.
 
 ### B. Controlled selection of recorded negatives can induce the reversal
 
-Table 2 summarizes the tests of alternative explanations, and Supplementary Section S6 reports each in full. In Table 2, size-matched intervals are 2.5 and 97.5 percentiles over replicates, dose intervals are bootstrap intervals over the 20 paired replicates conditional on the fixed cohort, dose slope ratios are descriptive, and the other intervals come from one-seed joint bootstrap resamples of training and test patients.
+Table 2 summarizes the tests of alternative explanations, and Supplementary Section S6 reports each in full.
 
 A size-matched control combined the same malignant lesions with 320 recorded negatives per replicate. For color variegation and size, in both families, the contrast was positive in 20 of 20 replicates when the recorded negatives were drawn at random and negative in 20 of 20 when they were verified ones. For color variegation it was also negative in 20 of 20 when they were flagged but never biopsied. This argues against training-set size as the explanation for these two concepts. For lesion-skin contrast with image features the random arm was itself close to zero, so the control does not separate size from selection there. {{N:arms_sentence}}
 
-A controlled selection dose changed only which recorded negatives entered training. Fig. 3(a) shows the raw logit contrast of color variegation with 320 selected recorded negatives, as means over the 20 paired replicates with 2.5 to 97.5 percentile ranges; its dashed lines are the Bayes-optimal training-distribution shift given each learner's input, anchored at η = 0 and shown for direction, with a ridge estimate of the conditional concept mean for image features. In each of 20 replicates the validation set, the malignant training lesions and the seed were shared by all five doses, and each recorded-negative training lesion received one uniform variable that decided its inclusion at every dose, so the replicate fixes ω and contrasts between doses are paired potential outcomes. The outcome is the learner's raw-logit contrast; Proposition 1 characterizes the corresponding Bayes-optimal training-distribution contrast. Platt calibration on the fixed validation set would target the unselected distribution instead, and at the highest dose its fitted slope was negative in 29 of 200 fits, so calibrated contrasts are reported only in Supplementary Section S6. {{N:dose_sentence}}
+A controlled selection dose changed only which recorded negatives entered training (Fig. 3(a)). In each of 20 replicates a validation set was drawn and, with the malignant training lesions and the seed, shared by all five doses, and each recorded-negative training lesion received one uniform variable that decided its inclusion at every dose, so the replicate fixes ω and contrasts between doses are paired potential outcomes. The outcome is the learner's raw-logit contrast; Proposition 1 characterizes the corresponding Bayes-optimal training-distribution contrast. Platt calibration on the replicate-specific validation set, which is not selected by η, would target the unselected distribution instead, and at the highest dose its fitted slope was negative in 29 of 200 fits, so calibrated contrasts are reported only in Supplementary Section S6. {{N:dose_sentence}}
+
+In Fig. 3(a), points are means of the raw logit contrast of color variegation over the 20 paired replicates with 320 selected recorded negatives, with 2.5 to 97.5 percentile ranges. Its dashed lines are the Bayes-optimal training-distribution shift given each learner's input, anchored at η = 0 and shown for direction only, with a ridge estimate of the conditional concept mean for image features. In Fig. 3(b), points are calibrated medians over 200 one-seed joint resamples with 95 percent percentile intervals, against the identity line.
 
 **Fig. 3.** Controlled selection dose (a) and observed against predicted learner gap (b).
+
+In Table 2, size-matched intervals are 2.5 and 97.5 percentiles over replicates, and dose intervals are bootstrap intervals over the 20 paired replicates, conditional on the cohort, patient split and test population. Observed-over-predicted ratios are descriptive and do not test the magnitude predicted by Proposition 1. The other intervals come from one-seed joint bootstrap resamples of training and test patients.
 
 **TABLE 2. Tests of alternative explanations for the learner reversal.**
 
@@ -156,7 +164,7 @@ A controlled selection dose changed only which recorded negatives entered traini
 
 ### C. The learner gap follows the recorded-negative verification propensity
 
-{{N:bridge_sentence}} Fig. 3(b) plots the observed against the predicted concept-level gap after calibration, as medians over 200 joint resamples with 95 percent percentile intervals, against the identity line. Agreement between observed and predicted gaps also reflects approximation error, calibration, estimation of *g* and optimization, so it is a diagnostic, not a test of the identity, which the symbolic and unit tests verify (Supplementary Section S2).
+{{N:bridge_sentence}} Fig. 3(b) plots the observed against the predicted concept-level gap. Agreement between observed and predicted gaps also reflects approximation error, calibration, estimation of *g* and optimization, so it is a diagnostic, not a test of the identity, which the symbolic and unit tests verify (Supplementary Section S2).
 
 Verification of recorded negatives depended on appearance mainly within patients: a one standard deviation increase in color variegation relative to the patient's own lesions raised the log odds of verification by 0.93 (SE 0.04), against 0.10 (SE 0.15) for the patient's mean. This describes a verification pattern, consistent with clinicians biopsying a patient's atypical-looking lesions, and does not identify the clinical mechanism. {{N:site_sentence}}
 
@@ -166,7 +174,9 @@ Verification of recorded negatives depended on appearance mainly within patients
 
 ### E. External consistency check on PAD-UFES-20
 
-On PAD-UFES-20, every image recorded as malignant was biopsied, so *A* = 1 under the recorded-diagnosis operationalization and Lemma 1 then reduces to log OR_{D|S} = θ − log *B*. Verification attenuated ten of eleven association features, amplified one and reversed none (Fig. 4). The figure places these features at *A* = 1 under the recorded-diagnosis operationalization and shows the three primary ISIC-2024 concepts at reference positions under the assumption *A* = 1, with segments for *A* in [0.5, 2]; the segments are sensitivity paths, not confidence intervals, and the two cohorts are not matched counterfactuals of each other. The learner contrasts showed the same qualitative attenuation. With patients split 60/20/20, M2 trained on the 814 biopsied training images had a smaller contrast than M0 for all six symptoms, and for image color variegation the contrast fell from +2.06 [1.47, 2.84] to +0.70 [0.22, 1.23]. The cohorts differ in modality, population, prevalence and workflow, so PAD-UFES-20 illustrates the attenuating regime of Lemma 1 and validates neither the mechanism on ISIC-2024 nor Lemma 1 for latent disease. If some clinically diagnosed lesions were malignant, *A* would fall below one by an amount the data do not identify.
+On PAD-UFES-20, every image recorded as malignant was biopsied, so *A* = 1 under the recorded-diagnosis operationalization and Lemma 1 then reduces to log OR_{D|S} = θ − log *B*. Verification attenuated ten of eleven association features, amplified one and reversed none (Fig. 4). The learner contrasts showed the same qualitative attenuation. With patients split 60/20/20, M2 trained on the 814 biopsied training images had a smaller contrast than M0 for all six symptoms, and for image color variegation the contrast fell from +2.06 [1.47, 2.84] to +0.70 [0.22, 1.23]. The cohorts differ in modality, population, prevalence and workflow, so PAD-UFES-20 illustrates the attenuating regime of Lemma 1 and validates neither the mechanism on ISIC-2024 nor Lemma 1 for latent disease. If some clinically diagnosed lesions were malignant, *A* would fall below one by an amount the data do not identify.
+
+In Fig. 4, the PAD-UFES-20 features are placed at *A* = 1 under the recorded-diagnosis operationalization, and the three primary ISIC-2024 concepts are reference positions under the assumption *A* = 1, with segments for *A* in [0.5, 2]. The segments are sensitivity paths, not confidence intervals, and the two cohorts are not matched counterfactuals of each other.
 
 **Fig. 4.** ISIC-2024 and PAD-UFES-20 in the plane of Lemma 1.
 
@@ -174,7 +184,9 @@ On PAD-UFES-20, every image recorded as malignant was biopsied, so *A* = 1 under
 
 {{N:psi_primary_sentence}} {{N:sharp_sentence}}
 
-{{N:psi_est_sentence}} {{N:tail_sentence}} In Table 3, the point floor uses the seed-averaged curve of ψ_L, the Monte Carlo range of the stability threshold comes from 500 resamples of the replicates, the range across rows is a range across specifications rather than a statistical interval, the joint count at a floor of 0.8 is a resampling frequency rather than a probability of reversal, and log-loss is on the test population for the original fits.
+{{N:psi_est_sentence}} {{N:tail_sentence}}
+
+In Table 3, the point floor uses the seed-averaged curve of ψ_L, and the Monte Carlo range of the stability threshold comes from 500 resamples of the replicates. Ranges across estimators of *q* summarize specification sensitivity and are not statistical confidence intervals. Joint counts are resampling frequencies under the stated plug-in procedure, not probabilities that a disease-relative reversal holds. Log-loss is on the test population for the original fits.
 
 **TABLE 3. Plug-in tipping floor for color variegation under three estimates of q.**
 
@@ -205,7 +217,7 @@ We asked whether selective verification changes what a classifier learns. Select
 
 **Data availability.** Both data sets are public. ISIC-2024 is distributed through the ISIC Archive [@kurtansky] and PAD-UFES-20 through Mendeley Data [@pacheco]. No new patient data were collected.
 
-**Code availability.** The scripts that produce every number, table and figure in this paper, the symbolic checks, the unit tests and the analysis lock are available at https://github.com/dqtoan87/CausalReversal; the version reported here is release v1.3-submission. Supplementary Section S8 maps each result to its script.
+**Code availability.** The scripts that produce every number, table and figure in this paper, the symbolic checks, the unit tests and the analysis lock are available at https://github.com/dqtoan87/CausalReversal; the version reported here is release v1.4-submission. Supplementary Section S8 maps each result to its script.
 
 **Ethics.** This is a secondary analysis of two de-identified public data sets released under the approvals documented by their providers. No further approval was required.
 
