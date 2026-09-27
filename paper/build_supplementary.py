@@ -434,7 +434,7 @@ def t_marginal35():
     d = J("vr35_marginal_rr.json")["populations"]
     B = J("vr35_marginal_rr.json")["B"]
     jf = lambda jc: next((k for k, v in sorted(jc.items(), key=lambda z: float(z[0])) if v >= 0.95 * B), None)
-    out = ["| Population | Concept | Malignant, lower / upper tertile | RR_Y [95% CI] | Floor 1/RR_Y | Floor 1/q₀.₀₅ | Verified-only log OR [95% CI] | Joint floor | Largest *A* at 95% | *B*_V [95% CI] |",
+    out = ["| Population | Concept | Malignant, lower / upper tertile | RR_Y [95% CI] | Floor 1/RR_Y | Floor 1/q₀.₀₅ | Verified-only log OR [95% CI] | 95% resampling stability threshold | Largest *A* at 95% | *B*_V [95% CI] |",
            "| --- | --- | --- | --- | ---: | ---: | --- | ---: | ---: | --- |"]
     for pop, lab in (("cohort", "whole cohort"), ("test", "test population")):
         for c in CL:
@@ -580,7 +580,7 @@ def t_partial40():
 def t_site41():
     d = J("vr41_marginal_site.json")
     order = _site_order()
-    out = ["| Concept | Site | Malignant, lower / upper tertile | Verified benign, lower / upper | RR_Y | Floor 1/RR_Y | Verified-only log OR | Joint floor without this site |",
+    out = ["| Concept | Site | Malignant, lower / upper tertile | Verified benign, lower / upper | RR_Y | Floor 1/RR_Y | Verified-only log OR | 95% resampling stability threshold without this site |",
            "| --- | --- | --- | --- | ---: | ---: | ---: | ---: |"]
     for c in ("color_variegation", "size"):
         e = d["concepts"][c]
@@ -697,6 +697,18 @@ def t_eiv27():
     return "\n".join(out)
 
 
+def t_tau44():
+    d = J("vr44_dose_estimand.json")["families"]
+    out = ["| Features | Concept | Mean Δ at η = −1 / η = 1 | τ̂(1, −1) [95% CI] | Predicted | Observed / predicted | Replicates changing sign |",
+           "| --- | --- | --- | --- | ---: | ---: | ---: |"]
+    for f in FAMS2:
+        for c in PRIMARY_SUPP:
+            e = d[f][c]
+            out.append(f"| {f} | {CL[c]} | {s(e['delta_lo_mean'])} / {s(e['delta_hi_mean'])} | {s(e['tau_hat'])} {ci(e['tau_ci95'])} | "
+                       f"{s(e['tau_pred'])} | {u(e['tau_hat'] / e['tau_pred'])} | {e['n_sign_change']} of 20 |")
+    return "\n".join(out)
+
+
 def t_mc43():
     """Kiểm toán Monte Carlo của bootstrap ba seed chính (vr43): sai số MC của đầu mút Bonferroni, tỉ lệ tái lập nhãn."""
     d = J("vr43_three_seed_primary.json")
@@ -755,7 +767,7 @@ TABLES = {"theory": t_theory, "definitions": t_definitions, "size_matched": t_si
           "pad": t_pad, "headswap": t_headswap, "icdl": t_icdl, "repr": t_repr, "dose": t_dose, "bridge": t_bridge,
           "within": t_within, "sites": t_sites, "overlap": t_overlap, "joint": t_joint, "joint19": t_joint19, "psi": t_psi,
           "support19": t_support19, "dose21": t_dose21, "ess21": t_ess21, "arms21": t_arms21, "pointwise22": t_pointwise22,
-          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "psisens25": t_psisens25, "twofloor25": t_twofloor25}
+          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25}
 
 
 def n_platt():

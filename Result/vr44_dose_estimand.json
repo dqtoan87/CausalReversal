@@ -1,0 +1,85 @@
+{
+  "etas": [
+    -1.0,
+    1.0
+  ],
+  "n_rep": 20,
+  "families": {
+    "tabular": {
+      "color_variegation": {
+        "tau_hat": -5.0783917633400595,
+        "tau_ci95": [
+          -5.5278644604099405,
+          -4.6426626962982915
+        ],
+        "tau_pred": -4.172291559127431,
+        "n_sign_change": 20,
+        "delta_lo_mean": 3.793952425909789,
+        "delta_hi_mean": -1.2844393374302705,
+        "pred_spec": "exact"
+      },
+      "size": {
+        "tau_hat": -3.5329724283816417,
+        "tau_ci95": [
+          -3.893082559194595,
+          -3.1813287253207636
+        ],
+        "tau_pred": -2.7620809079334085,
+        "n_sign_change": 20,
+        "delta_lo_mean": 2.901587103979873,
+        "delta_hi_mean": -0.6313853244017685,
+        "pred_spec": "exact"
+      },
+      "lesion_skin_contrast": {
+        "tau_hat": -5.2890823818629205,
+        "tau_ci95": [
+          -5.729105669048246,
+          -4.936386129706611
+        ],
+        "tau_pred": -4.097155810551134,
+        "n_sign_change": 20,
+        "delta_lo_mean": 3.3620427935723685,
+        "delta_hi_mean": -1.9270395882905536,
+        "pred_spec": "exact"
+      }
+    },
+    "image": {
+      "color_variegation": {
+        "tau_hat": -1.949036425035955,
+        "tau_ci95": [
+          -2.0533517165197868,
+          -1.8444380586138234
+        ],
+        "tau_pred": -2.054027271270752,
+        "n_sign_change": 20,
+        "delta_lo_mean": 1.2979724683618308,
+        "delta_hi_mean": -0.6510639566741243,
+        "pred_spec": "ridge"
+      },
+      "size": {
+        "tau_hat": -1.2202790566536648,
+        "tau_ci95": [
+          -1.2967182370602692,
+          -1.1470093086811453
+        ],
+        "tau_pred": -1.4149021983146668,
+        "n_sign_change": 18,
+        "delta_lo_mean": 1.114789552967271,
+        "delta_hi_mean": -0.10548950368639379,
+        "pred_spec": "ridge"
+      },
+      "lesion_skin_contrast": {
+        "tau_hat": -2.6452999446640204,
+        "tau_ci95": [
+          -2.795683558058615,
+          -2.487875442561156
+        ],
+        "tau_pred": -2.9149780869483948,
+        "n_sign_change": 20,
+        "delta_lo_mean": 1.494414379221317,
+        "delta_hi_mean": -1.150885565442704,
+        "pred_spec": "ridge"
+      }
+    }
+  }
+}

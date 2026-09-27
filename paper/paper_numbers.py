@@ -131,23 +131,37 @@ def _unresolved():
 
 def abs_inference():
     """Câu tóm tắt về suy luận chính, sinh từ vr43 (nhãn chính), vr30 (lấy lại cả val) và kiểm toán Monte Carlo."""
-    dp, d30 = _vp(), _v30()
-    rc = _robust_cells()
+    d30 = _v30()
     ur = {(f, c) for f, c, _ in _unresolved()}
+    rc = _robust_cells()
     nm = lambda f, c: f"{f.replace('image', 'image-feature').replace('tabular', 'tabular-feature')} {lower(CL[c])}"
     every = [(f, c) for f, c in rc if (f, c) not in ur and d30["families"][f]["concepts"][c]["robust_bonf"]]
     fixed = [(f, c) for f, c in rc if (f, c) not in ur and not d30["families"][f]["concepts"][c]["robust_bonf"]]
-    unr = [(f, c) for f, c in rc if (f, c) in ur]
     parts = []
     if every:
         parts.append(listing([nm(f, c) for f, c in every]) + " under every resampling scheme")
     if fixed:
         parts.append(listing([nm(f, c) for f, c in fixed]) + " with validation fixed")
-    txt = ("In a post-inspection six-comparison family, Bonferroni-adjusted intervals separated the signs of marginal tertile "
-           "contrasts for " + ", and for ".join(parts) + ".")
-    if unr:
-        txt += " The label of " + listing([nm(f, c) for f, c in unr]) + " was unresolved at the Monte Carlo resolution."
-    return txt
+    txt = ("Within a post-inspection family of six comparisons, Bonferroni-adjusted intervals separated the signs for "
+           + " and for ".join(parts))
+    if ur:
+        txt += "; " + listing([nm(f, c) for f, c in ur]) + " was unresolved at the Monte Carlo resolution"
+    return txt + "."
+
+
+def tau_sentence():
+    d = J("vr44_dose_estimand.json")["families"]
+    rng_ = lambda f, key: (min(d[f][k][key] for k in PRIMARY), max(d[f][k][key] for k in PRIMARY))
+    hi_ci = max(d[f][k]["tau_ci95"][1] for f in FAMS for k in PRIMARY)
+    assert hi_ci < 0
+    nsc = sum(d[f][k]["n_sign_change"] for f in FAMS for k in PRIMARY); ntot = 20 * 6
+    ratio = {f: [d[f][k]["tau_hat"] / d[f][k]["tau_pred"] for k in PRIMARY] for f in FAMS}
+    t_, i_ = rng_("tabular", "tau_hat"), rng_("image", "tau_hat")
+    return (f"In terms of the training-selection effect of Section III-B, τ̂_k(1, −1), the change in the calibrated contrast of the "
+            f"selected concept from η = −1 to η = 1, was between {s(t_[0])} and {s(t_[1])} with tabular features and between "
+            f"{s(i_[0])} and {s(i_[1])} with image features; every 95 percent interval lay below {s(hi_ci)}, and the contrast "
+            f"changed sign within the same replicate in {nsc} of {ntot} replicates. These intervals resample the 20 replicates, so they reflect the "
+            f"randomness of training on the fixed cohort and not patient resampling (Supplementary Section S6).")
 
 
 def mc_rule():
@@ -503,7 +517,7 @@ def psi_primary_sentence():
     return (f"With the primary plug-in, the Platt-calibrated M0, the lower endpoint for color variegation became positive at a floor of "
             f"{u(e['tabular']['point'])} for the tabular-input target and {u(e['image']['point'])} for the image-feature target. Resampling "
             f"training, validation and test patients together, the bootstrap stability threshold was {lf}, with Monte Carlo ranges of {ci(e['tabular']['lcb_floor_mc_range'])} and "
-            f"{ci(e['image']['lcb_floor_mc_range'])}, for this specification of *q* only. At a floor of 0.8, ψ_L was positive and Δ_M2 negative "
+            f"{ci(e['image']['lcb_floor_mc_range'])}, for this specification of *q* only. It is not a confidence bound for the floor or for ψ. At a floor of 0.8, ψ_L was positive and Δ_M2 negative "
             f"in the same replicate in {e['tabular']['joint_counts']['0.8']:,} and {e['image']['joint_counts']['0.8']:,} of {B['tabular']:,} "
             f"replicates.")
 
@@ -616,7 +630,7 @@ def dose_sentence():
     ag = sum(np.sign(v[0]) == np.sign(v[1]) for f in FAMS for k in PRIMARY for v in d[f][f"{k}|320"]["pred"][sp_key[f]]["spill"].values())
     lo = min(x["ratio"] for sp in img for x in img[sp].values()); hi = max(x["ratio"] for sp in img for x in img[sp].values())
     return (f"For η from −1 to 1 and 320 selected recorded negatives, the selected contrast crossed zero in {ncross} of 6 combinations of "
-            f"concept and family, and the contrasts of the five concepts moved in the predicted direction in {ag} of the 30 combinations of selected and responding concept. With tabular features the "
+            f"concept and family, and the contrasts of the five concepts moved in the predicted direction in {ag} of the 30 combinations of family, selected concept and responding concept. With tabular features the "
             f"selected contrast fell at {rng_(tab)} times the rate predicted from the known inclusion probabilities, and for color variegation the ratio fell to "
             f"{u(lc['1000']['ratio'])} {ci(lc['1000']['ratio_ci95'])} with 1,000 and {u(lc['3000']['ratio'])} {ci(lc['3000']['ratio_ci95'])} "
             f"with 3,000, consistent with a finite-sample excess. With image features, whose prediction needs a regression of the concept "
@@ -902,15 +916,17 @@ def rr_sentence():
     ft = _joint_floor(tst["joint_counts"], B)
     k = f"{fc:.2f}"
     assert c["verified_negative_count"] == B
-    return (f"A post-inspection whole-cohort marginal sensitivity analysis concerns a different estimand from ψ on a different "
-            f"population. Because RR_Y = RR_D·*A* exactly (Supplementary Section S1), the disease risk ratio "
-            f"exceeds one when *A* < RR_Y, and a floor π₀¹ ≥ *s*_min on the average malignant verification in the lower tertile alone "
-            f"gives *A* ≤ 1/*s*_min. The analysis uses counts only, so we compute it on the whole cohort. For color variegation "
-            f"RR_Y was {u(c['rr_y'])} {ci(c['rr_y_ci95'])}, whereas the verified-only log odds ratio was {s(c['log_or_verified'])} "
-            f"{ci(c['log_or_verified_ci95'])}. This marginal association reversal held in {c['joint_counts'][k]:,} of {B:,} "
-            f"patient-cluster resamples at a lower-tertile floor of {k}, the smallest on a grid of step 0.05 reaching 95 percent, which "
-            f"corresponds on the continuous *A* scale to about {u(c['A_max95'])}. On the test population alone the corresponding floor "
-            f"was {_fl(ft)}.")
+    return (f"This analysis is neither an estimator nor a check of ψ, and it does not validate Proposition 2. It uses the whole "
+            f"cohort rather than the learner's evaluation population, and it asks a different question: whether the disease "
+            f"association between the outer tertiles has the sign opposite to the verified-only association. Because RR_Y = RR_D·*A* "
+            f"exactly (Supplementary Section S1), the disease risk ratio exceeds one when *A* < RR_Y, and a floor π₀¹ ≥ *s*_min on the "
+            f"average malignant verification in the lower tertile alone gives *A* ≤ 1/*s*_min. The analysis uses counts only. For "
+            f"color variegation RR_Y was {u(c['rr_y'])} {ci(c['rr_y_ci95'])}, whereas the verified-only log odds ratio was "
+            f"{s(c['log_or_verified'])} {ci(c['log_or_verified_ci95'])}. The marginal association reversal held in "
+            f"{c['joint_counts'][k]:,} of {B:,} patient-cluster resamples at a lower-tertile floor of {k}, the 95 percent resampling "
+            f"stability threshold on a grid of step 0.05, which corresponds on the continuous *A* scale to about {u(c['A_max95'])}. "
+            f"This threshold is not a confidence bound for the floor, and nothing controls error for the choice of concept and analysis, "
+            f"both made after the primary results had been seen. On the test population alone the threshold was {_fl(ft)}.")
 
 
 def seed_sentence():
@@ -961,11 +977,18 @@ def local_sentence():
 def site_sentence_marg():
     d = J("vr41_marginal_site.json")["concepts"]["color_variegation"]
     st = d["standardized"]; lo = [v["joint_floor"] for v in d["loso"].values()]
+    est = [v for v in d["by_site"].values() if v["rr_y"] is not None]
+    npos_or = sum(1 for v in est if v["log_or_verified"] is not None and v["log_or_verified"] > 0)
+    nmiss = len(d["by_site"]) - len(est)
     big = sorted(d["by_site"].values(), key=lambda v: -sum(v["n_pos"]))[:2]
-    return (f"Under a common lower-tertile floor assumed to hold within every observed site, the site-standardized whole-cohort floor was {u(st['joint_floor'])}, and leaving out one site at a "
-            f"time it ranged from {u(min(lo))} to {u(max(lo))}. The association was heterogeneous across sites: in the two sites with "
-            f"the most malignant lesions the risk ratios were {u(big[0]['rr_y'])} and {u(big[1]['rr_y'])}, implying point floors of "
-            f"{u(big[0]['floor'])} and {u(big[1]['floor'])} (Supplementary Section S7).")
+    word = {1: "one", 2: "two", 3: "three"}
+    return (f"Under a common lower-tertile floor assumed to hold within every observed site, the site-standardized whole-cohort "
+            f"threshold was {u(st['joint_floor'])}, and leaving out one site at a time it ranged from {u(min(lo))} to {u(max(lo))}. "
+            f"This is a mixture estimand for the observed sites, not evidence of a reversal that holds in each site. Site-specific RR_Y "
+            f"ranged from {u(min(v['rr_y'] for v in est))} to {u(max(v['rr_y'] for v in est))} across the {len(est)} sites where it "
+            f"could be estimated, {word[nmiss]} site could not be estimated, and in {word[npos_or]} site the verified-only log odds "
+            f"ratio was positive. In the two sites with the most malignant lesions the risk ratios were {u(big[0]['rr_y'])} and "
+            f"{u(big[1]['rr_y'])}, implying point floors of {u(big[0]['floor'])} and {u(big[1]['floor'])} (Supplementary Section S7).")
 
 
 def benchmark_sentence():
@@ -1002,7 +1025,7 @@ def sharp_sentence():
             "For the tabular-input target the two coincide.")
 
 
-NUM = {"sharp_sentence": sharp_sentence, "balanced_sentence": balanced_sentence, "composition_sentence": composition_sentence, "partial_sentence": partial_sentence, "local_sentence": local_sentence, "site_sentence_marg": site_sentence_marg, "benchmark_sentence": benchmark_sentence, "floor_tab": lambda: _floor_rng("tabular"), "floor_img": lambda: _floor_rng("image"), "abs_boot": abs_boot, "size_defs_sentence": size_defs_sentence, "seed_sentence": seed_sentence, "resample_sentence": resample_sentence, "sigma_sentence": sigma_sentence, "abs_primary": lambda: abs_primary(), "abs_marg_floor": abs_marg_floor, "tail_sentence": tail_sentence, "concl_dose": lambda: ", and with tabular features at a rate that approached the predicted one as the training sample grew" if _tab_converges() else "", "abs_dose2": abs_dose2, "contrib_dose2": contrib_dose2, "overshoot_detail": overshoot_detail, "abs_floor_lo": lambda: abs_floor()[0], "abs_floor_hi": lambda: abs_floor()[1], "B30": B30, "subsample_sentence": subsample_sentence, "psi_primary_sentence": psi_primary_sentence, "psi_est_sentence": psi_est_sentence, "psi_support_sentence": psi_support_sentence, "val_sentence": val_sentence, "rr_sentence": rr_sentence, "B_primary": B_primary, "B19": B19, "mc_sentence": mc_sentence, "abs_dose": abs_dose, "contrib_dose": contrib_dose, "abs_robust": abs_robust, "abs_sstar": abs_sstar, "jb_sentence": jb_sentence, "mc_rule": mc_rule, "abs_inference": abs_inference, "table1_mc": table1_mc, "psi_sentence": psi_sentence,
+NUM = {"sharp_sentence": sharp_sentence, "balanced_sentence": balanced_sentence, "composition_sentence": composition_sentence, "partial_sentence": partial_sentence, "local_sentence": local_sentence, "site_sentence_marg": site_sentence_marg, "benchmark_sentence": benchmark_sentence, "floor_tab": lambda: _floor_rng("tabular"), "floor_img": lambda: _floor_rng("image"), "abs_boot": abs_boot, "size_defs_sentence": size_defs_sentence, "seed_sentence": seed_sentence, "resample_sentence": resample_sentence, "sigma_sentence": sigma_sentence, "abs_primary": lambda: abs_primary(), "abs_marg_floor": abs_marg_floor, "tail_sentence": tail_sentence, "concl_dose": lambda: ", and with tabular features at a rate that approached the predicted one as the training sample grew" if _tab_converges() else "", "abs_dose2": abs_dose2, "contrib_dose2": contrib_dose2, "overshoot_detail": overshoot_detail, "abs_floor_lo": lambda: abs_floor()[0], "abs_floor_hi": lambda: abs_floor()[1], "B30": B30, "subsample_sentence": subsample_sentence, "psi_primary_sentence": psi_primary_sentence, "psi_est_sentence": psi_est_sentence, "psi_support_sentence": psi_support_sentence, "val_sentence": val_sentence, "rr_sentence": rr_sentence, "B_primary": B_primary, "B19": B19, "mc_sentence": mc_sentence, "abs_dose": abs_dose, "contrib_dose": contrib_dose, "abs_robust": abs_robust, "abs_sstar": abs_sstar, "jb_sentence": jb_sentence, "mc_rule": mc_rule, "abs_inference": abs_inference, "tau_sentence": tau_sentence, "table1_mc": table1_mc, "psi_sentence": psi_sentence,
        "support_sentence": support_sentence, "dose_sentence": dose_sentence, "arms_sentence": arms_sentence,
        "bridge_sentence": bridge_sentence, "site_sentence": site_sentence, "psi_sim_sentence": psi_sim_sentence,
        "table2_rows": table2_rows}
