@@ -196,7 +196,9 @@ In Table S7, disease risk is built from the perceptron or from gradient boosting
 
 Table S8 reports the lesion-level slope of the calibrated gap on log ĝ in the same settings, where the population identity holds exactly. Finite trained learners can depart from slope one even then, and the model class of ĝ moves the slope, so the slopes on ISIC-2024 are read as agreement in direction and approximate size only.
 
-**TABLE S8. Lesion-level slope of the calibrated learner gap on log ĝ in the semi-synthetic designs, where Proposition 1 holds exactly.**
+In Table S8, the gap is calibrated and regressed on log ĝ in designs where Proposition 1 holds exactly.
+
+**TABLE S8. Lesion-level slope of the learner gap in the semi-synthetic designs.**
 
 | Disease risk built from | Features | Slope on log ĝ, perceptron: median [range] | Gradient boosting: median [range] | Slope on true log g: median |
 | --- | --- | --- | --- | ---: |
@@ -400,7 +402,9 @@ In Table S17, intervals are the rescaled half-sampling intervals defined above.
 
 **Monte Carlo error.** The Bonferroni endpoints are the 0.42 and 99.58 percentiles of the replicates, so they rest on few replicates in each tail. For the primary three-seed bootstrap, script `vr43_three_seed_primary.py` resampled the 5,000 stored three-seed replicates per family 2,000 times, recomputed the Bonferroni endpoints and the label in each resample, and reports the Monte Carlo standard error of each endpoint and the share of resamples that reproduce the label of Table 1. A label is called resolved at the Monte Carlo resolution when this share is at least 0.95. Table S18 gives the results. For the one-seed check, script `vr29_bootstrap_audit.py` applied the same procedure to the 5,000 stored one-seed replicates. It also reports the quantiles of s∗ and the joint event above. Table S19 gives the results.
 
-**TABLE S18. Monte Carlo audit of the primary three-seed bootstrap of Table 1, 2,000 resamples of the stored replicates.**
+In Table S18, the audit covers the replicates of Table 1 with 2,000 resamples of the stored replicates.
+
+**TABLE S18. Monte Carlo audit of the primary three-seed bootstrap.**
 
 | Features | Concept | Replicates | Bonferroni sign-separated | Label reproduced | Monte Carlo SE of endpoints, Δ_M0 lower / upper, Δ_M2 lower / upper | Resolved at the Monte Carlo resolution |
 | --- | --- | ---: | --- | ---: | --- | --- |
@@ -411,7 +415,9 @@ In Table S17, intervals are the rescaled half-sampling intervals defined above.
 | image | Size | 5,000 | yes | 1.00 | 0.019 / 0.018, 0.012 / 0.005 | yes |
 | image | Lesion-skin contrast | 5,000 | no | 1.00 | 0.033 / 0.066, 0.017 / 0.014 | yes |
 
-**TABLE S19. Monte Carlo error of the one-seed check and distribution of the plug-in tipping floor over its replicates.**
+In Table S19, the table also gives the distribution of the plug-in tipping floor over the one-seed replicates.
+
+**TABLE S19. Monte Carlo error of the one-seed check.**
 
 | Features | Concept | Robust | Label reproduced | Monte Carlo SE of endpoints, Δ_M0 lower / upper, Δ_M2 lower / upper | s∗ quantiles 5 / 25 / 50 / 75 / 95 | ψ_L(s) > 0 and Δ_M2 < 0 at s = 0.5 / 0.7 / 0.9 |
 | --- | --- | --- | ---: | --- | --- | --- |
@@ -485,7 +491,9 @@ In Table S22, the validation set is fixed and replicates are paired; slopes and 
 | image | Size | 320 | −0.63 [−0.89, −0.41] | −0.71 | 0.88 [0.79, 0.98] | −1.11 [−1.25, −0.99] | yes | 20 of 20 | −0.90 |
 | image | Lesion-skin contrast | 320 | −1.61 [−1.86, −1.38] | −1.46 | 1.10 [1.06, 1.15] | −3.04 [−3.17, −2.91] | yes | 20 of 20 | −2.21 |
 
-**TABLE S23. Dose slopes of all five concepts, observed / predicted, raw logit contrasts, 320 selected recorded negatives, validation fixed.**
+In Table S23, entries are observed / predicted slopes of raw logit contrasts with 320 selected recorded negatives and the validation set fixed.
+
+**TABLE S23. Dose slopes of all five concepts under the training-only dose.**
 
 | Features | Selected concept | Color variegation | Size | Lesion-skin contrast | Asymmetry | Border irregularity |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -533,7 +541,9 @@ In Table S25, the outcome is the calibrated contrast of the selected concept wit
 | image | Size | +1.11 / −0.11 | −1.22 [−1.30, −1.15] | −1.41 | 0.86 | 18 of 20 |
 | image | Lesion-skin contrast | +1.49 / −1.15 | −2.65 [−2.80, −2.49] | −2.91 | 0.91 | 20 of 20 |
 
-**TABLE S26. Joint training-and-validation dose: slopes of all five concepts, observed / predicted, 320 selected recorded negatives.**
+In Table S26, entries are observed / predicted slopes with 320 selected recorded negatives.
+
+**TABLE S26. Dose slopes of all five concepts under the joint dose.**
 
 | Features | Selected concept | Prediction | Color variegation | Size | Lesion-skin contrast | Asymmetry | Border irregularity |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -612,7 +622,9 @@ In Table S29, the effective sample size is Kish's (Kish, 1965), as a share of th
 
 **Split-sample errors-in-variables diagnostic.** The regressor log ĝ is estimated, so a least-squares slope is attenuated toward zero. Script `vr27_bridge_eiv.py` ran 100 joint replicates per family in which two propensity models, ĝ_A and ĝ_B, were fitted on disjoint halves of the resampled training patients. The slope of the calibrated gap on log ĝ_A was instrumented by log ĝ_B, averaged over both orders, which is consistent when the estimation errors of the two halves are independent. The correlation of log ĝ_A and log ĝ_B estimates the reliability of a single estimate. Table S31 reports the results. The instrumented point estimates exceed one. The lesion-level regression is therefore an association diagnostic rather than a test that the slope equals one.
 
-**TABLE S31. Split-sample errors-in-variables diagnostic for the lesion-level slope of the learner gap on log ĝ, 100 joint replicates per family.**
+In Table S31, the slope is that of the learner gap on log ĝ, with 100 joint replicates per family.
+
+**TABLE S31. Split-sample errors-in-variables diagnostic for the lesion-level slope.**
 
 | Features | Least-squares slope on log ĝ_A [95% CI] | Instrumented slope [95% CI] | Reliability of log ĝ [95% CI] |
 | --- | --- | --- | --- |
@@ -693,7 +705,9 @@ In Table S32, the gap is calibrated, slopes are shown on the full and supported 
 
 **Overlap.** The common verification propensity σ̂ is a gradient-boosting model on the tabular features, used as one clinical support definition for both families and estimated without using the test fold. For a threshold equal to the 1st, 5th or 10th percentile of σ̂ among verified training lesions, the test population was restricted to lesions with σ̂ at or above it, within each joint bootstrap replicate. Table S37 reports the contrasts. Table S38 reports the full, support-restricted and flagged test populations for the original fits.
 
-**TABLE S37. Learned contrasts within the support of verified training lesions, one-seed joint bootstrap, 5,000 replicates per family.**
+In Table S37, intervals come from the one-seed joint bootstrap with 5,000 replicates per family.
+
+**TABLE S37. Learned contrasts within the support of verified training lesions.**
 
 | Features | Concept | Threshold percentile | Δ_M0 [95% CI] | Δ_M2 [95% CI] | Robust at 95% |
 | --- | --- | ---: | --- | --- | --- |
@@ -797,7 +811,9 @@ In Table S40, reweighting targets the full-population concept composition within
 
 **Marginal and conditional contrasts.** The tertile contrast is marginal over the other concepts. The same script also balanced the two tertiles of each primary concept on the other four concepts by inverse probability weighting on the full test population. This is a different estimand, the contrast with the other concepts held at a common distribution. Table S41 shows that it differs substantially from the marginal contrast, because the concepts are correlated, so the learned contrasts in this paper are not effects of one concept with the others held fixed.
 
-**TABLE S41. Marginal tertile contrasts and contrasts balanced on the other four concepts, full test population, original fits averaged over seeds 0 to 2.**
+In Table S41, original fits are averaged over seeds 0 to 2.
+
+**TABLE S41. Marginal tertile contrasts and contrasts balanced on the other concepts.**
 
 | Features | Concept | Δ_M0: marginal / balanced on other concepts [95% CI] | Δ_M2: marginal / balanced on other concepts [95% CI] |
 | --- | --- | --- | --- |
@@ -863,7 +879,9 @@ In Table S44, M0 is Platt-calibrated; sharpness holds for the population set wit
 
 **Fit of the estimates of q.** Table S45 reports, for the original fits averaged over seeds 0 to 2, the test log-loss and Brier score of each estimate of *q* and its calibration by bins of predicted risk: the number of lesions, their mean predicted risk and the number of malignant lesions in each bin. Most test lesions fall below a predicted risk of 0.002, where the bins hold few malignant lesions, so these diagnostics cannot tell the estimates apart where ψ_L is decided.
 
-**TABLE S45. Fit of the estimates of q on the test population, original fits averaged over seeds 0 to 2.**
+In Table S45, original fits are averaged over seeds 0 to 2.
+
+**TABLE S45. Fit of the estimates of q on the test population.**
 
 | Features | Estimate of q | Log-loss | Brier | Predicted risk below 0.0005: lesions; expected / observed malignant | 0.0005 to 0.002 | 0.002 to 0.01 | Above 0.01 |
 | --- | --- | ---: | ---: | --- | --- | --- | --- |
@@ -912,7 +930,9 @@ In Table S47, all rows use the perceptron M0 and the seed-averaged curve, and "n
 
 **Two floors.** A single floor on the lower stratum must hold even where verification is rarest. Let the floor be s_low for test lesions whose σ̂ lies below the 1st or 5th percentile threshold of Section S6 and s_high elsewhere. Table S48 gives, on a grid of step 0.05, the smallest s_low at which ψ_L > 0 for each s_high. A strong floor outside the low-support region lets a weaker one suffice inside it. This analysis uses the Platt-calibrated M0 only and is exploratory; the dependence on the estimator of *q* shown in Table S16 applies to it as well.
 
-**TABLE S48. Smallest floor in the low-support region that keeps ψ_L positive, given the floor elsewhere, Platt-calibrated M0.**
+In Table S48, the floor elsewhere is given, and M0 is Platt-calibrated.
+
+**TABLE S48. Smallest low-support floor that keeps ψ_L positive.**
 
 | Features | Concept | Low-support region | s_low needed at s_high = 0.5 / 0.6 / 0.7 / 0.8 / 0.9 / 1.0 |
 | --- | --- | --- | --- |

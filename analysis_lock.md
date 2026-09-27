@@ -298,3 +298,7 @@ Không chạy thêm thí nghiệm. Câu đầu Abstract giữ phân biệt D, S,
 ## 25. Vòng kiểm chứng thứ mười tám (2026-09-27)
 
 Không chạy thêm thí nghiệm. III-C: "For the Bayes-optimal learners, a reversal occurs exactly when…". Mọi chú thích hình và bảng (bài chính và phụ lục) chỉ còn một câu; phần mô tả chuyển vào bài, ngay trước bảng/hình ở phụ lục. Hình phụ lục đánh số lại theo thứ tự xuất hiện (phase diagram S1, fine-tune S2, logit benchmark S3, constrained learner S4) và đổi tên tệp tương ứng. Fig. 1(b) và Fig. 3(b) nay được nhắc trong phần chữ. Thêm trích dẫn cho Platt, isotonic, gradient boosting, percentile bootstrap (bài chính) và danh mục tài liệu phụ lục (Kish, DerSimonian-Laird, Kool, Kull, Meurer, Politis). Release v1.1-submission đã kiểm tra đầy đủ; bản này trích v1.2-submission.
+
+## 26. Vòng kiểm chứng thứ mười chín (2026-09-27)
+
+Không chạy thêm thí nghiệm. Nguồn định danh của τ: nhà phân tích trực tiếp thực thi từng quy tắc chọn mẫu trên cùng ω (không nói "assignment of η"); sửa đồng bộ ở III-B, Introduction, Conclusion. Mười chú thích bảng phụ lục dài hơn 14 từ được rút gọn, bổ sung vào câu chú giải trước bảng. Release v1.2-submission đã kiểm tra từ GitHub (đủ vr46, analysis_lock, vl_split; bảng S8 không thiếu tệp; dựng lại không đổi). Bài trích v1.3-submission.
