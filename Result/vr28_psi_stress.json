@@ -1,0 +1,6778 @@
+{
+  "summary": {
+    "base|valid": {
+      "n": 70,
+      "n_psi_nonpositive": 0,
+      "oracle_covers": 1.0,
+      "oracle_certifies": 0.3142857142857143,
+      "oracle_wrong": 0.0,
+      "gbm_covers": 0.9571428571428572,
+      "gbm_certifies": 0.22857142857142856,
+      "gbm_wrong": 0.0,
+      "mlp_platt_covers": 0.9714285714285714,
+      "mlp_platt_certifies": 0.3142857142857143,
+      "mlp_platt_wrong": 0.0
+    },
+    "base|overstated": {
+      "n": 50,
+      "n_psi_nonpositive": 0,
+      "oracle_covers": 0.52,
+      "oracle_certifies": 0.8,
+      "oracle_wrong": 0.0,
+      "gbm_covers": 0.72,
+      "gbm_certifies": 0.7,
+      "gbm_wrong": 0.0,
+      "mlp_platt_covers": 0.58,
+      "mlp_platt_certifies": 0.84,
+      "mlp_platt_wrong": 0.0
+    },
+    "adversarial|valid": {
+      "n": 70,
+      "n_psi_nonpositive": 42,
+      "oracle_covers": 1.0,
+      "oracle_certifies": 0.14285714285714285,
+      "oracle_wrong": 0.0,
+      "gbm_covers": 0.9571428571428572,
+      "gbm_certifies": 0.1,
+      "gbm_wrong": 0.0,
+      "mlp_platt_covers": 0.9857142857142858,
+      "mlp_platt_certifies": 0.11428571428571428,
+      "mlp_platt_wrong": 0.0
+    },
+    "adversarial|overstated": {
+      "n": 50,
+      "n_psi_nonpositive": 30,
+      "oracle_covers": 0.44,
+      "oracle_certifies": 0.54,
+      "oracle_wrong": 0.2,
+      "gbm_covers": 0.56,
+      "gbm_certifies": 0.46,
+      "gbm_wrong": 0.14,
+      "mlp_platt_covers": 0.5,
+      "mlp_platt_certifies": 0.48,
+      "mlp_platt_wrong": 0.14
+    }
+  },
+  "rows": [
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.1,
+      "concept": 0,
+      "psi": 1.0902681116517385,
+      "oracle": {
+        "L": -0.5137732984473633,
+        "U": 4.140490052168261,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.7161773047643623,
+        "U": 3.9385970561833115,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.131353607265992,
+        "U": 4.7803088523174555,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.2,
+      "concept": 0,
+      "psi": 1.0902681116517385,
+      "oracle": {
+        "L": 0.18319364660109283,
+        "U": 3.4232436240329136,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.01878800463614816,
+        "U": 3.221315363975638,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.8272556262423976,
+        "U": 4.065197117686909,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 1.0902681116517385,
+      "oracle": {
+        "L": 0.5899232007018824,
+        "U": 3.01011082550105,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.3880722275868962,
+        "U": 2.8082780273247705,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.2336339400932612,
+        "U": 3.6526289684410793,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 1.0902681116517385,
+      "oracle": {
+        "L": 1.1017572950646901,
+        "U": 2.4932627312924396,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.9000086151873967,
+        "U": 2.2915202173964015,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.7451883290687844,
+        "U": 3.1361940129074233,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 1.0902681116517385,
+      "oracle": {
+        "L": 1.4386609032814652,
+        "U": 2.154237797279582,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 1.236955535114535,
+        "U": 1.9525348763796373,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 2.0819724072275534,
+        "U": 2.7973370679217515,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 1.0902681116517385,
+      "oracle": {
+        "L": 1.690214768762539,
+        "U": 1.9015122759474936,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 1.488533336545128,
+        "U": 1.6998314545083124,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 2.3334599552145967,
+        "U": 2.544702710771875,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.1,
+      "concept": 1,
+      "psi": 0.8752447361908526,
+      "oracle": {
+        "L": -1.0097910565590764,
+        "U": 3.642109456807692,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.4400583859151954,
+        "U": 3.2141865868286823,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.8792712594791308,
+        "U": 3.766869588938884,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.2,
+      "concept": 1,
+      "psi": 0.8752447361908526,
+      "oracle": {
+        "L": -0.31106174388634145,
+        "U": 2.9279909614455573,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.7395472088133159,
+        "U": 2.5003649498510834,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.18103714527356463,
+        "U": 3.055693680330358,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": 0.8752447361908526,
+      "oracle": {
+        "L": 0.09624128416118172,
+        "U": 2.5158561698547413,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.33175660560078146,
+        "U": 2.088344742545516,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.22610569634129263,
+        "U": 2.6444019149976095,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": 0.8752447361908526,
+      "oracle": {
+        "L": 0.6085294444880995,
+        "U": 1.9997923606235721,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.18090313182587092,
+        "U": 1.5723722472405992,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.7382672438352591,
+        "U": 2.128975921932369,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": 0.8752447361908526,
+      "oracle": {
+        "L": 0.945626403946271,
+        "U": 1.6610998851775056,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.5181572355356696,
+        "U": 1.2337187716301585,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.0753103363544243,
+        "U": 1.7905481586941896,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": 0.8752447361908526,
+      "oracle": {
+        "L": 1.197287368315111,
+        "U": 1.4085581393334516,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.7699050925578339,
+        "U": 0.981198651544104,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.3269414738870076,
+        "U": 1.538151409790749,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.1,
+      "concept": 2,
+      "psi": 0.6604616781471355,
+      "oracle": {
+        "L": -0.9491672133893765,
+        "U": 3.7025490134044134,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.2398590464171697,
+        "U": 3.412437763417614,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5283593200038892,
+        "U": 4.116433488409108,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.2,
+      "concept": 2,
+      "psi": 0.6604616781471355,
+      "oracle": {
+        "L": -0.250610641679863,
+        "U": 2.988375418649313,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.5404045743935502,
+        "U": 2.6986681221158486,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.16939360424361638,
+        "U": 3.405559395175352,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": 0.6604616781471355,
+      "oracle": {
+        "L": 0.15663061253750943,
+        "U": 2.576208808981182,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.13287226641410754,
+        "U": 2.286744454207575,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.5763761994164662,
+        "U": 2.994348817939901,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": 0.6604616781471355,
+      "oracle": {
+        "L": 0.6688689667814547,
+        "U": 2.0601168287634737,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.37959573682211545,
+        "U": 1.7708588424809886,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.0884096442811462,
+        "U": 2.478981611075497,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": 0.6604616781471355,
+      "oracle": {
+        "L": 1.0059445239516043,
+        "U": 1.72141166844776,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.7167688705416744,
+        "U": 1.4322424215097902,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.4253978656300479,
+        "U": 2.140577450846852,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": 0.6604616781471355,
+      "oracle": {
+        "L": 1.2575935891453014,
+        "U": 1.4688627333868816,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.9684719305886986,
+        "U": 1.1797427221612473,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.676998527586191,
+        "U": 1.888193415284646,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.1,
+      "concept": 3,
+      "psi": 0.8800604213838641,
+      "oracle": {
+        "L": -1.8695933404096028,
+        "U": 2.77954875054571,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.9803259286652208,
+        "U": 2.669810759623796,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.8240906887515003,
+        "U": 2.8179057992171694,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.2,
+      "concept": 3,
+      "psi": 0.8800604213838641,
+      "oracle": {
+        "L": -1.1674338658368137,
+        "U": 2.0704735972917145,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.2770225860045823,
+        "U": 1.9612013659637242,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.122693128503359,
+        "U": 2.112278395944019,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 0.8800604213838641,
+      "oracle": {
+        "L": -0.7590213066452973,
+        "U": 1.6599385995736702,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8682507406438331,
+        "U": 1.550887286343512,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.7145265549668842,
+        "U": 1.7027581487291163,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 0.8800604213838641,
+      "oracle": {
+        "L": -0.24585664977628685,
+        "U": 1.1451297624225525,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.35480474326378175,
+        "U": 1.036258339988314,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.20155642793157558,
+        "U": 1.1887236194054784,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 0.8800604213838641,
+      "oracle": {
+        "L": 0.09161302927439685,
+        "U": 0.8069687514220458,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.01721600736022033,
+        "U": 0.6981727128974802,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.13583044058684735,
+        "U": 0.8508854397282226,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 0.8800604213838641,
+      "oracle": {
+        "L": 0.34348031851717487,
+        "U": 0.554720664539639,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.23471705026966116,
+        "U": 0.4459659743012887,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.3876518611120705,
+        "U": 0.5988145232483184,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.1,
+      "concept": 4,
+      "psi": 0.8705656152796744,
+      "oracle": {
+        "L": -1.8853055266506509,
+        "U": 2.76356352142432,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.074049074207938,
+        "U": 2.57707236936813,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.6444718103969116,
+        "U": 2.998476732606221,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.2,
+      "concept": 4,
+      "psi": 0.8705656152796744,
+      "oracle": {
+        "L": -1.1830693427166885,
+        "U": 2.0547190110041305,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.3706138077687404,
+        "U": 1.8679623400857732,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.9435710474788195,
+        "U": 2.291809377290214,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": 0.8705656152796744,
+      "oracle": {
+        "L": -0.7746323027065225,
+        "U": 1.6442583488395872,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.9617958567456766,
+        "U": 1.457535519564514,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5355654277356896,
+        "U": 1.881955245000599,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": 0.8705656152796744,
+      "oracle": {
+        "L": -0.26144848034834123,
+        "U": 1.1295083270441042,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.4483129184339294,
+        "U": 0.9428293151576179,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.0227224788816347,
+        "U": 1.3676578502572685,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": 0.8705656152796744,
+      "oracle": {
+        "L": 0.07602929855083662,
+        "U": 0.7913723469688216,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.11070837590587423,
+        "U": 0.6047136262503638,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.31461030594229733,
+        "U": 1.0297081304402678,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.1,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": 0.8705656152796744,
+      "oracle": {
+        "L": 0.32790105832073557,
+        "U": 0.539138120600616,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.14123345171130097,
+        "U": 0.352490914842976,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.5664017876101868,
+        "U": 0.7775755308485026,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.1,
+      "concept": 0,
+      "psi": 1.0878959246563014,
+      "oracle": {
+        "L": -0.8521199768605481,
+        "U": 3.8139137703930777,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.2092799793445854,
+        "U": 3.4624319224095124,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.750726426115313,
+        "U": 3.907334481451614,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.2,
+      "concept": 0,
+      "psi": 1.0878959246563014,
+      "oracle": {
+        "L": -0.15295737277557464,
+        "U": 3.0921337326897724,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.5081358286664299,
+        "U": 2.7390746932825065,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.05228624529746018,
+        "U": 3.189530646485988,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 1.0878959246563014,
+      "oracle": {
+        "L": 0.25449556563397735,
+        "U": 2.677589239538203,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.10004501161257284,
+        "U": 2.3237202484486392,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.3549286527103952,
+        "U": 2.7761562779368933,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 1.0878959246563014,
+      "oracle": {
+        "L": 0.7669054009418046,
+        "U": 2.159645584412953,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.4128697168777009,
+        "U": 1.8058828289928615,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.8671489978851552,
+        "U": 2.259102505340776,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 1.0878959246563014,
+      "oracle": {
+        "L": 1.1040549588048618,
+        "U": 1.8201591637413737,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.7502343106450553,
+        "U": 1.466453842903304,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.2042175961845345,
+        "U": 1.91998687761874,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 1.0878959246563014,
+      "oracle": {
+        "L": 1.3557452581707041,
+        "U": 1.5671792124868498,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 1.0020437409329972,
+        "U": 1.213507400684704,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.4558629820519204,
+        "U": 1.6672104144173776,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.1,
+      "concept": 1,
+      "psi": 0.8704927503359619,
+      "oracle": {
+        "L": -1.2190684347745693,
+        "U": 3.44451013966874,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.4468703904191278,
+        "U": 3.2198561832633996,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.9369622526424575,
+        "U": 3.718904296354521,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.2,
+      "concept": 1,
+      "psi": 0.8704927503359619,
+      "oracle": {
+        "L": -0.5181364489745297,
+        "U": 2.7259288998207696,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.744731370610884,
+        "U": 2.500513029741951,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.23783289503367833,
+        "U": 3.003048876092458,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": 0.8704927503359619,
+      "oracle": {
+        "L": -0.11010954845585186,
+        "U": 2.3123975211335974,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.3363332032261157,
+        "U": 2.0863090889277576,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.16960567792892434,
+        "U": 2.5902949565940148,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": 0.8704927503359619,
+      "oracle": {
+        "L": 0.4027541117821789,
+        "U": 1.7952465351386548,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.1768207226427183,
+        "U": 1.569357342061969,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.6820028915161291,
+        "U": 2.073728039127915,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": 0.8704927503359619,
+      "oracle": {
+        "L": 0.7400967498519018,
+        "U": 1.45609540810465,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.5142861651998007,
+        "U": 1.2303023014406067,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.0191467389070121,
+        "U": 1.7348185756727927,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": 0.8704927503359619,
+      "oracle": {
+        "L": 0.9918939546970638,
+        "U": 1.2033006348151174,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.7661512119510814,
+        "U": 0.9775622537000492,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.2708337886822694,
+        "U": 1.4821560180362026,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.1,
+      "concept": 2,
+      "psi": 0.6630628219416881,
+      "oracle": {
+        "L": -1.2734277500601756,
+        "U": 3.3899247776348713,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.5768714751075787,
+        "U": 3.087331077682752,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.3785185103922615,
+        "U": 3.2760733549407224,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.2,
+      "concept": 2,
+      "psi": 0.6630628219416881,
+      "oracle": {
+        "L": -0.5721725160907942,
+        "U": 2.6718025066891364,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8746219781490012,
+        "U": 2.369380518406965,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.6781030573935842,
+        "U": 2.5622316269689227,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": 0.6630628219416881,
+      "oracle": {
+        "L": -0.16404252528154917,
+        "U": 2.258412646350843,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.4661668692752867,
+        "U": 1.9557528510192634,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.2702427020362075,
+        "U": 2.1501309960126367,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": 0.6630628219416881,
+      "oracle": {
+        "L": 0.34890211762790546,
+        "U": 1.7413727144871425,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.04703638911476915,
+        "U": 1.4392659550948546,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.24248954111804277,
+        "U": 1.6340806268196735,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": 0.6630628219416881,
+      "oracle": {
+        "L": 0.6862790762034914,
+        "U": 1.4022684639527956,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.3845238276889633,
+        "U": 1.100408875654736,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.5797763310336164,
+        "U": 1.29539092719987,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": 0.6630628219416881,
+      "oracle": {
+        "L": 0.9380952506660982,
+        "U": 1.149499539668998,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.6364012937458297,
+        "U": 0.8477784234040158,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.8315426286257308,
+        "U": 1.0428500484906476,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.1,
+      "concept": 3,
+      "psi": 0.8755845058093543,
+      "oracle": {
+        "L": -1.6812020319475813,
+        "U": 2.9804844072590666,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.9089878931147206,
+        "U": 2.758474782309417,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.6465675391788661,
+        "U": 3.0076070221783224,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.2,
+      "concept": 3,
+      "psi": 0.8755845058093543,
+      "oracle": {
+        "L": -0.9773372822641848,
+        "U": 2.2659578339405133,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.2020883736493753,
+        "U": 2.0434489059308794,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.9445587215820774,
+        "U": 2.2956187612199415,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 0.8755845058093543,
+      "oracle": {
+        "L": -0.568371408377164,
+        "U": 1.8536968169366421,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.7921035729350949,
+        "U": 1.630729303644694,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5361860279728496,
+        "U": 1.8841006424815987,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 0.8755845058093543,
+      "oracle": {
+        "L": -0.054769046414921085,
+        "U": 1.3375388046273367,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.27806147485875066,
+        "U": 1.1145614381909779,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.023050146897461765,
+        "U": 1.3685051418165104,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 0.8755845058093543,
+      "oracle": {
+        "L": 0.2828869251160926,
+        "U": 0.998807108772918,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.05977514029499442,
+        "U": 0.7758288538729925,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.3144079910147859,
+        "U": 1.0300075103669881,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 0.8755845058093543,
+      "oracle": {
+        "L": 0.5348573819430076,
+        "U": 0.7462438060714218,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.31184447413992356,
+        "U": 0.523265333778034,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.5662690654251135,
+        "U": 0.7775726139271102,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.1,
+      "concept": 4,
+      "psi": 0.8785808942113862,
+      "oracle": {
+        "L": -1.674895605046232,
+        "U": 2.9863536241106905,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.8194026613830516,
+        "U": 2.8438485105858393,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.49390307257966,
+        "U": 3.1594712302097,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.2,
+      "concept": 4,
+      "psi": 0.8785808942113862,
+      "oracle": {
+        "L": -0.9711324787701878,
+        "U": 2.2719691257442785,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.1153096188556324,
+        "U": 2.1288254932037862,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.7924987570770083,
+        "U": 2.4473419889590016,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": 0.8785808942113862,
+      "oracle": {
+        "L": -0.5622007057942797,
+        "U": 1.8597551399464312,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.7064141099957117,
+        "U": 1.7156082228194922,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.38432265272313515,
+        "U": 2.035770743052921,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": 0.8785808942113862,
+      "oracle": {
+        "L": -0.04862557851404414,
+        "U": 1.3436343078592383,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.19286578975908686,
+        "U": 1.1994130246823778,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.128657597928715,
+        "U": 1.5201310755475825,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": 0.8785808942113862,
+      "oracle": {
+        "L": 0.2890187416023444,
+        "U": 1.0049184074150244,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.1447678819836904,
+        "U": 0.860674797792659,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.4660494701089952,
+        "U": 1.1816141086844114,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.3,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": 0.8785808942113862,
+      "oracle": {
+        "L": 0.5409827317630054,
+        "U": 0.7523638420980436,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.3967261983138535,
+        "U": 0.6081090970719716,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.7178738404296032,
+        "U": 0.929168371450217,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.1,
+      "concept": 0,
+      "psi": 1.0819431770220946,
+      "oracle": {
+        "L": -1.0233679480876834,
+        "U": 3.6549314790552345,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.2762920969402378,
+        "U": 3.4076712396088427,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.106337461492723,
+        "U": 3.568925037638435,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.2,
+      "concept": 0,
+      "psi": 1.0819431770220946,
+      "oracle": {
+        "L": -0.3220222586977073,
+        "U": 2.9282345667100347,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.5727830449002944,
+        "U": 2.679537903296229,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.4040991481491627,
+        "U": 2.845213840414975,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 1.0819431770220946,
+      "oracle": {
+        "L": 0.08614685721964932,
+        "U": 2.512207551046263,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.16392685454693368,
+        "U": 2.2634462791604655,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.00436231207712634,
+        "U": 2.4299339362144163,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 1.0819431770220946,
+      "oracle": {
+        "L": 0.5991256369110456,
+        "U": 1.9931236121003568,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.34959199768701055,
+        "U": 1.7439646492960996,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.517573123007514,
+        "U": 1.9113785966262533,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 1.0819431770220946,
+      "oracle": {
+        "L": 0.9365179570326463,
+        "U": 1.653158824074235,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.6872133619488103,
+        "U": 1.4040104561450635,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.8550643869711285,
+        "U": 1.5716255911006165,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 1.0819431770220946,
+      "oracle": {
+        "L": 1.1883428492563537,
+        "U": 1.3999156015167564,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.9391649010411784,
+        "U": 1.1507777060407838,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.1069441194768963,
+        "U": 1.3184966101166484,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.1,
+      "concept": 1,
+      "psi": 0.8747338860857754,
+      "oracle": {
+        "L": -1.3145442096820537,
+        "U": 3.361436602764942,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.5098525680559645,
+        "U": 3.1741039236277486,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.3582421665423308,
+        "U": 3.3159696744043305,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.2,
+      "concept": 1,
+      "psi": 0.8747338860857754,
+      "oracle": {
+        "L": -0.6112350418599037,
+        "U": 2.638073667807224,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8044304721402868,
+        "U": 2.447903056722203,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.6540592648575156,
+        "U": 2.5948188237408636,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": 0.8747338860857754,
+      "oracle": {
+        "L": -0.20243631239397786,
+        "U": 2.223084146886693,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.3950025135938908,
+        "U": 2.032380016835191,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.2449712687438339,
+        "U": 2.1803523099912514,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": 0.8747338860857754,
+      "oracle": {
+        "L": 0.3110380845747054,
+        "U": 1.7048086322814529,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.1189656202650875,
+        "U": 1.513343535313651,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.26873344095665797,
+        "U": 1.6624344670529085,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": 0.8747338860857754,
+      "oracle": {
+        "L": 0.6486407003485235,
+        "U": 1.365184821883994,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.4567775849048532,
+        "U": 1.1735770824692944,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.6064344331277969,
+        "U": 1.3229512066474056,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": 0.8747338860857754,
+      "oracle": {
+        "L": 0.9005818886270429,
+        "U": 1.1121296610584288,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.7088345378122893,
+        "U": 0.9204479864933095,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.8584301856847922,
+        "U": 1.0699712046283238,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.1,
+      "concept": 2,
+      "psi": 0.6579087791667995,
+      "oracle": {
+        "L": -1.4547781111231917,
+        "U": 3.220577961347975,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.5713024302326124,
+        "U": 3.107343704394466,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.557975776136015,
+        "U": 3.1136443005739016,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.2,
+      "concept": 2,
+      "psi": 0.6579087791667995,
+      "oracle": {
+        "L": -0.7504664969917192,
+        "U": 2.4985808425432525,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8657332783089124,
+        "U": 2.3843800795429226,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.8534605856476825,
+        "U": 2.394307574043623,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": 0.6579087791667995,
+      "oracle": {
+        "L": -0.34134912001873907,
+        "U": 2.084022023355585,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.4563149092664842,
+        "U": 1.9697930529790986,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.44426078935497504,
+        "U": 1.9804229098554211,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": 0.6579087791667995,
+      "oracle": {
+        "L": 0.17237548432008776,
+        "U": 1.5660830835180768,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.057615004275784365,
+        "U": 1.4514532594283303,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.06953367327373083,
+        "U": 1.4629629845360261,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": 0.6579087791667995,
+      "oracle": {
+        "L": 0.5100841199647883,
+        "U": 1.2266014510862613,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.3954057032277394,
+        "U": 1.1119750685753678,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.4072732093067746,
+        "U": 1.1236739875443078,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": 0.6579087791667995,
+      "oracle": {
+        "L": 0.7620839038663769,
+        "U": 0.9736247573605228,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.6474500769338567,
+        "U": 0.8590040242484909,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.6592903943712285,
+        "U": 0.8708014052723279,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.1,
+      "concept": 3,
+      "psi": 0.8681271357600426,
+      "oracle": {
+        "L": -1.5896092363528913,
+        "U": 3.0848122345360465,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.6821378448743447,
+        "U": 2.9999123485904176,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.4533866903579007,
+        "U": 3.219559396398404,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.2,
+      "concept": 3,
+      "psi": 0.8681271357600426,
+      "oracle": {
+        "L": -0.884238869059935,
+        "U": 2.3644349075712316,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.9753340742722294,
+        "U": 2.276195655332164,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.7487605356283318,
+        "U": 2.4995845503452596,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 0.8681271357600426,
+      "oracle": {
+        "L": -0.4747815123594288,
+        "U": 1.9503778793547264,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.565415138907162,
+        "U": 1.86150694097892,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.3395307391898488,
+        "U": 2.0854870628770987,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 0.8681271357600426,
+      "oracle": {
+        "L": 0.03921057773634118,
+        "U": 1.4328293654948787,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.05105886519569669,
+        "U": 1.3431237900400923,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.17428546143750712,
+        "U": 1.5678571251688007,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 0.8681271357600426,
+      "oracle": {
+        "L": 0.37703265905054817,
+        "U": 1.0935122668585535,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.28691797847975486,
+        "U": 1.003634250791773,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.5120337254408689,
+        "U": 1.2284953589286056,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 0.8681271357600426,
+      "oracle": {
+        "L": 0.6290951649943786,
+        "U": 0.8406262860817559,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.5390661317295597,
+        "U": 0.7506580689491811,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.7640556110175778,
+        "U": 0.9755823772034757,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.1,
+      "concept": 4,
+      "psi": 0.8671247609181902,
+      "oracle": {
+        "L": -1.5880880158693937,
+        "U": 3.085602225609485,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.711967338299786,
+        "U": 2.964722647731526,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.695438803510779,
+        "U": 2.9746188775061313,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.2,
+      "concept": 4,
+      "psi": 0.8671247609181902,
+      "oracle": {
+        "L": -0.8827513496372337,
+        "U": 2.3656214293571507,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.0046860361103818,
+        "U": 2.2445316069300336,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.9897537106801488,
+        "U": 2.257366682346203,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": 0.8671247609181902,
+      "oracle": {
+        "L": -0.4732998689569383,
+        "U": 1.9516874906921053,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.5947297169010906,
+        "U": 1.8306670590274754,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5801812665951269,
+        "U": 1.8441325873500523,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": 0.8671247609181902,
+      "oracle": {
+        "L": 0.04068460499448001,
+        "U": 1.4342307704972814,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.08037996658028579,
+        "U": 1.3133293131778476,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.06609443322195929,
+        "U": 1.3271789874723634,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": 0.8671247609181902,
+      "oracle": {
+        "L": 0.3785028993659205,
+        "U": 1.0949515761541342,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.2575898747035117,
+        "U": 0.9741069695660318,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.27176889289979744,
+        "U": 0.9881033265258337,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": 0.8671247609181902,
+      "oracle": {
+        "L": 0.6305631919205288,
+        "U": 0.842086321006291,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.5097333308137424,
+        "U": 0.7212740135044191,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.5238544663331419,
+        "U": 0.7353483429075194,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.1,
+      "concept": 0,
+      "psi": 1.102148230554847,
+      "oracle": {
+        "L": -1.1925623851532956,
+        "U": 3.509907616381836,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.477428671086245,
+        "U": 3.2325665777645507,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.2751809206318896,
+        "U": 3.4328040806053104,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.2,
+      "concept": 0,
+      "psi": 1.102148230554847,
+      "oracle": {
+        "L": -0.48675103379268947,
+        "U": 2.773587062884624,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.7702690263030378,
+        "U": 2.494841208872657,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5670810426514112,
+        "U": 2.6957979092497073,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 1.102148230554847,
+      "oracle": {
+        "L": -0.07713895148434435,
+        "U": 2.354708053023531,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.3602338967591745,
+        "U": 2.071481707214538,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.1567368229466748,
+        "U": 2.276589242917147,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 1.102148230554847,
+      "oracle": {
+        "L": 0.4369799147657467,
+        "U": 1.8334270571860571,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.15421825886063,
+        "U": 1.5502843000182578,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.3579564543724354,
+        "U": 1.7550342049760994,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 1.102148230554847,
+      "oracle": {
+        "L": 0.7748571027667541,
+        "U": 1.4925421912614736,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.4922370659993378,
+        "U": 1.2097492512388435,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.6960768011543941,
+        "U": 1.4140313936011593,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 1.102148230554847,
+      "oracle": {
+        "L": 1.0269504169633485,
+        "U": 1.238793126006252,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.7444087641060513,
+        "U": 0.956205669003503,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.9483044319256422,
+        "U": 1.1602168955099534,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.1,
+      "concept": 1,
+      "psi": 0.8756579289707984,
+      "oracle": {
+        "L": -1.4346874512949062,
+        "U": 3.2658838902691643,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.7595510670909835,
+        "U": 2.947396036935627,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.52940956098682,
+        "U": 3.178222876774463,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.2,
+      "concept": 1,
+      "psi": 0.8756579289707984,
+      "oracle": {
+        "L": -0.7265930072117692,
+        "U": 2.5329946338651315,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.0461653601250118,
+        "U": 2.2181372183557517,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.8171073825911215,
+        "U": 2.445718288987931,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": 0.8756579289707984,
+      "oracle": {
+        "L": -0.31626272890326224,
+        "U": 2.1151598401901843,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.6335470434094219,
+        "U": 1.798227839015782,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.4054734002522391,
+        "U": 2.0278359683532186,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": 0.8756579289707984,
+      "oracle": {
+        "L": 0.1984180473670154,
+        "U": 1.594687510605123,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.11796285722484612,
+        "U": 1.2781799571628971,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.11021819886359108,
+        "U": 1.5072931564093777,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": 0.8756579289707984,
+      "oracle": {
+        "L": 0.5365328737448483,
+        "U": 1.254142554506843,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.22050552364541787,
+        "U": 0.9380545142186438,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.448757881097797,
+        "U": 1.1667120211693014,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": 0.8756579289707984,
+      "oracle": {
+        "L": 0.7887574174717962,
+        "U": 1.0005806808579036,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.4729228111988997,
+        "U": 0.6847297153514385,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.7012163544149868,
+        "U": 0.91312880449075,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.1,
+      "concept": 2,
+      "psi": 0.671468492244701,
+      "oracle": {
+        "L": -1.630470255474283,
+        "U": 3.0688300445744776,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.9544033259792424,
+        "U": 2.754653386335664,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.6883044024377458,
+        "U": 3.0160410642343836,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.2,
+      "concept": 2,
+      "psi": 0.671468492244701,
+      "oracle": {
+        "L": -0.9203546836454475,
+        "U": 2.338733632449354,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.2415076203864102,
+        "U": 2.0230493063703974,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.9765047582623891,
+        "U": 2.2848974343804587,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": 0.671468492244701,
+      "oracle": {
+        "L": -0.5093782913556248,
+        "U": 1.9217658360999952,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8299116009007053,
+        "U": 1.6015010305156139,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5649936540669787,
+        "U": 1.8674937287962843,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": 0.671468492244701,
+      "oracle": {
+        "L": 0.005808825520996486,
+        "U": 1.4019626586963003,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.31423522270531734,
+        "U": 1.0817036896093715,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.049387804676783276,
+        "U": 1.3473377956343384,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": 0.671468492244701,
+      "oracle": {
+        "L": 0.34413779428820135,
+        "U": 1.0616985449610459,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.02430203544281362,
+        "U": 0.7417604597226397,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.28911823110262347,
+        "U": 1.0069231861222736,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": 0.671468492244701,
+      "oracle": {
+        "L": 0.5964805730384564,
+        "U": 0.8082912379261327,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.2767602074997608,
+        "U": 0.4885432769225817,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.5415587718697328,
+        "U": 0.7534326221233787,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.1,
+      "concept": 3,
+      "psi": 0.886177107424083,
+      "oracle": {
+        "L": -1.4620402919405002,
+        "U": 3.2378943926359685,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.52598113913335,
+        "U": 3.1852715959542683,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.2762398108134727,
+        "U": 3.431446926173625,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.2,
+      "concept": 3,
+      "psi": 0.886177107424083,
+      "oracle": {
+        "L": -0.7538087964110076,
+        "U": 2.5055112694210515,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8159385768310186,
+        "U": 2.449396152283901,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5688323369801855,
+        "U": 2.6939077886776506,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 0.886177107424083,
+      "oracle": {
+        "L": -0.34341368700014563,
+        "U": 2.08785917190969,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.40549106269779767,
+        "U": 2.02634476582807,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.1587017829207822,
+        "U": 2.2745424745710254,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 0.886177107424083,
+      "oracle": {
+        "L": 0.1713181570712896,
+        "U": 1.5675251820728828,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.10921735231156582,
+        "U": 1.5053331414602518,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.35582607369560826,
+        "U": 1.7528685241832704,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 0.886177107424083,
+      "oracle": {
+        "L": 0.5094546706214818,
+        "U": 1.227037877038791,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.4473401231778009,
+        "U": 1.1648733894208654,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.693876957110863,
+        "U": 1.4118163814966618,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 0.886177107424083,
+      "oracle": {
+        "L": 0.7616912124503354,
+        "U": 0.9735076514923469,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.6995684873820611,
+        "U": 0.9113708265373806,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.9460663577951527,
+        "U": 1.1579748835213275,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.1,
+      "concept": 4,
+      "psi": 0.880121360290052,
+      "oracle": {
+        "L": -1.4687615191075283,
+        "U": 3.2316688691667337,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.5168197275645987,
+        "U": 3.1967844977258246,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.2969582241177862,
+        "U": 3.41279408655597,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.2,
+      "concept": 4,
+      "psi": 0.880121360290052,
+      "oracle": {
+        "L": -0.7602951597476197,
+        "U": 2.49924999088773,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8084715672334051,
+        "U": 2.4578753182759385,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5891112238741849,
+        "U": 2.6744923295001692,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": 0.880121360290052,
+      "oracle": {
+        "L": -0.3498349749906451,
+        "U": 2.0815659271672375,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.3980355767252899,
+        "U": 2.034374600314706,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.17884150168361757,
+        "U": 2.254897004927008,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": 0.880121360290052,
+      "oracle": {
+        "L": 0.16494941153980225,
+        "U": 1.5612104803195992,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.11673451957623282,
+        "U": 1.5130936563238793,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.33579531812889574,
+        "U": 1.7330465152381835,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": 0.880121360290052,
+      "oracle": {
+        "L": 0.5031084017939005,
+        "U": 1.2207146324105382,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.4548887113880893,
+        "U": 1.1725259563367985,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.6738922828557978,
+        "U": 1.391920622095923,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "base",
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": 0.880121360290052,
+      "oracle": {
+        "L": 0.755357403516494,
+        "U": 0.9671797927107804,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.7071353827533313,
+        "U": 0.9189646363426567,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.9261071284863478,
+        "U": 1.1380386283582533,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.1,
+      "concept": 0,
+      "psi": 1.0883916792569357,
+      "oracle": {
+        "L": -0.8257184981425985,
+        "U": 3.823577215398343,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8031019497712322,
+        "U": 3.8487951420474236,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.1016763808980174,
+        "U": 3.551126739128618,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.2,
+      "concept": 0,
+      "psi": 1.0883916792569357,
+      "oracle": {
+        "L": -0.12800524947359104,
+        "U": 3.1101993240151415,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.10533137496841238,
+        "U": 3.1339447916288137,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.4018779234065377,
+        "U": 2.83791140617842,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 1.0883916792569357,
+      "oracle": {
+        "L": 0.2789738384359106,
+        "U": 2.698141910032086,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.301664770588963,
+        "U": 2.721445300111272,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.005787609419327211,
+        "U": 2.4258843077811685,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 1.0883916792569357,
+      "oracle": {
+        "L": 0.7910077835827511,
+        "U": 2.182094050177665,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.8137117073971796,
+        "U": 2.205056458680394,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.518367670063336,
+        "U": 1.9098532423025496,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 1.0883916792569357,
+      "oracle": {
+        "L": 1.1279970972650952,
+        "U": 1.8433974407029918,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 1.1507064193897838,
+        "U": 1.8662168413677565,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.8555902135292248,
+        "U": 1.571161918631656,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 1.0883916792569357,
+      "oracle": {
+        "L": 1.3795985902957542,
+        "U": 1.5908507600900235,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 1.4023108688088106,
+        "U": 1.6135914786453895,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.1073210673561542,
+        "U": 1.318617696679837,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.1,
+      "concept": 1,
+      "psi": -0.0009338916841752365,
+      "oracle": {
+        "L": -1.2820674481036356,
+        "U": 3.3640891910017494,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.1359181981502973,
+        "U": 3.5163511312822973,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.2022161644146747,
+        "U": 3.449296114647623,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.2,
+      "concept": 1,
+      "psi": -0.0009338916841752365,
+      "oracle": {
+        "L": -0.5824312498323101,
+        "U": 2.6544268650199845,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.43622075636596414,
+        "U": 2.8030450322069553,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5018342508200053,
+        "U": 2.737399310084176,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": -0.0009338916841752365,
+      "oracle": {
+        "L": -0.17482715607346933,
+        "U": 2.243564442341472,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.028607565307297023,
+        "U": 2.3911649598041347,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.09397879344667004,
+        "U": 2.325797034696871,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": -0.0009338916841752365,
+      "oracle": {
+        "L": 0.3377013139223095,
+        "U": 1.7284578068026182,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "gbm": {
+        "L": 0.4839262324682698,
+        "U": 1.8752672476300818,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "mlp_platt": {
+        "L": 0.41875161924102056,
+        "U": 1.8101007935714222,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": -0.0009338916841752365,
+      "oracle": {
+        "L": 0.6749011062611228,
+        "U": 1.3901606611292738,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "gbm": {
+        "L": 0.8211278771094372,
+        "U": 1.5366366637897597,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "mlp_platt": {
+        "L": 0.7560381736289719,
+        "U": 1.4715516251800231,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": -0.0009338916841752365,
+      "oracle": {
+        "L": 0.9266191579792258,
+        "U": 1.137834904713885,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "gbm": {
+        "L": 1.0728468586091626,
+        "U": 1.2841270406247949,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "mlp_platt": {
+        "L": 1.0078044797235028,
+        "U": 1.219086035295299,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.1,
+      "concept": 2,
+      "psi": -0.6532928061486416,
+      "oracle": {
+        "L": -1.9300372433495419,
+        "U": 2.7144934136679115,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.2067914482702857,
+        "U": 2.4416454993993693,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.0541289544665586,
+        "U": 2.595538188779036,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.2,
+      "concept": 2,
+      "psi": -0.6532928061486416,
+      "oracle": {
+        "L": -1.2271412588540125,
+        "U": 2.0090154404625498,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.5023023304997647,
+        "U": 1.7354995389891688,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.3493740689297482,
+        "U": 1.8890679064911922,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": -0.6532928061486416,
+      "oracle": {
+        "L": -0.8184873335450424,
+        "U": 1.5994990319470732,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.0931346876662396,
+        "U": 1.3257973147086162,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.9400945584044758,
+        "U": 1.479224788300657,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": -0.6532928061486416,
+      "oracle": {
+        "L": -0.30513126135628443,
+        "U": 1.0854528776450403,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.5793723981091814,
+        "U": 0.8116125161331338,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.42623654220489904,
+        "U": 0.9649187687461689,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": -0.6532928061486416,
+      "oracle": {
+        "L": 0.03241998466295826,
+        "U": 0.7476059123243068,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "gbm": {
+        "L": -0.24164824975097332,
+        "U": 0.47370864441964233,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.0884698433207749,
+        "U": 0.6269608450348727,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": -0.6532928061486416,
+      "oracle": {
+        "L": 0.28433246615009633,
+        "U": 0.4955291585244037,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "gbm": {
+        "L": 0.010359993771865028,
+        "U": 0.22160089835415508,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "mlp_platt": {
+        "L": 0.1635624106904805,
+        "U": 0.37482255510565654,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.1,
+      "concept": 3,
+      "psi": 0.11332955804856848,
+      "oracle": {
+        "L": -1.3683280086776275,
+        "U": 3.2782553071204448,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.6675322842364206,
+        "U": 2.9821010562629975,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.6582020289760404,
+        "U": 2.992313804345948,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.2,
+      "concept": 3,
+      "psi": 0.11332955804856848,
+      "oracle": {
+        "L": -0.6683379273329413,
+        "U": 2.5687054631335293,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.9665445956528105,
+        "U": 2.2716015116345796,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.955791619158119,
+        "U": 2.283014944297192,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 0.11332955804856848,
+      "oracle": {
+        "L": -0.26061680032970624,
+        "U": 2.157882062470301,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.5584962045017656,
+        "U": 1.8606327461417846,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5472731615606738,
+        "U": 1.8722565258669848,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 0.11332955804856848,
+      "oracle": {
+        "L": 0.25200494114181815,
+        "U": 1.642807130739591,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.04561387662296568,
+        "U": 1.3454545087247327,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.034016935544973315,
+        "U": 1.3572277374073103,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 0.11332955804856848,
+      "oracle": {
+        "L": 0.5892446083670881,
+        "U": 1.3045236978373138,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.2917371774616253,
+        "U": 1.00712969777733,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.30349373703707094,
+        "U": 1.0189625812906637,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 0.11332955804856848,
+      "oracle": {
+        "L": 0.8409847869530598,
+        "U": 1.052205591092834,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.5435391667804694,
+        "U": 0.7547892877932769,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.5553842370613724,
+        "U": 0.7666542534045853,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.1,
+      "concept": 4,
+      "psi": -0.43574969418999654,
+      "oracle": {
+        "L": -1.9342985213003505,
+        "U": 2.7107258230558724,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.0601852742988784,
+        "U": 2.5892313967452694,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.0450265090337725,
+        "U": 2.6047901483671865,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.2,
+      "concept": 4,
+      "psi": -0.43574969418999654,
+      "oracle": {
+        "L": -1.2314891735831903,
+        "U": 2.00488257805526,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.3563583324481936,
+        "U": 1.8817047192575043,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.340718098369564,
+        "U": 1.8977883940002753,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": -0.43574969418999654,
+      "oracle": {
+        "L": -0.8228587961675924,
+        "U": 1.5952521688551498,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.9473956691214438,
+        "U": 1.471685667477031,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.9315811341084812,
+        "U": 1.4877754889899517,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": -0.43574969418999654,
+      "oracle": {
+        "L": -0.3095198706503295,
+        "U": 1.0811173784802497,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.43379310067452526,
+        "U": 0.9572550904597321,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.41783501419709346,
+        "U": 0.9733361519675983,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": -0.43574969418999654,
+      "oracle": {
+        "L": 0.0280244632658615,
+        "U": 0.7432330993493634,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "gbm": {
+        "L": -0.0961363446126251,
+        "U": 0.6192475537045894,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.08011570198257711,
+        "U": 0.6353217596398624,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.1,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": -0.43574969418999654,
+      "oracle": {
+        "L": 0.2799332142421287,
+        "U": 0.4911357863532446,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "gbm": {
+        "L": 0.15583471982838404,
+        "U": 0.3670826098641182,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "mlp_platt": {
+        "L": 0.17189037145228436,
+        "U": 0.3831522687750253,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.1,
+      "concept": 0,
+      "psi": 1.0911022442713358,
+      "oracle": {
+        "L": -1.0161543589204118,
+        "U": 3.645206658310158,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.3320026139340495,
+        "U": 3.3387143674824387,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.442307538126225,
+        "U": 3.2192662452396066,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.2,
+      "concept": 0,
+      "psi": 1.0911022442713358,
+      "oracle": {
+        "L": -0.3164540281646948,
+        "U": 2.9270439008533886,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.6303238812301251,
+        "U": 2.6145192036664304,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.7398679111694877,
+        "U": 2.5038133533989986,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 1.0911022442713358,
+      "oracle": {
+        "L": 0.09118340232931921,
+        "U": 2.5134261801149362,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.22204356571230388,
+        "U": 2.200944527916479,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.33132779526554224,
+        "U": 2.091037705679234,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 1.0911022442713358,
+      "oracle": {
+        "L": 0.6037425890592472,
+        "U": 1.9961421519056266,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.29102567997644346,
+        "U": 1.6837352498621092,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.18194985028758204,
+        "U": 1.574407212735263,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 1.0911022442713358,
+      "oracle": {
+        "L": 0.940956618167295,
+        "U": 1.656918994191975,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.6284572315571895,
+        "U": 1.3445510326032215,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.5194707934379341,
+        "U": 1.235458873661944,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 1.0911022442713358,
+      "oracle": {
+        "L": 1.1926828527496722,
+        "U": 1.4040806186177734,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.8803040436824894,
+        "U": 1.0917356914534597,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.7713672785005636,
+        "U": 0.9827718412984874,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.1,
+      "concept": 1,
+      "psi": -0.004252553850462526,
+      "oracle": {
+        "L": -1.7773682319092234,
+        "U": 2.8804686584655994,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.9984518489214858,
+        "U": 2.6658209999309452,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.9464330449190195,
+        "U": 2.714218676236276,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.2,
+      "concept": 1,
+      "psi": -0.004252553850462526,
+      "oracle": {
+        "L": -1.0734585296028776,
+        "U": 2.1685313776181943,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.2928560887127531,
+        "U": 1.9503514730837246,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.24051913320229,
+        "U": 2.0027706800790046,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": -0.004252553850462526,
+      "oracle": {
+        "L": -0.6644480603964737,
+        "U": 1.7569257757299068,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8832952281177722,
+        "U": 1.5387604483788628,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.8308449910576172,
+        "U": 1.5912955848523236,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": -0.004252553850462526,
+      "oracle": {
+        "L": -0.15080085377720565,
+        "U": 1.2412299029909297,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.36921128128502456,
+        "U": 1.023104786414632,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.31666853642670567,
+        "U": 1.0756935810260568,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": -0.004252553850462526,
+      "oracle": {
+        "L": 0.1868766844594365,
+        "U": 0.902681652029302,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "gbm": {
+        "L": -0.031347497977844974,
+        "U": 0.6845786805311374,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.02123535126468301,
+        "U": 0.737182821223473,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": -0.004252553850462526,
+      "oracle": {
+        "L": 0.43885970955575626,
+        "U": 0.6502167590085959,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "gbm": {
+        "L": 0.22073876151208083,
+        "U": 0.43212709328038823,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "mlp_platt": {
+        "L": 0.2733440022360245,
+        "U": 0.48473806638818306,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.1,
+      "concept": 2,
+      "psi": -0.652128781072224,
+      "oracle": {
+        "L": -2.4296486812359817,
+        "U": 2.2274657501932773,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.383197618066199,
+        "U": 2.2827492164216654,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.475476825880512,
+        "U": 2.1844862117003463,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.2,
+      "concept": 2,
+      "psi": -0.652128781072224,
+      "oracle": {
+        "L": -1.7210919910567153,
+        "U": 1.5205916421863543,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.6689351335234361,
+        "U": 1.5739160311132316,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.7659863839335967,
+        "U": 1.4770056359248303,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": -0.652128781072224,
+      "oracle": {
+        "L": -1.3105816928570624,
+        "U": 1.110616191106426,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.2582296520701899,
+        "U": 1.1636096663162752,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.3551468803687827,
+        "U": 1.0668215334729876,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": -0.652128781072224,
+      "oracle": {
+        "L": -0.7957512397927875,
+        "U": 0.5962050129056857,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.7432746983875234,
+        "U": 0.6489467322979552,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.8400474833149545,
+        "U": 0.5522413731542173,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": -0.652128781072224,
+      "oracle": {
+        "L": -0.45757099841812465,
+        "U": 0.2582022021503265,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.4050465595460526,
+        "U": 0.3108387826591068,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5017505563754678,
+        "U": 0.21416561101702403,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": -0.652128781072224,
+      "oracle": {
+        "L": -0.20530981677286064,
+        "U": 0.0060390201344686645,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.15275988661411422,
+        "U": 0.058617821891982835,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.24942419468329646,
+        "U": -0.03803823239602089,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.1,
+      "concept": 3,
+      "psi": 0.10078562355508058,
+      "oracle": {
+        "L": -1.7844152749224458,
+        "U": 2.8735675308543427,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.9745045287323681,
+        "U": 2.689676788744432,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.9406805871819186,
+        "U": 2.7186645926527,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.2,
+      "concept": 3,
+      "psi": 0.10078562355508058,
+      "oracle": {
+        "L": -1.0804371604245278,
+        "U": 2.161615666756278,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.2695609092878488,
+        "U": 1.9729130448863916,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.235040902846423,
+        "U": 2.007679393088372,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 0.10078562355508058,
+      "oracle": {
+        "L": -0.6714041500149728,
+        "U": 1.7500060439517329,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8602248222982434,
+        "U": 1.5614015763652036,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.8254563888187336,
+        "U": 1.5963540745491445,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 0.10078562355508058,
+      "oracle": {
+        "L": -0.15773900294897558,
+        "U": 1.2343072212826787,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.34632062719682644,
+        "U": 1.0458114759018953,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.3113510166101774,
+        "U": 1.0808703363577807,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 0.10078562355508058,
+      "oracle": {
+        "L": 0.17994619899074316,
+        "U": 0.8957577748844567,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.008533745969899975,
+        "U": 0.7073136250011123,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.02652257346746989,
+        "U": 0.7424098455123467,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 0.10078562355508058,
+      "oracle": {
+        "L": 0.43193347521435044,
+        "U": 0.6432922349990182,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.2435098386737753,
+        "U": 0.45487774545376425,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.27861443515482254,
+        "U": 0.489992911050825,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.1,
+      "concept": 4,
+      "psi": -0.4412419444357569,
+      "oracle": {
+        "L": -2.3402830670448673,
+        "U": 2.3169131572884574,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.4525271903323067,
+        "U": 2.211030548377552,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.4949560732582126,
+        "U": 2.164638172618355,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.2,
+      "concept": 4,
+      "psi": -0.4412419444357569,
+      "oracle": {
+        "L": -1.6323491650844764,
+        "U": 1.6093681769560542,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.7428530679005823,
+        "U": 1.4998858373649657,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.785720232563385,
+        "U": 1.4571104098443364,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": -0.4412419444357569,
+      "oracle": {
+        "L": -1.2220399946656295,
+        "U": 1.1991770717740584,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.3321465267221635,
+        "U": 1.089640180049197,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.3749620682981982,
+        "U": 1.0469126910110802,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": -0.4412419444357569,
+      "oracle": {
+        "L": -0.7073682464248856,
+        "U": 0.6845960670232376,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8171660466178485,
+        "U": 0.5750358298135136,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.8599265278386916,
+        "U": 0.5323223548699456,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": -0.4412419444357569,
+      "oracle": {
+        "L": -0.3692554382557587,
+        "U": 0.346521187989036,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.4789228438822022,
+        "U": 0.23695457012602716,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5216566438183499,
+        "U": 0.1942424218955887,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.3,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": -0.4412419444357569,
+      "oracle": {
+        "L": -0.11703157062225689,
+        "U": 0.09431815029012913,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.22662696934720206,
+        "U": -0.015251256211044506,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.2693452229266251,
+        "U": -0.057963690107913024,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.1,
+      "concept": 0,
+      "psi": 1.0891311639073358,
+      "oracle": {
+        "L": -1.1101528653663308,
+        "U": 3.563350801645528,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.315586711136882,
+        "U": 3.360417584750921,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.6127875670950256,
+        "U": 3.0651435539645053,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.2,
+      "concept": 0,
+      "psi": 1.0891311639073358,
+      "oracle": {
+        "L": -0.40848386296208616,
+        "U": 2.8402885598725627,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.6122206078890224,
+        "U": 2.637423059075443,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.9062705417914376,
+        "U": 2.344545793486686,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 1.0891311639073358,
+      "oracle": {
+        "L": -0.000196920001076073,
+        "U": 2.42510006414229,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.2033867680105601,
+        "U": 2.2224029106282526,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.4963923685866636,
+        "U": 1.9301098349966503,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 1.0891311639073358,
+      "oracle": {
+        "L": 0.512879495510191,
+        "U": 1.9065804268953555,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.3101220408925318,
+        "U": 1.7040301004547906,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.017948293468189824,
+        "U": 1.4121699305363808,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 1.0891311639073358,
+      "oracle": {
+        "L": 0.850314550317318,
+        "U": 1.566833282506308,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.6477411186980664,
+        "U": 1.3643479911075715,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.35592281223637556,
+        "U": 1.0726654444584476,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 1.0891311639073358,
+      "oracle": {
+        "L": 1.1021634107155238,
+        "U": 1.3137052204958923,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.8996918939984049,
+        "U": 1.1112564705874775,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.6080707674717214,
+        "U": 0.8196707302477311,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.1,
+      "concept": 1,
+      "psi": -0.004101351459969038,
+      "oracle": {
+        "L": -2.0231845076113824,
+        "U": 2.646140410334431,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.175125582994534,
+        "U": 2.494495036444249,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.2559120098852667,
+        "U": 2.418782333513059,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.2,
+      "concept": 1,
+      "psi": -0.004101351459969038,
+      "oracle": {
+        "L": -1.31486767648396,
+        "U": 1.9321291906253482,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.465741239520927,
+        "U": 1.7812359468296988,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.5438818027485768,
+        "U": 1.7055435101629612,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": -0.004101351459969038,
+      "oracle": {
+        "L": -0.9044221652984028,
+        "U": 1.5198539855974396,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.0549659131812579,
+        "U": 1.3692909690837851,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.1322160094152682,
+        "U": 1.293483619317481,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": -0.004101351459969038,
+      "oracle": {
+        "L": -0.38963864762650946,
+        "U": 1.0036297598964348,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.5399225910556691,
+        "U": 0.8533358225322134,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.61646262659995,
+        "U": 0.7774180286808976,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": -0.004101351459969038,
+      "oracle": {
+        "L": -0.05147725020198379,
+        "U": 0.6648570134949408,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.20165075877141359,
+        "U": 0.5146789819236126,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.2778873070428629,
+        "U": 0.4387097307597134,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": -0.004101351459969038,
+      "oracle": {
+        "L": 0.2007737829040801,
+        "U": 0.4122678959982782,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "gbm": {
+        "L": 0.050661414207943345,
+        "U": 0.2621543245498774,
+        "covers": false,
+        "certifies": true,
+        "wrong": true
+      },
+      "mlp_platt": {
+        "L": -0.025406767219466886,
+        "U": 0.1861555262929251,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.1,
+      "concept": 2,
+      "psi": -0.6507011120307977,
+      "oracle": {
+        "L": -2.674800150333039,
+        "U": 1.994488327904889,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.4999458970511266,
+        "U": 2.1701791514571274,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.551505832046969,
+        "U": 2.1234202295021958,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.2,
+      "concept": 2,
+      "psi": -0.6507011120307977,
+      "oracle": {
+        "L": -1.9605524758820234,
+        "U": 1.2864285856548845,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.7867391848069971,
+        "U": 1.460465050557672,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.8368872829822016,
+        "U": 1.412638482494894,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": -0.6507011120307977,
+      "oracle": {
+        "L": -1.54820214174865,
+        "U": 0.8760649204925173,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.3747811713597908,
+        "U": 1.0496093026449076,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.4243810762278226,
+        "U": 1.0013766710448389,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": -0.6507011120307977,
+      "oracle": {
+        "L": -1.0319190007528984,
+        "U": 0.36134556205841495,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8588104847446338,
+        "U": 0.5345054710328316,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.907963135023536,
+        "U": 0.4859422661217119,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": -0.6507011120307977,
+      "oracle": {
+        "L": -0.6931213137072483,
+        "U": 0.02321131203952831,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.52014590033406,
+        "U": 0.19620854447377134,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.5691050870532353,
+        "U": 0.1475025265890224,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": -0.6507011120307977,
+      "oracle": {
+        "L": -0.4405184181626254,
+        "U": -0.2290247282819564,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.26761669598263005,
+        "U": -0.056117375234180145,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.31646801058972684,
+        "U": -0.10490297943040883,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.1,
+      "concept": 3,
+      "psi": 0.09954102654646935,
+      "oracle": {
+        "L": -1.9811103920542483,
+        "U": 2.68848227754226,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.1593326461804367,
+        "U": 2.512298619992153,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.077052219875588,
+        "U": 2.5987856236183955,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.2,
+      "concept": 3,
+      "psi": 0.09954102654646935,
+      "oracle": {
+        "L": -1.2731124085669974,
+        "U": 1.9739978684232087,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.449514948286983,
+        "U": 1.7982677233612065,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.3664678790251568,
+        "U": 1.8834529647792397,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 0.09954102654646935,
+      "oracle": {
+        "L": -0.8627693282521429,
+        "U": 1.561572005723864,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.0385820429430783,
+        "U": 1.3861373418314757,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.9552700576015845,
+        "U": 1.4707162508018268,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 0.09954102654646935,
+      "oracle": {
+        "L": -0.3480664626299381,
+        "U": 1.0452295611072673,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.5234122357392232,
+        "U": 0.8700422394798375,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.43988621903001324,
+        "U": 0.9541164958794823,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 0.09954102654646935,
+      "oracle": {
+        "L": -0.009939288837095717,
+        "U": 0.7064067532275189,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.18508621216106835,
+        "U": 0.531327191557561,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.10146798360807718,
+        "U": 0.6151812194340271,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 0.09954102654646935,
+      "oracle": {
+        "L": 0.24229281811381664,
+        "U": 0.45378997672368016,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.06725604746910196,
+        "U": 0.2787705977234891,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.15092561854372732,
+        "U": 0.36250141544232584,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.1,
+      "concept": 4,
+      "psi": -0.43736914698295326,
+      "oracle": {
+        "L": -2.527126938775974,
+        "U": 2.142095517174055,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.460237378887499,
+        "U": 2.212899901962269,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.4198867893115095,
+        "U": 2.2554586314932483,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.2,
+      "concept": 4,
+      "psi": -0.43736914698295326,
+      "oracle": {
+        "L": -1.8142273979881738,
+        "U": 1.4327270042654252,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.7468640974018088,
+        "U": 1.501622338356337,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.7063102873738574,
+        "U": 1.543397895356203,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": -0.43736914698295326,
+      "oracle": {
+        "L": -1.4023101200522108,
+        "U": 1.0219418360697619,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.3348450578313003,
+        "U": 1.090283714475854,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.2941422126475777,
+        "U": 1.1317212020215779,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": -0.43736914698295326,
+      "oracle": {
+        "L": -0.8863679138143077,
+        "U": 0.5068903178684359,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.8188258782043629,
+        "U": 0.5748034392686066,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.7779915770996277,
+        "U": 0.6159588595722374,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": -0.43736914698295326,
+      "oracle": {
+        "L": -0.5477148834880623,
+        "U": 0.16861505412784883,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.48014059909583295,
+        "U": 0.23634760759784346,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.43924723169940716,
+        "U": 0.27737963734289206,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": -0.43736914698295326,
+      "oracle": {
+        "L": -0.29519198114957224,
+        "U": -0.08369898462723668,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.22759992039509758,
+        "U": -0.016065996363624713,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.18667310332030773,
+        "U": 0.024896913451672553,
+        "covers": false,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.1,
+      "concept": 0,
+      "psi": 1.0896563517230424,
+      "oracle": {
+        "L": -1.2175882020532347,
+        "U": 3.480618172766627,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.4325835789665744,
+        "U": 3.263631773062234,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.1881667279371997,
+        "U": 3.5018222638551144,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.2,
+      "concept": 0,
+      "psi": 1.0896563517230424,
+      "oracle": {
+        "L": -0.5119066599716424,
+        "U": 2.747458041977347,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.7251755104845028,
+        "U": 2.5333565917689764,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.4835653060789262,
+        "U": 2.772242217129749,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 1.0896563517230424,
+      "oracle": {
+        "L": -0.10230474433676306,
+        "U": 2.3291015435028757,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.3150157120131656,
+        "U": 2.115917804133973,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.07432136935679257,
+        "U": 2.355026805182069,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 1.0896563517230424,
+      "oracle": {
+        "L": 0.41181572790437393,
+        "U": 1.8081118329906642,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.1995459812619087,
+        "U": 1.5956440031053578,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.4395134852071729,
+        "U": 1.834933164709419,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 1.0896563517230424,
+      "oracle": {
+        "L": 0.7496961028780449,
+        "U": 1.4673228907708369,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.5376141456344063,
+        "U": 1.2551568789602214,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 0.7772716634635142,
+        "U": 1.4945238547561255,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 1.0896563517230424,
+      "oracle": {
+        "L": 1.0017918140653936,
+        "U": 1.2136203034081925,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": 0.7898138563321027,
+        "U": 1.0016206746539869,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": 1.0292995426488805,
+        "U": 1.241031059281883,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.1,
+      "concept": 1,
+      "psi": -0.00443938044552894,
+      "oracle": {
+        "L": -2.303064609066597,
+        "U": 2.390169138136375,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.3103206024942637,
+        "U": 2.3795390106062455,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.2700552378215715,
+        "U": 2.4147285358392194,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.2,
+      "concept": 1,
+      "psi": -0.00443938044552894,
+      "oracle": {
+        "L": -1.585640453118847,
+        "U": 1.6716563787643,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.5932998186813845,
+        "U": 1.6625499680552065,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.55519038982065,
+        "U": 1.698442210704961,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": -0.00443938044552894,
+      "oracle": {
+        "L": -1.172276609164375,
+        "U": 1.2579484068435285,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.180077102402727,
+        "U": 1.2493166053068867,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.142659511648934,
+        "U": 1.2854446598225984,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": -0.00443938044552894,
+      "oracle": {
+        "L": -0.6551977786416154,
+        "U": 0.7406003045374021,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.6631103571449168,
+        "U": 0.7323359424504252,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.6262399855906722,
+        "U": 0.7686547154749146,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": -0.00443938044552894,
+      "oracle": {
+        "L": -0.31606306686032504,
+        "U": 0.40135176029559894,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.3240232945149586,
+        "U": 0.393241599007526,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.2873859317432128,
+        "U": 0.4296427350193195,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": -0.00443938044552894,
+      "oracle": {
+        "L": -0.06327394874853542,
+        "U": 0.14849979826901105,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.07126052799063665,
+        "U": 0.14047446720277357,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.034752245413680605,
+        "U": 0.1769215294117643,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.1,
+      "concept": 2,
+      "psi": -0.6548189478644559,
+      "oracle": {
+        "L": -2.96886974885859,
+        "U": 1.7260099704456713,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.757077015786691,
+        "U": 1.9331504897811973,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.921301114015559,
+        "U": 1.7651789120677965,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.2,
+      "concept": 2,
+      "psi": -0.6548189478644559,
+      "oracle": {
+        "L": -2.2426045757742528,
+        "U": 1.015366611107983,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.034664661712373,
+        "U": 1.221315684542284,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.198171608974158,
+        "U": 1.0561585548007102,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": -0.6548189478644559,
+      "oracle": {
+        "L": -1.8264447624773767,
+        "U": 0.6041639961948491,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.6197381079587867,
+        "U": 0.8097262380884604,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.783017262344969,
+        "U": 0.6454839566748021,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": -0.6548189478644559,
+      "oracle": {
+        "L": -1.3071782650153638,
+        "U": 0.08878114275137428,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.1014376420610539,
+        "U": 0.29403715306954137,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.2645425432340334,
+        "U": 0.1305190836844261,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": -0.6548189478644559,
+      "oracle": {
+        "L": -0.9671188243284696,
+        "U": -0.24963541666487377,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.7617865990834867,
+        "U": -0.04450980747289268,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.9248191493072238,
+        "U": -0.2077195216370349,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": -0.6548189478644559,
+      "oracle": {
+        "L": -0.7138192192984016,
+        "U": -0.5020277714928554,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.5087124301883552,
+        "U": -0.29697439478862897,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.6717054049005533,
+        "U": -0.46001331513208843,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.1,
+      "concept": 3,
+      "psi": 0.10828058087999715,
+      "oracle": {
+        "L": -2.1973238925646705,
+        "U": 2.4958529437342665,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.2880457278735387,
+        "U": 2.4022688422736644,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.2709238446313065,
+        "U": 2.41566870169656,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.2,
+      "concept": 3,
+      "psi": 0.10828058087999715,
+      "oracle": {
+        "L": -1.4812693530340173,
+        "U": 1.7759976381566438,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.57160525039709,
+        "U": 1.6844199815797212,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.5558464644918315,
+        "U": 1.6985549769010824,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 0.10828058087999715,
+      "oracle": {
+        "L": -1.0683406583665391,
+        "U": 1.361866563224944,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.158553688048797,
+        "U": 1.2709381635514632,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.1432433131833406,
+        "U": 1.2853030343156773,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 0.10828058087999715,
+      "oracle": {
+        "L": -0.5516028079943869,
+        "U": 0.8441875495781987,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.6417181228282116,
+        "U": 0.7537688971435088,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.6267656511016755,
+        "U": 0.7683164578746613,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 0.10828058087999715,
+      "oracle": {
+        "L": -0.2126123507111597,
+        "U": 0.504799150195903,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.30268587311922523,
+        "U": 0.4145962355995758,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.28788661510869673,
+        "U": 0.42922199197873123,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 0.10828058087999715,
+      "oracle": {
+        "L": 0.0400971036441895,
+        "U": 0.251869986273503,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.04995321438850908,
+        "U": 0.1617862105744452,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.03523903543128526,
+        "U": 0.1764554108115739,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.1,
+      "concept": 4,
+      "psi": -0.4356961192593234,
+      "oracle": {
+        "L": -2.753753461124637,
+        "U": 1.9402588774412406,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -2.6630781910180334,
+        "U": 2.028019910340892,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -3.0121785053387793,
+        "U": 1.6744298002992406,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.2,
+      "concept": 4,
+      "psi": -0.4356961192593234,
+      "oracle": {
+        "L": -2.0303956929061533,
+        "U": 1.2272218203552496,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.941423853099232,
+        "U": 1.3149388740312453,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -2.2883688208686443,
+        "U": 0.9660137623535041,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": -0.4356961192593234,
+      "oracle": {
+        "L": -1.6151555903304988,
+        "U": 0.815252411748502,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.526737951080679,
+        "U": 0.9029484586908874,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.872996604026719,
+        "U": 0.5555343782674766,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": -0.4356961192593234,
+      "oracle": {
+        "L": -1.0966085494892264,
+        "U": 0.29926663891644445,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -1.0086260778633376,
+        "U": 0.38694353032360684,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.3543505398119837,
+        "U": 0.040723573905474986,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": -0.4356961192593234,
+      "oracle": {
+        "L": -0.756853168183838,
+        "U": -0.03940552968932565,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.6690548396625582,
+        "U": 0.04826251881457111,
+        "covers": true,
+        "certifies": false,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -1.0145544897405943,
+        "U": -0.29744955882453006,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      }
+    },
+    {
+      "scenario": "adversarial",
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": -0.4356961192593234,
+      "oracle": {
+        "L": -0.5037214000481214,
+        "U": -0.2919391795445936,
+        "covers": true,
+        "certifies": true,
+        "wrong": false
+      },
+      "gbm": {
+        "L": -0.4160247494132747,
+        "U": -0.20427620647471745,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      },
+      "mlp_platt": {
+        "L": -0.7614005784574847,
+        "U": -0.5497071206469677,
+        "covers": false,
+        "certifies": true,
+        "wrong": false
+      }
+    }
+  ]
+}

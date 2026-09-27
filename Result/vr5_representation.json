@@ -1,0 +1,1589 @@
+{
+  "runs": {
+    "ft_M0_s0": {
+      "meta": {
+        "mode": "ft",
+        "regime": "M0",
+        "seed": 0,
+        "best_val_auroc": 0.9340130434782609,
+        "test_auroc_Y_uniform": 0.917718273829385,
+        "test_auroc_D_verified": 0.6509214445271779,
+        "n_train": 241485,
+        "minutes": 6.767953093846639
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": 0.034205663949251175,
+          "delta_se": 0.0006710801094208627,
+          "frac_positive": 0.848,
+          "step_sd": 0.29434797167778015
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.05892762914299965,
+          "delta_se": 0.0009851234990125451,
+          "frac_positive": 0.9016666666666666,
+          "step_sd": 0.34499022364616394
+        },
+        "asymmetry": {
+          "delta_mean": -0.00885586254298687,
+          "delta_se": 0.0006994833769080779,
+          "frac_positive": 0.4226666666666667,
+          "step_sd": 0.2773369252681732
+        },
+        "border_irregularity": {
+          "delta_mean": -0.0031634496990591288,
+          "delta_se": 0.0006687795296361003,
+          "frac_positive": 0.4856666666666667,
+          "step_sd": 0.26414960622787476
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": 1.733180046081543,
+        "size": 1.861252784729004,
+        "lesion_skin_contrast": 0.9029569625854492,
+        "asymmetry": -0.6274623870849609,
+        "border_irregularity": -0.08333396911621094
+      },
+      "probe_r2": {
+        "color_variegation": 0.4688304634526384,
+        "lesion_skin_contrast": 0.7719824835034539,
+        "asymmetry": 0.3583611101512336,
+        "border_irregularity": 0.38212102005674514
+      },
+      "alignment": {
+        "color_variegation": 0.02308434247970581,
+        "lesion_skin_contrast": 0.011219555512070656,
+        "asymmetry": 0.004884950816631317,
+        "border_irregularity": 0.019573884084820747
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.4025331735610962,
+          "lesion_skin_contrast": 0.2505466639995575,
+          "asymmetry": -0.05476773530244827,
+          "border_irregularity": 0.06233358383178711
+        },
+        "target_S": {
+          "color_variegation": -0.13061057031154633,
+          "lesion_skin_contrast": -0.17353059351444244,
+          "asymmetry": 0.1091398298740387,
+          "border_irregularity": 0.11903218179941177
+        }
+      }
+    },
+    "ft_M0_s1": {
+      "meta": {
+        "mode": "ft",
+        "regime": "M0",
+        "seed": 1,
+        "best_val_auroc": 0.919770652173913,
+        "test_auroc_Y_uniform": 0.9127911244577911,
+        "test_auroc_D_verified": 0.6797747580044676,
+        "n_train": 241485,
+        "minutes": 4.924570620059967
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": 0.02843090333044529,
+          "delta_se": 0.000664002621414282,
+          "frac_positive": 0.8116666666666666,
+          "step_sd": 0.3031357228755951
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.02946539781987667,
+          "delta_se": 0.0007813160710754793,
+          "frac_positive": 0.8053333333333333,
+          "step_sd": 0.3480428457260132
+        },
+        "asymmetry": {
+          "delta_mean": -0.001329283113591373,
+          "delta_se": 0.0005994215890723178,
+          "frac_positive": 0.49,
+          "step_sd": 0.30421385169029236
+        },
+        "border_irregularity": {
+          "delta_mean": -0.0016434707213193178,
+          "delta_se": 0.0006022203047430699,
+          "frac_positive": 0.4816666666666667,
+          "step_sd": 0.285882830619812
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": 0.6737356185913086,
+        "size": 1.4114370346069336,
+        "lesion_skin_contrast": -0.189666748046875,
+        "asymmetry": 0.29869699478149414,
+        "border_irregularity": 0.7874636650085449
+      },
+      "probe_r2": {
+        "color_variegation": 0.4390189319683676,
+        "lesion_skin_contrast": 0.7312943972895238,
+        "asymmetry": 0.34483001239289685,
+        "border_irregularity": 0.3622094421510715
+      },
+      "alignment": {
+        "color_variegation": 0.035036005079746246,
+        "lesion_skin_contrast": 0.016055643558502197,
+        "asymmetry": 0.010267711244523525,
+        "border_irregularity": 0.01436520554125309
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.39619824290275574,
+          "lesion_skin_contrast": 0.25306668877601624,
+          "asymmetry": -0.03067084774374962,
+          "border_irregularity": 0.08555840700864792
+        },
+        "target_S": {
+          "color_variegation": -0.13666822016239166,
+          "lesion_skin_contrast": -0.18778908252716064,
+          "asymmetry": 0.14710456132888794,
+          "border_irregularity": 0.1604103147983551
+        }
+      }
+    },
+    "ft_M0_s2": {
+      "meta": {
+        "mode": "ft",
+        "regime": "M0",
+        "seed": 2,
+        "best_val_auroc": 0.9236559782608695,
+        "test_auroc_Y_uniform": 0.9115771326882438,
+        "test_auroc_D_verified": 0.6693503350707372,
+        "n_train": 241485,
+        "minutes": 4.856490770975749
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": 0.042400531470775604,
+          "delta_se": 0.0006838782024567583,
+          "frac_positive": 0.909,
+          "step_sd": 0.2914544343948364
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.02315407246351242,
+          "delta_se": 0.0007229847941168714,
+          "frac_positive": 0.751,
+          "step_sd": 0.335251122713089
+        },
+        "asymmetry": {
+          "delta_mean": 0.00020281161414459348,
+          "delta_se": 0.0005727595527179836,
+          "frac_positive": 0.532,
+          "step_sd": 0.2944239675998688
+        },
+        "border_irregularity": {
+          "delta_mean": 0.00650443509221077,
+          "delta_se": 0.000576696621791768,
+          "frac_positive": 0.622,
+          "step_sd": 0.28635165095329285
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": 0.9530630111694336,
+        "size": 1.4247817993164062,
+        "lesion_skin_contrast": -0.37240076065063477,
+        "asymmetry": 0.7232027053833008,
+        "border_irregularity": 1.314342975616455
+      },
+      "probe_r2": {
+        "color_variegation": 0.4471209934425566,
+        "lesion_skin_contrast": 0.7325814326168493,
+        "asymmetry": 0.334463126881308,
+        "border_irregularity": 0.3494423454000759
+      },
+      "alignment": {
+        "color_variegation": 0.04540666192770004,
+        "lesion_skin_contrast": 0.03644583746790886,
+        "asymmetry": 0.0068607633002102375,
+        "border_irregularity": 0.014498705975711346
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.41456887125968933,
+          "lesion_skin_contrast": 0.3291555345058441,
+          "asymmetry": -0.06504246592521667,
+          "border_irregularity": 0.03537842631340027
+        },
+        "target_S": {
+          "color_variegation": -0.1498173326253891,
+          "lesion_skin_contrast": -0.1821795254945755,
+          "asymmetry": 0.1339138001203537,
+          "border_irregularity": 0.1433698982000351
+        }
+      }
+    },
+    "ft_M2_s0": {
+      "meta": {
+        "mode": "ft",
+        "regime": "M2",
+        "seed": 0,
+        "best_val_auroc": 0.7903503284329059,
+        "test_auroc_Y_uniform": 0.7309153598042486,
+        "test_auroc_D_verified": 0.7537230081906181,
+        "n_train": 622,
+        "minutes": 5.27229855855306
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": 0.04760231450200081,
+          "delta_se": 0.0011034991942045162,
+          "frac_positive": 0.798,
+          "step_sd": 0.277681440114975
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.022000106051564217,
+          "delta_se": 0.001357595629888972,
+          "frac_positive": 0.393,
+          "step_sd": 0.32920604944229126
+        },
+        "asymmetry": {
+          "delta_mean": 0.03132781758904457,
+          "delta_se": 0.0011702789890973096,
+          "frac_positive": 0.6806666666666666,
+          "step_sd": 0.25675690174102783
+        },
+        "border_irregularity": {
+          "delta_mean": 0.04180223122239113,
+          "delta_se": 0.0011683442576100264,
+          "frac_positive": 0.7363333333333333,
+          "step_sd": 0.23987062275409698
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": -2.9245800971984863,
+        "size": -0.4654059410095215,
+        "lesion_skin_contrast": -6.776354789733887,
+        "asymmetry": 7.234870433807373,
+        "border_irregularity": 8.36058521270752
+      },
+      "probe_r2": {
+        "color_variegation": 0.45899574269032983,
+        "lesion_skin_contrast": 0.7523222093547963,
+        "asymmetry": 0.3554354276964461,
+        "border_irregularity": 0.3716693202499372
+      },
+      "alignment": {
+        "color_variegation": 0.005395223386585712,
+        "lesion_skin_contrast": -0.0016003636410459876,
+        "asymmetry": -0.0017671032110229135,
+        "border_irregularity": -0.001360562164336443
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.4711008667945862,
+          "lesion_skin_contrast": 0.34101980924606323,
+          "asymmetry": -0.037754982709884644,
+          "border_irregularity": 0.09327755868434906
+        },
+        "target_S": {
+          "color_variegation": -0.13114683330059052,
+          "lesion_skin_contrast": -0.1912413090467453,
+          "asymmetry": 0.1408548206090927,
+          "border_irregularity": 0.15261662006378174
+        }
+      }
+    },
+    "ft_M2_s1": {
+      "meta": {
+        "mode": "ft",
+        "regime": "M2",
+        "seed": 1,
+        "best_val_auroc": 0.8245229903034095,
+        "test_auroc_Y_uniform": 0.7518985652318986,
+        "test_auroc_D_verified": 0.7734084139985107,
+        "n_train": 622,
+        "minutes": 4.525161504745483
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": 0.022573450580239296,
+          "delta_se": 0.0010566335443967106,
+          "frac_positive": 0.657,
+          "step_sd": 0.28242114186286926
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.02026033028960228,
+          "delta_se": 0.0013596805366952428,
+          "frac_positive": 0.423,
+          "step_sd": 0.32922670245170593
+        },
+        "asymmetry": {
+          "delta_mean": 0.04711426421999931,
+          "delta_se": 0.0010998048677545844,
+          "frac_positive": 0.7873333333333333,
+          "step_sd": 0.29393184185028076
+        },
+        "border_irregularity": {
+          "delta_mean": 0.053106702864170074,
+          "delta_se": 0.001030670897899781,
+          "frac_positive": 0.839,
+          "step_sd": 0.2799680233001709
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": -2.8290157318115234,
+        "size": -0.22619962692260742,
+        "lesion_skin_contrast": -7.172294616699219,
+        "asymmetry": 7.416581630706787,
+        "border_irregularity": 8.557392120361328
+      },
+      "probe_r2": {
+        "color_variegation": 0.4775040239277958,
+        "lesion_skin_contrast": 0.7684442908381394,
+        "asymmetry": 0.36462917574304593,
+        "border_irregularity": 0.38366591421957513
+      },
+      "alignment": {
+        "color_variegation": -0.0013532633893191814,
+        "lesion_skin_contrast": -0.013062559999525547,
+        "asymmetry": 0.003965939395129681,
+        "border_irregularity": 0.00435049831867218
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.43256261944770813,
+          "lesion_skin_contrast": 0.304109662771225,
+          "asymmetry": -0.013592890463769436,
+          "border_irregularity": 0.09701112657785416
+        },
+        "target_S": {
+          "color_variegation": -0.17680929601192474,
+          "lesion_skin_contrast": -0.21726134419441223,
+          "asymmetry": 0.13427507877349854,
+          "border_irregularity": 0.1375264674425125
+        }
+      }
+    },
+    "ft_M2_s2": {
+      "meta": {
+        "mode": "ft",
+        "regime": "M2",
+        "seed": 2,
+        "best_val_auroc": 0.8087660306537379,
+        "test_auroc_Y_uniform": 0.7518385051718386,
+        "test_auroc_D_verified": 0.7367367833209234,
+        "n_train": 622,
+        "minutes": 4.538719189167023
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": 0.009930248372256756,
+          "delta_se": 0.0009832398461776895,
+          "frac_positive": 0.5903333333333334,
+          "step_sd": 0.2516145408153534
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.03737093508243561,
+          "delta_se": 0.0011854424794356284,
+          "frac_positive": 0.27,
+          "step_sd": 0.30502110719680786
+        },
+        "asymmetry": {
+          "delta_mean": 0.03316647931933403,
+          "delta_se": 0.0009715263073250258,
+          "frac_positive": 0.735,
+          "step_sd": 0.26171422004699707
+        },
+        "border_irregularity": {
+          "delta_mean": 0.043703410774469376,
+          "delta_se": 0.0009990776971535817,
+          "frac_positive": 0.784,
+          "step_sd": 0.25169819593429565
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": -2.340892791748047,
+        "size": -0.003471851348876953,
+        "lesion_skin_contrast": -6.341952323913574,
+        "asymmetry": 6.405376434326172,
+        "border_irregularity": 7.601062297821045
+      },
+      "probe_r2": {
+        "color_variegation": 0.46130679940980956,
+        "lesion_skin_contrast": 0.7498968063182135,
+        "asymmetry": 0.3485339810917918,
+        "border_irregularity": 0.36847970545467074
+      },
+      "alignment": {
+        "color_variegation": 0.002738257171586156,
+        "lesion_skin_contrast": -0.007469311356544495,
+        "asymmetry": 0.02967546507716179,
+        "border_irregularity": 0.024616673588752747
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.4581647217273712,
+          "lesion_skin_contrast": 0.32597410678863525,
+          "asymmetry": -0.06717509776353836,
+          "border_irregularity": 0.07261420786380768
+        },
+        "target_S": {
+          "color_variegation": -0.19017170369625092,
+          "lesion_skin_contrast": -0.22741466760635376,
+          "asymmetry": 0.09034476429224014,
+          "border_irregularity": 0.08172164857387543
+        }
+      }
+    },
+    "lp_M0_s0": {
+      "meta": {
+        "mode": "lp",
+        "regime": "M0",
+        "seed": 0,
+        "best_val_auroc": 0.9112592391304346,
+        "test_auroc_Y_uniform": 0.8973011900789679,
+        "test_auroc_D_verified": 0.7108618763961282,
+        "n_train": 241485,
+        "minutes": 1.8332372546195983
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": -0.004851587116718292,
+          "delta_se": 0.00012577283286132867,
+          "frac_positive": 0.23933333333333334,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.0022053986322134733,
+          "delta_se": 0.0001513350118409579,
+          "frac_positive": 0.5936666666666667,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0019955707248300314,
+          "delta_se": 9.872286910492905e-05,
+          "frac_positive": 0.6576666666666666,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.003224368439987302,
+          "delta_se": 0.00010072573380135882,
+          "frac_positive": 0.7446666666666667,
+          "step_sd": 0.12501637637615204
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": 0.4978463649749756,
+        "size": 0.6830320358276367,
+        "lesion_skin_contrast": 0.0714101791381836,
+        "asymmetry": 0.1265552043914795,
+        "border_irregularity": 0.3533968925476074
+      },
+      "probe_r2": {
+        "color_variegation": 0.4742544692234757,
+        "lesion_skin_contrast": 0.7245647332390958,
+        "asymmetry": 0.3508078834189624,
+        "border_irregularity": 0.3635238077240636
+      },
+      "alignment": {
+        "color_variegation": 0.171312615275383,
+        "lesion_skin_contrast": 0.11857900768518448,
+        "asymmetry": 0.0021703981328755617,
+        "border_irregularity": 0.05032316967844963
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.4792620539665222,
+          "lesion_skin_contrast": 0.3571571707725525,
+          "asymmetry": 0.00942123681306839,
+          "border_irregularity": 0.1277046501636505
+        },
+        "target_S": {
+          "color_variegation": -0.2026045322418213,
+          "lesion_skin_contrast": -0.22895780205726624,
+          "asymmetry": 0.22143903374671936,
+          "border_irregularity": 0.20919324457645416
+        }
+      }
+    },
+    "lp_M0_s1": {
+      "meta": {
+        "mode": "lp",
+        "regime": "M0",
+        "seed": 1,
+        "best_val_auroc": 0.9105690217391303,
+        "test_auroc_Y_uniform": 0.8929045712379045,
+        "test_auroc_D_verified": 0.7070457930007445,
+        "n_train": 241485,
+        "minutes": 1.802772335211436
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": -0.005105066113173962,
+          "delta_se": 0.0001242490600792778,
+          "frac_positive": 0.21533333333333332,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.00274088722653687,
+          "delta_se": 0.00015322988701622708,
+          "frac_positive": 0.619,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0026340102776885033,
+          "delta_se": 9.971593570847208e-05,
+          "frac_positive": 0.7026666666666667,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.0037396615371108055,
+          "delta_se": 0.00010064073307449978,
+          "frac_positive": 0.7743333333333333,
+          "step_sd": 0.12501637637615204
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": 0.48009204864501953,
+        "size": 0.6852061748504639,
+        "lesion_skin_contrast": 0.04522848129272461,
+        "asymmetry": 0.14875268936157227,
+        "border_irregularity": 0.37387537956237793
+      },
+      "probe_r2": {
+        "color_variegation": 0.4742544692234757,
+        "lesion_skin_contrast": 0.7245647332390958,
+        "asymmetry": 0.3508078834189624,
+        "border_irregularity": 0.3635238077240636
+      },
+      "alignment": {
+        "color_variegation": 0.16048173606395721,
+        "lesion_skin_contrast": 0.10784059762954712,
+        "asymmetry": 0.009845338761806488,
+        "border_irregularity": 0.0560043640434742
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.4792620539665222,
+          "lesion_skin_contrast": 0.3571571707725525,
+          "asymmetry": 0.00942123681306839,
+          "border_irregularity": 0.1277046501636505
+        },
+        "target_S": {
+          "color_variegation": -0.2026045322418213,
+          "lesion_skin_contrast": -0.22895780205726624,
+          "asymmetry": 0.22143903374671936,
+          "border_irregularity": 0.20919324457645416
+        }
+      }
+    },
+    "lp_M0_s2": {
+      "meta": {
+        "mode": "lp",
+        "regime": "M0",
+        "seed": 2,
+        "best_val_auroc": 0.9118847826086957,
+        "test_auroc_Y_uniform": 0.9014169725280836,
+        "test_auroc_D_verified": 0.7077438570364855,
+        "n_train": 241485,
+        "minutes": 1.6282633781433105
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": -0.004185492638498545,
+          "delta_se": 0.00012312547425601686,
+          "frac_positive": 0.2663333333333333,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.0024114528205245733,
+          "delta_se": 0.00015202037377284568,
+          "frac_positive": 0.6103333333333333,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0026621923316270113,
+          "delta_se": 9.956976472458656e-05,
+          "frac_positive": 0.713,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.0039359224028885365,
+          "delta_se": 0.00010216384271825349,
+          "frac_positive": 0.7763333333333333,
+          "step_sd": 0.12501637637615204
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": 0.4547841548919678,
+        "size": 0.651561975479126,
+        "lesion_skin_contrast": 0.014711141586303711,
+        "asymmetry": 0.1870582103729248,
+        "border_irregularity": 0.4090743064880371
+      },
+      "probe_r2": {
+        "color_variegation": 0.4742544692234757,
+        "lesion_skin_contrast": 0.7245647332390958,
+        "asymmetry": 0.3508078834189624,
+        "border_irregularity": 0.3635238077240636
+      },
+      "alignment": {
+        "color_variegation": 0.16559837758541107,
+        "lesion_skin_contrast": 0.10960771888494492,
+        "asymmetry": 0.005289016757160425,
+        "border_irregularity": 0.054935287684202194
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.4792620539665222,
+          "lesion_skin_contrast": 0.3571571707725525,
+          "asymmetry": 0.00942123681306839,
+          "border_irregularity": 0.1277046501636505
+        },
+        "target_S": {
+          "color_variegation": -0.2026045322418213,
+          "lesion_skin_contrast": -0.22895780205726624,
+          "asymmetry": 0.22143903374671936,
+          "border_irregularity": 0.20919324457645416
+        }
+      }
+    },
+    "lp_M2_s0": {
+      "meta": {
+        "mode": "lp",
+        "regime": "M2",
+        "seed": 0,
+        "best_val_auroc": 0.7652877697841727,
+        "test_auroc_Y_uniform": 0.7274146368590814,
+        "test_auroc_D_verified": 0.7680565897244974,
+        "n_train": 622,
+        "minutes": 1.591087285677592
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": -0.004422070924192667,
+          "delta_se": 9.79795505862241e-05,
+          "frac_positive": 0.19366666666666665,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.004285741597414017,
+          "delta_se": 0.000107827681408977,
+          "frac_positive": 0.22766666666666666,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0016784092877060175,
+          "delta_se": 7.697387136233786e-05,
+          "frac_positive": 0.6666666666666666,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.0009878268465399742,
+          "delta_se": 7.788072148547704e-05,
+          "frac_positive": 0.5936666666666667,
+          "step_sd": 0.12501637637615204
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": -0.6243616342544556,
+        "size": -0.20517277717590332,
+        "lesion_skin_contrast": -1.1351583003997803,
+        "asymmetry": 1.11918306350708,
+        "border_irregularity": 1.2448393106460571
+      },
+      "probe_r2": {
+        "color_variegation": 0.4742544692234757,
+        "lesion_skin_contrast": 0.7245647332390958,
+        "asymmetry": 0.3508078834189624,
+        "border_irregularity": 0.3635238077240636
+      },
+      "alignment": {
+        "color_variegation": 0.04537363722920418,
+        "lesion_skin_contrast": 0.003680199384689331,
+        "asymmetry": 0.049556851387023926,
+        "border_irregularity": 0.06795979291200638
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.4792620539665222,
+          "lesion_skin_contrast": 0.3571571707725525,
+          "asymmetry": 0.00942123681306839,
+          "border_irregularity": 0.1277046501636505
+        },
+        "target_S": {
+          "color_variegation": -0.2026045322418213,
+          "lesion_skin_contrast": -0.22895780205726624,
+          "asymmetry": 0.22143903374671936,
+          "border_irregularity": 0.20919324457645416
+        }
+      }
+    },
+    "lp_M2_s1": {
+      "meta": {
+        "mode": "lp",
+        "regime": "M2",
+        "seed": 1,
+        "best_val_auroc": 0.7696668751954958,
+        "test_auroc_Y_uniform": 0.7369263708152597,
+        "test_auroc_D_verified": 0.7592144452717796,
+        "n_train": 622,
+        "minutes": 1.5570401708285013
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": -0.004140706267207861,
+          "delta_se": 9.29707309994068e-05,
+          "frac_positive": 0.19666666666666666,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.005916768219321966,
+          "delta_se": 0.00010761003601913991,
+          "frac_positive": 0.14366666666666666,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0022730736527591944,
+          "delta_se": 7.31859914018684e-05,
+          "frac_positive": 0.7323333333333333,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.0019449490355327725,
+          "delta_se": 7.404700846654618e-05,
+          "frac_positive": 0.699,
+          "step_sd": 0.12501637637615204
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": -0.6574123501777649,
+        "size": -0.2543988823890686,
+        "lesion_skin_contrast": -1.1897640228271484,
+        "asymmetry": 1.1643668413162231,
+        "border_irregularity": 1.2841942310333252
+      },
+      "probe_r2": {
+        "color_variegation": 0.4742544692234757,
+        "lesion_skin_contrast": 0.7245647332390958,
+        "asymmetry": 0.3508078834189624,
+        "border_irregularity": 0.3635238077240636
+      },
+      "alignment": {
+        "color_variegation": 0.04592575132846832,
+        "lesion_skin_contrast": 0.0039895870722830296,
+        "asymmetry": 0.046021968126297,
+        "border_irregularity": 0.06186269223690033
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.4792620539665222,
+          "lesion_skin_contrast": 0.3571571707725525,
+          "asymmetry": 0.00942123681306839,
+          "border_irregularity": 0.1277046501636505
+        },
+        "target_S": {
+          "color_variegation": -0.2026045322418213,
+          "lesion_skin_contrast": -0.22895780205726624,
+          "asymmetry": 0.22143903374671936,
+          "border_irregularity": 0.20919324457645416
+        }
+      }
+    },
+    "lp_M2_s2": {
+      "meta": {
+        "mode": "lp",
+        "regime": "M2",
+        "seed": 2,
+        "best_val_auroc": 0.7561776665624022,
+        "test_auroc_Y_uniform": 0.7045478812145478,
+        "test_auroc_D_verified": 0.7520941921072226,
+        "n_train": 622,
+        "minutes": 1.4399090886116028
+      },
+      "interv_layer3": {
+        "color_variegation": {
+          "delta_mean": -0.003064840566366911,
+          "delta_se": 0.00013836320207652548,
+          "frac_positive": 0.3423333333333333,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.00303654745221138,
+          "delta_se": 0.0001745015612132318,
+          "frac_positive": 0.398,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0014941797126084566,
+          "delta_se": 0.00011685795866877878,
+          "frac_positive": 0.612,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.0011624599574133754,
+          "delta_se": 0.00011711045282630893,
+          "frac_positive": 0.577,
+          "step_sd": 0.12501637637615204
+        }
+      },
+      "decision_contrast": {
+        "color_variegation": -0.7602804899215698,
+        "size": -0.242667555809021,
+        "lesion_skin_contrast": -1.336492657661438,
+        "asymmetry": 1.315618872642517,
+        "border_irregularity": 1.4553462266921997
+      },
+      "probe_r2": {
+        "color_variegation": 0.4742544692234757,
+        "lesion_skin_contrast": 0.7245647332390958,
+        "asymmetry": 0.3508078834189624,
+        "border_irregularity": 0.3635238077240636
+      },
+      "alignment": {
+        "color_variegation": 0.04638073220849037,
+        "lesion_skin_contrast": 0.003585405880585313,
+        "asymmetry": 0.03626725822687149,
+        "border_irregularity": 0.05616466701030731
+      },
+      "common_readout": {
+        "target_Y": {
+          "color_variegation": 0.4792620539665222,
+          "lesion_skin_contrast": 0.3571571707725525,
+          "asymmetry": 0.00942123681306839,
+          "border_irregularity": 0.1277046501636505
+        },
+        "target_S": {
+          "color_variegation": -0.2026045322418213,
+          "lesion_skin_contrast": -0.22895780205726624,
+          "asymmetry": 0.22143903374671936,
+          "border_irregularity": 0.20919324457645416
+        }
+      }
+    }
+  },
+  "cka": {
+    "ft_M0_vs_M2_s0": 0.7878798246383667,
+    "ft_M0_vs_M2_s1": 0.220132976770401,
+    "ft_M0_vs_M2_s2": 0.7358707785606384,
+    "ft_M0_s0_vs_s1": 0.3881624639034271,
+    "ft_M2_s0_vs_s1": 0.9782185554504395,
+    "lp_M0_vs_M2_s0": 1.0,
+    "lp_M0_vs_M2_s1": 1.0,
+    "lp_M0_vs_M2_s2": 1.0,
+    "lp_M0_s0_vs_s1": 1.0,
+    "lp_M2_s0_vs_s1": 1.0
+  },
+  "summary": {
+    "ft": {
+      "decision": {
+        "color_variegation": {
+          "M0": [
+            1.733180046081543,
+            0.6737356185913086,
+            0.9530630111694336
+          ],
+          "M2": [
+            -2.9245800971984863,
+            -2.8290157318115234,
+            -2.340892791748047
+          ],
+          "opposite_sign_all_seeds": true,
+          "n_seeds_opposite": 3
+        },
+        "size": {
+          "M0": [
+            1.861252784729004,
+            1.4114370346069336,
+            1.4247817993164062
+          ],
+          "M2": [
+            -0.4654059410095215,
+            -0.22619962692260742,
+            -0.003471851348876953
+          ],
+          "opposite_sign_all_seeds": true,
+          "n_seeds_opposite": 3
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            0.9029569625854492,
+            -0.189666748046875,
+            -0.37240076065063477
+          ],
+          "M2": [
+            -6.776354789733887,
+            -7.172294616699219,
+            -6.341952323913574
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 1
+        },
+        "asymmetry": {
+          "M0": [
+            -0.6274623870849609,
+            0.29869699478149414,
+            0.7232027053833008
+          ],
+          "M2": [
+            7.234870433807373,
+            7.416581630706787,
+            6.405376434326172
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 1
+        },
+        "border_irregularity": {
+          "M0": [
+            -0.08333396911621094,
+            0.7874636650085449,
+            1.314342975616455
+          ],
+          "M2": [
+            8.36058521270752,
+            8.557392120361328,
+            7.601062297821045
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 1
+        }
+      },
+      "alignment": {
+        "color_variegation": {
+          "M0": [
+            0.02308434247970581,
+            0.035036005079746246,
+            0.04540666192770004
+          ],
+          "M2": [
+            0.005395223386585712,
+            -0.0013532633893191814,
+            0.002738257171586156
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 1
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            0.011219555512070656,
+            0.016055643558502197,
+            0.03644583746790886
+          ],
+          "M2": [
+            -0.0016003636410459876,
+            -0.013062559999525547,
+            -0.007469311356544495
+          ],
+          "opposite_sign_all_seeds": true,
+          "n_seeds_opposite": 3
+        },
+        "asymmetry": {
+          "M0": [
+            0.004884950816631317,
+            0.010267711244523525,
+            0.0068607633002102375
+          ],
+          "M2": [
+            -0.0017671032110229135,
+            0.003965939395129681,
+            0.02967546507716179
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 1
+        },
+        "border_irregularity": {
+          "M0": [
+            0.019573884084820747,
+            0.01436520554125309,
+            0.014498705975711346
+          ],
+          "M2": [
+            -0.001360562164336443,
+            0.00435049831867218,
+            0.024616673588752747
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 1
+        }
+      },
+      "layer3": {
+        "color_variegation": {
+          "M0": [
+            0.034205663949251175,
+            0.02843090333044529,
+            0.042400531470775604
+          ],
+          "M2": [
+            0.04760231450200081,
+            0.022573450580239296,
+            0.009930248372256756
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            0.05892762914299965,
+            0.02946539781987667,
+            0.02315407246351242
+          ],
+          "M2": [
+            -0.022000106051564217,
+            -0.02026033028960228,
+            -0.03737093508243561
+          ],
+          "opposite_sign_all_seeds": true,
+          "n_seeds_opposite": 3
+        },
+        "asymmetry": {
+          "M0": [
+            -0.00885586254298687,
+            -0.001329283113591373,
+            0.00020281161414459348
+          ],
+          "M2": [
+            0.03132781758904457,
+            0.04711426421999931,
+            0.03316647931933403
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 2
+        },
+        "border_irregularity": {
+          "M0": [
+            -0.0031634496990591288,
+            -0.0016434707213193178,
+            0.00650443509221077
+          ],
+          "M2": [
+            0.04180223122239113,
+            0.053106702864170074,
+            0.043703410774469376
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 2
+        }
+      },
+      "readout_Y": {
+        "color_variegation": {
+          "M0": [
+            0.4025331735610962,
+            0.39619824290275574,
+            0.41456887125968933
+          ],
+          "M2": [
+            0.4711008667945862,
+            0.43256261944770813,
+            0.4581647217273712
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            0.2505466639995575,
+            0.25306668877601624,
+            0.3291555345058441
+          ],
+          "M2": [
+            0.34101980924606323,
+            0.304109662771225,
+            0.32597410678863525
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "asymmetry": {
+          "M0": [
+            -0.05476773530244827,
+            -0.03067084774374962,
+            -0.06504246592521667
+          ],
+          "M2": [
+            -0.037754982709884644,
+            -0.013592890463769436,
+            -0.06717509776353836
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "border_irregularity": {
+          "M0": [
+            0.06233358383178711,
+            0.08555840700864792,
+            0.03537842631340027
+          ],
+          "M2": [
+            0.09327755868434906,
+            0.09701112657785416,
+            0.07261420786380768
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        }
+      },
+      "readout_S": {
+        "color_variegation": {
+          "M0": [
+            -0.13061057031154633,
+            -0.13666822016239166,
+            -0.1498173326253891
+          ],
+          "M2": [
+            -0.13114683330059052,
+            -0.17680929601192474,
+            -0.19017170369625092
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            -0.17353059351444244,
+            -0.18778908252716064,
+            -0.1821795254945755
+          ],
+          "M2": [
+            -0.1912413090467453,
+            -0.21726134419441223,
+            -0.22741466760635376
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "asymmetry": {
+          "M0": [
+            0.1091398298740387,
+            0.14710456132888794,
+            0.1339138001203537
+          ],
+          "M2": [
+            0.1408548206090927,
+            0.13427507877349854,
+            0.09034476429224014
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "border_irregularity": {
+          "M0": [
+            0.11903218179941177,
+            0.1604103147983551,
+            0.1433698982000351
+          ],
+          "M2": [
+            0.15261662006378174,
+            0.1375264674425125,
+            0.08172164857387543
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        }
+      },
+      "probe_r2": {
+        "color_variegation": {
+          "M0": [
+            0.4688304634526384,
+            0.4390189319683676,
+            0.4471209934425566
+          ],
+          "M2": [
+            0.45899574269032983,
+            0.4775040239277958,
+            0.46130679940980956
+          ]
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            0.7719824835034539,
+            0.7312943972895238,
+            0.7325814326168493
+          ],
+          "M2": [
+            0.7523222093547963,
+            0.7684442908381394,
+            0.7498968063182135
+          ]
+        },
+        "asymmetry": {
+          "M0": [
+            0.3583611101512336,
+            0.34483001239289685,
+            0.334463126881308
+          ],
+          "M2": [
+            0.3554354276964461,
+            0.36462917574304593,
+            0.3485339810917918
+          ]
+        },
+        "border_irregularity": {
+          "M0": [
+            0.38212102005674514,
+            0.3622094421510715,
+            0.3494423454000759
+          ],
+          "M2": [
+            0.3716693202499372,
+            0.38366591421957513,
+            0.36847970545467074
+          ]
+        }
+      }
+    },
+    "lp": {
+      "decision": {
+        "color_variegation": {
+          "M0": [
+            0.4978463649749756,
+            0.48009204864501953,
+            0.4547841548919678
+          ],
+          "M2": [
+            -0.6243616342544556,
+            -0.6574123501777649,
+            -0.7602804899215698
+          ],
+          "opposite_sign_all_seeds": true,
+          "n_seeds_opposite": 3
+        },
+        "size": {
+          "M0": [
+            0.6830320358276367,
+            0.6852061748504639,
+            0.651561975479126
+          ],
+          "M2": [
+            -0.20517277717590332,
+            -0.2543988823890686,
+            -0.242667555809021
+          ],
+          "opposite_sign_all_seeds": true,
+          "n_seeds_opposite": 3
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            0.0714101791381836,
+            0.04522848129272461,
+            0.014711141586303711
+          ],
+          "M2": [
+            -1.1351583003997803,
+            -1.1897640228271484,
+            -1.336492657661438
+          ],
+          "opposite_sign_all_seeds": true,
+          "n_seeds_opposite": 3
+        },
+        "asymmetry": {
+          "M0": [
+            0.1265552043914795,
+            0.14875268936157227,
+            0.1870582103729248
+          ],
+          "M2": [
+            1.11918306350708,
+            1.1643668413162231,
+            1.315618872642517
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "border_irregularity": {
+          "M0": [
+            0.3533968925476074,
+            0.37387537956237793,
+            0.4090743064880371
+          ],
+          "M2": [
+            1.2448393106460571,
+            1.2841942310333252,
+            1.4553462266921997
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        }
+      },
+      "alignment": {
+        "color_variegation": {
+          "M0": [
+            0.171312615275383,
+            0.16048173606395721,
+            0.16559837758541107
+          ],
+          "M2": [
+            0.04537363722920418,
+            0.04592575132846832,
+            0.04638073220849037
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            0.11857900768518448,
+            0.10784059762954712,
+            0.10960771888494492
+          ],
+          "M2": [
+            0.003680199384689331,
+            0.0039895870722830296,
+            0.003585405880585313
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "asymmetry": {
+          "M0": [
+            0.0021703981328755617,
+            0.009845338761806488,
+            0.005289016757160425
+          ],
+          "M2": [
+            0.049556851387023926,
+            0.046021968126297,
+            0.03626725822687149
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "border_irregularity": {
+          "M0": [
+            0.05032316967844963,
+            0.0560043640434742,
+            0.054935287684202194
+          ],
+          "M2": [
+            0.06795979291200638,
+            0.06186269223690033,
+            0.05616466701030731
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        }
+      },
+      "layer3": {
+        "color_variegation": {
+          "M0": [
+            -0.004851587116718292,
+            -0.005105066113173962,
+            -0.004185492638498545
+          ],
+          "M2": [
+            -0.004422070924192667,
+            -0.004140706267207861,
+            -0.003064840566366911
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            0.0022053986322134733,
+            0.00274088722653687,
+            0.0024114528205245733
+          ],
+          "M2": [
+            -0.004285741597414017,
+            -0.005916768219321966,
+            -0.00303654745221138
+          ],
+          "opposite_sign_all_seeds": true,
+          "n_seeds_opposite": 3
+        },
+        "asymmetry": {
+          "M0": [
+            0.0019955707248300314,
+            0.0026340102776885033,
+            0.0026621923316270113
+          ],
+          "M2": [
+            0.0016784092877060175,
+            0.0022730736527591944,
+            0.0014941797126084566
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "border_irregularity": {
+          "M0": [
+            0.003224368439987302,
+            0.0037396615371108055,
+            0.0039359224028885365
+          ],
+          "M2": [
+            0.0009878268465399742,
+            0.0019449490355327725,
+            0.0011624599574133754
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        }
+      },
+      "readout_Y": {
+        "color_variegation": {
+          "M0": [
+            0.4792620539665222,
+            0.4792620539665222,
+            0.4792620539665222
+          ],
+          "M2": [
+            0.4792620539665222,
+            0.4792620539665222,
+            0.4792620539665222
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            0.3571571707725525,
+            0.3571571707725525,
+            0.3571571707725525
+          ],
+          "M2": [
+            0.3571571707725525,
+            0.3571571707725525,
+            0.3571571707725525
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "asymmetry": {
+          "M0": [
+            0.00942123681306839,
+            0.00942123681306839,
+            0.00942123681306839
+          ],
+          "M2": [
+            0.00942123681306839,
+            0.00942123681306839,
+            0.00942123681306839
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "border_irregularity": {
+          "M0": [
+            0.1277046501636505,
+            0.1277046501636505,
+            0.1277046501636505
+          ],
+          "M2": [
+            0.1277046501636505,
+            0.1277046501636505,
+            0.1277046501636505
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        }
+      },
+      "readout_S": {
+        "color_variegation": {
+          "M0": [
+            -0.2026045322418213,
+            -0.2026045322418213,
+            -0.2026045322418213
+          ],
+          "M2": [
+            -0.2026045322418213,
+            -0.2026045322418213,
+            -0.2026045322418213
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            -0.22895780205726624,
+            -0.22895780205726624,
+            -0.22895780205726624
+          ],
+          "M2": [
+            -0.22895780205726624,
+            -0.22895780205726624,
+            -0.22895780205726624
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "asymmetry": {
+          "M0": [
+            0.22143903374671936,
+            0.22143903374671936,
+            0.22143903374671936
+          ],
+          "M2": [
+            0.22143903374671936,
+            0.22143903374671936,
+            0.22143903374671936
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        },
+        "border_irregularity": {
+          "M0": [
+            0.20919324457645416,
+            0.20919324457645416,
+            0.20919324457645416
+          ],
+          "M2": [
+            0.20919324457645416,
+            0.20919324457645416,
+            0.20919324457645416
+          ],
+          "opposite_sign_all_seeds": false,
+          "n_seeds_opposite": 0
+        }
+      },
+      "probe_r2": {
+        "color_variegation": {
+          "M0": [
+            0.4742544692234757,
+            0.4742544692234757,
+            0.4742544692234757
+          ],
+          "M2": [
+            0.4742544692234757,
+            0.4742544692234757,
+            0.4742544692234757
+          ]
+        },
+        "lesion_skin_contrast": {
+          "M0": [
+            0.7245647332390958,
+            0.7245647332390958,
+            0.7245647332390958
+          ],
+          "M2": [
+            0.7245647332390958,
+            0.7245647332390958,
+            0.7245647332390958
+          ]
+        },
+        "asymmetry": {
+          "M0": [
+            0.3508078834189624,
+            0.3508078834189624,
+            0.3508078834189624
+          ],
+          "M2": [
+            0.3508078834189624,
+            0.3508078834189624,
+            0.3508078834189624
+          ]
+        },
+        "border_irregularity": {
+          "M0": [
+            0.3635238077240636,
+            0.3635238077240636,
+            0.3635238077240636
+          ],
+          "M2": [
+            0.3635238077240636,
+            0.3635238077240636,
+            0.3635238077240636
+          ]
+        }
+      }
+    }
+  },
+  "verdict": {
+    "ft_decision_reversed_concepts": 2,
+    "ft_layer3_reversed_concepts": 1,
+    "ft_common_readout_Y_reversed_concepts": 0,
+    "ft_common_readout_S_reversed_concepts": 0,
+    "case": "B: decision/learning reversal"
+  }
+}

@@ -1,0 +1,317 @@
+{
+  "site_heterogeneity": {
+    "color_variegation": {
+      "k": 5,
+      "Q": 15.2458891194598,
+      "df": 4,
+      "I2": 0.7376341931482098,
+      "tau2": 0.23167617007620425,
+      "pooled_DL": 1.6998869513351222,
+      "pooled_ci": [
+        1.169551056238622,
+        2.2302228464316225
+      ],
+      "range": [
+        1.2058081256524529,
+        3.317249246258131
+      ]
+    },
+    "size": {
+      "k": 5,
+      "Q": 8.846171788873857,
+      "df": 4,
+      "I2": 0.5478270041023914,
+      "tau2": 0.07634349426443268,
+      "pooled_DL": 1.3042929314470333,
+      "pooled_ci": [
+        0.9617292604250407,
+        1.6468566024690259
+      ],
+      "range": [
+        0.9721625775939952,
+        2.4566520250915738
+      ]
+    },
+    "lesion_skin_contrast": {
+      "k": 5,
+      "Q": 11.868648390880132,
+      "df": 4,
+      "I2": 0.6629776307912534,
+      "tau2": 0.19903800216437811,
+      "pooled_DL": 1.7530685618042166,
+      "pooled_ci": [
+        1.228549752434466,
+        2.277587371173967
+      ],
+      "range": [
+        1.214205654779573,
+        3.0770386032777566
+      ]
+    }
+  },
+  "concept_overlap": {
+    "color_variegation|lesion_skin_contrast": {
+      "spearman": 0.6467450861271404,
+      "jaccard_upper_tertile": 0.48111587507339826,
+      "columns": [
+        "tbp_lv_norm_color",
+        "tbp_lv_deltaLBnorm"
+      ]
+    },
+    "asymmetry|border_irregularity": {
+      "spearman": 0.9415842395501969,
+      "jaccard_upper_tertile": 0.7645568116573284,
+      "columns": [
+        "tbp_lv_symm_2axis",
+        "tbp_lv_norm_border"
+      ]
+    },
+    "color_variegation|size": {
+      "spearman": 0.7034132248583924,
+      "jaccard_upper_tertile": 0.4600420408943245,
+      "columns": [
+        "tbp_lv_norm_color",
+        "tbp_lv_areaMM2"
+      ]
+    }
+  },
+  "pad": {
+    "images": 2298,
+    "lesions": 1641,
+    "patients": 1373,
+    "images_per_lesion": {
+      "1": 1129,
+      "2": 396,
+      "3": 95,
+      "4": 17,
+      "5": 2,
+      "6": 1,
+      "8": 1
+    },
+    "diagnosis_counts": {
+      "BCC": 845,
+      "ACK": 730,
+      "NEV": 244,
+      "SEK": 235,
+      "SCC": 192,
+      "MEL": 52
+    },
+    "malignant_classes": [
+      "BCC",
+      "SCC",
+      "MEL"
+    ],
+    "non_malignant_classes": [
+      "ACK",
+      "NEV",
+      "SEK"
+    ],
+    "biopsied_images": 1342,
+    "association_features": 11,
+    "association_feature_list": "6 symptoms, age tertile, 4 image measures",
+    "learner_features_evaluated": 10,
+    "learner_inputs_clinical": "age, body region, 6 symptoms"
+  },
+  "leave_one_site_out": {
+    "tabular": {
+      "ACEMID MIA": {
+        "color_variegation": [
+          0.8464832305908203,
+          -1.0492634971936543
+        ],
+        "size": [
+          0.5193106333414713,
+          -0.48964094122250873
+        ],
+        "lesion_skin_contrast": [
+          0.17879486083984375,
+          -1.7035374641418457
+        ]
+      },
+      "Department of Dermatology, Hospital Cl\u00edn": {
+        "color_variegation": [
+          0.5876455307006836,
+          -1.0577022234598796
+        ],
+        "size": [
+          0.38983408610026044,
+          -0.45880990227063495
+        ],
+        "lesion_skin_contrast": [
+          0.09130446116129558,
+          -1.685059666633606
+        ]
+      },
+      "Department of Dermatology, University of": {
+        "color_variegation": [
+          1.0200754801432292,
+          -1.011614978313446
+        ],
+        "size": [
+          0.5841245651245117,
+          -0.48470980922381085
+        ],
+        "lesion_skin_contrast": [
+          0.5017312367757162,
+          -1.5468792120615642
+        ]
+      },
+      "Frazer Institute, The University of Quee": {
+        "color_variegation": [
+          1.1921199162801106,
+          -0.9607727527618408
+        ],
+        "size": [
+          0.7480249404907227,
+          -0.31582294901212055
+        ],
+        "lesion_skin_contrast": [
+          0.7152519226074219,
+          -1.592705527941386
+        ]
+      },
+      "Memorial Sloan Kettering Cancer Center": {
+        "color_variegation": [
+          0.7946351369222006,
+          -0.8293940424919128
+        ],
+        "size": [
+          0.41344865163167316,
+          -0.3693421284357707
+        ],
+        "lesion_skin_contrast": [
+          0.7389014561971029,
+          -1.21732497215271
+        ]
+      },
+      "University Hospital of Basel": {
+        "color_variegation": [
+          1.0344619750976562,
+          -1.0826971530914307
+        ],
+        "size": [
+          0.5835676193237305,
+          -0.5836464564005533
+        ],
+        "lesion_skin_contrast": [
+          0.5790214538574219,
+          -1.562670350074768
+        ]
+      },
+      "ViDIR Group, Department of Dermatology, ": {
+        "color_variegation": [
+          0.8114535013834635,
+          -0.9526757399241129
+        ],
+        "size": [
+          0.4814971288045247,
+          -0.4208242396513621
+        ],
+        "lesion_skin_contrast": [
+          0.34637991587320965,
+          -1.5109034776687622
+        ]
+      }
+    },
+    "image": {
+      "ACEMID MIA": {
+        "color_variegation": [
+          1.1497093836466472,
+          -0.681707521279653
+        ],
+        "size": [
+          1.1791241963704426,
+          -0.3625267545382182
+        ],
+        "lesion_skin_contrast": [
+          0.38091500600179035,
+          -1.0786548654238384
+        ]
+      },
+      "Department of Dermatology, Hospital Cl\u00edn": {
+        "color_variegation": [
+          0.6958309809366862,
+          -0.7990065217018127
+        ],
+        "size": [
+          0.98468017578125,
+          -0.41350595156351727
+        ],
+        "lesion_skin_contrast": [
+          -0.07785193125406902,
+          -1.264399806658427
+        ]
+      },
+      "Department of Dermatology, University of": {
+        "color_variegation": [
+          0.9210357666015625,
+          -0.6859188477198283
+        ],
+        "size": [
+          1.0015799204508464,
+          -0.3401748538017273
+        ],
+        "lesion_skin_contrast": [
+          0.20855077107747397,
+          -1.091357151667277
+        ]
+      },
+      "Frazer Institute, The University of Quee": {
+        "color_variegation": [
+          1.5006720225016277,
+          -0.6249696214993795
+        ],
+        "size": [
+          1.4238348007202148,
+          -0.36566468079884845
+        ],
+        "lesion_skin_contrast": [
+          0.7492459615071615,
+          -0.9238394101460775
+        ]
+      },
+      "Memorial Sloan Kettering Cancer Center": {
+        "color_variegation": [
+          2.188148816426595,
+          -0.5927787621816
+        ],
+        "size": [
+          1.7393760681152344,
+          -0.2814628481864929
+        ],
+        "lesion_skin_contrast": [
+          1.840150515238444,
+          -0.9047640760739645
+        ]
+      },
+      "University Hospital of Basel": {
+        "color_variegation": [
+          0.6167675654093424,
+          -0.5622127652168274
+        ],
+        "size": [
+          0.8118600845336914,
+          -0.2875327368577321
+        ],
+        "lesion_skin_contrast": [
+          -0.08243338267008464,
+          -0.9316626191139221
+        ]
+      },
+      "ViDIR Group, Department of Dermatology, ": {
+        "color_variegation": [
+          1.3091996510823567,
+          -0.7494626442591349
+        ],
+        "size": [
+          1.3209737141927083,
+          -0.38932860891024273
+        ],
+        "lesion_skin_contrast": [
+          0.5907058715820312,
+          -1.1725747187932332
+        ]
+      }
+    }
+  }
+}

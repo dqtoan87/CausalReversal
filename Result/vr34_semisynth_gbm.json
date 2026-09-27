@@ -1,0 +1,2212 @@
+{
+  "families": {
+    "tabular": {
+      "rows": [
+        {
+          "family": "tabular",
+          "scenario": "aligned",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": 0.6000000007441173,
+          "b": -0.04585363157020478,
+          "n_pos_train": 383,
+          "oracle_L": 0.2836457511544399,
+          "oracle_U": 1.7038931390163823,
+          "oracle_tip": 0.38,
+          "est": {
+            "mlp_platt": {
+              "L": -0.11556339209929689,
+              "U": 1.2869681519298188,
+              "tip": 0.57,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.3490063498391187,
+              "U": 1.0500538270479218,
+              "tip": 0.71,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.6616726715981986,
+              "U": 0.7549824879190234,
+              "tip": 0.97,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7300734534157824,
+          "bridge_slope_true_g": 0.7125004582512039,
+          "bridge_slope_gbm": 1.2521495043615407
+        },
+        {
+          "family": "tabular",
+          "scenario": "aligned",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": 0.6000000007441173,
+          "b": -0.04585363157020478,
+          "n_pos_train": 326,
+          "oracle_L": 0.2836457511544399,
+          "oracle_U": 1.7038931390163823,
+          "oracle_tip": 0.38,
+          "est": {
+            "mlp_platt": {
+              "L": -0.0712952603214152,
+              "U": 1.32519292189194,
+              "tip": 0.54,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.3921475162513888,
+              "U": 1.0073048658673,
+              "tip": 0.74,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.648907059438506,
+              "U": 0.7504017935321716,
+              "tip": 0.96,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7707031306765375,
+          "bridge_slope_true_g": 0.798611580114782,
+          "bridge_slope_gbm": 1.5727669208658
+        },
+        {
+          "family": "tabular",
+          "scenario": "aligned",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": 0.6000000007441173,
+          "b": -0.04585363157020478,
+          "n_pos_train": 417,
+          "oracle_L": 0.48727124676000955,
+          "oracle_U": 0.9571468415076421,
+          "oracle_tip": 0.5,
+          "est": {
+            "mlp_platt": {
+              "L": -0.14782188426926623,
+              "U": 0.29985506991464206,
+              "tip": 0.93,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.08293482914440276,
+              "U": 0.3647814900789408,
+              "tip": 0.87,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.15330820910270582,
+              "U": 0.3040893592591223,
+              "tip": 0.94,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7302660649575681,
+          "bridge_slope_true_g": 0.7078857829743398,
+          "bridge_slope_gbm": 1.2616798260922826
+        },
+        {
+          "family": "tabular",
+          "scenario": "aligned",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": 0.6000000007441173,
+          "b": -0.04585363157020478,
+          "n_pos_train": 426,
+          "oracle_L": 0.48727124676000955,
+          "oracle_U": 0.9571468415076421,
+          "oracle_tip": 0.5,
+          "est": {
+            "mlp_platt": {
+              "L": 0.33904560457058963,
+              "U": 0.7869532850956329,
+              "tip": 0.58,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": 0.1551029398089394,
+              "U": 0.6028407651337933,
+              "tip": 0.69,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.19960131824980376,
+              "U": 0.2623964161811392,
+              "tip": 0.98,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7740945063253645,
+          "bridge_slope_true_g": 0.6447665101099368,
+          "bridge_slope_gbm": 1.2993665095856075
+        },
+        {
+          "family": "tabular",
+          "scenario": "aligned",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": 0.6000000026274233,
+          "b": -0.0469964127984266,
+          "n_pos_train": 938,
+          "oracle_L": 0.28140545420096075,
+          "oracle_U": 1.7319172671486545,
+          "oracle_tip": 0.38,
+          "est": {
+            "mlp_platt": {
+              "L": -0.16023827865626128,
+              "U": 1.2505951215341629,
+              "tip": 0.59,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.21093603718513165,
+              "U": 1.206384871375449,
+              "tip": 0.62,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.05092055773609161,
+              "U": 1.4107500830348494,
+              "tip": 0.53,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7783079868231788,
+          "bridge_slope_true_g": 0.8179237413616861,
+          "bridge_slope_gbm": 1.871772142076377
+        },
+        {
+          "family": "tabular",
+          "scenario": "aligned",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": 0.6000000026274233,
+          "b": -0.0469964127984266,
+          "n_pos_train": 922,
+          "oracle_L": 0.28140545420096075,
+          "oracle_U": 1.7319172671486545,
+          "oracle_tip": 0.38,
+          "est": {
+            "mlp_platt": {
+              "L": -0.029175747627983917,
+              "U": 1.4005671759612275,
+              "tip": 0.52,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.170200231308816,
+              "U": 1.2788586222469087,
+              "tip": 0.6,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.05505788805389056,
+              "U": 1.5353311223200752,
+              "tip": 0.48,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7971109215971737,
+          "bridge_slope_true_g": 0.7526705306025524,
+          "bridge_slope_gbm": 1.364445322483046
+        },
+        {
+          "family": "tabular",
+          "scenario": "aligned",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": 0.6000000026274233,
+          "b": -0.0469964127984266,
+          "n_pos_train": 1042,
+          "oracle_L": 0.48560166670828586,
+          "oracle_U": 0.9761184157960852,
+          "oracle_tip": 0.5,
+          "est": {
+            "mlp_platt": {
+              "L": 0.41881662098459227,
+              "U": 0.8815403608714725,
+              "tip": 0.53,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": 0.3956350757988938,
+              "U": 0.8583353659462194,
+              "tip": 0.55,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.31604968579626735,
+              "U": 0.8194903527109529,
+              "tip": 0.59,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7195747159567216,
+          "bridge_slope_true_g": 0.851768678400233,
+          "bridge_slope_gbm": 1.494953575599803
+        },
+        {
+          "family": "tabular",
+          "scenario": "aligned",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": 0.6000000026274233,
+          "b": -0.0469964127984266,
+          "n_pos_train": 1078,
+          "oracle_L": 0.48560166670828586,
+          "oracle_U": 0.9761184157960852,
+          "oracle_tip": 0.5,
+          "est": {
+            "mlp_platt": {
+              "L": 0.27103583249444707,
+              "U": 0.731553205681573,
+              "tip": 0.62,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": 0.33133284570113997,
+              "U": 0.7976460444488342,
+              "tip": 0.58,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.34513684453604654,
+              "U": 0.8523840077522955,
+              "tip": 0.58,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.9356616147830896,
+          "bridge_slope_true_g": 0.9302583629388145,
+          "bridge_slope_gbm": 1.9751157201595155
+        },
+        {
+          "family": "tabular",
+          "scenario": "null",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": 2.0981742565595596e-08,
+          "b": -0.33395607769464475,
+          "n_pos_train": 327,
+          "oracle_L": -0.3162552548350135,
+          "oracle_U": 1.1024104992090065,
+          "oracle_tip": 0.67,
+          "est": {
+            "mlp_platt": {
+              "L": -1.5504409136684165,
+              "U": -0.15954046988733417,
+              "tip": NaN,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.8898973671174844,
+              "U": 0.5006649917010293,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.7133478814761824,
+              "U": 0.6767762136144881,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7494907543583511,
+          "bridge_slope_true_g": 0.6540893656334437,
+          "bridge_slope_gbm": 1.2502605868865193
+        },
+        {
+          "family": "tabular",
+          "scenario": "null",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": 2.0981742565595596e-08,
+          "b": -0.33395607769464475,
+          "n_pos_train": 301,
+          "oracle_L": -0.3162552548350135,
+          "oracle_U": 1.1024104992090065,
+          "oracle_tip": 0.67,
+          "est": {
+            "mlp_platt": {
+              "L": -0.584276342052517,
+              "U": 0.8073222016633661,
+              "tip": 0.9,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.5815914843578085,
+              "U": 0.8109750147993857,
+              "tip": 0.9,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.6542390365355111,
+              "U": 0.7604953100335319,
+              "tip": 0.96,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.835066841659968,
+          "bridge_slope_true_g": 0.825117773471834,
+          "bridge_slope_gbm": 1.398601384847878
+        },
+        {
+          "family": "tabular",
+          "scenario": "null",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": 2.0981742565595596e-08,
+          "b": -0.33395607769464475,
+          "n_pos_train": 406,
+          "oracle_L": -0.11354128892802606,
+          "oracle_U": 0.3580441881130172,
+          "oracle_tip": 0.88,
+          "est": {
+            "mlp_platt": {
+              "L": -0.37846042186223805,
+              "U": 0.0691659633891959,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.4505827576006496,
+              "U": -0.0029838468280374286,
+              "tip": NaN,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.09123197514611636,
+              "U": 0.5529688604050129,
+              "tip": 0.74,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.6855066236368403,
+          "bridge_slope_true_g": 0.7206188016795824,
+          "bridge_slope_gbm": 1.1152482686617977
+        },
+        {
+          "family": "tabular",
+          "scenario": "null",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": 2.0981742565595596e-08,
+          "b": -0.33395607769464475,
+          "n_pos_train": 435,
+          "oracle_L": -0.11354128892802606,
+          "oracle_U": 0.3580441881130172,
+          "oracle_tip": 0.88,
+          "est": {
+            "mlp_platt": {
+              "L": -0.13223924551630084,
+              "U": 0.3152961615504095,
+              "tip": 0.92,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.037555797873936925,
+              "U": 0.4100455633944211,
+              "tip": 0.84,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.19202150748849967,
+              "U": 0.2672335248491864,
+              "tip": 0.97,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7098901460586081,
+          "bridge_slope_true_g": 0.7118923086645037,
+          "bridge_slope_gbm": 1.2840815504151362
+        },
+        {
+          "family": "tabular",
+          "scenario": "null",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": 1.1649204267882851e-08,
+          "b": -0.33502562344023384,
+          "n_pos_train": 852,
+          "oracle_L": -0.3184919016695762,
+          "oracle_U": 1.1314995054420551,
+          "oracle_tip": 0.67,
+          "est": {
+            "mlp_platt": {
+              "L": -0.46092191252984627,
+              "U": 0.9476293385397696,
+              "tip": 0.8,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.5679098975066825,
+              "U": 0.8477310680347605,
+              "tip": 0.89,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.3807153052581782,
+              "U": 1.0745870705457135,
+              "tip": 0.73,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7549214679635103,
+          "bridge_slope_true_g": 0.690189822414218,
+          "bridge_slope_gbm": 1.4068897793165205
+        },
+        {
+          "family": "tabular",
+          "scenario": "null",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": 1.1649204267882851e-08,
+          "b": -0.33502562344023384,
+          "n_pos_train": 833,
+          "oracle_L": -0.3184919016695762,
+          "oracle_U": 1.1314995054420551,
+          "oracle_tip": 0.67,
+          "est": {
+            "mlp_platt": {
+              "L": -0.29530252656388356,
+              "U": 1.1201862900353134,
+              "tip": 0.68,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.39612063641022033,
+              "U": 1.037783148138459,
+              "tip": 0.74,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.22633467739631108,
+              "U": 1.2478638807538722,
+              "tip": 0.63,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.6908834096588153,
+          "bridge_slope_true_g": 0.6491618912081581,
+          "bridge_slope_gbm": 1.2506491453232669
+        },
+        {
+          "family": "tabular",
+          "scenario": "null",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": 1.1649204267882851e-08,
+          "b": -0.33502562344023384,
+          "n_pos_train": 1024,
+          "oracle_L": -0.11395509004084303,
+          "oracle_U": 0.3707009781655417,
+          "oracle_tip": 0.88,
+          "est": {
+            "mlp_platt": {
+              "L": 0.16904612538999064,
+              "U": 0.6211629320726448,
+              "tip": 0.68,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": 0.05989702956199494,
+              "U": 0.5111852020759668,
+              "tip": 0.76,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.16930082569685112,
+              "U": 0.6836888238488514,
+              "tip": 0.68,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7704588497249,
+          "bridge_slope_true_g": 0.8243423936926328,
+          "bridge_slope_gbm": 1.4429275620793285
+        },
+        {
+          "family": "tabular",
+          "scenario": "null",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": 1.1649204267882851e-08,
+          "b": -0.33502562344023384,
+          "n_pos_train": 1047,
+          "oracle_L": -0.11395509004084303,
+          "oracle_U": 0.3707009781655417,
+          "oracle_tip": 0.88,
+          "est": {
+            "mlp_platt": {
+              "L": -0.11228685440967379,
+              "U": 0.34313927664151667,
+              "tip": 0.9,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.1716196073624241,
+              "U": 0.2798341311554875,
+              "tip": 0.95,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.06497515167622314,
+              "U": 0.5594923395142306,
+              "tip": 0.76,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.8026008096055748,
+          "bridge_slope_true_g": 0.8864747441921683,
+          "bridge_slope_gbm": 1.7607655461154883
+        },
+        {
+          "family": "tabular",
+          "scenario": "reversed",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": -0.2999999796410764,
+          "b": -0.47798143327127585,
+          "n_pos_train": 330,
+          "oracle_L": -0.616191513201815,
+          "oracle_U": 0.8017910060659235,
+          "oracle_tip": 0.91,
+          "est": {
+            "mlp_platt": {
+              "L": -1.2064184622233602,
+              "U": 0.18289814951172811,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -1.0811540971791418,
+              "U": 0.3081387197804055,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.6427936286244131,
+              "U": 0.7607933782270697,
+              "tip": 0.95,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7772732276900473,
+          "bridge_slope_true_g": 0.7052955632505095,
+          "bridge_slope_gbm": 1.1323139763133279
+        },
+        {
+          "family": "tabular",
+          "scenario": "reversed",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": -0.2999999796410764,
+          "b": -0.47798143327127585,
+          "n_pos_train": 302,
+          "oracle_L": -0.616191513201815,
+          "oracle_U": 0.8017910060659235,
+          "oracle_tip": 0.91,
+          "est": {
+            "mlp_platt": {
+              "L": -1.1210329916620196,
+              "U": 0.2694922604232506,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -1.1503097141261858,
+              "U": 0.23961695739457056,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.6026374502855258,
+              "U": 0.7984164016593116,
+              "tip": 0.91,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.6678034450973306,
+          "bridge_slope_true_g": 0.5832292247434957,
+          "bridge_slope_gbm": 0.9604286669229307
+        },
+        {
+          "family": "tabular",
+          "scenario": "reversed",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": -0.2999999796410764,
+          "b": -0.47798143327127585,
+          "n_pos_train": 399,
+          "oracle_L": -0.413599614217957,
+          "oracle_U": 0.05857542443922803,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.29846101140093584,
+              "U": 0.1493107857814886,
+              "tip": NaN,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.21532311867229126,
+              "U": 0.23237504904538486,
+              "tip": 1.0,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.21922769814471632,
+              "U": 0.24393390478401944,
+              "tip": 0.99,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7186989541337541,
+          "bridge_slope_true_g": 0.8084224223854696,
+          "bridge_slope_gbm": 1.1464409677543808
+        },
+        {
+          "family": "tabular",
+          "scenario": "reversed",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": -0.2999999796410764,
+          "b": -0.47798143327127585,
+          "n_pos_train": 421,
+          "oracle_L": -0.413599614217957,
+          "oracle_U": 0.05857542443922803,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.7969827197094022,
+              "U": -0.3494293383877132,
+              "tip": NaN,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.36352257823573453,
+              "U": 0.08439987964077567,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.2002288014861291,
+              "U": 0.2569527171766248,
+              "tip": 0.98,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7460938929497591,
+          "bridge_slope_true_g": 0.7192579681102784,
+          "bridge_slope_gbm": 1.3333061488661995
+        },
+        {
+          "family": "tabular",
+          "scenario": "reversed",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": -0.3000000159329401,
+          "b": -0.47901643812732614,
+          "n_pos_train": 832,
+          "oracle_L": -0.6187826939123537,
+          "oracle_U": 0.830072411677305,
+          "oracle_tip": 0.9,
+          "est": {
+            "mlp_platt": {
+              "L": -0.4834920940328855,
+              "U": 0.9300455431873029,
+              "tip": 0.81,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.4431020554323988,
+              "U": 0.9577595789655291,
+              "tip": 0.78,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.33576261236862415,
+              "U": 1.1203378182993724,
+              "tip": 0.7,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.809488629865106,
+          "bridge_slope_true_g": 0.7724080870605429,
+          "bridge_slope_gbm": 1.3131845395857469
+        },
+        {
+          "family": "tabular",
+          "scenario": "reversed",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": -0.3000000159329401,
+          "b": -0.47901643812732614,
+          "n_pos_train": 830,
+          "oracle_L": -0.6187826939123537,
+          "oracle_U": 0.830072411677305,
+          "oracle_tip": 0.9,
+          "est": {
+            "mlp_platt": {
+              "L": -0.6815049586800335,
+              "U": 0.7403514814058765,
+              "tip": 0.99,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.7378463663529589,
+              "U": 0.6741960851544828,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.33365463215258284,
+              "U": 1.1408025676184756,
+              "tip": 0.69,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.8725462459121721,
+          "bridge_slope_true_g": 0.8432368405209693,
+          "bridge_slope_gbm": 1.3880266072180298
+        },
+        {
+          "family": "tabular",
+          "scenario": "reversed",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": -0.3000000159329401,
+          "b": -0.47901643812732614,
+          "n_pos_train": 1023,
+          "oracle_L": -0.4137714678688855,
+          "oracle_U": 0.06868300943444883,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.33838052389128404,
+              "U": 0.1141085769362169,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.36844359807845883,
+              "U": 0.08176851070237756,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.2693573678671397,
+              "U": 0.21987816042116304,
+              "tip": NaN,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.6336288047906524,
+          "bridge_slope_true_g": 0.6686226980627388,
+          "bridge_slope_gbm": 1.380493743365221
+        },
+        {
+          "family": "tabular",
+          "scenario": "reversed",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": -0.3000000159329401,
+          "b": -0.47901643812732614,
+          "n_pos_train": 1060,
+          "oracle_L": -0.4137714678688855,
+          "oracle_U": 0.06868300943444883,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.3101744804944442,
+              "U": 0.14647786448410205,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.263026376287792,
+              "U": 0.19533619661267299,
+              "tip": NaN,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.09052214994166263,
+              "U": 0.39556977258888626,
+              "tip": 0.88,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.8353715034533776,
+          "bridge_slope_true_g": 0.8567746537820662,
+          "bridge_slope_gbm": 1.487304232624362
+        }
+      ],
+      "summary": {
+        "mlp_platt": {
+          "bias_L": -0.22096651777209572,
+          "mad_tip": 0.135625,
+          "covers": 0.7916666666666666,
+          "certifies": 0.25,
+          "wrong": 0.0,
+          "aligned": {
+            "covers": 0.875,
+            "certifies": 0.375,
+            "wrong": 0.0,
+            "bias_L": -0.32138059282149833
+          },
+          "null": {
+            "covers": 0.75,
+            "certifies": 0.25,
+            "wrong": 0.0,
+            "bias_L": -0.20254937753324598
+          },
+          "reversed": {
+            "covers": 0.75,
+            "certifies": 0.125,
+            "wrong": 0.0,
+            "bias_L": -0.13896958296154283
+          }
+        },
+        "mlp_iso": {
+          "bias_L": -0.21699721307293793,
+          "mad_tip": 0.18066666666666667,
+          "covers": 0.7916666666666666,
+          "certifies": 0.20833333333333334,
+          "wrong": 0.0,
+          "aligned": {
+            "covers": 0.875,
+            "certifies": 0.375,
+            "wrong": 0.0,
+            "bias_L": -0.4248752925084096
+          },
+          "null": {
+            "covers": 0.75,
+            "certifies": 0.25,
+            "wrong": 0.0,
+            "bias_L": -0.16386168096503673
+          },
+          "reversed": {
+            "covers": 0.75,
+            "certifies": 0.0,
+            "wrong": 0.0,
+            "bias_L": -0.06225466574536742
+          }
+        },
+        "gbm_platt": {
+          "bias_L": -0.11500711593932662,
+          "mad_tip": 0.20526315789473681,
+          "covers": 0.625,
+          "certifies": 0.25,
+          "wrong": 0.0,
+          "aligned": {
+            "covers": 0.75,
+            "certifies": 0.375,
+            "wrong": 0.0,
+            "bias_L": -0.5092517044233117
+          },
+          "null": {
+            "covers": 0.625,
+            "certifies": 0.375,
+            "wrong": 0.0,
+            "bias_L": -0.014582923086071786
+          },
+          "reversed": {
+            "covers": 0.5,
+            "certifies": 0.0,
+            "wrong": 0.0,
+            "bias_L": 0.1788132796914036
+          }
+        },
+        "bridge_slope_gbm": {
+          "median": 1.3488757356746226,
+          "range": [
+            0.9604286669229307,
+            1.9751157201595155
+          ]
+        },
+        "bridge_slope": {
+          "median": 0.7626901588442052,
+          "range": [
+            0.6336288047906524,
+            0.9356616147830896
+          ],
+          "true_g_median": 0.7366446661410674
+        }
+      }
+    },
+    "image": {
+      "rows": [
+        {
+          "family": "image",
+          "scenario": "aligned",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": 0.599999998016135,
+          "b": 0.1441233679641354,
+          "n_pos_train": 413,
+          "oracle_L": 0.1716835400939436,
+          "oracle_U": 1.5673989728282969,
+          "oracle_tip": 0.43,
+          "est": {
+            "mlp_platt": {
+              "L": 0.315745584254298,
+              "U": 1.7055410504445243,
+              "tip": 0.37,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.11989252637833836,
+              "U": 1.2699809927795922,
+              "tip": 0.57,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.23284557851726273,
+              "U": 1.1631911418486753,
+              "tip": 0.64,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 1.5804948158653742,
+          "bridge_slope_true_g": 0.9400742677299357,
+          "bridge_slope_gbm": 1.285822385760047
+        },
+        {
+          "family": "image",
+          "scenario": "aligned",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": 0.599999998016135,
+          "b": 0.1441233679641354,
+          "n_pos_train": 381,
+          "oracle_L": 0.1716835400939436,
+          "oracle_U": 1.5673989728282969,
+          "oracle_tip": 0.43,
+          "est": {
+            "mlp_platt": {
+              "L": 0.11866913605637652,
+              "U": 1.5084917411744954,
+              "tip": 0.45,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.13482451274216878,
+              "U": 1.2551476235818093,
+              "tip": 0.58,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.6296221943418807,
+              "U": 0.7621222807451131,
+              "tip": 0.94,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 1.1642887283379868,
+          "bridge_slope_true_g": 0.9296329548375599,
+          "bridge_slope_gbm": 1.2744039984133866
+        },
+        {
+          "family": "image",
+          "scenario": "aligned",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": 0.599999998016135,
+          "b": 0.1441233679641354,
+          "n_pos_train": 474,
+          "oracle_L": 0.459980808200144,
+          "oracle_U": 0.9096185297006221,
+          "oracle_tip": 0.51,
+          "est": {
+            "mlp_platt": {
+              "L": 0.19033197729232576,
+              "U": 0.6376381657509036,
+              "tip": 0.67,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": 0.08101564496982316,
+              "U": 0.5283815470889683,
+              "tip": 0.74,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.09056950035109335,
+              "U": 0.5428612337100907,
+              "tip": 0.74,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.9079784135936215,
+          "bridge_slope_true_g": 0.7335138550228055,
+          "bridge_slope_gbm": 1.1605554941641056
+        },
+        {
+          "family": "image",
+          "scenario": "aligned",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": 0.599999998016135,
+          "b": 0.1441233679641354,
+          "n_pos_train": 419,
+          "oracle_L": 0.459980808200144,
+          "oracle_U": 0.9096185297006221,
+          "oracle_tip": 0.51,
+          "est": {
+            "mlp_platt": {
+              "L": 0.5128663171892844,
+              "U": 0.9601488342533013,
+              "tip": 0.48,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": 0.2312084557893508,
+              "U": 0.678511540508973,
+              "tip": 0.64,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.028223626495701204,
+              "U": 0.47631015283082156,
+              "tip": 0.78,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 1.0236542443472834,
+          "bridge_slope_true_g": 0.7347678543903561,
+          "bridge_slope_gbm": 1.2314205222103538
+        },
+        {
+          "family": "image",
+          "scenario": "aligned",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": 0.5999999980161377,
+          "b": 0.14412336796492117,
+          "n_pos_train": 927,
+          "oracle_L": 0.16963452360052056,
+          "oracle_U": 1.5777434928069844,
+          "oracle_tip": 0.43,
+          "est": {
+            "mlp_platt": {
+              "L": -0.06958584446910177,
+              "U": 1.3246525163247922,
+              "tip": 0.54,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.19128796573674567,
+              "U": 1.2034055476834924,
+              "tip": 0.61,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.1515952013691484,
+              "U": 1.251132823609705,
+              "tip": 0.59,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 1.0220212651257128,
+          "bridge_slope_true_g": 0.6910342775799153,
+          "bridge_slope_gbm": 1.2953374547406677
+        },
+        {
+          "family": "image",
+          "scenario": "aligned",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": 0.5999999980161377,
+          "b": 0.14412336796492117,
+          "n_pos_train": 897,
+          "oracle_L": 0.16963452360052056,
+          "oracle_U": 1.5777434928069844,
+          "oracle_tip": 0.43,
+          "est": {
+            "mlp_platt": {
+              "L": -0.0831460260232415,
+              "U": 1.3111993356435194,
+              "tip": 0.55,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.2438354515803942,
+              "U": 1.1508528865406396,
+              "tip": 0.64,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.1433601479906832,
+              "U": 1.2657486999975776,
+              "tip": 0.58,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.866115637785682,
+          "bridge_slope_true_g": 0.6732507382003732,
+          "bridge_slope_gbm": 0.7617100296939338
+        },
+        {
+          "family": "image",
+          "scenario": "aligned",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": 0.5999999980161377,
+          "b": 0.14412336796492117,
+          "n_pos_train": 1010,
+          "oracle_L": 0.45825126085546675,
+          "oracle_U": 0.9127409834116635,
+          "oracle_tip": 0.51,
+          "est": {
+            "mlp_platt": {
+              "L": 0.4147672180524218,
+              "U": 0.8634863502744832,
+              "tip": 0.53,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": 0.28420048436283896,
+              "U": 0.7329796286482608,
+              "tip": 0.61,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.29988459471966866,
+              "U": 0.7535629256576355,
+              "tip": 0.6,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 1.4939191575783106,
+          "bridge_slope_true_g": 1.0001528679141953,
+          "bridge_slope_gbm": 1.1799868166538328
+        },
+        {
+          "family": "image",
+          "scenario": "aligned",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": 0.5999999980161377,
+          "b": 0.14412336796492117,
+          "n_pos_train": 1068,
+          "oracle_L": 0.45825126085546675,
+          "oracle_U": 0.9127409834116635,
+          "oracle_tip": 0.51,
+          "est": {
+            "mlp_platt": {
+              "L": 0.4249575002580812,
+              "U": 0.8737407436203837,
+              "tip": 0.53,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": 0.18925418770956615,
+              "U": 0.6380797940199461,
+              "tip": 0.67,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.3695037672476902,
+              "U": 0.8273904915920802,
+              "tip": 0.56,
+              "covers": true,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.9697018698885765,
+          "bridge_slope_true_g": 0.8745707867113716,
+          "bridge_slope_gbm": 1.2031135555463943
+        },
+        {
+          "family": "image",
+          "scenario": "null",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": -1.542892213990399e-08,
+          "b": -0.271375879645894,
+          "n_pos_train": 307,
+          "oracle_L": -0.42837995986206323,
+          "oracle_U": 0.9655604960818911,
+          "oracle_tip": 0.77,
+          "est": {
+            "mlp_platt": {
+              "L": -0.20248040862164984,
+              "U": 1.1867470318543791,
+              "tip": 0.62,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.3798084932402439,
+              "U": 1.0093998741799206,
+              "tip": 0.74,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.6510401345595938,
+              "U": 0.737896025831323,
+              "tip": 0.96,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 1.0062597176992216,
+          "bridge_slope_true_g": 0.8288067611600263,
+          "bridge_slope_gbm": 1.654880121178005
+        },
+        {
+          "family": "image",
+          "scenario": "null",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": -1.542892213990399e-08,
+          "b": -0.271375879645894,
+          "n_pos_train": 317,
+          "oracle_L": -0.42837995986206323,
+          "oracle_U": 0.9655604960818911,
+          "oracle_tip": 0.77,
+          "est": {
+            "mlp_platt": {
+              "L": -0.6403687137213252,
+              "U": 0.748429796942478,
+              "tip": 0.95,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.5728570933652364,
+              "U": 0.8160029344845787,
+              "tip": 0.89,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.610632186391312,
+              "U": 0.7785754875429864,
+              "tip": 0.92,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.6041304720890512,
+          "bridge_slope_true_g": 0.523270831559369,
+          "bridge_slope_gbm": 0.5328996973546504
+        },
+        {
+          "family": "image",
+          "scenario": "null",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": -1.542892213990399e-08,
+          "b": -0.271375879645894,
+          "n_pos_train": 415,
+          "oracle_L": -0.14008930172773137,
+          "oracle_U": 0.3086227097301366,
+          "oracle_tip": 0.92,
+          "est": {
+            "mlp_platt": {
+              "L": -0.09905858091092412,
+              "U": 0.3480490220328454,
+              "tip": 0.89,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.11268315797489148,
+              "U": 0.3344389062209556,
+              "tip": 0.9,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.03720621392157408,
+              "U": 0.4124419564574522,
+              "tip": 0.84,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.851132111716403,
+          "bridge_slope_true_g": 0.6147122825370999,
+          "bridge_slope_gbm": 0.8733930853915546
+        },
+        {
+          "family": "image",
+          "scenario": "null",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": -1.542892213990399e-08,
+          "b": -0.271375879645894,
+          "n_pos_train": 432,
+          "oracle_L": -0.14008930172773137,
+          "oracle_U": 0.3086227097301366,
+          "oracle_tip": 0.92,
+          "est": {
+            "mlp_platt": {
+              "L": -0.08697906711846581,
+              "U": 0.3601388950563402,
+              "tip": 0.88,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.10415522653855547,
+              "U": 0.34298493763047055,
+              "tip": 0.89,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.1728547177892823,
+              "U": 0.2768519203688662,
+              "tip": 0.96,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.9989323436352657,
+          "bridge_slope_true_g": 0.6772076756429147,
+          "bridge_slope_gbm": 0.7673749448074818
+        },
+        {
+          "family": "image",
+          "scenario": "null",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": -1.542892125172557e-08,
+          "b": -0.27137587964677334,
+          "n_pos_train": 834,
+          "oracle_L": -0.4304098679110906,
+          "oracle_U": 0.9720937481999625,
+          "oracle_tip": 0.77,
+          "est": {
+            "mlp_platt": {
+              "L": -0.4759156860008025,
+              "U": 0.9177247186994926,
+              "tip": 0.81,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.5469688063747835,
+              "U": 0.8468230343188834,
+              "tip": 0.87,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.3936514286307542,
+              "U": 1.006145513453638,
+              "tip": 0.74,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.9856293798286259,
+          "bridge_slope_true_g": 0.651012997066119,
+          "bridge_slope_gbm": 0.8346598306539481
+        },
+        {
+          "family": "image",
+          "scenario": "null",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": -1.542892125172557e-08,
+          "b": -0.27137587964677334,
+          "n_pos_train": 805,
+          "oracle_L": -0.4304098679110906,
+          "oracle_U": 0.9720937481999625,
+          "oracle_tip": 0.77,
+          "est": {
+            "mlp_platt": {
+              "L": -0.3893174488274962,
+              "U": 1.00467361584416,
+              "tip": 0.74,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.4733936583482308,
+              "U": 0.9209125461425307,
+              "tip": 0.81,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.38906888798886996,
+              "U": 1.0173489896021746,
+              "tip": 0.74,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.8495848658479063,
+          "bridge_slope_true_g": 0.7050081160194843,
+          "bridge_slope_gbm": 1.0279584488856754
+        },
+        {
+          "family": "image",
+          "scenario": "null",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": -1.542892125172557e-08,
+          "b": -0.27137587964677334,
+          "n_pos_train": 1015,
+          "oracle_L": -0.1417511333566992,
+          "oracle_U": 0.3118147045769266,
+          "oracle_tip": 0.92,
+          "est": {
+            "mlp_platt": {
+              "L": -0.08105606503196405,
+              "U": 0.36755922529222396,
+              "tip": 0.87,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.06975287406467245,
+              "U": 0.3788994822177072,
+              "tip": 0.86,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.019249244004603483,
+              "U": 0.47139151290394654,
+              "tip": 0.79,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.6961038767906262,
+          "bridge_slope_true_g": 0.563520416012499,
+          "bridge_slope_gbm": 0.86432805986741
+        },
+        {
+          "family": "image",
+          "scenario": "null",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": -1.542892125172557e-08,
+          "b": -0.27137587964677334,
+          "n_pos_train": 1022,
+          "oracle_L": -0.1417511333566992,
+          "oracle_U": 0.3118147045769266,
+          "oracle_tip": 0.92,
+          "est": {
+            "mlp_platt": {
+              "L": -0.14068009671279214,
+              "U": 0.30805046786023027,
+              "tip": 0.93,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.11257091715287793,
+              "U": 0.3362382558193273,
+              "tip": 0.9,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": 0.04302939882624557,
+              "U": 0.49834793022230084,
+              "tip": 0.77,
+              "covers": false,
+              "certifies": true,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.9306386209028853,
+          "bridge_slope_true_g": 0.6584450627169438,
+          "bridge_slope_gbm": 0.7216393715985907
+        },
+        {
+          "family": "image",
+          "scenario": "reversed",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": -0.2999999898262393,
+          "b": -0.47912551462594705,
+          "n_pos_train": 313,
+          "oracle_L": -0.728371581329851,
+          "oracle_U": 0.665146406654153,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.6420378592871305,
+              "U": 0.7467181354177495,
+              "tip": 0.95,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.6282516481220641,
+              "U": 0.7605807062471897,
+              "tip": 0.94,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.604290516092159,
+              "U": 0.7855891505956256,
+              "tip": 0.92,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.9984960866328271,
+          "bridge_slope_true_g": 0.6594388689859686,
+          "bridge_slope_gbm": 0.9444438706172869
+        },
+        {
+          "family": "image",
+          "scenario": "reversed",
+          "prev": 0.002,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": -0.2999999898262393,
+          "b": -0.47912551462594705,
+          "n_pos_train": 325,
+          "oracle_L": -0.728371581329851,
+          "oracle_U": 0.665146406654153,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.7493006203089063,
+              "U": 0.6397817852549288,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.6789763950214223,
+              "U": 0.7101365280035683,
+              "tip": 0.99,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.5871359584061091,
+              "U": 0.8054207488298593,
+              "tip": 0.9,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.8729149280217511,
+          "bridge_slope_true_g": 0.5721425840363139,
+          "bridge_slope_gbm": 0.6592864953810912
+        },
+        {
+          "family": "image",
+          "scenario": "reversed",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": -0.2999999898262393,
+          "b": -0.47912551462594705,
+          "n_pos_train": 406,
+          "oracle_L": -0.44012136436746374,
+          "oracle_U": 0.008285608991401183,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.28272374380389387,
+              "U": 0.16441620312804872,
+              "tip": NaN,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.20408016731420364,
+              "U": 0.24307153435285844,
+              "tip": 0.99,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.19818917319689344,
+              "U": 0.25202382800477086,
+              "tip": 0.98,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.8581059597049959,
+          "bridge_slope_true_g": 0.6608575389785626,
+          "bridge_slope_gbm": 0.8497918301339242
+        },
+        {
+          "family": "image",
+          "scenario": "reversed",
+          "prev": 0.002,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": -0.2999999898262393,
+          "b": -0.47912551462594705,
+          "n_pos_train": 403,
+          "oracle_L": -0.44012136436746374,
+          "oracle_U": 0.008285608991401183,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.3539358898254985,
+              "U": 0.09319206770606758,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.23143540064775614,
+              "U": 0.21569196282748848,
+              "tip": NaN,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.19256660396824188,
+              "U": 0.2565362274822789,
+              "tip": 0.97,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.8846164264361943,
+          "bridge_slope_true_g": 0.6248782820556739,
+          "bridge_slope_gbm": 0.9808786031921637
+        },
+        {
+          "family": "image",
+          "scenario": "reversed",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 0,
+          "psi": -0.29999998982623843,
+          "b": -0.4791255146264334,
+          "n_pos_train": 789,
+          "oracle_L": -0.7304597838155811,
+          "oracle_U": 0.6706343887514166,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.7682468449361819,
+              "U": 0.6248383380667342,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.6728793275729332,
+              "U": 0.720370430033431,
+              "tip": 0.98,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.5415432393521984,
+              "U": 0.8555952143767191,
+              "tip": 0.86,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7836746317916251,
+          "bridge_slope_true_g": 0.6439696227400695,
+          "bridge_slope_gbm": 0.886345163725079
+        },
+        {
+          "family": "image",
+          "scenario": "reversed",
+          "prev": 0.005,
+          "s_true": 0.5,
+          "draw": 1,
+          "psi": -0.29999998982623843,
+          "b": -0.4791255146264334,
+          "n_pos_train": 776,
+          "oracle_L": -0.7304597838155811,
+          "oracle_U": 0.6706343887514166,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.6138012440177878,
+              "U": 0.779236995554383,
+              "tip": 0.93,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.5708491541354244,
+              "U": 0.8222939187862366,
+              "tip": 0.89,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.5000513235397008,
+              "U": 0.9012386593862818,
+              "tip": 0.83,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 0.7415471117885203,
+          "bridge_slope_true_g": 0.6624620939554897,
+          "bridge_slope_gbm": 1.0572114616834474
+        },
+        {
+          "family": "image",
+          "scenario": "reversed",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 0,
+          "psi": -0.29999998982623843,
+          "b": -0.4791255146264334,
+          "n_pos_train": 1023,
+          "oracle_L": -0.4415944620137413,
+          "oracle_U": 0.011154587990321652,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.3696596636662326,
+              "U": 0.07912595509566511,
+              "tip": NaN,
+              "covers": true,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.2457453954512827,
+              "U": 0.20305966620531812,
+              "tip": NaN,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.1705925712229206,
+              "U": 0.28125202134430793,
+              "tip": 0.95,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 1.070816544442066,
+          "bridge_slope_true_g": 0.7168537745785803,
+          "bridge_slope_gbm": 0.8904839948895006
+        },
+        {
+          "family": "image",
+          "scenario": "reversed",
+          "prev": 0.005,
+          "s_true": 0.8,
+          "draw": 1,
+          "psi": -0.29999998982623843,
+          "b": -0.4791255146264334,
+          "n_pos_train": 1019,
+          "oracle_L": -0.4415944620137413,
+          "oracle_U": 0.011154587990321652,
+          "oracle_tip": NaN,
+          "est": {
+            "mlp_platt": {
+              "L": -0.07411613510204518,
+              "U": 0.3744856742336484,
+              "tip": 0.87,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            },
+            "mlp_iso": {
+              "L": -0.10382120900957315,
+              "U": 0.3447743743978231,
+              "tip": 0.89,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            },
+            "gbm_platt": {
+              "L": -0.08261237837114344,
+              "U": 0.3688600189086575,
+              "tip": 0.87,
+              "covers": false,
+              "certifies": false,
+              "wrong": false
+            }
+          },
+          "bridge_slope": 1.2211142055128774,
+          "bridge_slope_true_g": 1.0570603444490976,
+          "bridge_slope_gbm": 1.6765267454619635
+        }
+      ],
+      "summary": {
+        "mlp_platt": {
+          "bias_L": 0.012424268249401718,
+          "mad_tip": 0.06687500000000002,
+          "covers": 0.9166666666666666,
+          "certifies": 0.25,
+          "wrong": 0.0,
+          "aligned": {
+            "covers": 1.0,
+            "certifies": 0.75,
+            "wrong": 0.0,
+            "bias_L": -0.08681180036121317
+          },
+          "null": {
+            "covers": 1.0,
+            "certifies": 0.0,
+            "wrong": 0.0,
+            "bias_L": 0.02067555734621862
+          },
+          "reversed": {
+            "covers": 0.75,
+            "certifies": 0.0,
+            "wrong": 0.0,
+            "bias_L": 0.1034090477631997
+          }
+        },
+        "mlp_iso": {
+          "bias_L": -0.048713998527996925,
+          "mad_tip": 0.10750000000000001,
+          "covers": 0.7916666666666666,
+          "certifies": 0.16666666666666666,
+          "wrong": 0.0,
+          "aligned": {
+            "covers": 0.875,
+            "certifies": 0.5,
+            "wrong": 0.0,
+            "bias_L": -0.3029077436382772
+          },
+          "null": {
+            "covers": 1.0,
+            "certifies": 0.0,
+            "wrong": 0.0,
+            "bias_L": -0.011366212668040387
+          },
+          "reversed": {
+            "covers": 0.5,
+            "certifies": 0.0,
+            "wrong": 0.0,
+            "bias_L": 0.16813196072232683
+          }
+        },
+        "gbm_platt": {
+          "bias_L": -0.041464320030684676,
+          "mad_tip": 0.154375,
+          "covers": 0.6666666666666666,
+          "certifies": 0.25,
+          "wrong": 0.0,
+          "aligned": {
+            "covers": 0.75,
+            "certifies": 0.5,
+            "wrong": 0.0,
+            "bias_L": -0.3610427373631214
+          },
+          "null": {
+            "covers": 0.75,
+            "certifies": 0.25,
+            "wrong": 0.0,
+            "bias_L": 0.011135699908078944
+          },
+          "reversed": {
+            "covers": 0.5,
+            "certifies": 0.0,
+            "wrong": 0.0,
+            "bias_L": 0.22551407736298845
+          }
+        },
+        "bridge_slope_gbm": {
+          "median": 0.9626612369047253,
+          "range": [
+            0.5328996973546504,
+            1.6765267454619635
+          ]
+        },
+        "bridge_slope": {
+          "median": 0.9501702453957309,
+          "range": [
+            0.6041304720890512,
+            1.5804948158653742
+          ],
+          "true_g_median": 0.6752292069216439
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,580 @@
+{
+  "runs": [
+    {
+      "mode": "ft",
+      "regime": "M0",
+      "seed": 0,
+      "best_val_auroc": 0.9340130434782609,
+      "test_auroc_Y_uniform": 0.917718273829385,
+      "test_auroc_D_verified": 0.6509214445271779,
+      "n_train": 241485,
+      "minutes": 6.767953093846639,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": 0.034205663949251175,
+          "delta_se": 0.0006710801094208627,
+          "frac_positive": 0.848,
+          "step_sd": 0.29434797167778015
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.05892762914299965,
+          "delta_se": 0.0009851234990125451,
+          "frac_positive": 0.9016666666666666,
+          "step_sd": 0.34499022364616394
+        },
+        "asymmetry": {
+          "delta_mean": -0.00885586254298687,
+          "delta_se": 0.0006994833769080779,
+          "frac_positive": 0.4226666666666667,
+          "step_sd": 0.2773369252681732
+        },
+        "border_irregularity": {
+          "delta_mean": -0.0031634496990591288,
+          "delta_se": 0.0006687795296361003,
+          "frac_positive": 0.4856666666666667,
+          "step_sd": 0.26414960622787476
+        }
+      }
+    },
+    {
+      "mode": "ft",
+      "regime": "M0",
+      "seed": 1,
+      "best_val_auroc": 0.919770652173913,
+      "test_auroc_Y_uniform": 0.9127911244577911,
+      "test_auroc_D_verified": 0.6797747580044676,
+      "n_train": 241485,
+      "minutes": 4.924570620059967,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": 0.02843090333044529,
+          "delta_se": 0.000664002621414282,
+          "frac_positive": 0.8116666666666666,
+          "step_sd": 0.3031357228755951
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.02946539781987667,
+          "delta_se": 0.0007813160710754793,
+          "frac_positive": 0.8053333333333333,
+          "step_sd": 0.3480428457260132
+        },
+        "asymmetry": {
+          "delta_mean": -0.001329283113591373,
+          "delta_se": 0.0005994215890723178,
+          "frac_positive": 0.49,
+          "step_sd": 0.30421385169029236
+        },
+        "border_irregularity": {
+          "delta_mean": -0.0016434707213193178,
+          "delta_se": 0.0006022203047430699,
+          "frac_positive": 0.4816666666666667,
+          "step_sd": 0.285882830619812
+        }
+      }
+    },
+    {
+      "mode": "ft",
+      "regime": "M0",
+      "seed": 2,
+      "best_val_auroc": 0.9236559782608695,
+      "test_auroc_Y_uniform": 0.9115771326882438,
+      "test_auroc_D_verified": 0.6693503350707372,
+      "n_train": 241485,
+      "minutes": 4.856490770975749,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": 0.042400531470775604,
+          "delta_se": 0.0006838782024567583,
+          "frac_positive": 0.909,
+          "step_sd": 0.2914544343948364
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.02315407246351242,
+          "delta_se": 0.0007229847941168714,
+          "frac_positive": 0.751,
+          "step_sd": 0.335251122713089
+        },
+        "asymmetry": {
+          "delta_mean": 0.00020281161414459348,
+          "delta_se": 0.0005727595527179836,
+          "frac_positive": 0.532,
+          "step_sd": 0.2944239675998688
+        },
+        "border_irregularity": {
+          "delta_mean": 0.00650443509221077,
+          "delta_se": 0.000576696621791768,
+          "frac_positive": 0.622,
+          "step_sd": 0.28635165095329285
+        }
+      }
+    },
+    {
+      "mode": "ft",
+      "regime": "M0",
+      "seed": 3,
+      "best_val_auroc": 0.9115179347826087,
+      "test_auroc_Y_uniform": 0.8942987431876321,
+      "test_auroc_D_verified": 0.6789370811615786,
+      "n_train": 241485,
+      "minutes": 5.618672657012939,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": 0.06406313180923462,
+          "delta_se": 0.0008627695181510895,
+          "frac_positive": 0.925,
+          "step_sd": 0.2745886743068695
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.07159296423196793,
+          "delta_se": 0.001100153780520167,
+          "frac_positive": 0.8943333333333333,
+          "step_sd": 0.3156431019306183
+        },
+        "asymmetry": {
+          "delta_mean": 0.0005870087770745158,
+          "delta_se": 0.0006906355476977255,
+          "frac_positive": 0.5106666666666667,
+          "step_sd": 0.26373663544654846
+        },
+        "border_irregularity": {
+          "delta_mean": 0.008366852067410946,
+          "delta_se": 0.000684501008342614,
+          "frac_positive": 0.6053333333333333,
+          "step_sd": 0.2558981776237488
+        }
+      }
+    },
+    {
+      "mode": "ft",
+      "regime": "M0",
+      "seed": 4,
+      "best_val_auroc": 0.9133027173913043,
+      "test_auroc_Y_uniform": 0.8959192525859193,
+      "test_auroc_D_verified": 0.6754002233804914,
+      "n_train": 241485,
+      "minutes": 4.628757993380229,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": 0.03465121611952782,
+          "delta_se": 0.0007053715688875675,
+          "frac_positive": 0.837,
+          "step_sd": 0.3043198883533478
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.009849096648395061,
+          "delta_se": 0.0006615966196438173,
+          "frac_positive": 0.6283333333333333,
+          "step_sd": 0.3280201852321625
+        },
+        "asymmetry": {
+          "delta_mean": 0.020670736208558083,
+          "delta_se": 0.0006313424821585906,
+          "frac_positive": 0.7463333333333333,
+          "step_sd": 0.30504217743873596
+        },
+        "border_irregularity": {
+          "delta_mean": 0.01996804028749466,
+          "delta_se": 0.000597800470988953,
+          "frac_positive": 0.7536666666666667,
+          "step_sd": 0.29373520612716675
+        }
+      }
+    },
+    {
+      "mode": "ft",
+      "regime": "M2",
+      "seed": 0,
+      "best_val_auroc": 0.7903503284329059,
+      "test_auroc_Y_uniform": 0.7309153598042486,
+      "test_auroc_D_verified": 0.7537230081906181,
+      "n_train": 622,
+      "minutes": 5.27229855855306,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": 0.04760231450200081,
+          "delta_se": 0.0011034991942045162,
+          "frac_positive": 0.798,
+          "step_sd": 0.277681440114975
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.022000106051564217,
+          "delta_se": 0.001357595629888972,
+          "frac_positive": 0.393,
+          "step_sd": 0.32920604944229126
+        },
+        "asymmetry": {
+          "delta_mean": 0.03132781758904457,
+          "delta_se": 0.0011702789890973096,
+          "frac_positive": 0.6806666666666666,
+          "step_sd": 0.25675690174102783
+        },
+        "border_irregularity": {
+          "delta_mean": 0.04180223122239113,
+          "delta_se": 0.0011683442576100264,
+          "frac_positive": 0.7363333333333333,
+          "step_sd": 0.23987062275409698
+        }
+      }
+    },
+    {
+      "mode": "ft",
+      "regime": "M2",
+      "seed": 1,
+      "best_val_auroc": 0.8245229903034095,
+      "test_auroc_Y_uniform": 0.7518985652318986,
+      "test_auroc_D_verified": 0.7734084139985107,
+      "n_train": 622,
+      "minutes": 4.525161504745483,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": 0.022573450580239296,
+          "delta_se": 0.0010566335443967106,
+          "frac_positive": 0.657,
+          "step_sd": 0.28242114186286926
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.02026033028960228,
+          "delta_se": 0.0013596805366952428,
+          "frac_positive": 0.423,
+          "step_sd": 0.32922670245170593
+        },
+        "asymmetry": {
+          "delta_mean": 0.04711426421999931,
+          "delta_se": 0.0010998048677545844,
+          "frac_positive": 0.7873333333333333,
+          "step_sd": 0.29393184185028076
+        },
+        "border_irregularity": {
+          "delta_mean": 0.053106702864170074,
+          "delta_se": 0.001030670897899781,
+          "frac_positive": 0.839,
+          "step_sd": 0.2799680233001709
+        }
+      }
+    },
+    {
+      "mode": "ft",
+      "regime": "M2",
+      "seed": 2,
+      "best_val_auroc": 0.8087660306537379,
+      "test_auroc_Y_uniform": 0.7518385051718386,
+      "test_auroc_D_verified": 0.7367367833209234,
+      "n_train": 622,
+      "minutes": 4.538719189167023,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": 0.009930248372256756,
+          "delta_se": 0.0009832398461776895,
+          "frac_positive": 0.5903333333333334,
+          "step_sd": 0.2516145408153534
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.03737093508243561,
+          "delta_se": 0.0011854424794356284,
+          "frac_positive": 0.27,
+          "step_sd": 0.30502110719680786
+        },
+        "asymmetry": {
+          "delta_mean": 0.03316647931933403,
+          "delta_se": 0.0009715263073250258,
+          "frac_positive": 0.735,
+          "step_sd": 0.26171422004699707
+        },
+        "border_irregularity": {
+          "delta_mean": 0.043703410774469376,
+          "delta_se": 0.0009990776971535817,
+          "frac_positive": 0.784,
+          "step_sd": 0.25169819593429565
+        }
+      }
+    },
+    {
+      "mode": "ft",
+      "regime": "M2",
+      "seed": 3,
+      "best_val_auroc": 0.812011260556772,
+      "test_auroc_Y_uniform": 0.6946012679346012,
+      "test_auroc_D_verified": 0.7009493670886077,
+      "n_train": 622,
+      "minutes": 4.513340584437052,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": 0.020871078595519066,
+          "delta_se": 0.0008900097430863628,
+          "frac_positive": 0.6793333333333333,
+          "step_sd": 0.2551497220993042
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.01763240620493889,
+          "delta_se": 0.0011275145946042467,
+          "frac_positive": 0.398,
+          "step_sd": 0.2817486524581909
+        },
+        "asymmetry": {
+          "delta_mean": 0.04224330931901932,
+          "delta_se": 0.0008807288675644189,
+          "frac_positive": 0.832,
+          "step_sd": 0.2522965967655182
+        },
+        "border_irregularity": {
+          "delta_mean": 0.04299049824476242,
+          "delta_se": 0.0009226109820584295,
+          "frac_positive": 0.8243333333333334,
+          "step_sd": 0.24329783022403717
+        }
+      }
+    },
+    {
+      "mode": "ft",
+      "regime": "M2",
+      "seed": 4,
+      "best_val_auroc": 0.802001876759462,
+      "test_auroc_Y_uniform": 0.7110504949393838,
+      "test_auroc_D_verified": 0.7235201042442293,
+      "n_train": 622,
+      "minutes": 4.511029926935832,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": 0.024436797946691513,
+          "delta_se": 0.0010485959001500268,
+          "frac_positive": 0.679,
+          "step_sd": 0.2700980007648468
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.014599825255572796,
+          "delta_se": 0.0014191539078370207,
+          "frac_positive": 0.45266666666666666,
+          "step_sd": 0.3271360397338867
+        },
+        "asymmetry": {
+          "delta_mean": 0.03439246863126755,
+          "delta_se": 0.0009286082007753906,
+          "frac_positive": 0.761,
+          "step_sd": 0.26878494024276733
+        },
+        "border_irregularity": {
+          "delta_mean": 0.045577630400657654,
+          "delta_se": 0.0009791750464657445,
+          "frac_positive": 0.826,
+          "step_sd": 0.26680946350097656
+        }
+      }
+    },
+    {
+      "mode": "lp",
+      "regime": "M0",
+      "seed": 0,
+      "best_val_auroc": 0.9112592391304346,
+      "test_auroc_Y_uniform": 0.8973011900789679,
+      "test_auroc_D_verified": 0.7108618763961282,
+      "n_train": 241485,
+      "minutes": 1.8332372546195983,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": -0.004851587116718292,
+          "delta_se": 0.00012577283286132867,
+          "frac_positive": 0.23933333333333334,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.0022053986322134733,
+          "delta_se": 0.0001513350118409579,
+          "frac_positive": 0.5936666666666667,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0019955707248300314,
+          "delta_se": 9.872286910492905e-05,
+          "frac_positive": 0.6576666666666666,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.003224368439987302,
+          "delta_se": 0.00010072573380135882,
+          "frac_positive": 0.7446666666666667,
+          "step_sd": 0.12501637637615204
+        }
+      }
+    },
+    {
+      "mode": "lp",
+      "regime": "M0",
+      "seed": 1,
+      "best_val_auroc": 0.9105690217391303,
+      "test_auroc_Y_uniform": 0.8929045712379045,
+      "test_auroc_D_verified": 0.7070457930007445,
+      "n_train": 241485,
+      "minutes": 1.802772335211436,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": -0.005105066113173962,
+          "delta_se": 0.0001242490600792778,
+          "frac_positive": 0.21533333333333332,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.00274088722653687,
+          "delta_se": 0.00015322988701622708,
+          "frac_positive": 0.619,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0026340102776885033,
+          "delta_se": 9.971593570847208e-05,
+          "frac_positive": 0.7026666666666667,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.0037396615371108055,
+          "delta_se": 0.00010064073307449978,
+          "frac_positive": 0.7743333333333333,
+          "step_sd": 0.12501637637615204
+        }
+      }
+    },
+    {
+      "mode": "lp",
+      "regime": "M0",
+      "seed": 2,
+      "best_val_auroc": 0.9118847826086957,
+      "test_auroc_Y_uniform": 0.9014169725280836,
+      "test_auroc_D_verified": 0.7077438570364855,
+      "n_train": 241485,
+      "minutes": 1.6282633781433105,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": -0.004185492638498545,
+          "delta_se": 0.00012312547425601686,
+          "frac_positive": 0.2663333333333333,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": 0.0024114528205245733,
+          "delta_se": 0.00015202037377284568,
+          "frac_positive": 0.6103333333333333,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0026621923316270113,
+          "delta_se": 9.956976472458656e-05,
+          "frac_positive": 0.713,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.0039359224028885365,
+          "delta_se": 0.00010216384271825349,
+          "frac_positive": 0.7763333333333333,
+          "step_sd": 0.12501637637615204
+        }
+      }
+    },
+    {
+      "mode": "lp",
+      "regime": "M2",
+      "seed": 0,
+      "best_val_auroc": 0.7652877697841727,
+      "test_auroc_Y_uniform": 0.7274146368590814,
+      "test_auroc_D_verified": 0.7680565897244974,
+      "n_train": 622,
+      "minutes": 1.591087285677592,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": -0.004422070924192667,
+          "delta_se": 9.79795505862241e-05,
+          "frac_positive": 0.19366666666666665,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.004285741597414017,
+          "delta_se": 0.000107827681408977,
+          "frac_positive": 0.22766666666666666,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0016784092877060175,
+          "delta_se": 7.697387136233786e-05,
+          "frac_positive": 0.6666666666666666,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.0009878268465399742,
+          "delta_se": 7.788072148547704e-05,
+          "frac_positive": 0.5936666666666667,
+          "step_sd": 0.12501637637615204
+        }
+      }
+    },
+    {
+      "mode": "lp",
+      "regime": "M2",
+      "seed": 1,
+      "best_val_auroc": 0.7696668751954958,
+      "test_auroc_Y_uniform": 0.7369263708152597,
+      "test_auroc_D_verified": 0.7592144452717796,
+      "n_train": 622,
+      "minutes": 1.5570401708285013,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": -0.004140706267207861,
+          "delta_se": 9.29707309994068e-05,
+          "frac_positive": 0.19666666666666666,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.005916768219321966,
+          "delta_se": 0.00010761003601913991,
+          "frac_positive": 0.14366666666666666,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0022730736527591944,
+          "delta_se": 7.31859914018684e-05,
+          "frac_positive": 0.7323333333333333,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.0019449490355327725,
+          "delta_se": 7.404700846654618e-05,
+          "frac_positive": 0.699,
+          "step_sd": 0.12501637637615204
+        }
+      }
+    },
+    {
+      "mode": "lp",
+      "regime": "M2",
+      "seed": 2,
+      "best_val_auroc": 0.7561776665624022,
+      "test_auroc_Y_uniform": 0.7045478812145478,
+      "test_auroc_D_verified": 0.7520941921072226,
+      "n_train": 622,
+      "minutes": 1.4399090886116028,
+      "interv": {
+        "color_variegation": {
+          "delta_mean": -0.003064840566366911,
+          "delta_se": 0.00013836320207652548,
+          "frac_positive": 0.3423333333333333,
+          "step_sd": 0.1395769715309143
+        },
+        "lesion_skin_contrast": {
+          "delta_mean": -0.00303654745221138,
+          "delta_se": 0.0001745015612132318,
+          "frac_positive": 0.398,
+          "step_sd": 0.1552124172449112
+        },
+        "asymmetry": {
+          "delta_mean": 0.0014941797126084566,
+          "delta_se": 0.00011685795866877878,
+          "frac_positive": 0.612,
+          "step_sd": 0.13069696724414825
+        },
+        "border_irregularity": {
+          "delta_mean": 0.0011624599574133754,
+          "delta_se": 0.00011711045282630893,
+          "frac_positive": 0.577,
+          "step_sd": 0.12501637637615204
+        }
+      }
+    }
+  ]
+}

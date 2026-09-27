@@ -1,0 +1,165 @@
+{
+  "B": 200,
+  "families": {
+    "tabular": {
+      "pointwise_slope": 0.8896052072270875,
+      "pointwise_slope_ci": [
+        0.6688858283869843,
+        1.0878565448289057
+      ],
+      "pointwise_r2": 0.5334377081152919,
+      "concept_calibration_slope": 1.4057282090282173,
+      "concept_calibration_slope_ci": [
+        0.7158121157925373,
+        2.141857540455007
+      ],
+      "concepts": {
+        "color_variegation": {
+          "observed": 1.830183345359735,
+          "observed_ci": [
+            1.0142164252620018,
+            2.527576740842307
+          ],
+          "predicted": 1.4335071045461105,
+          "predicted_ci": [
+            0.916174645439017,
+            1.9731563469781555
+          ],
+          "sign_agreement_frac": 1.0
+        },
+        "size": {
+          "observed": 0.8952546902872505,
+          "observed_ci": [
+            0.32515300083292825,
+            1.458299272073079
+          ],
+          "predicted": 0.7277108587664611,
+          "predicted_ci": [
+            0.22640180347635494,
+            1.1607548852158909
+          ],
+          "sign_agreement_frac": 0.995
+        },
+        "lesion_skin_contrast": {
+          "observed": 1.8413431877421678,
+          "observed_ci": [
+            0.9181717468290821,
+            2.7181497763681213
+          ],
+          "predicted": 1.5529576351339869,
+          "predicted_ci": [
+            1.0311262353279922,
+            2.0803767280823107
+          ],
+          "sign_agreement_frac": 1.0
+        },
+        "asymmetry": {
+          "observed": -1.5595011427697263,
+          "observed_ci": [
+            -2.535339767474671,
+            -0.7511446583858343
+          ],
+          "predicted": -0.9618608818256895,
+          "predicted_ci": [
+            -1.6951220813499042,
+            -0.4170942059792061
+          ],
+          "sign_agreement_frac": 0.995
+        },
+        "border_irregularity": {
+          "observed": -1.6413194164338774,
+          "observed_ci": [
+            -2.659291796175486,
+            -0.770320290302655
+          ],
+          "predicted": -1.0268850401447844,
+          "predicted_ci": [
+            -1.7923468083796639,
+            -0.4112247333089454
+          ],
+          "sign_agreement_frac": 1.0
+        }
+      }
+    },
+    "image": {
+      "pointwise_slope": 0.8616346826645407,
+      "pointwise_slope_ci": [
+        0.6608596723898346,
+        1.0829039479201468
+      ],
+      "pointwise_r2": 0.7111381185955412,
+      "concept_calibration_slope": 0.81233244473145,
+      "concept_calibration_slope_ci": [
+        0.4257753701734155,
+        1.2609383561343308
+      ],
+      "concepts": {
+        "color_variegation": {
+          "observed": 0.9242973582530203,
+          "observed_ci": [
+            0.5740036494022528,
+            1.313743822788945
+          ],
+          "predicted": 1.0458023826484797,
+          "predicted_ci": [
+            0.7287737908511562,
+            1.2880904549805414
+          ],
+          "sign_agreement_frac": 1.0
+        },
+        "size": {
+          "observed": 0.7164296631005604,
+          "observed_ci": [
+            0.48355927564048823,
+            0.965037036176833
+          ],
+          "predicted": 0.7245701306549202,
+          "predicted_ci": [
+            0.5315599656992327,
+            0.8931494492436173
+          ],
+          "sign_agreement_frac": 1.0
+        },
+        "lesion_skin_contrast": {
+          "observed": 0.8923832627175177,
+          "observed_ci": [
+            0.4315706521302096,
+            1.4015411544610408
+          ],
+          "predicted": 1.1369333871301803,
+          "predicted_ci": [
+            0.7589767622611777,
+            1.4042500200451902
+          ],
+          "sign_agreement_frac": 1.0
+        },
+        "asymmetry": {
+          "observed": -0.7115136771700072,
+          "observed_ci": [
+            -1.19301250838388,
+            -0.34059291638170364
+          ],
+          "predicted": -0.9150431799178551,
+          "predicted_ci": [
+            -1.1563293245085575,
+            -0.6316919149754774
+          ],
+          "sign_agreement_frac": 1.0
+        },
+        "border_irregularity": {
+          "observed": -0.6028632899511006,
+          "observed_ci": [
+            -1.1234062099706335,
+            -0.18349383406929645
+          ],
+          "predicted": -0.8473494436518654,
+          "predicted_ci": [
+            -1.085394191295347,
+            -0.5713569331329582
+          ],
+          "sign_agreement_frac": 0.995
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2553 @@
+{
+  "summary": {
+    "valid_floor": {
+      "oracle_covers": 1.0,
+      "plugin_covers": 0.9333333333333333,
+      "oracle_wrong_sign": 0.0,
+      "plugin_wrong_sign": 0.0,
+      "oracle_certifies": 0.8555555555555555,
+      "plugin_certifies": 0.7444444444444445,
+      "n": 90
+    },
+    "overstated_floor": {
+      "oracle_covers": 0.5666666666666667,
+      "plugin_covers": 0.6333333333333333,
+      "oracle_wrong_sign": 0.0,
+      "plugin_wrong_sign": 0.0,
+      "oracle_certifies": 1.0,
+      "plugin_certifies": 1.0,
+      "n": 30
+    },
+    "valid_floor_correlated": {
+      "oracle_covers": 1.0,
+      "plugin_covers": 0.9555555555555556,
+      "oracle_wrong_sign": 0.0,
+      "plugin_wrong_sign": 0.0,
+      "oracle_certifies": 1.0,
+      "plugin_certifies": 1.0,
+      "n": 45
+    }
+  },
+  "rows": [
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 1.0977677582040792,
+      "oracle": [
+        0.1089532906088797,
+        2.537168889675023
+      ],
+      "plugin": [
+        -0.06696358751010845,
+        2.363016499897678
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 1.0977677582040792,
+      "oracle": [
+        0.6222055573506653,
+        2.017116398689179
+      ],
+      "plugin": [
+        0.44662478661751326,
+        1.8418229737678757
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 1.0977677582040792,
+      "oracle": [
+        0.9597141477042683,
+        1.6767443132576503
+      ],
+      "plugin": [
+        0.7842752316844157,
+        1.5014080074447351
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 1.0977677582040792,
+      "oracle": [
+        1.2116033956891537,
+        1.4232768018522206
+      ],
+      "plugin": [
+        1.0362427644448768,
+        1.2479411624354695
+      ],
+      "oracle_covers": false,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": 0.877394146577493,
+      "oracle": [
+        -0.197710372369019,
+        2.230049233316426
+      ],
+      "plugin": [
+        -0.46661337030834105,
+        1.9632521869066712
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": 0.877394146577493,
+      "oracle": [
+        0.31612231411849123,
+        1.7108409699467906
+      ],
+      "plugin": [
+        0.04776766983112424,
+        1.4429204137326526
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": 0.877394146577493,
+      "oracle": [
+        0.653877104002472,
+        1.3708254826788169
+      ],
+      "plugin": [
+        0.3857552289925925,
+        1.1028691418583225
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": 0.877394146577493,
+      "oracle": [
+        0.9059024826298483,
+        1.1175547670101116
+      ],
+      "plugin": [
+        0.6379093725962948,
+        0.8496029660458317
+      ],
+      "oracle_covers": false,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": 0.6514129194666696,
+      "oracle": [
+        -0.3396077430038007,
+        2.0879345210750255
+      ],
+      "plugin": [
+        -0.48593715631118695,
+        1.9435052967846307
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": 0.6514129194666696,
+      "oracle": [
+        0.1745101434920171,
+        1.5691381894901308
+      ],
+      "plugin": [
+        0.028667963213035996,
+        1.4236455620858024
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": 0.6514129194666696,
+      "oracle": [
+        0.5123857713710276,
+        1.2292957553107282
+      ],
+      "plugin": [
+        0.3666959050358889,
+        1.0837358137257702
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": 0.6514129194666696,
+      "oracle": [
+        0.764477931967102,
+        0.9761203235946132
+      ],
+      "plugin": [
+        0.6188697237440826,
+        0.830544274978732
+      ],
+      "oracle_covers": false,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 0.8755569348196124,
+      "oracle": [
+        -0.4724747511195053,
+        1.9548117177936897
+      ],
+      "plugin": [
+        -0.6330370107315897,
+        1.7952328373922608
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 0.8755569348196124,
+      "oracle": [
+        0.041866564635527403,
+        1.436386830475116
+      ],
+      "plugin": [
+        -0.11831395959772983,
+        1.2761637548977909
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 0.8755569348196124,
+      "oracle": [
+        0.37983705826823577,
+        1.0967011791392132
+      ],
+      "plugin": [
+        0.21981665212710322,
+        0.9366430562621142
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 0.8755569348196124,
+      "oracle": [
+        0.6319816950848631,
+        0.8436122429193125
+      ],
+      "plugin": [
+        0.47204939069787866,
+        0.6836687021617411
+      ],
+      "oracle_covers": false,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": 0.876245391073641,
+      "oracle": [
+        -0.4698929027615666,
+        1.9574870097504382
+      ],
+      "plugin": [
+        -0.6118917416188507,
+        1.8158428158709983
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": 0.876245391073641,
+      "oracle": [
+        0.04447754619116662,
+        1.4390370803235601
+      ],
+      "plugin": [
+        -0.09741304877041035,
+        1.2969038481663153
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": 0.876245391073641,
+      "oracle": [
+        0.38246002155015013,
+        1.0993408420961464
+      ],
+      "plugin": [
+        0.24060697332606296,
+        0.9573692146898072
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": 0.876245391073641,
+      "oracle": [
+        0.6346111945334512,
+        0.8462460539767545
+      ],
+      "plugin": [
+        0.4927777269668434,
+        0.7043809275430508
+      ],
+      "oracle_covers": false,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 1.0993139119145505,
+      "oracle": [
+        0.0038880976173283344,
+        2.434224863255496
+      ],
+      "plugin": [
+        -0.10620694421369326,
+        2.327435659506144
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 1.0993139119145505,
+      "oracle": [
+        0.5176070154937786,
+        1.9134143081692834
+      ],
+      "plugin": [
+        0.40765496977881543,
+        1.8035047693497583
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 1.0993139119145505,
+      "oracle": [
+        0.8553143080818959,
+        1.5727265057457176
+      ],
+      "plugin": [
+        0.745423410519729,
+        1.462833701441422
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 1.0993139119145505,
+      "oracle": [
+        1.1073136159580832,
+        1.3190857649168954
+      ],
+      "plugin": [
+        0.9974566735231418,
+        1.2092268531445187
+      ],
+      "oracle_covers": false,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": 0.870183629107812,
+      "oracle": [
+        -0.26957431554724387,
+        2.160259496716985
+      ],
+      "plugin": [
+        -0.6328159121021146,
+        1.800730492698535
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": 0.870183629107812,
+      "oracle": [
+        0.24473935617357512,
+        1.6403359191087592
+      ],
+      "plugin": [
+        -0.11775648050935494,
+        1.2780559308125152
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": 0.870183629107812,
+      "oracle": [
+        0.582698386126383,
+        1.3000211109950488
+      ],
+      "plugin": [
+        0.22052140995215108,
+        0.93791625054177
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": 0.870183629107812,
+      "oracle": [
+        0.8348367587455954,
+        1.0465858292888939
+      ],
+      "plugin": [
+        0.472836716362691,
+        0.6846029712461297
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": 0.6557894957293895,
+      "oracle": [
+        -0.44067407705618056,
+        1.9887773379820306
+      ],
+      "plugin": [
+        -0.6416608640349368,
+        1.7914259295522559
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": 0.6557894957293895,
+      "oracle": [
+        0.07403067151837384,
+        1.4694667296055695
+      ],
+      "plugin": [
+        -0.12665382259204083,
+        1.2689573415631017
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": 0.6557894957293895,
+      "oracle": [
+        0.4121550474139646,
+        1.129409582908262
+      ],
+      "plugin": [
+        0.21160223567326408,
+        0.9289113073422648
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": 0.6557894957293895,
+      "oracle": [
+        0.6643847074760982,
+        0.8761161840138545
+      ],
+      "plugin": [
+        0.46390557010553746,
+        0.6756496640936644
+      ],
+      "oracle_covers": false,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 0.8792328965000431,
+      "oracle": [
+        -0.4015941529254743,
+        2.0279401426767976
+      ],
+      "plugin": [
+        -0.7509682960019219,
+        1.6799860984030222
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 0.8792328965000431,
+      "oracle": [
+        0.11299496137287957,
+        1.5084663481728562
+      ],
+      "plugin": [
+        -0.235154871482262,
+        1.160233363075859
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 0.8792328965000431,
+      "oracle": [
+        0.4510709033961211,
+        1.1683405376981266
+      ],
+      "plugin": [
+        0.10325229359647725,
+        0.820476542234049
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 0.8792328965000431,
+      "oracle": [
+        0.7032739307155715,
+        0.9150093153374348
+      ],
+      "plugin": [
+        0.3556332918999763,
+        0.5673562927740283
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": 0.8691727703941989,
+      "oracle": [
+        -0.4120933089780543,
+        2.0174239819724873
+      ],
+      "plugin": [
+        -0.4907987010406245,
+        1.942306550865931
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": 0.8691727703941989,
+      "oracle": [
+        0.10252909113870423,
+        1.497992725243467
+      ],
+      "plugin": [
+        0.023994418959199848,
+        1.4196155927182987
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": 0.8691727703941989,
+      "oracle": [
+        0.4406182957380169,
+        1.1578845344283595
+      ],
+      "plugin": [
+        0.36215884873728754,
+        1.0794721616558451
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.7,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": 0.8691727703941989,
+      "oracle": [
+        0.6928284802737457,
+        0.9045629747675203
+      ],
+      "plugin": [
+        0.6144112955051257,
+        0.8261564794341787
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 1.0957935944167145,
+      "oracle": [
+        -0.08027134045915396,
+        2.3518579746602644
+      ],
+      "plugin": [
+        -0.17883181175393847,
+        2.2537161833505377
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 1.0957935944167145,
+      "oracle": [
+        0.4338972771857188,
+        1.8304660994239104
+      ],
+      "plugin": [
+        0.33566316854778044,
+        1.7324145028879956
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 1.0957935944167145,
+      "oracle": [
+        0.7717957055645153,
+        1.4895329961546429
+      ],
+      "plugin": [
+        0.673699675042144,
+        1.3915157509282645
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 1.0957935944167145,
+      "oracle": [
+        1.0239007948319365,
+        1.235757041828923
+      ],
+      "plugin": [
+        0.9258810361531378,
+        1.1377577899220652
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": 0.87592004385702,
+      "oracle": [
+        -0.31376029384772863,
+        2.1179323465915463
+      ],
+      "plugin": [
+        -0.5175119873677572,
+        1.9146468201499225
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": 0.87592004385702,
+      "oracle": [
+        0.20095803698018955,
+        1.5973437208207777
+      ],
+      "plugin": [
+        -0.0021987800381300104,
+        1.394387989544862
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": 0.87592004385702,
+      "oracle": [
+        0.5390890693439587,
+        1.2567485978051032
+      ],
+      "plugin": [
+        0.3361851869343706,
+        1.0539311601824846
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": 0.87592004385702,
+      "oracle": [
+        0.7913226308719334,
+        1.0031588207323452
+      ],
+      "plugin": [
+        0.5885587573033622,
+        0.8004173978847788
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": 0.6660026713686786,
+      "oracle": [
+        -0.5113468031743951,
+        1.9200272272127048
+      ],
+      "plugin": [
+        -0.7065731938738784,
+        1.725328485667732
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": 0.6660026713686786,
+      "oracle": [
+        0.003895570832539441,
+        1.4001476924891065
+      ],
+      "plugin": [
+        -0.19084394141030625,
+        1.2056350596405672
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": 0.6660026713686786,
+      "oracle": [
+        0.3422478386922956,
+        1.0598506536012255
+      ],
+      "plugin": [
+        0.1477162376040564,
+        0.8654164620766602
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": 0.6660026713686786,
+      "oracle": [
+        0.5946034668020532,
+        0.8064250277482943
+      ],
+      "plugin": [
+        0.4001871722086694,
+        0.6120340144066514
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 0.8719481346318059,
+      "oracle": [
+        -0.3603860314999521,
+        2.071311303568507
+      ],
+      "plugin": [
+        -0.4453528146046333,
+        1.9870757518202211
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 0.8719481346318059,
+      "oracle": [
+        0.15448338328192968,
+        1.5508710332042304
+      ],
+      "plugin": [
+        0.06976488679395487,
+        1.46646548545887
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 0.8719481346318059,
+      "oracle": [
+        0.49267828437430694,
+        1.2103386505188354
+      ],
+      "plugin": [
+        0.4080653875718703,
+        1.1258598375303421
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 0.8719481346318059,
+      "oracle": [
+        0.744947103524706,
+        0.956783510020256
+      ],
+      "plugin": [
+        0.6603926882504707,
+        0.8722638537306207
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": 0.8775852411973419,
+      "oracle": [
+        -0.354490715161651,
+        2.0772079154153795
+      ],
+      "plugin": [
+        -0.5266047549961215,
+        1.9058136235371794
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": false,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": 0.8775852411973419,
+      "oracle": [
+        0.1603493856407816,
+        1.5567377485531448
+      ],
+      "plugin": [
+        -0.011263035513975339,
+        1.3854349905737813
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": false
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": 0.8775852411973419,
+      "oracle": [
+        0.49853194215946495,
+        1.2161926422251055
+      ],
+      "plugin": [
+        0.3271326529956635,
+        1.044926293468901
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.0,
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": 0.8775852411973419,
+      "oracle": [
+        0.7507939618455097,
+        0.9626304589414412
+      ],
+      "plugin": [
+        0.5795126251929723,
+        0.7913836210302696
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 2.727206338038431,
+      "oracle": [
+        1.7953002050288278,
+        4.232520449051309
+      ],
+      "plugin": [
+        1.4086334968309275,
+        3.8532934022244723
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 2.727206338038431,
+      "oracle": [
+        2.3067921649361205,
+        3.7052102137867333
+      ],
+      "plugin": [
+        1.920412746361782,
+        3.3287271160019927
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 2.727206338038431,
+      "oracle": [
+        2.6435495257311628,
+        3.3620240393946723
+      ],
+      "plugin": [
+        2.2572918539609104,
+        2.9867099385140365
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 2.727206338038431,
+      "oracle": [
+        2.8950222408901176,
+        3.107064117661329
+      ],
+      "plugin": [
+        2.508831879872579,
+        2.721358148495404
+      ],
+      "oracle_covers": false,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": 2.619219982431323,
+      "oracle": [
+        1.642526151122449,
+        4.079311671445597
+      ],
+      "plugin": [
+        1.4776569828716957,
+        3.921515390707212
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": 2.619219982431323,
+      "oracle": [
+        2.1541363136181317,
+        3.5523727698219023
+      ],
+      "plugin": [
+        1.9893380629545394,
+        3.397281630712931
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": 2.619219982431323,
+      "oracle": [
+        2.490944062443468,
+        3.2093415547144275
+      ],
+      "plugin": [
+        2.3261753093270787,
+        3.0554001548755467
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": 2.619219982431323,
+      "oracle": [
+        2.7424447018869333,
+        2.9544667110023717
+      ],
+      "plugin": [
+        2.5776921293114787,
+        2.790181007019478
+      ],
+      "oracle_covers": false,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": 2.5104777957774678,
+      "oracle": [
+        1.5787865746150107,
+        4.015427764562072
+      ],
+      "plugin": [
+        1.356076477150916,
+        3.7996194855289804
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": 2.5104777957774678,
+      "oracle": [
+        2.090432462158045,
+        3.488606358985945
+      ],
+      "plugin": [
+        1.867773280845622,
+        3.275613931798686
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": 2.5104777957774678,
+      "oracle": [
+        2.427255459965731,
+        3.145626042470803
+      ],
+      "plugin": [
+        2.204615787019617,
+        2.933831219415021
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": 2.5104777957774678,
+      "oracle": [
+        2.6787645552117363,
+        2.8907795863305026
+      ],
+      "plugin": [
+        2.4561352536421763,
+        2.66860933088065
+      ],
+      "oracle_covers": false,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 2.627472487866182,
+      "oracle": [
+        1.5054916089348191,
+        3.9419357801069017
+      ],
+      "plugin": [
+        1.173551906019103,
+        3.616905724544866
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 2.627472487866182,
+      "oracle": [
+        2.017190867433243,
+        3.4152851481410575
+      ],
+      "plugin": [
+        1.6855107450323068,
+        3.093246269457163
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 2.627472487866182,
+      "oracle": [
+        2.354036626397222,
+        3.0723738275057624
+      ],
+      "plugin": [
+        2.02246546944962,
+        2.751607210862021
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 2.627472487866182,
+      "oracle": [
+        2.6055583380443803,
+        2.8175648048234656
+      ],
+      "plugin": [
+        2.2740471995141256,
+        2.4865126539647857
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": 2.62535960464278,
+      "oracle": [
+        1.502890370347151,
+        3.939418720319072
+      ],
+      "plugin": [
+        1.3225558437177822,
+        3.766128203376655
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": 2.62535960464278,
+      "oracle": [
+        2.0146020341937465,
+        3.4127286326237236
+      ],
+      "plugin": [
+        1.8344043542596147,
+        3.242252970200653
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": 2.62535960464278,
+      "oracle": [
+        2.351453043588079,
+        3.0698035324547037
+      ],
+      "plugin": [
+        2.171311109760488,
+        2.900523830250811
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.5,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": 2.62535960464278,
+      "oracle": [
+        2.6029776553296475,
+        2.814987499456681
+      ],
+      "plugin": [
+        2.4228661182755893,
+        2.635341778278055
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 2.7314497827349022,
+      "oracle": [
+        1.6691853996951869,
+        4.107484666546121
+      ],
+      "plugin": [
+        1.3201072229477129,
+        3.7644826127792594
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 2.7314497827349022,
+      "oracle": [
+        2.180800105612086,
+        3.5796942725643888
+      ],
+      "plugin": [
+        1.832068774982499,
+        3.235093096048499
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 2.7314497827349022,
+      "oracle": [
+        2.5176099262601124,
+        3.2362566734942524
+      ],
+      "plugin": [
+        2.1690261920321,
+        2.8924209839975497
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 2.7314497827349022,
+      "oracle": [
+        2.7691117485078696,
+        2.9811918435234848
+      ],
+      "plugin": [
+        2.4206097471504577,
+        2.6329590145870343
+      ],
+      "oracle_covers": false,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": 2.6163969186383023,
+      "oracle": [
+        1.5305942602451363,
+        3.9684834567617315
+      ],
+      "plugin": [
+        1.4293469877362064,
+        3.872914349521605
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": 2.6163969186383023,
+      "oracle": [
+        2.0423202617582357,
+        3.4410420853857566
+      ],
+      "plugin": [
+        1.9410785647824884,
+        3.3437587052054187
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": 2.6163969186383023,
+      "oracle": [
+        2.3791775558283526,
+        3.0977510993848956
+      ],
+      "plugin": [
+        2.277937481760473,
+        3.0011797828415343
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": 2.6163969186383023,
+      "oracle": [
+        2.6307056943684586,
+        2.8427669027089477
+      ],
+      "plugin": [
+        2.5294663543826346,
+        2.741778151365196
+      ],
+      "oracle_covers": false,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": 2.5108387719101923,
+      "oracle": [
+        1.449193679080154,
+        3.886981884413725
+      ],
+      "plugin": [
+        1.3936447463377952,
+        3.838034566921223
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": 2.5108387719101923,
+      "oracle": [
+        1.9610071514533374,
+        3.359684550022333
+      ],
+      "plugin": [
+        1.9054621049241423,
+        3.3085028825480842
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": 2.5108387719101923,
+      "oracle": [
+        2.2979016123857603,
+        3.016455625434183
+      ],
+      "plugin": [
+        2.242358396010795,
+        2.9657814371875224
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": 2.5108387719101923,
+      "oracle": [
+        2.5494503179710577,
+        2.7615063967091427
+      ],
+      "plugin": [
+        2.49390815993912,
+        2.706257738457266
+      ],
+      "oracle_covers": false,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 2.6232858134882617,
+      "oracle": [
+        1.461990415589665,
+        3.8997312879544213
+      ],
+      "plugin": [
+        1.2698429993299305,
+        3.7134816230091605
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 2.6232858134882617,
+      "oracle": [
+        1.9737861810855186,
+        3.3724442245243207
+      ],
+      "plugin": [
+        1.7817092774118137,
+        3.1844238242225806
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 2.6232858134882617,
+      "oracle": [
+        2.3106730912023714,
+        3.029219168782304
+      ],
+      "plugin": [
+        2.1186256269702826,
+        2.8418920983232434
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 2.6232858134882617,
+      "oracle": [
+        2.5622176116590465,
+        2.774271682214618
+      ],
+      "plugin": [
+        2.3701863252635462,
+        2.582501211614912
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": 2.6099691516680474,
+      "oracle": [
+        1.447263789351302,
+        3.884981362402871
+      ],
+      "plugin": [
+        1.1178255181607941,
+        3.561212092681026
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": 2.6099691516680474,
+      "oracle": [
+        1.9590666534252765,
+        3.3577156805822916
+      ],
+      "plugin": [
+        1.6298838156673607,
+        3.0324935136398814
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": 2.6099691516680474,
+      "oracle": [
+        2.2959566425503715,
+        3.01449910946993
+      ],
+      "plugin": [
+        1.9668823866170593,
+        2.6900970099069452
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.7,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": 2.6099691516680474,
+      "oracle": [
+        2.5475028826027586,
+        2.7595560517099464
+      ],
+      "plugin": [
+        2.2184887257200643,
+        2.4307929959728867
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 0,
+      "psi": 2.7331145752015704,
+      "oracle": [
+        1.570165750189795,
+        4.010208833213979
+      ],
+      "plugin": [
+        1.6158829589123043,
+        4.057827256210858
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 0,
+      "psi": 2.7331145752015704,
+      "oracle": [
+        2.081901537512981,
+        3.481543267523718
+      ],
+      "plugin": [
+        2.128220113515482,
+        3.5275496368137835
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 0,
+      "psi": 2.7331145752015704,
+      "oracle": [
+        2.4187630695484144,
+        3.137746035899604
+      ],
+      "plugin": [
+        2.4651229413968405,
+        3.183923485181408
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 0,
+      "psi": 2.7331145752015704,
+      "oracle": [
+        2.670293573892752,
+        2.882458780834095
+      ],
+      "plugin": [
+        2.716670024704019,
+        2.9287877941643323
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 1,
+      "psi": 2.61411730559736,
+      "oracle": [
+        1.443551021739074,
+        3.8831378860244428
+      ],
+      "plugin": [
+        1.5718673446077043,
+        4.013782106371259
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 1,
+      "psi": 2.61411730559736,
+      "oracle": [
+        1.9553929699218795,
+        3.3548425821907415
+      ],
+      "plugin": [
+        2.0843829656328072,
+        3.483692600243951
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 1,
+      "psi": 2.61411730559736,
+      "oracle": [
+        2.2922997130832767,
+        3.0112009601201555
+      ],
+      "plugin": [
+        2.421352494668729,
+        3.1401439574659236
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 1,
+      "psi": 2.61411730559736,
+      "oracle": [
+        2.543855261940357,
+        2.7559993735827595
+      ],
+      "plugin": [
+        2.6729353800424525,
+        2.8850507384283244
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 2,
+      "psi": 2.5058047883694767,
+      "oracle": [
+        1.3424639636209763,
+        3.781971253949728
+      ],
+      "plugin": [
+        1.4888137175345983,
+        3.930470461741983
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 2,
+      "psi": 2.5058047883694767,
+      "oracle": [
+        1.8544302688939176,
+        3.2538463905508017
+      ],
+      "plugin": [
+        2.001323244681249,
+        3.400554955757185
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 2,
+      "psi": 2.5058047883694767,
+      "oracle": [
+        2.191389798478804,
+        2.910276707779474
+      ],
+      "plugin": [
+        2.3383210366192495,
+        3.0570811492830368
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 2,
+      "psi": 2.5058047883694767,
+      "oracle": [
+        2.442974545685188,
+        2.655114922041598
+      ],
+      "plugin": [
+        2.589921327118075,
+        2.8020287958125314
+      ],
+      "oracle_covers": true,
+      "plugin_covers": false,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 3,
+      "psi": 2.621159127271911,
+      "oracle": [
+        1.4283072644709653,
+        3.8680227851120716
+      ],
+      "plugin": [
+        1.4417721922300126,
+        3.883843323941729
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 3,
+      "psi": 2.621159127271911,
+      "oracle": [
+        1.9401635241587627,
+        3.3396666045180146
+      ],
+      "plugin": [
+        1.954474979600465,
+        3.353845211117644
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 3,
+      "psi": 2.621159127271911,
+      "oracle": [
+        2.2770764133309846,
+        2.9960001968346504
+      ],
+      "plugin": [
+        2.2915234599670304,
+        3.010340037938189
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 3,
+      "psi": 2.621159127271911,
+      "oracle": [
+        2.5286353795661496,
+        2.7407852616968693
+      ],
+      "plugin": [
+        2.543149751365812,
+        2.755271512638484
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.3,
+      "concept": 4,
+      "psi": 2.6176409071232376,
+      "oracle": [
+        1.4247618287080561,
+        3.8643471406384746
+      ],
+      "plugin": [
+        1.4834313360192635,
+        3.9254902701764642
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.5,
+      "concept": 4,
+      "psi": 2.6176409071232376,
+      "oracle": [
+        1.936634361783578,
+        3.336084040331481
+      ],
+      "plugin": [
+        1.995952792958061,
+        3.3953212837740585
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.7,
+      "concept": 4,
+      "psi": 2.6176409071232376,
+      "oracle": [
+        2.2735540909073597,
+        2.992455435480866
+      ],
+      "plugin": [
+        2.332924056981292,
+        3.051740164020238
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    },
+    {
+      "rho": 0.5,
+      "s_true": 0.9,
+      "s_assumed": 0.9,
+      "concept": 4,
+      "psi": 2.6176409071232376,
+      "oracle": [
+        2.5251168238440975,
+        2.7372609614807475
+      ],
+      "plugin": [
+        2.584507510374335,
+        2.796629179714312
+      ],
+      "oracle_covers": true,
+      "plugin_covers": true,
+      "oracle_wrong_sign": false,
+      "plugin_wrong_sign": false,
+      "oracle_certifies": true,
+      "plugin_certifies": true
+    }
+  ]
+}

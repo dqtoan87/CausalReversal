@@ -1,0 +1,322 @@
+# Causal Analysis of Learning Reversal under Selective Verification in Skin Cancer Classification
+
+**Quang Toan Dao**¹·² (dqtoan@ioit.ac.vn), **Viet Anh Nguyen**¹ (anhnv@ioit.ac.vn)
+
+¹ Institute of Information Technology, Vietnam Academy of Science and Technology, Ha Noi, Viet Nam
+
+² Graduate University of Science and Technology, Vietnam Academy of Science and Technology, Ha Noi, Viet Nam
+
+## Abstract
+
+Skin cancer classifiers learn from labels that exist only where a clinician chose to biopsy. We ask whether this selective verification can reverse the concept contrast a classifier learns, and what is identified about disease. When training lesions are selected on the recorded label and the learner's input, the Bayes-optimal logit shifts by the log selection probability; for biopsy-only training this is the observable log verification propensity among recorded negatives, a diagnostic for trained learners. On 401,059 ISIC-2024 lesions, learners trained on all and on biopsied lesions gave opposite-sign point estimates for color variegation and size. In a post-inspection six-comparison family, Bonferroni-adjusted intervals separated the signs of marginal tertile contrasts for image-feature size under every resampling scheme, and for image-feature color variegation with validation fixed. The label of tabular-feature color variegation was unresolved at the Monte Carlo resolution. The reversal persisted after matching training-set size, and controlled selection with known inclusion probabilities moved each primary concept contrast across zero in both frozen-feature families. Where verified lesions give stronger support, the biopsy-trained contrast stayed negative but the all-lesion contrast of color variegation fell, also after reweighting on five measured concepts. Relative to disease, a floor on malignant verification yields a sharp population identified set, which a stratum formula attains when the concept is part of the learner's input and bounds conservatively otherwise. On ISIC-2024, learner-scale sign certification depended strongly on the recorded-label risk estimator, and a separate post-inspection marginal analysis identified a reversal only under assumptions on malignant verification. Training selection induced by verification can shape the statistical relationship a classifier learns.
+
+**Keywords:** causal inference, selection bias, selective labels, case-control sampling, partial identification, verification bias, skin lesion classification
+
+## I. Introduction
+
+Most labels in medical imaging are verified selectively. A lesion receives a histopathologic diagnosis only if a clinician decided to biopsy it. In ISIC-2024, lesions never linked to a pathology report and not tagged as biopsied were recorded as benign [1]. Only 1,068 of 401,059 lesions carry a tissue diagnosis. Classifiers trained on such data are reported to rival dermatologists [2], yet their labels reflect disease and clinical work-up together.
+
+Selection is usually treated as a problem of estimation or evaluation: verification bias corrupts sensitivity and specificity [3], conditioning on a selection node opens paths that no adjustment set closes [4], and selective labels complicate algorithm evaluation [5]. Less studied is what verification does to the relationship a model learns between a visual feature and disease. A feature can accompany disease and also prompt the decision to biopsy. Training on verified lesions then conditions on that decision [6].
+
+We ask two questions. First, does the selection that produced a training set change the sign of the concept contrast a classifier learns? Second, when the learned sign differs between training regimes, which learner is reversed relative to latent disease, and under which assumption can that be identified? The gap between learners is identified from observed data. The disease contrast on the learner's scale is only partially identified, under an explicit floor on the probability that a malignant lesion is verified. We do not estimate the effect of intervening on a concept.
+
+We make three contributions.
+
+**First, an observable offset for what selected training data teach a learner.** Selecting training data on the recorded label and the input offsets the Bayes-optimal logit by the log selection probability, which for biopsy-based training is the log verification propensity among recorded negatives. The identity belongs to the family of case-control and local case-control offsets [7], [8] and characterizes the Bayes-optimal shift exactly. What we add is its use for selective clinical labels: for trained learners it motivates an observable diagnostic, concept by concept, of the gap between learners trained on all and on verified lesions and of the response to a controlled change in training selection, whose direction and approximate size we test. We place it beside the classical selection bias factor [9], [10] for the disease association.
+
+**Second, evidence that selection on verification can reverse the contrast a classifier learns.** On ISIC-2024, learners trained under the two regimes learn opposite signs for color variegation and size on the full patient-disjoint test population. The strongest multiplicity-adjusted evidence for the marginal tertile contrast is for size with image features; color variegation is the concept whose reversal held under every concept definition, but it does not carry over to regions with stronger verified-training support. The reversal survives a size-matched control. A controlled selection experiment, an analogue of selective verification rather than an intervention on clinical biopsy decisions, moves the learned contrast across zero in the direction the offset predicts; with tabular features the rate approaches the predicted one as the training sample grows.
+
+**Third, conditions under which the biopsy-trained learner is reversed relative to disease.** Methodologically, we define the disease target on the same functional and population as the learned contrast, derive its sharp population identified set under a floor on malignant verification, and give a stratum-based outer set, used for image features, that needs no estimate of how the input predicts the stratum; for sign certification the floor is needed only where the corresponding endpoint enters the bound, and for the marginal association the condition reduces to a bound on one verification ratio. On ISIC-2024, analyzed after the primary results had been seen, these give assumption-indexed sensitivity results, and we report the dependence of the learner-scale result on the nuisance estimator rather than a single threshold. PAD-UFES-20, where every recorded malignancy is biopsied [11], serves as an external consistency check on the attenuating side of the boundary.
+
+## II. Related Work
+
+**Selection bias and its direction.** Epidemiology expresses selection bias as a multiplicative factor on the odds ratio, built from the selection probabilities of the exposure-by-outcome table [9]. Quantitative bias analysis turns that factor into sensitivity parameters [10], [12]. Berkson described selection on a common effect [6]. The direction of collider bias between binary variables has been characterized in closed form [13]. Reversal by selection has been analyzed for the obesity paradox [14], and collider bias affects modern cohorts [15]. Our Lemma 1 restates these results with verification ratios, and we do not claim it as new.
+
+**Case-control and subsampling offsets.** Case-control sampling that depends on the outcome alone leaves logistic slopes unchanged and moves the intercept [7]. Local case-control sampling selects on the outcome and the covariates and corrects the fit by a known offset [8]. Our Proposition 1 is an identity of this family, written for training data selected by clinical verification.
+
+**Selective labels.** When outcomes are observed only after a human decision, evaluation and learning depend on that decision [5], [16]. Expert consistency [17] and selective testing [18] have been used to learn under such selection. Risk prediction under historical testing can be improved with domain constraints such as known prevalence [19]. Bounds on predictive performance under selectively observed outcomes and unobserved confounding use debiased nuisance estimation [20], and fairness has been characterized over the set of good models under selective labels [21]. We do not propose a new bounding framework. We bound a learner-matched logit contrast of disease and connect it to an observable learner reversal.
+
+**Positive-unlabeled learning.** Writing *Y* = *D*·*S* makes every unverified malignancy an unlabeled positive, the structure of positive-unlabeled learning [22], [23], including feature-dependent labeling propensities [24]. We use its decomposition of *q* to bound the disease contrast when the labeling propensity is unknown.
+
+**Verification bias, missing data and shortcuts.** Verification bias in diagnostic accuracy [3] can be corrected under ignorable verification [25]. Graphical criteria address recovery from selection [26] and missing data [27], and learning under feature-dependent [28] and outcome-dependent selection [29] is classical. Dermatology classifiers exploit skin markings [30] and hidden strata [31], shortcut learning is general [32], and acquisition shapes what a model can learn [33].
+
+**Partial identification and probing.** When a parameter is not point identified, one can report the set of values compatible with the data and stated assumptions [34], [35], and learn robustly over such sets [36]. Linear probes [37] and centered kernel alignment [38] serve only in supplementary localization diagnostics.
+
+## III. Method
+
+### A. Causal model
+
+Let *D* be the latent disease state and *X* the lesion's appearance. Concepts are deterministic readings of the image, *C* = *h*(*X*). Diagnosis is anticausal: disease shapes appearance, *D* → *X* → *C*. Let *U* be patient-level risk and surveillance intensity, *G* the acquisition site and *W* clinical information outside the image, such as reported change. A clinician flags lesions of interest (*F*) and biopsies some of them (*S*, with *S* ⊂ *F*). The recorded label is *Y* = *D*·*S*. Fig. 1(a) shows the graph: *U* → *D*, *U* → *X*, *U* → *S*; *G* → *D*, *G* → *X*, *G* → *F*, *G* → *S*; *D* → *X*, *D* → *W*; *X* → *F*, *W* → *F*; *F* → *S*, *X* → *S*, *W* → *S*. Verification depends on disease through *W* and through appearance, so the label is missing not at random. Lesions with *Y* = 0 are recorded negatives. Only those with *S* = 1 are verified benign.
+
+**Fig. 1.** Causal model and reversal regions. (a) Disease shapes appearance, from which concepts are read. Verification depends on appearance, on clinical information outside the image, on the patient and on the site. The recorded label equals disease only where the lesion was verified. Dashed nodes are latent. (b) Regions of Lemma 1 in the plane of the disease contrast θ and the differential verification contrast δ. Reversal of the verified-only association relative to disease occurs above the diagonal for positive θ and below it for negative θ.
+
+A learner does not see *X* itself but an input *X̃*: tabular measurements or image features. A training regime is a selection *R* of lesions into the training sample. M0 trains on all lesions (*R* ≡ 1). M2 trains on verified lesions (*R* = *S*). The identities below use only the variables they name, so they hold for any graph consistent with *Y* = *D*·*S*. The graph describes how the data arose and is not the basis of identification.
+
+### B. Targets
+
+Split concept *k* at its cohort tertiles into lower (*t* = 0) and upper (*t* = 1) strata. For a learner *m*, the **learned contrast** Δ_{m,k} is the mean logit among upper-stratum lesions minus that among lower-stratum lesions, on a fixed evaluation population, averaged over the randomness of training. It is a marginal tertile contrast: it includes differences in correlated concepts between the strata and is not the effect of concept *k* with the others held fixed. We drop *k* when the concept is clear. Write *p*(*x̃*) = P(*D* = 1 | *x̃*). The **disease target** on the same scale and population is
+
+ψ_k = E[logit *p*(*X̃*) | *t* = 1] − E[logit *p*(*X̃*) | *t* = 0].
+
+Because *p* depends on the input, ψ_k is specific to a learner family. The tabular-input and image-feature disease targets are different functionals of the same latent disease.
+
+A **learner reversal** is a difference in sign between Δ_{M0,k} and Δ_{M2,k}. It is observable. The effect of deliberately changing training selection on it can be studied experimentally. A **learner-scale disease-relative reversal** is a difference in sign between Δ_{M2,k} and ψ_k. It can be established only as far as the identified set for ψ_k determines the sign of ψ_k. We also use the marginal disease contrast θ_k = log OR_D between the strata, the classical object of selection bias. A **marginal association reversal** is a positive θ_k with a negative verified-only association log OR_{D|S} (Lemma 1), or the reverse.
+
+### C. The training-selection offset
+
+**Proposition 1 (training-selection offset).** Write *r*_y(*x̃*) = P(*R* = 1 | *Y* = *y*, *x̃*) for the probability that a lesion with recorded label *y* and learner input *x̃* enters training. Then
+
+logit P(*Y* = 1 | *x̃*, *R* = 1) = logit P(*Y* = 1 | *x̃*) + log *r*₁(*x̃*) − log *r*₀(*x̃*).
+
+*Proof sketch.* By Bayes' rule, the odds of *Y* = 1 given *x̃* and *R* = 1 equal P(*Y* = 1 | *x̃*)·*r*₁(*x̃*) divided by P(*Y* = 0 | *x̃*)·*r*₀(*x̃*). Supplementary Section S1 gives the proof. The identity is stated on the learner's own input and uses no disease label.
+
+When *R* is independent of *X̃* given *X* and *Y*, as when selection depends only on appearance and the recorded label, the selection probability averages over what the input does not show: *r*₀(*x̃*) = E[*r*₀(*X*) | *x̃*, *Y* = 0]. Two instances matter here. *Training on verified lesions.* With *R* = *S*, every malignant training lesion is verified, so *r*₁ = 1, and *r*₀(*x̃*) = *g*(*x̃*) = P(*S* = 1 | *x̃*, *Y* = 0), the verification propensity among recorded negatives. No further condition is needed. For Bayes-optimal learners, logit *f*₀ − logit *f*₂ = log *g*, and therefore
+
+Δ_{M0,k} − Δ_{M2,k} = E[log *g*(*X̃*) | *t* = 1] − E[log *g*(*X̃*) | *t* = 0].
+
+A learner reversal occurs exactly when this contrast exceeds the M0 contrast in the same direction. *A controlled selection dose.* If each recorded-negative training lesion enters independently with probability π_η = min{1, κ_η exp(η*z*_k(*X*))}, where *z*_k is the standardized concept and κ_η fixes the expected number, and recorded positives are drawn uniformly, then *r*₀ is known by design. When *z*_k is part of the learner's input, *r*₀(*x̃*) = π_η(*z*_k), and without the cap the contrast of any concept *j* moves linearly, Δ_j(η) = Δ_j(0) − η·μ_{kj}, with μ_{kj} the difference in mean *z*_k between the strata of concept *j*. When the input determines *z*_k only partly, as for image features, *r*₀(*x̃*) = E[π_η(*z*_k(*X*)) | *x̃*, *Y* = 0], which we approximate with a Gaussian model for *z*_k given *x̃* (Supplementary Section S1). Adding a constant to a logit cancels in Δ.
+
+These statements are exact for Bayes-optimal learners. For trained networks they are hypotheses about direction and approximate size, which Section IV tests.
+
+### D. Classical identities for the disease association
+
+**Lemma 1 (verification selection factor).** For the strata of concept *k*, let π_t^d = P(*S* = 1 | *D* = *d*, *t*), *A* = π₁¹/π₀¹, *B* = π₁⁰/π₀⁰ and δ = log *B* − log *A*. Then log OR_{D|S} = θ − δ. For θ > 0, verification amplifies the association if δ < 0, attenuates it if 0 < δ < θ, and reverses it if δ > θ. For θ < 0 the regions mirror, and if θ = 0 verification alone creates an association equal to −δ.
+
+Lemma 1 is the classical selection bias factor [9], [10] with verification ratios, and its reversal region is the known possibility of reversal by selection [13], [14]. *B* is not observable, because π⁰ conditions on latent *D*. What is observed is *B*_V = *g*₁/*g*₀ with *g*_t = P(*S* = 1 | *Y* = 0, *t*). It differs from *B* by a factor close to one when disease is rare, and Supplementary Section S1 bounds it.
+
+Supplementary Section S1 adds Lemma 2: when the log ratio of malignant to benign verification probabilities is linear in *x* with slope λ, a population-optimal verified-only logistic learner shifts the disease coefficients by λ.
+
+### E. Identification of the disease target
+
+Let *q*(*x̃*) = P(*Y* = 1 | *x̃*), σ(*x̃*) = P(*S* = 1 | *x̃*), the overall verification propensity, and *s*(*x̃*) = P(*S* = 1 | *D* = 1, *x̃*), the probability that a malignant lesion with input *x̃* is verified. Assume the pointwise floor *s*(*x̃*) ≥ *s*_min for every *x̃*. This is stronger than a floor on the share of malignant lesions that are verified, which can exceed *s*_min while the pointwise floor fails in part of the input space.
+
+Write *a*_k(*x̃*) = P(*t* = 1 | *x̃*)/P(*t* = 1) − P(*t* = 0 | *x̃*)/P(*t* = 0), so that ψ_k = E[*a*_k(*X̃*) logit *p*(*X̃*)].
+
+**Proposition 2 (identified set for the disease target).** Let *U*(*x̃*) = min{*q*(*x̃*)/*s*_min, *q*(*x̃*) + 1 − σ(*x̃*)}, and let *L*(*x̃*) equal logit *q*(*x̃*) where *a*_k(*x̃*) > 0 and logit *U*(*x̃*) elsewhere, with *H*(*x̃*) defined the other way round. Then ψ_k lies in [ψ_L, ψ_U], with ψ_L = E[*L* | *t* = 1] − E[*L* | *t* = 0] and ψ_U = E[*H* | *t* = 1] − E[*H* | *t* = 0], and with the true *a*_k this population interval is sharp. When *t* is a function of *x̃*, *L* is logit *q* on the upper stratum and logit *U* on the lower one, so ψ_L = E[logit *q* | *t* = 1] − E[logit *U* | *t* = 0] and ψ_U = E[logit *U* | *t* = 1] − E[logit *q* | *t* = 0]. For any other input these stratum formulas remain valid outer bounds. The sign of ψ_k is identified as positive when ψ_L > 0 and as negative when ψ_U < 0.
+
+*Proof sketch.* Pointwise, *p* = *q*/*s* lies between *q* and *U*, and both endpoints are attained. ψ_k increases in logit *p* where *a*_k > 0 and decreases where *a*_k < 0, so its extremes combine the endpoints by the sign of *a*_k. The stratum formulas assign endpoints by observed stratum instead, which can only widen the interval. Supplementary Section S1 gives the proof. With the stratum formula and small *q*, ψ_L ≈ Δ_q + log *s*_min, where Δ_q = E[logit *q* | *t* = 1] − E[logit *q* | *t* = 0] is the contrast of a calibrated M0. The sign of ψ_k is then identified once *s*_min exceeds the population tipping floor *s*∗ ≈ exp(−Δ_q), and a biopsy-trained learner with a negative contrast is reversed relative to disease above that floor.
+
+The floor enters ψ_L only through *U*, where *a*_k < 0. A positive sign therefore needs the floor only there, and with the stratum formula only on inputs that occur in the lower stratum. We state the floor for every *x̃* for simplicity. The tabular input contains the five concepts, so the stratum formula is sharp for the tabular-input target. Image features determine the concept only partly, so for the image-feature target we report the stratum formula as an outer set, which needs no estimate of *a*_k.
+
+Proposition 2 assumes *q* and σ known. On ISIC-2024 we replace *q* by the calibrated M0 and σ by an out-of-fold model, which gives a plug-in estimate of the identified set. Sharpness does not carry over to it, and the bootstrap describes its sampling variability for a given nuisance specification, not whether that specification is correct. The primary plug-in uses the Platt calibration applied to every learner in this paper. No estimator of *q* is privileged by theory, so we report three under one bootstrap. The smallest floor at which the plug-in lower endpoint is positive is the plug-in tipping floor, and the smallest floor at which it is positive in at least 95 percent of bootstrap replicates is the bootstrap stability threshold. Both describe the plug-in procedure under one nuisance specification; neither is a floor identified from the data.
+
+### F. Data and learners
+
+**Cohorts.** ISIC-2024 contains 401,059 lesion tiles from 1,042 patients [1]. A lesion identifier marks 22,058 clinician-tagged lesions (*F*). Of these, 1,068 carry histopathology (*S*) and 393 are recorded malignant (*Y*). Every malignant label is histopathologically confirmed, and lesions never linked to pathology were recorded as benign [1], so the release follows *Y* = *D*·*S*. PAD-UFES-20 contains 2,298 smartphone images of 1,641 lesions from 1,373 patients [11]. Basal cell carcinoma, squamous cell carcinoma and melanoma form the malignant class, and actinic keratosis, nevus and seborrheic keratosis the non-malignant class. Placing actinic keratosis, a premalignant lesion, in the non-malignant class is a binary mapping chosen for this analysis. Every image recorded as malignant was biopsied, and non-malignant lesions that were not biopsied carry a clinical diagnosis.
+
+**Concepts.** We use five concepts from the total-body photography metadata: color variegation, size, lesion-skin contrast, asymmetry and border irregularity. The first three are primary, following clinical dermoscopy criteria [39].
+
+**Split and regimes.** Patients were split 60/20/20 into train, validation and test, stratified by whether a patient had any malignant label. The test population holds 78,625 lesions from 209 patients. M2 is trained on 622 verified training lesions, of which 222 are malignant. Every malignant training lesion is verified, so the two regimes differ only in the size of the training set and in the source of its recorded negatives.
+
+**Learner families.** (i) A two-layer perceptron on 47 tabular features. (ii) The same perceptron on frozen ResNet-50 ImageNet features [40]. (iii) A linear probe on the frozen ResNet-50. (iv) ResNet-50 fine-tuned end to end. M0 and M2 share every setting except the training lesions. The two frozen-feature families are primary. Supplementary Section S5 lists every setting.
+
+### G. Analyses and inference
+
+**Primary inference.** The primary family is the three primary concepts in the two frozen-feature families, six comparisons. Point estimates average three seeds of the original fits. Each of 5,000 joint bootstrap replicates per family resamples training patients, refits M0 and M2 with three seeds, calibrates them on the validation set, resamples test patients and averages the three seeds, so the bootstrap statistic is the point estimator itself. This inference conditions on the realized validation set. A second analysis with 5,000 replicates per family and one seed per replicate targets the randomized one-seed training procedure and serves as a higher-resolution check. Two sensitivity analyses resample training, validation and test patients together, in 1,000 replicates per family, or subsample patients without replacement. A learner reversal is called Bonferroni sign-separated when the Bonferroni-adjusted percentile intervals of Δ_M0 and Δ_M2, at level 1 − 0.05/6, lie on opposite sides of zero; the label is descriptive and not a confirmatory test. The label refers to the tertile definition and, unless stated otherwise, to the fixed validation set. Secondary concepts are reported with 95 percent intervals and are not part of the multiplicity family. The Bonferroni endpoints lie in the extreme tails, so we resampled the stored replicates 2,000 times and call a label resolved at the Monte Carlo resolution when at least 95 percent of these resamples reproduce it. Every other joint interval in the paper refits one seed per replicate and so targets the randomized one-seed training procedure: the support-restricted contrasts of Section IV-D and Table 2, the gap analyses of Section IV-C and Fig. 3(b), and Table 3. For the linear-probe and fine-tuned families, intervals resample test patients only and condition on the fitted models.
+
+**Status of analyses.** An analysis lock fixed the primary and secondary outcomes after the primary comparison had first been inspected and before the analyses that test alternative explanations. It is a structured post-inspection plan, not a preregistration, and the primary analysis is partly data-informed. The Bonferroni adjustment controls multiplicity within this locked six-comparison family only, so it does not make the primary inference confirmatory. The alternative concept definitions and learner families are robustness analyses of the same lesions and are not independent tests. Every other analysis in Sections IV-B to IV-F, apart from the size-matched control, was added after the primary results had been seen, including the marginal analysis of Section IV-F, and color variegation was chosen as the worked example at that stage.
+
+**Checks and simulation.** Symbolic and unit-test checks verify the algebra and the code, and a phase diagram checks Lemmas 1 and 2 on 648 populations (Supplementary Section S2 and Section S3). Simulations test the plug-in set of Proposition 2 in synthetic populations, in an adversarial design with an overstated floor, and in semi-synthetic designs on the real ISIC-2024 inputs, including one where the floor fails where verification is rarest.
+
+## IV. Results
+
+### A. Learner reversal on ISIC-2024
+
+Table 1 reports the learned contrasts. Under the primary rule, with 5,000 joint resamples per family of the three-seed average, the learner reversal was Bonferroni sign-separated, with a label resolved at the Monte Carlo resolution, in 2 of the 6 primary cells: color variegation with image features and size with image features. In the other three primary cells, whose labels were resolved, the Bonferroni interval of Δ_M0 reached zero once training variability was included. The 95 percent interval of the gap Δ_M0 − Δ_M2 excluded zero in 10 of the 10 primary and secondary cells, so the direction of the gap is more stable than the full reversal. The Monte Carlo standard error of the Bonferroni endpoints was at most 0.07; for color variegation with tabular features the lower Bonferroni endpoint of Δ_M0 was +0.01, so the two intervals were sign-separated in the full set of replicates, but this label was reproduced in only 72 percent of Monte Carlo resamples, and we report it as unresolved. The 5,000-replicate one-seed analysis, which targets the randomized one-seed training procedure, gave the same labels except for color variegation with tabular features, whose one-seed Bonferroni interval of Δ_M0 was [−0.15, 2.08], with Monte Carlo standard errors of at most 0.06 (Supplementary Section S6). Resampling validation patients as well, in 1,000 one-seed replicates per family, left every label of Table 1 unchanged except color variegation with tabular features and color variegation with image features, whose Bonferroni interval of Δ_M0 then reached zero. Half-sampling patients without replacement reversed no label; we use it only as this check (Supplementary Section S6). Fig. 2 shows all four families. The linear-probe and fine-tuned families also reversed color variegation, with no test bootstrap resample of the same sign, conditional on the fitted models. The two concepts are robust along different axes. Size with image features is the strongest multiplicity-adjusted result but rests on the tertile definition: with slope definitions its M2 contrast was −0.02 and, within patients, +0.01. Color variegation reversed under all seven concept definitions in all four families (Supplementary Section S4). Balancing the tertiles on the other four measured concepts, a different estimand, removed the reversal of size with image features (M0 +0.09, M2 +0.30) and nearly that of color variegation with image features (M2 −0.07), whereas color variegation with tabular features kept separated signs. These intervals condition on the fitted learners and are not part of the primary joint-bootstrap multiplicity analysis (Supplementary Section S6).
+
+**TABLE 1. Learned contrasts on the ISIC-2024 test population, frozen-feature families. Point estimates average three seeds of the original fits. Intervals come from 5,000 joint bootstrap resamples of training and test patients, each refitting both learners with three seeds and averaging them as for the point estimate. The primary family is the six cells in the upper block. Its intervals are Bonferroni-adjusted percentile intervals at level 1 − 0.05/6, and the Bonferroni sign-separated label is judged by them. Resampling the stored replicates, the Monte Carlo standard error of the endpoints was at most 0.07, and 5 of the 6 primary labels were reproduced in every Monte Carlo resample; the label of color variegation with tabular features (72 percent) is marked unresolved at this Monte Carlo resolution (Supplementary Section S6). The lower block is secondary and shows 95 percent intervals. The same-sign count is descriptive and is not a test. Early stopping and calibration used the fixed validation set, so these intervals condition on it. Supplementary Section S6 repeats the analysis with validation patients resampled.**
+
+| Block | Concept | Features | Δ_M0 [interval] | Δ_M2 [interval] | Δ_M0 minus Δ_M2 [95% CI] | Same-sign resamples | Bonferroni sign-separated |
+| --- | --- | --- | --- | --- | --- | ---: | --- |
+| Primary | Color variegation | tabular | +1.02 [0.01, 1.88] | −0.95 [−1.50, −0.51] | +1.97 [1.23, 2.57] | 19 of 5,000 | unresolved (yes in the full set) |
+| Primary | Size | tabular | +0.65 [−0.25, 1.38] | −0.46 [−0.79, −0.07] | +1.12 [0.37, 1.55] | 182 of 5,000 | no |
+| Primary | Lesion-skin contrast | tabular | +0.52 [−0.76, 1.60] | −1.50 [−2.17, −0.92] | +2.02 [1.09, 2.68] | 815 of 5,000 | no |
+| Primary | Color variegation | image | +1.64 [0.26, 2.33] | −0.66 [−1.24, −0.42] | +2.30 [1.36, 2.81] | 3 of 5,000 | yes |
+| Primary | Size | image | +1.56 [0.55, 2.10] | −0.32 [−0.72, −0.16] | +1.89 [1.17, 2.35] | 0 of 5,000 | yes |
+| Primary | Lesion-skin contrast | image | +1.01 [−0.63, 1.93] | −1.07 [−1.88, −0.73] | +2.09 [1.00, 2.78] | 481 of 5,000 | no |
+| Secondary | Asymmetry | tabular | −0.29 [−1.28, 0.72] | +1.36 [0.99, 1.91] | −1.65 [−2.60, −0.84] | 1,518 of 5,000 | no |
+| Secondary | Border irregularity | tabular | −0.19 [−1.26, 0.86] | +1.51 [1.12, 2.09] | −1.71 [−2.73, −0.84] | 1,875 of 5,000 | no |
+| Secondary | Asymmetry | image | −0.50 [−0.97, 0.62] | +1.09 [0.90, 1.68] | −1.59 [−2.20, −0.71] | 1,651 of 5,000 | no |
+| Secondary | Border irregularity | image | −0.09 [−0.63, 1.04] | +1.18 [0.96, 1.80] | −1.27 [−1.93, −0.36] | 3,341 of 5,000 | no |
+
+**Fig. 2.** Learned contrasts under the two training regimes on one test population. Circles are M0, trained on all lesions with the recorded label. Triangles are M2, trained on verified lesions only. The four panels are the four learner families, and the horizontal scale differs between panels. Bars are test-only bootstrap intervals conditional on the fitted models, unlike the joint intervals of Table 1.
+
+### B. The reversal follows the selection of recorded negatives
+
+Table 2 summarizes the tests of alternative explanations, and Supplementary Section S6 reports each in full.
+
+A size-matched control combined the same malignant lesions with 320 recorded negatives per replicate. For color variegation and size, in both families, the contrast was positive in 20 of 20 replicates when the recorded negatives were drawn at random and negative in 20 of 20 when they were verified ones. For color variegation it was also negative in 20 of 20 when they were flagged but never biopsied. This argues against training-set size as the explanation for these two concepts. For lesion-skin contrast with image features the random arm was itself close to zero, so the control does not separate size from selection there. Proposition 1 predicted the sign of the shift from the random arm in 20 of 20 cases, with mean absolute differences in size from 0.05 to 0.63.
+
+A controlled selection dose changed only which recorded negatives entered training (Fig. 3(a)). For η from −1 to 1 and 320 selected recorded negatives, the selected contrast crossed zero in 6 of 6 combinations of concept and family, and the contrasts of the five concepts moved in the predicted direction in 28 of the 30 combinations of selected and responding concept. With tabular features the selected contrast fell at 1.24 to 1.31 times the rate predicted from the known inclusion probabilities, and for color variegation the ratio fell to 1.14 [1.09, 1.19] with 1,000 and 1.01 [0.95, 1.06] with 3,000, consistent with a finite-sample excess. With image features, whose prediction needs a regression of the concept on the features, the ratio was 0.93 to 0.99 with ridge or perceptron estimates but fell to 0.70 and 0.72 with 1,000 and 3,000. The learning curve thus does not validate the Gaussian approximation in magnitude, and for image features we claim the direction and the crossing only.
+
+**Fig. 3.** Controlled selection and the learner gap. (a) Calibrated learned contrast for color variegation against the selection dose η, with each recorded-negative training lesion included independently with known probability, for tabular and image learners, with 320 selected recorded negatives. Points are means over 20 replicates, with 2.5 to 97.5 percentile ranges. Dashed lines are the response of Proposition 1 given each learner's input, anchored at η = 0, with a ridge estimate of the conditional concept mean for image features. (b) Observed against predicted learner gap Δ_M0 − Δ_M2 for the five concepts and both frozen-feature families, after calibration. Points are medians over 200 joint resamples, and bars are 95 percent percentile intervals. The line is the identity.
+
+**TABLE 2. Tests of alternative explanations. Size-matched and dose intervals are 2.5 and 97.5 percentiles over training replicates. Other intervals come from joint bootstrap resamples of training and test patients with one seed per replicate, which target the one-seed training procedure rather than the three-seed statistic of Table 1.**
+
+| Check | Setting | Result |
+| --- | --- | --- |
+| Size-matched control, color variegation | tabular; recorded negatives from all / flagged / verified lesions | +1.22 [0.60, 2.14] / −0.79 [−1.21, −0.38] / −0.94 [−1.12, −0.70]; positive in 20 / 0 / 0 of 20 |
+| Size-matched control, color variegation | image; same three sources | +0.59 [0.31, 0.90] / −0.82 [−1.05, −0.58] / −0.63 [−0.81, −0.40]; positive in 20 / 0 / 0 of 20 |
+| Selection dose, known inclusion probabilities | tabular; 320 selected recorded negatives; color variegation, then ratio over three concepts | −2.58 [−3.37, −2.01] against −2.09; ratio 1.24 to 1.31 |
+| Selection dose, known inclusion probabilities | image; 320 selected recorded negatives; color variegation, then ratio over three concepts, ridge conditional mean | −1.01 [−1.22, −0.85] against −1.03; ratio 0.94 to 0.99 |
+| Selection dose, learning curve | tabular; color variegation; 1,000 and 3,000 selected recorded negatives | ratio 1.14 [1.09, 1.19] and 1.01 [0.95, 1.06] |
+| Verified against random recorded negatives, predicted shift | tabular; five concepts | sign 5 of 5; calibration slope 1.38 |
+| Verified against random recorded negatives, predicted shift | image; five concepts | sign 5 of 5; calibration slope 0.53 |
+| Proposition 1, lesion-level gap on log ĝ | tabular; calibrated; least squares, then split-sample errors-in-variables diagnostic | 0.89 [0.67, 1.09]; 1.33 [1.01, 1.69] |
+| Proposition 1, lesion-level gap on log ĝ | image; calibrated; least squares, then split-sample errors-in-variables diagnostic | 0.86 [0.66, 1.08]; 1.32 [0.92, 1.75] |
+| Within-patient against between-patient verification, color variegation | recorded negatives; log odds per standard deviation | +0.93 (SE 0.04) against +0.10 (SE 0.15) |
+| Verified-benign contrast across sites, color variegation | 5 estimable sites | pooled log *B*_V 1.70 [1.17, 2.23]; I² = 0.74 |
+| Overlap sensitivity, color variegation, common tabular σ̂ | tabular; Δ_M0 against Δ_M2 | 1st percentile +0.35 against −1.04; 5th percentile −0.05 against −1.27; 10th percentile −0.13 against −1.31 |
+| Overlap sensitivity, color variegation, common tabular σ̂ | image; Δ_M0 against Δ_M2 | 1st percentile +0.78 against −0.70; 5th percentile +0.13 against −0.81; 10th percentile +0.34 against −0.84 |
+| PAD-UFES-20 learners | six symptoms / image color | 6 of 6 attenuated, P(signs differ) at most 0.04 / +2.06 [1.47, 2.84] to +0.70 [0.22, 1.23] |
+
+### C. The learner gap follows the recorded-negative verification propensity
+
+Proposition 1 is exact only for Bayes-optimal learners, so for trained networks we test direction first. The predicted concept-level gap had the observed sign in at least 97.5 percent of joint resamples in 10 of 10 combinations of concept and family with a perceptron for ĝ and 10 of 10 with gradient boosting. Magnitude depended on the propensity model, with calibration slopes of observed on predicted gap of 0.82 to 1.43 and 1.81 to 1.97. Lesion by lesion, the calibrated logit gap rose with log ĝ with slope 0.89 [0.67, 1.09] and 0.86 [0.66, 1.08]. Even where the identity holds exactly, in a semi-synthetic design, these slopes ranged from 0.83 to 1.35 across propensity models (Supplementary Section S2). The evidence supports directional correspondence across propensity models, and approximate size only for some.
+
+Verification of recorded negatives depended on appearance mainly within patients: a one standard deviation increase in color variegation relative to the patient's own lesions raised the log odds of verification by 0.93 (SE 0.04), against 0.10 (SE 0.15) for the patient's mean. This describes a verification pattern, consistent with clinicians biopsying a patient's atypical-looking lesions, and does not identify the clinical mechanism. The verified-benign contrast log *B*_V for color variegation was positive in all 5 acquisition sites where it could be estimated, with a pooled value of 1.70 [1.17, 2.23] and substantial heterogeneity (I² = 0.74); two further sites were not estimable (Supplementary Section S6). Removing any single site left both signs unchanged.
+
+### D. Overlap
+
+M2 learns from verified lesions but is evaluated on the whole test population, which could force extrapolation. We restrict it to lesions whose estimated verification propensity σ̂ reaches the 1st, 5th or 10th percentile among verified training lesions. The theory-matched σ̂ is a perceptron on each learner's own input, as in Proposition 2; a gradient-boosting estimate on the tabular features gives a common clinical support that admits joint intervals. With the input-matched estimate, which kept 19 to 73 percent of test lesions, M2 stayed below zero throughout in test-patient intervals conditional on the fitted learners, whereas the M0 contrast of color variegation was positive at the 1st percentile threshold but between −0.82 and −0.29 at the 5th and 10th. Size with image features kept 95 percent intervals on opposite sides of zero at every threshold under every estimate of σ. Under the common tabular estimate, whose thresholds kept 68, 36 and 23 percent of test lesions, joint intervals are available: the M2 contrast stayed below zero in 18 of the 18 combinations of primary comparison and threshold, whereas the M0 contrast was smaller than on the full population in 18 and its interval reached zero in 15 (Table 2 and Supplementary Section S6). Restriction also changes the composition of each tertile. Reweighting the supported lesions of each tertile to the full-population distribution of the five measured concepts did not restore the M0 contrast of color variegation in any of the nine settings: it ranged from −0.44 to +0.78 with tabular and from −0.82 to +1.00 with image features, against +1.02 and +1.64 on the full population, whereas the reweighted M2 contrast stayed between −1.25 and −0.65 (Supplementary Section S6). The loss of the color learner reversal in better-supported regions was thus accompanied by a smaller M0 contrast among lesions that are more likely to be verified, and the M0 contrast was not restored after standardizing the supported lesions on the five measured concepts under this weighting model. The full-population reversal describes prediction on the deployment population; the thresholds are a support-restricted sensitivity analysis, not a proof of positivity.
+
+### E. External consistency check on PAD-UFES-20
+
+On PAD-UFES-20, every image recorded as malignant was biopsied, so *A* = 1 under the recorded-diagnosis operationalization and Lemma 1 then reduces to log OR_{D|S} = θ − log *B*. Verification attenuated ten of eleven association features, amplified one and reversed none (Fig. 4). The learner contrasts showed the same qualitative attenuation. With patients split 60/20/20, M2 trained on the 814 biopsied training images had a smaller contrast than M0 for all six symptoms, and for image color variegation the contrast fell from +2.06 [1.47, 2.84] to +0.70 [0.22, 1.23]. The cohorts differ in modality, population, prevalence and workflow, so PAD-UFES-20 illustrates the attenuating regime of Lemma 1 and validates neither the mechanism on ISIC-2024 nor Lemma 1 for latent disease. If some clinically diagnosed lesions were malignant, *A* would fall below one by an amount the data do not identify.
+
+**Fig. 4.** ISIC-2024 and PAD-UFES-20 in the plane of Lemma 1. Diamonds are the eleven PAD-UFES-20 association features, placed at *A* = 1 under the recorded-diagnosis operationalization; for latent disease *A* is not identified. Open circles are reference positions of the three primary ISIC-2024 concepts under the assumption *A* = 1. Segments show how each reference moves as *A* ranges over [0.5, 2]. They are sensitivity paths, not confidence intervals, and the two cohorts are not matched counterfactuals of each other.
+
+### F. Reversal relative to disease: an assumption-indexed sensitivity analysis
+
+The tabular-input and image-feature disease targets are different functionals, so agreement between the two families is not replication of one estimand. With the primary plug-in, the Platt-calibrated M0, the lower endpoint for color variegation became positive at a floor of 0.38 for the tabular-input target and 0.49 for the image-feature target. Resampling training, validation and test patients together, the bootstrap stability threshold was 0.82 for both targets, with Monte Carlo ranges of [0.79, 0.85] and [0.81, 0.86], for this specification of *q* only. At a floor of 0.8, ψ_L was positive and Δ_M2 negative in the same replicate in 940 and 931 of 1,000 replicates. For the image-feature target these floors come from the stratum formula, an outer set, because the sharp set needs the true sign of *a*_k. An exploratory estimated-weight approximation produced narrower bounds, but its finite-sample validity and weight-estimation uncertainty were not established, so it is not used for certification (Supplementary Section S7). For the tabular-input target the two coincide.
+
+The plug-in tipping floor moved with the estimator of *q* far more than with sampling (Table 3). The point floor for the tabular-input target was 0.28 with isotonic calibration and 0.75 with gradient boosting, against 0.38 with Platt calibration, and 0.58 and 0.84 against 0.49 for the image-feature target. With gradient boosting for the image-feature target the point floor was 0.84, but no floor up to one made ψ_L positive in 95 percent of replicates, so nuisance uncertainty cannot be summarized by one threshold. Gradient boosting had the poorest calibration of tertile-level event counts among the three and the most conservative tipping behavior (Supplementary Section S7); we report it as a sensitivity specification rather than privileging any nuisance model. Calibration approximately matches aggregate event risk, a sum of *q*, but not the mean of logit *q*, which is steep near zero: in the lower tertile of color variegation with tabular features, Platt and isotonic calibration expected 26.9 and 25.3 events against 25 observed, yet their mean logit *q* differed by 1.48 (Supplementary Section S7). The logit-scale target is thus empirically unstable to the estimator of *q* in the rare-event tail.
+
+**TABLE 3. Estimator-indexed sensitivity analysis: plug-in point tipping floor and bootstrap stability threshold for color variegation under three estimates of q, with training, validation and test patients resampled together in 1,000 replicates per family. All sets use the stratum formula, sharp for tabular inputs and an outer set for image features. The point value uses the seed-averaged curve of ψ_L. The bootstrap stability threshold is the smallest floor at which the plug-in ψ_L is positive in at least 95 percent of replicates, with a Monte Carlo range from 500 resamples of the replicates. It describes sampling variability for one estimate of q and is not a confidence bound for ψ. Gradient boosting is reported as a sensitivity specification, and the range across rows is a range across specifications, not a statistical uncertainty interval. The joint count of replicates with ψ_L > 0 at a floor of 0.8 and Δ_M2 < 0 is a resampling frequency, not a probability that a learner-scale disease-relative reversal holds. Log-loss is on the test population for the original fits.**
+
+| Features | Estimate of q | Plug-in point tipping floor | Bootstrap stability threshold [Monte Carlo range] | Joint count at 0.8 | Test log-loss |
+| --- | --- | ---: | --- | ---: | ---: |
+| tabular | perceptron, Platt | 0.38 | 0.82 [0.79, 0.85] | 940 of 1,000 | 0.0058 |
+| tabular | perceptron, isotonic | 0.28 | 0.80 [0.76, 0.82] | 956 of 1,000 | 0.0060 |
+| tabular | gradient boosting, Platt | 0.75 | 0.97 [0.96, 0.97] | 174 of 1,000 | 0.0074 |
+| image | perceptron, Platt | 0.49 | 0.82 [0.81, 0.86] | 931 of 1,000 | 0.0071 |
+| image | perceptron, isotonic | 0.58 | 0.85 [0.84, 0.87] | 881 of 1,000 | 0.0071 |
+| image | gradient boosting, Platt | 0.84 | none | 5 of 1,000 | 0.0075 |
+
+
+Proposition 2 identifies a population set, but its plug-in estimate need not be reliable. An overstated floor certified the wrong sign in 20 percent of adversarial synthetic settings even with true nuisances. In semi-synthetic designs on the ISIC-2024 inputs, with disease risk built from the perceptron or from gradient boosting, no false-sign certification occurred at the true floor, but the plug-in sets contained the true target in only 62 to 96 percent of settings, with lower endpoints mostly below the oracle ones (mean differences −0.22 to +0.01), so they have no demonstrated nominal coverage. When the floor failed only among the 30 percent of lesions with the lowest verification propensity, even the oracle set contained the true target in only 50 to 75 percent of settings (Supplementary Section S2).
+
+A post-inspection whole-cohort marginal sensitivity analysis concerns a different estimand from ψ on a different population. Because RR_Y = RR_D·*A* exactly (Supplementary Section S1), the disease risk ratio exceeds one when *A* < RR_Y, and a floor π₀¹ ≥ *s*_min on the average malignant verification in the lower tertile alone gives *A* ≤ 1/*s*_min. The analysis uses counts only, so we compute it on the whole cohort. For color variegation RR_Y was 1.97 [1.48, 2.59], whereas the verified-only log odds ratio was −0.93 [−1.26, −0.57]. This marginal association reversal held in 1,913 of 2,000 patient-cluster resamples at a lower-tertile floor of 0.65, the smallest on a grid of step 0.05 reaching 95 percent, which corresponds on the continuous *A* scale to about 1.55. On the test population alone the corresponding floor was 0.95. Under a common lower-tertile floor assumed to hold within every observed site, the site-standardized whole-cohort floor was 0.62, and leaving out one site at a time it ranged from 0.40 to 0.76. The association was heterogeneous across sites: in the two sites with the most malignant lesions the risk ratios were 1.26 and 1.31, implying point floors of 0.79 and 0.76 (Supplementary Section S7). Whether such a floor is plausible depends on how appearance dependence is transported from benign to malignant verification, which the data cannot identify. The crude whole-cohort benign ratio *B*_V was 4.96 [3.94, 6.25]. On a ratio scale this would exceed every *A* compatible with π₀¹ above 0.20; with the same logit gradient, log *B*_V, *A* stays below 1.55 once π₀¹ ≥ 0.56 (Supplementary Fig. S4). Both are benchmarks, not estimates of *A*.
+
+## V. Discussion
+
+**What the evidence supports.** A controlled change in training selection changed the sign of what a classifier learned. The observed reversal between M0 and M2, which persisted when training-set size was matched, is consistent with a selection-driven explanation but is not a randomized contrast. The gap between learners had the sign predicted from the recorded-negative verification propensity for every concept. In a post-inspection whole-cohort sensitivity analysis, the verified-only association of color variegation was reversed relative to disease under a lower-tertile floor on malignant verification whose plausibility these data cannot check. The result describes the observed mixture of acquisition sites; it varied across observed sites, and the present analysis does not identify or validate transport to a new site.
+
+**Why two concepts carry the evidence.** Size and color variegation are robust along different axes, and in the fitted-model balanced sensitivity analysis only tabular color variegation retained separated signs (Section IV-A). We chose color variegation as the worked example after seeing the primary results; it is not the strongest multiplicity-adjusted result.
+
+**What the evidence does not support.** We do not claim that verification always reverses learned relationships; in the phase diagram it did not when benign verification depended weakly on appearance. We do not claim a Bonferroni sign-separated learner reversal for every concept, or a reversal of color variegation within better-supported regions, where the M0 contrast fell and could turn negative. We do not claim a learner-scale disease-relative reversal. That conclusion needs a floor on malignant verification over the relevant part of the input space, including where verification is rarest, which this cohort cannot check, and a specification of the recorded-label risk, which moved the plug-in tipping floor. Because the plug-in set often missed the true target in simulation even under a valid floor, practical use of the bound needs better estimation of the rare-event tail, or more events, and not only a defensible floor. The controlled experiment intervenes on training selection, not on clinical biopsy decisions. Localization diagnostics on the fine-tuned encoders found no evidence of a general representation-level reversal (Supplementary Section S5).
+
+**Threats to validity.** *Latent disease.* Outside the verified set *D* is unobserved, and statements about the disease target rest on the verification floor. *Concepts.* The concepts are measurements from total-body photography, and the results apply to them as measured. *Reference standard.* In PAD-UFES-20, *A* = 1 holds for recorded diagnoses only. *Inference.* The test population holds 209 patients, and site-level heterogeneity in verification was substantial. Fine-tuning under M0 was unstable across seeds, which is why that family is secondary. *Estimation.* The width of the identified set under the floor does not shrink with more data. A floor that fails only where verification is rarest lowered even the oracle containment (Section IV-F), and the two-floor analysis of Supplementary Section S7 parameterizes this assumption more flexibly without testing it. The bootstrap measures only the sampling variability of the plug-in set for a given specification of *q*, and the choice among specifications moved the plug-in tipping floor more than sampling did.
+
+**Implications.** Concept attributions of a classifier trained on biopsied lesions should not be read as statements about disease, nor marginal concept contrasts as isolated concept effects, and comparisons across data sets should record how each was verified. The selection propensity can be estimated only if a data set records the full cohort of candidate lesions with an indicator of biopsy. Recording the clinical reasons for biopsy would help further, but would make disease risk point identifiable only if verification were independent of disease given the recorded information.
+
+## VI. Conclusion
+
+We asked whether selective verification changes what a classifier learns. The training-selection offset is exact for Bayes-optimal learners and observable for biopsy-based training; for trained learners it served as a diagnostic whose direction held and whose size was approximate. On ISIC-2024, the two regimes gave color variegation and size contrasts of opposite sign on the full test population; the size reversal was the most stable across the reported resampling schemes, and the color reversal across concept definitions but not under restriction to better-supported regions. A controlled change in training selection reproduced the shift in the predicted direction, and with tabular features at a rate that approached the predicted one as the training sample grew. Under a post-inspection sensitivity assumption that lower-tertile malignant verification exceeded a floor, the marginal analysis implied a disease association of the opposite sign to the verified-only association of color variegation, for the observed site mixture. On the learner's own scale, Proposition 2 identifies a population set for the learner-input-specific disease contrast under the stated floor, but on ISIC-2024 only a plug-in sensitivity result is available, and the floor at which it certifies the disease sign moved with the estimator of the recorded-label risk, so the cohort does not establish a learner-scale disease-relative reversal. Training selection induced by verification can therefore become part of the statistical relationship a classifier learns, not only a filter on how it is evaluated.
+
+## Statements
+
+**Data availability.** Both data sets are public. ISIC-2024 is distributed through the ISIC Archive [1] and PAD-UFES-20 through Mendeley Data [11]. No new patient data were collected.
+
+**Code availability.** The scripts that produce every number, table and figure in this paper, the symbolic checks, the unit tests and the analysis lock are available at https://github.com/dqtoan87/CausalReversal. Supplementary Section S8 maps each result to its script.
+
+**Ethics.** This is a secondary analysis of two de-identified public data sets released under the approvals documented by their providers. No further approval was required.
+
+**Author contributions.** Quang Toan Dao designed the study, derived the theory, implemented the pipeline, ran the analyses and drafted the manuscript. Viet Anh Nguyen supervised the study and revised the manuscript.
+
+**Funding.** This work received no specific grant from any funding agency.
+
+**Conflicts of interest.** The authors declare no competing interests.
+
+## References
+
+[1] Kurtansky, N. R., D'Alessandro, B. M., Gillis, M. C., Betz-Stablein, B., Cerminara, S. E., Garcia, R., … & Rotemberg, V. (2024). The SLICE-3D dataset: 400,000 skin lesion image crops extracted from 3D TBP for skin cancer detection. *Scientific Data*, *11*(1), 884.
+
+[2] Esteva, A., Kuprel, B., Novoa, R. A., Ko, J., Swetter, S. M., Blau, H. M., & Thrun, S. (2017). Dermatologist-level classification of skin cancer with deep neural networks. *Nature*, *542*(7639), 115–118.
+
+[3] Begg, C. B., & Greenes, R. A. (1983). Assessment of diagnostic tests when disease verification is subject to selection bias. *Biometrics*, *39*(1), 207–215.
+
+[4] Hernán, M. A., Hernández-Díaz, S., & Robins, J. M. (2004). A structural approach to selection bias. *Epidemiology*, *15*(5), 615–625.
+
+[5] Lakkaraju, H., Kleinberg, J., Leskovec, J., Ludwig, J., & Mullainathan, S. (2017). The selective labels problem: Evaluating algorithmic predictions in the presence of unobservables. In *Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining* (pp. 275–284).
+
+[6] Berkson, J. (1946). Limitations of the application of fourfold table analysis to hospital data. *Biometrics Bulletin*, *2*(3), 47–53.
+
+[7] Prentice, R. L., & Pyke, R. (1979). Logistic disease incidence models and case-control studies. *Biometrika*, *66*(3), 403–411.
+
+[8] Fithian, W., & Hastie, T. (2014). Local case-control sampling: Efficient subsampling in imbalanced data sets. *The Annals of Statistics*, *42*(5), 1693–1724.
+
+[9] Kleinbaum, D. G., Kupper, L. L., & Morgenstern, H. (1982). *Epidemiologic Research: Principles and Quantitative Methods*. Lifetime Learning Publications.
+
+[10] Greenland, S. (1996). Basic methods for sensitivity analysis of biases. *International Journal of Epidemiology*, *25*(6), 1107–1116.
+
+[11] Pacheco, A. G. C., Lima, G. R., Salomão, A. S., Krohling, B., Biral, I. P., de Angelo, G. G., … & de Barros, L. F. (2020). PAD-UFES-20: A skin lesion dataset composed of patient data and clinical images collected from smartphones. *Data in Brief*, *32*, 106221.
+
+[12] Lash, T. L., Fox, M. P., & Fink, A. K. (2009). *Applying Quantitative Bias Analysis to Epidemiologic Data*. Springer.
+
+[13] Nguyen, T. Q., Dafoe, A., & Ogburn, E. L. (2019). The magnitude and direction of collider bias for binary variables. *Epidemiologic Methods*, *8*(1), 20170013.
+
+[14] Banack, H. R., & Kaufman, J. S. (2014). The obesity paradox: Understanding the effect of obesity on mortality among individuals with cardiovascular disease. *Preventive Medicine*, *62*, 96–102.
+
+[15] Griffith, G. J., Morris, T. T., Tudball, M. J., Herbert, A., Mancano, G., Pike, L., … & Hemani, G. (2020). Collider bias undermines our understanding of COVID-19 disease risk and severity. *Nature Communications*, *11*(1), 5749.
+
+[16] Kleinberg, J., Lakkaraju, H., Leskovec, J., Ludwig, J., & Mullainathan, S. (2018). Human decisions and machine predictions. *The Quarterly Journal of Economics*, *133*(1), 237–293.
+
+[17] De-Arteaga, M., Dubrawski, A., & Chouldechova, A. (2018). Learning under selective labels in the presence of expert consistency. Presented at the Workshop on Fairness, Accountability, and Transparency in Machine Learning (FAT/ML). *arXiv preprint* arXiv:1807.00905.
+
+[18] Mullainathan, S., & Obermeyer, Z. (2022). Diagnosing physician error: A machine learning approach to low-value health care. *The Quarterly Journal of Economics*, *137*(2), 679–727.
+
+[19] Balachandar, S., Garg, N., & Pierson, E. (2024). Domain constraints improve risk prediction when outcome data is missing. In *International Conference on Learning Representations (ICLR)*.
+
+[20] Rambachan, A., Coston, A., & Kennedy, E. H. (2022). Robust design and evaluation of predictive algorithms under unobserved confounding. *arXiv preprint* arXiv:2212.09844.
+
+[21] Coston, A., Rambachan, A., & Chouldechova, A. (2021). Characterizing fairness over the set of good models under selective labels. In *Proceedings of the 38th International Conference on Machine Learning*, PMLR 139 (pp. 2144–2155).
+
+[22] Elkan, C., & Noto, K. (2008). Learning classifiers from only positive and unlabeled data. In *Proceedings of the 14th ACM SIGKDD International Conference on Knowledge Discovery and Data Mining* (pp. 213–220).
+
+[23] Bekker, J., & Davis, J. (2020). Learning from positive and unlabeled data: A survey. *Machine Learning*, *109*(4), 719–760.
+
+[24] Bekker, J., Robberechts, P., & Davis, J. (2019). Beyond the selected completely at random assumption for learning from positive and unlabeled data. In *Machine Learning and Knowledge Discovery in Databases: ECML PKDD 2019*, LNCS 11907 (pp. 71–85). Springer.
+
+[25] Alonzo, T. A., & Pepe, M. S. (2005). Assessing accuracy of a continuous screening test in the presence of verification bias. *Journal of the Royal Statistical Society: Series C*, *54*(1), 173–190.
+
+[26] Bareinboim, E., & Pearl, J. (2012). Controlling selection bias in causal inference. In *Proceedings of the 15th International Conference on Artificial Intelligence and Statistics* (pp. 100–108).
+
+[27] Mohan, K., & Pearl, J. (2021). Graphical models for processing missing data. *Journal of the American Statistical Association*, *116*(534), 1023–1037.
+
+[28] Zadrozny, B. (2004). Learning and evaluating classifiers under sample selection bias. In *Proceedings of the 21st International Conference on Machine Learning* (p. 114).
+
+[29] Heckman, J. J. (1979). Sample selection bias as a specification error. *Econometrica*, *47*(1), 153–161.
+
+[30] Winkler, J. K., Fink, C., Toberer, F., Enk, A., Deinlein, T., Hofmann-Wellenhof, R., … & Haenssle, H. A. (2019). Association between surgical skin markings in dermoscopic images and diagnostic performance of a deep learning convolutional neural network for melanoma recognition. *JAMA Dermatology*, *155*(10), 1135–1141.
+
+[31] Oakden-Rayner, L., Dunnmon, J., Carneiro, G., & Ré, C. (2020). Hidden stratification causes clinically meaningful failures in machine learning for medical imaging. In *Proceedings of the ACM Conference on Health, Inference, and Learning* (pp. 151–159).
+
+[32] Geirhos, R., Jacobsen, J.-H., Michaelis, C., Zemel, R., Brendel, W., Bethge, M., & Wichmann, F. A. (2020). Shortcut learning in deep neural networks. *Nature Machine Intelligence*, *2*(11), 665–673.
+
+[33] Castro, D. C., Walker, I., & Glocker, B. (2020). Causality matters in medical imaging. *Nature Communications*, *11*(1), 3673.
+
+[34] Manski, C. F. (2003). *Partial Identification of Probability Distributions*. Springer.
+
+[35] Tamer, E. (2010). Partial identification in econometrics. *Annual Review of Economics*, *2*, 167–195.
+
+[36] Kallus, N., & Zhou, A. (2018). Confounding-robust policy improvement. In *Advances in Neural Information Processing Systems*, *31*, 9269–9279.
+
+[37] Alain, G., & Bengio, Y. (2017). Understanding intermediate layers using linear classifier probes. In *International Conference on Learning Representations, Workshop Track*.
+
+[38] Kornblith, S., Norouzi, M., Lee, H., & Hinton, G. (2019). Similarity of neural network representations revisited. In *Proceedings of the 36th International Conference on Machine Learning* (pp. 3519–3529).
+
+[39] Nachbar, F., Stolz, W., Merkle, T., Cognetta, A. B., Vogt, T., Landthaler, M., … & Plewig, G. (1994). The ABCD rule of dermatoscopy: High prospective value in the diagnosis of doubtful melanocytic skin lesions. *Journal of the American Academy of Dermatology*, *30*(4), 551–559.
+
+[40] He, K., Zhang, X., Ren, S., & Sun, J. (2016). Deep residual learning for image recognition. In *Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition* (pp. 770–778).
+

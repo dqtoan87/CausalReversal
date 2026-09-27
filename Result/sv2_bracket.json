@@ -1,0 +1,971 @@
+{
+  "drop_indeterminate": false,
+  "s0_grid": [
+    0.05,
+    0.1,
+    0.3,
+    0.5,
+    0.8
+  ],
+  "proxies": {
+    "color_variegation": {
+      "column": "tbp_lv_norm_color",
+      "role": "primary",
+      "adjusted": {
+        "OR_Y": 2.4614347365916736,
+        "OR_Y_ci": [
+          1.8183417557273804,
+          3.3319704304301756
+        ],
+        "B": 4.658797883377024,
+        "B_ci": [
+          3.7176948233147282,
+          5.83813323838303
+        ],
+        "endpoint_A1": 2.4614347365916736,
+        "endpoint_A1_ci": [
+          1.8183417557273804,
+          3.3319704304301756
+        ],
+        "endpoint_AB": 0.5283411725961059,
+        "endpoint_AB_ci": [
+          0.36688123594582767,
+          0.7608576490443508
+        ],
+        "identified_set": [
+          0.5283411725961059,
+          2.4614347365916736
+        ],
+        "identified_set_ci": [
+          0.36688123594582767,
+          3.3319704304301756
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "undetermined",
+        "corr_Y_V": 0.07031915482358066,
+        "OR_D_given_S_direct": 0.5827121739355829,
+        "OR_D_given_S_direct_ci": [
+          0.38632208125564654,
+          0.878938828837059
+        ],
+        "standardized": {
+          "pY0": 0.0007948415603958962,
+          "pY1": 0.001949822733538119,
+          "RR_Y_std": 2.453096102029375,
+          "pV0": 0.0007739893794089261,
+          "pV1": 0.003590008365398924
+        },
+        "two_route": {
+          "a0": 0.0007739893794089261,
+          "a1": 0.003590008365398924,
+          "B_abs": 4.63831734763662,
+          "kappa_star": 0.001162601483336306,
+          "s0_star": 0.0019356910215446448,
+          "grid": [
+            {
+              "s0": 0.05,
+              "A_appearance_route": 1.0535458046178963,
+              "RR_D_under_two_route": 2.3284190315000806,
+              "lambda_to_explain_away": 2.4255732281595748,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.1,
+              "A_appearance_route": 1.0253638021874245,
+              "RR_D_under_two_route": 2.392415352283889,
+              "lambda_to_explain_away": 2.4429354741355334,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.3,
+              "A_appearance_route": 1.00657580056711,
+              "RR_D_under_two_route": 2.4370704130253165,
+              "lambda_to_explain_away": 2.4543606053002645,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.5,
+              "A_appearance_route": 1.0028182002430472,
+              "RR_D_under_two_route": 2.446202214354339,
+              "lambda_to_explain_away": 2.4566314609090973,
+              "lambda_feasible": false
+            },
+            {
+              "s0": 0.8,
+              "A_appearance_route": 1.0007045500607619,
+              "RR_D_under_two_route": 2.4513689898586204,
+              "lambda_to_explain_away": 2.457906755485657,
+              "lambda_feasible": false
+            }
+          ]
+        }
+      },
+      "within_patient": {
+        "OR_Y": 2.714847279906663,
+        "OR_Y_ci": [
+          1.984204267051942,
+          3.7145347762845353
+        ],
+        "B": 4.888850555419039,
+        "B_ci": [
+          3.844621426918809,
+          6.2167004495878
+        ],
+        "endpoint_A1": 2.714847279906663,
+        "endpoint_A1_ci": [
+          1.984204267051942,
+          3.7145347762845353
+        ],
+        "endpoint_AB": 0.5553140250722932,
+        "endpoint_AB_ci": [
+          0.37375218929660337,
+          0.8250752109903265
+        ],
+        "identified_set": [
+          0.5553140250722932,
+          2.714847279906663
+        ],
+        "identified_set_ci": [
+          0.37375218929660337,
+          3.7145347762845353
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "undetermined",
+        "corr_Y_V": -0.004913228038463365,
+        "OR_D_given_S_direct": 0.809733538861997,
+        "OR_D_given_S_direct_ci": [
+          0.370598532634925,
+          1.7692147869453907
+        ],
+        "strata_Y": 239,
+        "cases_Y": 349,
+        "strata_V": 432,
+        "cases_V": 596,
+        "strata_DS": 71,
+        "cases_DS": 129
+      }
+    },
+    "size": {
+      "column": "tbp_lv_areaMM2",
+      "role": "primary",
+      "adjusted": {
+        "OR_Y": 2.249236062330177,
+        "OR_Y_ci": [
+          1.7304597188261859,
+          2.9235369127911564
+        ],
+        "B": 3.5318772517478485,
+        "B_ci": [
+          2.8888777818620683,
+          4.317993997438526
+        ],
+        "endpoint_A1": 2.249236062330177,
+        "endpoint_A1_ci": [
+          1.7304597188261859,
+          2.9235369127911564
+        ],
+        "endpoint_AB": 0.6368386843617171,
+        "endpoint_AB_ci": [
+          0.46092820548688646,
+          0.8798843400593352
+        ],
+        "identified_set": [
+          0.6368386843617171,
+          2.249236062330177
+        ],
+        "identified_set_ci": [
+          0.46092820548688646,
+          2.9235369127911564
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "undetermined",
+        "corr_Y_V": 0.04393430862681493,
+        "OR_D_given_S_direct": 0.7010620312123457,
+        "OR_D_given_S_direct_ci": [
+          0.48061505248853637,
+          1.0226229267326223
+        ],
+        "standardized": {
+          "pY0": 0.0008572550365031907,
+          "pY1": 0.0019231617616986899,
+          "RR_Y_std": 2.2433951155812566,
+          "pV0": 0.0009750134616804414,
+          "pV1": 0.003429818120678282
+        },
+        "two_route": {
+          "a0": 0.0009750134616804414,
+          "a1": 0.003429818120678282,
+          "B_abs": 3.5177136065044374,
+          "kappa_star": 0.0009982646272636655,
+          "s0_star": 0.0019723047674942056,
+          "grid": [
+            {
+              "s0": 0.05,
+              "A_appearance_route": 1.0466868087880103,
+              "RR_D_under_two_route": 2.1433298831566914,
+              "lambda_to_explain_away": 2.223514973721671,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.1,
+              "A_appearance_route": 1.0221148041627417,
+              "RR_D_under_two_route": 2.194856298377283,
+              "lambda_to_explain_away": 2.2363431461235543,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.3,
+              "A_appearance_route": 1.005733467745896,
+              "RR_D_under_two_route": 2.2306060079806973,
+              "lambda_to_explain_away": 2.2447558341279117,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.5,
+              "A_appearance_route": 1.002457200462527,
+              "RR_D_under_two_route": 2.2378961561113724,
+              "lambda_to_explain_away": 2.2464252221121925,
+              "lambda_feasible": false
+            },
+            {
+              "s0": 0.8,
+              "A_appearance_route": 1.0006143001156316,
+              "RR_D_under_two_route": 2.2420178437605864,
+              "lambda_to_explain_away": 2.247362343093269,
+              "lambda_feasible": false
+            }
+          ]
+        }
+      },
+      "within_patient": {
+        "OR_Y": 2.4247101974486616,
+        "OR_Y_ci": [
+          1.8442550484516136,
+          3.1878560107765783
+        ],
+        "B": 3.6685723353698405,
+        "B_ci": [
+          2.961362996161606,
+          4.5446718275622295
+        ],
+        "endpoint_A1": 2.4247101974486616,
+        "endpoint_A1_ci": [
+          1.8442550484516136,
+          3.1878560107765783
+        ],
+        "endpoint_AB": 0.6609410898270373,
+        "endpoint_AB_ci": [
+          0.46705264161917187,
+          0.9353188169695601
+        ],
+        "identified_set": [
+          0.6609410898270373,
+          2.4247101974486616
+        ],
+        "identified_set_ci": [
+          0.46705264161917187,
+          3.1878560107765783
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "undetermined",
+        "corr_Y_V": 0.0014917394121223447,
+        "OR_D_given_S_direct": 0.6804637263704983,
+        "OR_D_given_S_direct_ci": [
+          0.3538875861810435,
+          1.3084123348399819
+        ],
+        "strata_Y": 248,
+        "cases_Y": 362,
+        "strata_V": 435,
+        "cases_V": 593,
+        "strata_DS": 69,
+        "cases_DS": 121
+      }
+    },
+    "lesion_skin_contrast": {
+      "column": "tbp_lv_deltaLBnorm",
+      "role": "primary",
+      "adjusted": {
+        "OR_Y": 2.040665960190915,
+        "OR_Y_ci": [
+          1.5142530106275387,
+          2.7500804237173857
+        ],
+        "B": 4.650120163604317,
+        "B_ci": [
+          3.6926939314655502,
+          5.855783863293942
+        ],
+        "endpoint_A1": 2.040665960190915,
+        "endpoint_A1_ci": [
+          1.5142530106275387,
+          2.7500804237173857
+        ],
+        "endpoint_AB": 0.43884155428129645,
+        "endpoint_AB_ci": [
+          0.3086643556380912,
+          0.623920145770982
+        ],
+        "identified_set": [
+          0.43884155428129645,
+          2.040665960190915
+        ],
+        "identified_set_ci": [
+          0.3086643556380912,
+          2.7500804237173857
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "undetermined",
+        "corr_Y_V": 0.13332041571778544,
+        "OR_D_given_S_direct": 0.3931749701096184,
+        "OR_D_given_S_direct_ci": [
+          0.26072136851991623,
+          0.5929186318646168
+        ],
+        "standardized": {
+          "pY0": 0.0007944577892503675,
+          "pY1": 0.0016175177206780157,
+          "RR_Y_std": 2.03600209169611,
+          "pV0": 0.0007723408623268611,
+          "pV1": 0.003575305161416371
+        },
+        "two_route": {
+          "a0": 0.0007723408623268611,
+          "a1": 0.003575305161416371,
+          "B_abs": 4.6291803733456645,
+          "kappa_star": 0.0019294875509507058,
+          "s0_star": 0.002700338191198617,
+          "grid": [
+            {
+              "s0": 0.05,
+              "A_appearance_route": 1.0532974855086181,
+              "RR_D_under_two_route": 1.9329791627794135,
+              "lambda_to_explain_away": 2.0009301608505465,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.1,
+              "A_appearance_route": 1.0252461773461876,
+              "RR_D_under_two_route": 1.9858665525251968,
+              "lambda_to_explain_away": 2.021488566282023,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.3,
+              "A_appearance_route": 1.0065453052379005,
+              "RR_D_under_two_route": 2.0227624937507347,
+              "lambda_to_explain_away": 2.0350172912389515,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.5,
+              "A_appearance_route": 1.0028051308162431,
+              "RR_D_under_two_route": 2.030306815481574,
+              "lambda_to_explain_away": 2.0377062923069458,
+              "lambda_feasible": false
+            },
+            {
+              "s0": 0.8,
+              "A_appearance_route": 1.0007012827040607,
+              "RR_D_under_two_route": 2.034575279242668,
+              "lambda_to_explain_away": 2.0392164192760176,
+              "lambda_feasible": false
+            }
+          ]
+        }
+      },
+      "within_patient": {
+        "OR_Y": 2.679304915831166,
+        "OR_Y_ci": [
+          1.9732088159139964,
+          3.6380715381467965
+        ],
+        "B": 5.754259106684129,
+        "B_ci": [
+          4.305072902253837,
+          7.691274600604872
+        ],
+        "endpoint_A1": 2.679304915831166,
+        "endpoint_A1_ci": [
+          1.9732088159139964,
+          3.6380715381467965
+        ],
+        "endpoint_AB": 0.46562118009578224,
+        "endpoint_AB_ci": [
+          0.30862206856793584,
+          0.7024872989796088
+        ],
+        "identified_set": [
+          0.46562118009578224,
+          2.679304915831166
+        ],
+        "identified_set_ci": [
+          0.30862206856793584,
+          3.6380715381467965
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "undetermined",
+        "corr_Y_V": 0.04859902553646699,
+        "OR_D_given_S_direct": 0.36667166576821053,
+        "OR_D_given_S_direct_ci": [
+          0.1508822691473842,
+          0.8910795896494851
+        ],
+        "strata_Y": 219,
+        "cases_Y": 299,
+        "strata_V": 430,
+        "cases_V": 593,
+        "strata_DS": 57,
+        "cases_DS": 101
+      }
+    },
+    "color_sd": {
+      "column": "tbp_lv_color_std_mean",
+      "role": "exploratory",
+      "adjusted": {
+        "OR_Y": 2.44280564414132,
+        "OR_Y_ci": [
+          1.8322392747362763,
+          3.256834135873217
+        ],
+        "B": 4.479628595583619,
+        "B_ci": [
+          3.568876624105349,
+          5.622798002831186
+        ],
+        "endpoint_A1": 2.44280564414132,
+        "endpoint_A1_ci": [
+          1.8322392747362763,
+          3.256834135873217
+        ],
+        "endpoint_AB": 0.5453143250647244,
+        "endpoint_AB_ci": [
+          0.38251600721768353,
+          0.7773993963906688
+        ],
+        "identified_set": [
+          0.5453143250647244,
+          2.44280564414132
+        ],
+        "identified_set_ci": [
+          0.38251600721768353,
+          3.256834135873217
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "undetermined",
+        "corr_Y_V": 0.06611250717295429,
+        "OR_D_given_S_direct": 0.5678313295232817,
+        "OR_D_given_S_direct_ci": [
+          0.37883833509877274,
+          0.8511082140198706
+        ],
+        "standardized": {
+          "pY0": 0.0008019267980230568,
+          "pY1": 0.001952375264434564,
+          "RR_Y_std": 2.434605339599126,
+          "pV0": 0.00081118344064332,
+          "pV1": 0.003617966731963118
+        },
+        "two_route": {
+          "a0": 0.00081118344064332,
+          "a1": 0.003617966731963118,
+          "B_abs": 4.460109206733609,
+          "kappa_star": 0.0011439909711529383,
+          "s0_star": 0.001954246425264214,
+          "grid": [
+            {
+              "s0": 0.05,
+              "A_appearance_route": 1.0533721771613807,
+              "RR_D_under_two_route": 2.3112489511161023,
+              "lambda_to_explain_away": 2.4079664430148418,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.1,
+              "A_appearance_route": 1.0252815576027592,
+              "RR_D_under_two_route": 2.3745724494367657,
+              "lambda_to_explain_away": 2.424851975151874,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.3,
+              "A_appearance_route": 1.0065544778970117,
+              "RR_D_under_two_route": 2.4187516851405126,
+              "lambda_to_explain_away": 2.4359563921196887,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.5,
+              "A_appearance_route": 1.0028090619558623,
+              "RR_D_under_two_route": 2.427785539602835,
+              "lambda_to_explain_away": 2.4381628397424766,
+              "lambda_feasible": false
+            },
+            {
+              "s0": 0.8,
+              "A_appearance_route": 1.0007022654889655,
+              "RR_D_under_two_route": 2.4328968001381743,
+              "lambda_to_explain_away": 2.439401866939899,
+              "lambda_feasible": false
+            }
+          ]
+        }
+      },
+      "within_patient": {
+        "OR_Y": 2.782779464099482,
+        "OR_Y_ci": [
+          2.0512101822538953,
+          3.7752647743317795
+        ],
+        "B": 4.7188532545172714,
+        "B_ci": [
+          3.6988811710828573,
+          6.020084184307374
+        ],
+        "endpoint_A1": 2.782779464099482,
+        "endpoint_A1_ci": [
+          2.0512101822538953,
+          3.7752647743317795
+        ],
+        "endpoint_AB": 0.5897151943505721,
+        "endpoint_AB_ci": [
+          0.39868177482881473,
+          0.8722846952240424
+        ],
+        "identified_set": [
+          0.5897151943505721,
+          2.782779464099482
+        ],
+        "identified_set_ci": [
+          0.39868177482881473,
+          3.7752647743317795
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "undetermined",
+        "corr_Y_V": -0.006103014847935594,
+        "OR_D_given_S_direct": 0.7626806896495945,
+        "OR_D_given_S_direct_ci": [
+          0.35897920505689657,
+          1.620377520954695
+        ],
+        "strata_Y": 238,
+        "cases_Y": 349,
+        "strata_V": 434,
+        "cases_V": 604,
+        "strata_DS": 69,
+        "cases_DS": 129
+      }
+    },
+    "asymmetry": {
+      "column": "tbp_lv_symm_2axis",
+      "role": "exploratory",
+      "adjusted": {
+        "OR_Y": 0.923967659739986,
+        "OR_Y_ci": [
+          0.678817987510232,
+          1.2576511700531774
+        ],
+        "B": 0.4141518547178352,
+        "B_ci": [
+          0.32845107996673756,
+          0.5222140197669407
+        ],
+        "endpoint_A1": 0.923967659739986,
+        "endpoint_A1_ci": [
+          0.678817987510232,
+          1.2576511700531774
+        ],
+        "endpoint_AB": 2.2309876177410626,
+        "endpoint_AB_ci": [
+          1.5413034360819615,
+          3.22928349732769
+        ],
+        "identified_set": [
+          0.923967659739986,
+          2.2309876177410626
+        ],
+        "identified_set_ci": [
+          0.678817987510232,
+          3.22928349732769
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "undetermined",
+        "corr_Y_V": 0.08429874211938922,
+        "OR_D_given_S_direct": 2.589857659213378,
+        "OR_D_given_S_direct_ci": [
+          1.7431576836002718,
+          3.847823268135438
+        ],
+        "standardized": {
+          "pY0": 0.0010632920764386971,
+          "pY1": 0.0009826258429233908,
+          "RR_Y_std": 0.9241353948714796,
+          "pV0": 0.0025752790087852583,
+          "pV1": 0.001069168553255105
+        },
+        "two_route": {
+          "a0": 0.0025752790087852583,
+          "a1": 0.001069168553255105,
+          "B_abs": 0.41516610418046496,
+          "kappa_star": 0.01698389509498694,
+          "s0_star": 0.019515435835246668,
+          "grid": [
+            {
+              "s0": 0.05,
+              "A_appearance_route": 0.9713100166329998,
+              "RR_D_under_two_route": 0.9514319620371581,
+              "lambda_to_explain_away": 0.9503386687997183,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.1,
+              "A_appearance_route": 0.9864100078787893,
+              "RR_D_under_two_route": 0.9368674156690409,
+              "lambda_to_explain_away": 0.9361756240699032,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.3,
+              "A_appearance_route": 0.9964766687093157,
+              "RR_D_under_two_route": 0.9274029426784913,
+              "lambda_to_explain_away": 0.9271423676215609,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.5,
+              "A_appearance_route": 0.9984900008754212,
+              "RR_D_under_two_route": 0.9255329488139575,
+              "lambda_to_explain_away": 0.9253731300827265,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.8,
+              "A_appearance_route": 0.9996225002188552,
+              "RR_D_under_two_route": 0.9244843875254422,
+              "lambda_to_explain_away": 0.9243832906016389,
+              "lambda_feasible": true
+            }
+          ]
+        }
+      },
+      "within_patient": {
+        "OR_Y": 0.8914175745826117,
+        "OR_Y_ci": [
+          0.6392815188420372,
+          1.2429974414309537
+        ],
+        "B": 0.44920527057844056,
+        "B_ci": [
+          0.3472707210868206,
+          0.5810607196712156
+        ],
+        "endpoint_A1": 0.8914175745826117,
+        "endpoint_A1_ci": [
+          0.6392815188420372,
+          1.2429974414309537
+        ],
+        "endpoint_AB": 1.9844325811999837,
+        "endpoint_AB_ci": [
+          1.3021952582560914,
+          3.0241030631625767
+        ],
+        "identified_set": [
+          0.8914175745826117,
+          1.9844325811999837
+        ],
+        "identified_set_ci": [
+          0.6392815188420372,
+          3.0241030631625767
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "undetermined",
+        "corr_Y_V": -0.004096471217786729,
+        "OR_D_given_S_direct": 2.391183357590044,
+        "OR_D_given_S_direct_ci": [
+          0.7734425502378911,
+          7.392608342865231
+        ],
+        "strata_Y": 198,
+        "cases_Y": 271,
+        "strata_V": 387,
+        "cases_V": 514,
+        "strata_DS": 46,
+        "cases_DS": 78
+      }
+    },
+    "border_irregularity": {
+      "column": "tbp_lv_norm_border",
+      "role": "exploratory",
+      "adjusted": {
+        "OR_Y": 1.1802428887001586,
+        "OR_Y_ci": [
+          0.8561447876155079,
+          1.6270300263194213
+        ],
+        "B": 0.4313442885420737,
+        "B_ci": [
+          0.34076623400191247,
+          0.5459986251361498
+        ],
+        "endpoint_A1": 1.1802428887001586,
+        "endpoint_A1_ci": [
+          0.8561447876155079,
+          1.6270300263194213
+        ],
+        "endpoint_AB": 2.7361968618834203,
+        "endpoint_AB_ci": [
+          1.8597868827973645,
+          4.025608168458303
+        ],
+        "identified_set": [
+          1.1802428887001586,
+          2.7361968618834203
+        ],
+        "identified_set_ci": [
+          0.8561447876155079,
+          4.025608168458303
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "positive",
+        "corr_Y_V": 0.06306628510062234,
+        "OR_D_given_S_direct": 2.9097808299445918,
+        "OR_D_given_S_direct_ci": [
+          1.933595340443642,
+          4.378798552736695
+        ],
+        "standardized": {
+          "pY0": 0.0008636939326587795,
+          "pY1": 0.0010190057058075787,
+          "RR_Y_std": 1.1798226979211146,
+          "pV0": 0.002390181072551392,
+          "pV1": 0.001033280202568122
+        },
+        "two_route": {
+          "a0": 0.002390181072551392,
+          "a1": 0.001033280202568122,
+          "B_abs": 0.4323020604732469,
+          "kappa_star": null,
+          "s0_star": null,
+          "grid": [
+            {
+              "s0": 0.05,
+              "A_appearance_route": 0.9741571142940434,
+              "RR_D_under_two_route": 1.2111215743428758,
+              "lambda_to_explain_away": 1.2156973412114864,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.1,
+              "A_appearance_route": 0.9877586330866522,
+              "RR_D_under_two_route": 1.1944443292125733,
+              "lambda_to_explain_away": 1.1964998864680931,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.3,
+              "A_appearance_route": 0.9968263122817247,
+              "RR_D_under_two_route": 1.1835790080826751,
+              "lambda_to_explain_away": 1.1842155156433032,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.5,
+              "A_appearance_route": 0.9986398481207391,
+              "RR_D_under_two_route": 1.1814296216412044,
+              "lambda_to_explain_away": 1.181805846126673,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.8,
+              "A_appearance_route": 0.9996599620301847,
+              "RR_D_under_two_route": 1.1802240189004287,
+              "lambda_to_explain_away": 1.1804571767180823,
+              "lambda_feasible": true
+            }
+          ]
+        }
+      },
+      "within_patient": {
+        "OR_Y": 1.1756786996146709,
+        "OR_Y_ci": [
+          0.8078502138820451,
+          1.7109859983641256
+        ],
+        "B": 0.5023803457695252,
+        "B_ci": [
+          0.3830550904731567,
+          0.6588765378466994
+        ],
+        "endpoint_A1": 1.1756786996146709,
+        "endpoint_A1_ci": [
+          0.8078502138820451,
+          1.7109859983641256
+        ],
+        "endpoint_AB": 2.340216351047363,
+        "endpoint_AB_ci": [
+          1.4669342389299063,
+          3.733372924545338
+        ],
+        "identified_set": [
+          1.1756786996146709,
+          2.340216351047363
+        ],
+        "identified_set_ci": [
+          0.8078502138820451,
+          3.733372924545338
+        ],
+        "sign_verdict": "undetermined",
+        "point_sign_verdict": "positive",
+        "corr_Y_V": -0.01878128296916011,
+        "OR_D_given_S_direct": 3.2409627603232907,
+        "OR_D_given_S_direct_ci": [
+          1.0834622359550412,
+          9.694698407779326
+        ],
+        "strata_Y": 182,
+        "cases_Y": 254,
+        "strata_V": 371,
+        "cases_V": 484,
+        "strata_DS": 38,
+        "cases_DS": 70
+      }
+    },
+    "benign_proxy": {
+      "column": "tbp_lv_nevi_confidence",
+      "role": "negative_control",
+      "adjusted": {
+        "OR_Y": 0.45654423775867947,
+        "OR_Y_ci": [
+          0.32015473400407146,
+          0.6510371982442809
+        ],
+        "B": 1.9979106761019085,
+        "B_ci": [
+          1.5524865249056616,
+          2.571131540046405
+        ],
+        "endpoint_A1": 0.45654423775867947,
+        "endpoint_A1_ci": [
+          0.32015473400407146,
+          0.6510371982442809
+        ],
+        "endpoint_AB": 0.22851083545408327,
+        "endpoint_AB_ci": [
+          0.15249996466860216,
+          0.3424079607716394
+        ],
+        "identified_set": [
+          0.22851083545408327,
+          0.45654423775867947
+        ],
+        "identified_set_ci": [
+          0.15249996466860216,
+          0.6510371982442809
+        ],
+        "sign_verdict": "negative",
+        "point_sign_verdict": "negative",
+        "corr_Y_V": 0.14529583437576302,
+        "OR_D_given_S_direct": 0.17399137300986897,
+        "OR_D_given_S_direct_ci": [
+          0.1069368379370756,
+          0.28309232314941624
+        ],
+        "standardized": {
+          "pY0": 0.001286708900472355,
+          "pY1": 0.0005884143489811307,
+          "RR_Y_std": 0.45730184097205034,
+          "pV0": 0.0011446220550508901,
+          "pV1": 0.0022825893724051543
+        },
+        "two_route": {
+          "a0": 0.0011446220550508901,
+          "a1": 0.0022825893724051543,
+          "B_abs": 1.9941860829369304,
+          "kappa_star": null,
+          "s0_star": null,
+          "grid": [
+            {
+              "s0": 0.05,
+              "A_appearance_route": 1.0216461556969487,
+              "RR_D_under_two_route": 0.4476127457848527,
+              "lambda_to_explain_away": 0.4217750295655296,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.1,
+              "A_appearance_route": 1.0102534421722387,
+              "RR_D_under_two_route": 0.45266051258262846,
+              "lambda_to_explain_away": 0.4400079255747003,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.3,
+              "A_appearance_route": 1.0026582998224323,
+              "RR_D_under_two_route": 0.4560894185517011,
+              "lambda_to_explain_away": 0.4519304150635536,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.5,
+              "A_appearance_route": 1.001139271352471,
+              "RR_D_under_two_route": 0.456781442959746,
+              "lambda_to_explain_away": 0.4542930280703946,
+              "lambda_feasible": true
+            },
+            {
+              "s0": 0.8,
+              "A_appearance_route": 1.0002848178381178,
+              "RR_D_under_two_route": 0.45717163033664904,
+              "lambda_to_explain_away": 0.45561882424562994,
+              "lambda_feasible": true
+            }
+          ]
+        }
+      },
+      "within_patient": {
+        "OR_Y": 0.41887516144430464,
+        "OR_Y_ci": [
+          0.26717641581459,
+          0.6567061704905576
+        ],
+        "B": 1.8407044235722065,
+        "B_ci": [
+          1.3339247836464976,
+          2.540017860449462
+        ],
+        "endpoint_A1": 0.41887516144430464,
+        "endpoint_A1_ci": [
+          0.26717641581459,
+          0.6567061704905576
+        ],
+        "endpoint_AB": 0.22756242451539543,
+        "endpoint_AB_ci": [
+          0.13114723836639297,
+          0.3948589211360403
+        ],
+        "identified_set": [
+          0.22756242451539543,
+          0.41887516144430464
+        ],
+        "identified_set_ci": [
+          0.13114723836639297,
+          0.6567061704905576
+        ],
+        "sign_verdict": "negative",
+        "point_sign_verdict": "negative",
+        "corr_Y_V": 0.0075296096191277894,
+        "OR_D_given_S_direct": 0.1950511701690793,
+        "OR_D_given_S_direct_ci": [
+          0.050253258890337174,
+          0.7570645133154242
+        ],
+        "strata_Y": 191,
+        "cases_Y": 267,
+        "strata_V": 347,
+        "cases_V": 479,
+        "strata_DS": 41,
+        "cases_DS": 75
+      }
+    }
+  }
+}

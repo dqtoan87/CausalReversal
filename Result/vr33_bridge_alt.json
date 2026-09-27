@@ -1,0 +1,129 @@
+{
+  "B": 100,
+  "families": {
+    "tabular": {
+      "mlp|all": {
+        "slope": 0.8669374057134951,
+        "slope_ci": [
+          0.6619156370093255,
+          1.1341107921715057
+        ],
+        "r2": 0.5027106825638119,
+        "sign_agreement_min": 1.0,
+        "n_concepts_975": 5,
+        "concept_calibration": 1.4272628764684856,
+        "concept_calibration_ci": [
+          0.889562052840569,
+          2.261562896231019
+        ]
+      },
+      "mlp|support": {
+        "slope": 0.8486337221871896,
+        "slope_ci": [
+          0.6566464980682001,
+          1.1174350702050573
+        ],
+        "r2": 0.4620863877604349,
+        "sign_agreement_min": 0.95,
+        "n_concepts_975": 4,
+        "concept_calibration": 1.4577965444689345,
+        "concept_calibration_ci": [
+          0.6851136178768634,
+          2.6798330921278906
+        ]
+      },
+      "gbm|all": {
+        "slope": 1.289384002762024,
+        "slope_ci": [
+          0.9069675208394394,
+          2.200342880799136
+        ],
+        "r2": 0.3027269730495341,
+        "sign_agreement_min": 1.0,
+        "n_concepts_975": 5,
+        "concept_calibration": 1.9651980899711379,
+        "concept_calibration_ci": [
+          1.138792755292313,
+          4.412437647143052
+        ]
+      },
+      "gbm|support": {
+        "slope": 1.1679361279565925,
+        "slope_ci": [
+          0.8615311133318778,
+          2.087396634242522
+        ],
+        "r2": 0.22918887888338166,
+        "sign_agreement_min": 0.98,
+        "n_concepts_975": 5,
+        "concept_calibration": 1.8995298634548592,
+        "concept_calibration_ci": [
+          0.7728560332825835,
+          4.236198457555142
+        ]
+      }
+    },
+    "image": {
+      "mlp|all": {
+        "slope": 0.8608681368788678,
+        "slope_ci": [
+          0.6637507235226415,
+          1.028773545479759
+        ],
+        "r2": 0.6937298372323317,
+        "sign_agreement_min": 1.0,
+        "n_concepts_975": 5,
+        "concept_calibration": 0.8212809872424887,
+        "concept_calibration_ci": [
+          0.4986289185672011,
+          1.294687525778234
+        ]
+      },
+      "mlp|support": {
+        "slope": 0.8296021401843099,
+        "slope_ci": [
+          0.6397854437311508,
+          1.0135338337667747
+        ],
+        "r2": 0.6482721868414505,
+        "sign_agreement_min": 0.99,
+        "n_concepts_975": 5,
+        "concept_calibration": 0.698348357285178,
+        "concept_calibration_ci": [
+          0.2951496860144855,
+          1.337585472721703
+        ]
+      },
+      "gbm|all": {
+        "slope": 0.8488997546310166,
+        "slope_ci": [
+          0.6169667724657474,
+          2.523959016721618
+        ],
+        "r2": 0.22651049197782477,
+        "sign_agreement_min": 1.0,
+        "n_concepts_975": 5,
+        "concept_calibration": 1.8097559738410254,
+        "concept_calibration_ci": [
+          0.8617205660038507,
+          8.35836949621561
+        ]
+      },
+      "gbm|support": {
+        "slope": 0.7592160587566046,
+        "slope_ci": [
+          0.5442178324785708,
+          1.98113638761041
+        ],
+        "r2": 0.19868793483232344,
+        "sign_agreement_min": 0.99,
+        "n_concepts_975": 5,
+        "concept_calibration": 1.5027335762439016,
+        "concept_calibration_ci": [
+          0.5264228344228081,
+          6.445957737816805
+        ]
+      }
+    }
+  }
+}
