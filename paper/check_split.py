@@ -57,11 +57,12 @@ def main(pp, sp):
 
     # supplementary sections and tables
     sdef = set(int(x) for x in re.findall(r'^## S(\d+)\.', supp, re.M))
-    for m in set(int(x) for x in re.findall(r'Section S(\d+)', paper + supp)):
+    cited = lambda t: set(int(x) for g in re.findall(r'Sections? (S\d+(?:(?:, | and )S\d+)*)', t) for x in re.findall(r'S(\d+)', g))
+    for m in cited(paper + supp):
         if m not in sdef:
             issues.append('XREF Supplementary Section S%d missing' % m)
     for d in sorted(sdef):
-        if not re.search(r'Section S%d\b' % d, paper):
+        if d not in cited(paper):
             issues.append('XREF Supplementary S%d never cited from the paper' % d)
     stab = [int(x) for x in re.findall(r'^\*\*TABLE S(\d+)\.', supp, re.M)]
     if stab != list(range(1, len(stab) + 1)):

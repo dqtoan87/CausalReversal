@@ -322,3 +322,12 @@ Không đổi số liệu, không đổi claim. Văn phong tự nhiên hơn: gi�
 ## 31. Câu ngắn và văn phong cho phụ lục (2026-09-28)
 
 Không đổi số liệu, không đổi claim (đã đối chiếu tập số trước/sau). Phụ lục: độ dài câu trung bình 20,9 → 17,4 từ; câu trên 40 từ 34 → 2, cả hai là định nghĩa hoặc công thức. Bớt "therefore" 13 → 8; bỏ các câu mở đầu bằng ký hiệu toán ("τ̂_k(1, −1) is…", và trong bài chính "ψ_k increases…").
+
+## 32. Rà soát năm lượt: lặp, số liệu, ký hiệu, nói quá, trích dẫn (2026-09-28)
+
+Không đổi số liệu, không đổi kết luận. Sửa:
+- Lượt 1 (lặp): Conclusion và Discussion viết lại để không lặp nguyên văn Abstract/Introduction; bỏ "higher-resolution check".
+- Lượt 2 (số liệu tĩnh trong phụ lục, đối chiếu JSON): R² asymmetry 0.33–0.37 → 0.33–0.36 (giá trị thật tối đa 0.3646). Đã kiểm AUROC 0.941/0.708/0.815/0.689 (vl3_learning.json, nay đưa vào Result/ và thêm dòng vào bảng tái lập), phase diagram (84%, −4.60…−0.23, +0.51…+2.85, +0.11), stress test (ψ −0.44, −0.65), Spearman 0.94/0.65, tương quan 0.97, 98.0%, độ phủ 11–69%.
+- Lượt 3 (ký hiệu): s∗ thống nhất in nghiêng *s*∗, ψ_L(*s*), *s* = …; bỏ ký hiệu *Z* chưa định nghĩa, thay bằng *z*_k(*X*).
+- Lượt 4 (nói quá/lặp): "at the training size" → "near the training size" ở Abstract và Introduction (320 so với khoảng 400 âm tính của M2); Discussion: phase diagram không đảo khi xác minh lành tính không phụ thuộc hình thái (b′ = 0), thay vì "phụ thuộc yếu" (b′ = 0.5 đã đảo 50%); rút gọn ghi chú Table 2 trùng văn bản.
+- Lượt 5 (chú thích, trích dẫn): mọi bảng/hình chính và phụ lục đều được nhắc; tài liệu [1]–[44] trích theo thứ tự, 8 tài liệu phụ lục đều được trích; "Supplementary Sections S2 and S3"; check_split.py đọc được danh sách mục số nhiều.
