@@ -105,7 +105,11 @@ def main():
         R.log(f"{c}: std RR {rr0:.2f} {np.round(e['standardized']['rr_y_ci95'], 2)} MH logOR {lor0:+.2f} joint floor {jf}; "
               f"logit benchmark p0 ≥ {e['logit_benchmark']['p0_threshold']}")
         R.save_json(out, "vr41_marginal_site.json")
-    # hình: đường biên A(p₀, γ) = A_max trên mặt phẳng (p₀, γ)
+    plot_benchmark(out)
+
+
+def plot_benchmark(out):
+    """Hình: đường biên A(p₀, γ) = A_max trên mặt phẳng (p₀, γ); ký hiệu viết bằng mathtext."""
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -116,9 +120,9 @@ def main():
     for c, col, lab in (("color_variegation", "C0", "color variegation"), ("size", "C1", "size")):
         lb = out["concepts"][c]["logit_benchmark"]
         ax.contour(Pg, Gg, Ag, levels=[lb["A_max95"]], colors=col)
-        ax.plot([lb["p0_threshold"]], [lb["gamma"]], "o", color=col, label=f"{lab}: γ = log B_V, A ≤ {lb['A_max95']:.2f}")
-    ax.set_xlabel("malignant verification in the lower tertile, π₀¹")
-    ax.set_ylabel("logit gradient of malignant verification, γ")
+        ax.plot([lb["p0_threshold"]], [lb["gamma"]], "o", color=col, label=f"{lab}: $\\gamma = \\log B_V$, $A \\leq$ {lb['A_max95']:.2f}")
+    ax.set_xlabel(r"malignant verification in the lower tertile, $\pi_0^1$")
+    ax.set_ylabel(r"logit gradient of malignant verification, $\gamma$")
     ax.legend(fontsize=7, loc="upper left")
     fig.tight_layout()
     figd = os.path.join(os.path.dirname(R.RES), "paper", "figures"); os.makedirs(figd, exist_ok=True)
@@ -127,4 +131,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    if "--plot-only" in sys.argv:
+        plot_benchmark(json.load(open(os.path.join(R.RES, "vr41_marginal_site.json"))))
+    else:
+        main()

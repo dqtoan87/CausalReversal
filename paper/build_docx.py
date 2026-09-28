@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""Build paper.docx from paper.md with pandoc.
+"""Build paper.docx and supplementary.docx from the markdown files with pandoc.
 
 Display equations become native Word equations (OMML, via LaTeX); inline notation such as Δ_{M0,k}, ψ_L or *s*_min
 becomes real subscripts and superscripts; the four figures are inserted above their captions. Styles come from a
 reference document: A4, Times New Roman, black headings, bordered tables.
-Run from paper/:  python3 build_docx.py   ->  paper.docx
+Run from paper/:  python3 build_docx.py [paper|supplementary|all]   ->  paper.docx, supplementary.docx
 """
 import os
 import re
@@ -25,21 +25,46 @@ DISPLAY = {
         r"$$\Delta_{M0,k} - \Delta_{M2,k} = \text{E}\left[\log g(\tilde{X}) \mid t = 1\right] - \text{E}\left[\log g(\tilde{X}) \mid t = 0\right].$$",
 }
 WIDTHS = {8: [11, 14, 9, 15, 15, 15, 10, 11], 3: [22, 33, 45], 6: [11, 24, 13, 23, 15, 14]}   # relative column widths
-FIGS = {1: "fig1_mechanism.png", 2: "fig2_learned_reversal.png", 3: "fig3_intervention_bridge.png", 4: "fig4_external_boundary.png"}
+FIGS = {"1": "fig1_mechanism.png", "2": "fig2_learned_reversal.png", "3": "fig3_intervention_bridge.png", "4": "fig4_external_boundary.png",
+        "S1": "figS1_phase_diagram.png", "S2": "figS2_finetune.png", "S3": "figS3_logit_benchmark.png", "S4": "figS4_icdl.png"}
+DOCS = {"paper": ("paper.md", "paper.docx", True), "supplementary": ("supplementary.md", "supplementary.docx", False)}
 
-# a subscript follows an italic letter (*a*), a Greek letter, E, OR or RR
-SUB = re.compile(r"(\*[A-Za-z]\*|[ΔψπκμτσθE]|OR|RR)_(\{[^}]*\}|[A-Za-z0-9ηω]+)")
+# a subscript follows an italic letter (*a*), a Greek letter, ĝ, E, OR or RR
+SUB = re.compile(r"(\*[A-Za-z]\*|[ΔψπκμτσθE]|ĝ|OR|RR)_(\{[^}]*\}|[A-Za-z0-9ηω]+)")
+# plain-text symbols that need italics and a subscript
+PLAIN = [(re.compile(r"τ̂_k"), "τ̂~k~"), (re.compile(r"\*z\*_k,i"), "*z*~k,i~"), (re.compile(r"π_η,i"), "π~η,i~"),
+         (re.compile(r"θ\*_m\b"), "θ\\*~m~"), (re.compile(r"(?<![\w*`])s_(low|high)\b"), r"*s*~\1~"),
+         (re.compile(r"(?<![\w*`])z_k\b"), "*z*~k~"), (re.compile(r"(?<![\w*`])Q_\{([^}]*)\}"), r"*Q*~\1~"),
+         (re.compile(r"(?<![\w*`])Q_a\b"), "*Q*~a~")]
 
 
 def sub_text(body):
-    body = body.strip("{}")
+    body = body.strip("{}").replace("\\|", "|")
     return body.replace("\\", "\\\\").replace(" ", "\\ ").replace("|", "\\|")
 
 
-def widths(sep):
+def auto_widths(rows):
+    """Relative widths from the longest cell text of each column, capped so that no column dominates."""
+    cols = [[c.strip() for c in re.split(r"(?<!\\)\|", r.strip().strip("|"))] for r in rows]
+    n = max(len(c) for c in cols)
+    size, word = [0] * n, [0] * n
+    for r in cols:
+        for i, c in enumerate(r):
+            c = re.sub(r"[*`\\]", "", c)
+            size[i] = max(size[i], min(len(c), 40))
+            word[i] = max([word[i]] + [len(x) for x in c.split()])
+    floor = [max(word[i] + 2, 5) for i in range(n)]            # never narrower than the longest word
+    budget = 96 - 2.5 * n                                     # 9-point characters per line, less cell padding
+    extra = [max(0, 0.6 * size[i] - floor[i]) for i in range(n)]
+    room = max(0, budget - sum(floor))
+    tot = sum(extra) or 1
+    return [round(floor[i] + room * extra[i] / tot) for i in range(n)]
+
+
+def widths(sep, w=None):
     cells = sep.strip().strip("|").split("|")
-    w = WIDTHS.get(len(cells))
-    if not w:
+    w = w or WIDTHS.get(len(cells))
+    if not w or len(w) != len(cells):
         return sep
     out = []
     for c, n in zip(cells, w):
@@ -48,21 +73,36 @@ def widths(sep):
     return "| " + " | ".join(out) + " |"
 
 
-def convert(md):
+def math_segment(s):
+    s = s.replace("π_t^d", "π~t~^d^")
+    s = re.sub(r"(?:\*s\*|(?<![\w*])s)∗", "*s*^\\*^", s)
+    for pat, rep in PLAIN:
+        s = pat.sub(rep, s)
+    return SUB.sub(lambda x: f"{x.group(1)}~{sub_text(x.group(2))}~", s)
+
+
+def convert(md, fixed_widths=True):
     out = []
-    for line in md.split("\n"):
+    lines = md.split("\n")
+    for k, line in enumerate(lines):
         if re.match(r"^\|\s*:?-{3,}", line):
-            out.append(widths(line))
+            w = None
+            if not fixed_widths:
+                j = k + 1
+                while j < len(lines) and lines[j].startswith("|"):
+                    j += 1
+                w = auto_widths([lines[k - 1]] + lines[k + 1:j])
+            out.append(widths(line, w))
             continue
         if line.strip() in DISPLAY:
             out.append(DISPLAY[line.strip()])
             continue
-        m = re.match(r"^\*\*Fig\. (\d)\.\*\*", line)
+        m = re.match(r"^\*\*Fig\. (S?\d)\.\*\*", line)
         if m:
-            out.append(f"![](figures/{FIGS[int(m.group(1))]}){{width=6.2in}}\n")
+            out.append(f"![](figures/{FIGS[m.group(1)]}){{width=6.2in}}\n")
         if not line.startswith("#"):
-            line = line.replace("π_t^d", "π~t~^d^")
-            line = SUB.sub(lambda x: f"{x.group(1)}~{sub_text(x.group(2))}~", line)
+            parts = line.split("`")                      # leave code spans such as file names untouched
+            line = "`".join(math_segment(p) if i % 2 == 0 else p for i, p in enumerate(parts))
         out.append(line)
     return "\n".join(out)
 
@@ -81,6 +121,9 @@ def reference_doc(path):
                               '<w:basedOn w:val="Compact"/><w:qFormat/><w:pPr><w:spacing w:before="20" w:after="20"/></w:pPr>'
                               '<w:rPr><w:sz w:val="18"/><w:szCs w:val="18"/></w:rPr></w:style></w:styles>')
                 x = x.replace("<w:sz w:val=\"24\"/>", "<w:sz w:val=\"22\"/>")
+                x = re.sub(r'(<w:style [^>]*w:styleId="VerbatimChar"[^>]*>.*?<w:rPr>).*?(</w:rPr>)',
+                           r'\1<w:rFonts w:ascii="Courier New" w:hAnsi="Courier New" w:cs="Courier New"/><w:sz w:val="18"/><w:szCs w:val="18"/>\2', x, count=1, flags=re.S)
+                x = re.sub(r"<w:tblCellMar>.*?</w:tblCellMar>", lambda m: m.group(0).replace('"108"', '"57"'), x, count=1, flags=re.S)
                 # bordered tables
                 x = re.sub(r'(<w:style w:[^>]*w:styleId="Table"[^>]*>.*?<w:tblPr>.*?<w:tblInd [^>]*/>)',
                            r'\1<w:tblBorders><w:top w:val="single" w:sz="4" w:space="0" w:color="000000"/><w:left w:val="single" w:sz="4" w:space="0" w:color="000000"/>'
@@ -99,14 +142,15 @@ def reference_doc(path):
     os.remove(src)
 
 
-def main():
-    md = convert(open(os.path.join(HERE, "paper.md"), encoding="utf-8").read())
+def build(name):
+    src_md, out_name, fixed = DOCS[name]
+    md = convert(open(os.path.join(HERE, src_md), encoding="utf-8").read(), fixed)
     tmp = tempfile.mkdtemp()
-    src = os.path.join(tmp, "paper_docx.md")
+    src = os.path.join(tmp, "doc.md")
     open(src, "w", encoding="utf-8").write(md)
     ref = os.path.join(tmp, "reference.docx")
     reference_doc(ref)
-    out = os.path.join(HERE, "paper.docx")
+    out = os.path.join(HERE, out_name)
     subprocess.run(["pandoc", src, "-f", "markdown+pipe_tables+subscript+superscript+tex_math_dollars", "-t", "docx",
                     "--reference-doc", ref, "--shift-heading-level-by=-1", "--resource-path", HERE, "-o", out], check=True)
     shutil.rmtree(tmp)
@@ -133,4 +177,7 @@ def table_text(path):
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    which = sys.argv[1] if len(sys.argv) > 1 else "all"
+    for name in (DOCS if which == "all" else [which]):
+        build(name)

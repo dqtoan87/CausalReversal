@@ -55,10 +55,10 @@ def fig1():
     fig, (a, b) = plt.subplots(1, 2, figsize=(7.8, 3.4), gridspec_kw={"width_ratios": [1.3, 1]})
     a.set_axis_off(); a.set_xlim(0, 11); a.set_ylim(-0.6, 7.6)
     W_, H_ = 2.6, 0.8
-    nodes = {"U": (1.4, 6.6, "Patient U", True), "G": (5.5, 6.6, "Site G", False),
-             "D": (1.4, 4.4, "Disease D", True), "X": (5.5, 4.4, "Appearance X", False),
-             "C": (9.6, 4.4, "Concept C", False), "W": (1.4, 2.2, "Clinical W", True),
-             "F": (5.5, 2.2, "Flag F", False), "S": (5.5, 0.0, "Biopsy S", False), "Y": (9.6, 0.0, "Label Y", False)}
+    nodes = {"U": (1.4, 6.6, "Patient $U$", True), "G": (5.5, 6.6, "Site $G$", False),
+             "D": (1.4, 4.4, "Disease $D$", True), "X": (5.5, 4.4, "Appearance $X$", False),
+             "C": (9.6, 4.4, "Concept $C$", False), "W": (1.4, 2.2, "Clinical $W$", True),
+             "F": (5.5, 2.2, "Flag $F$", False), "S": (5.5, 0.0, "Biopsy $S$", False), "Y": (9.6, 0.0, "Label $Y$", False)}
     for k, (x, y, lab, latent) in nodes.items():
         a.add_patch(FancyBboxPatch((x - W_ / 2, y - H_ / 2), W_, H_, boxstyle="round,pad=0.03",
                                    fc="#ffffff" if latent else "#f3f2ef", ec=INK, lw=0.9, ls="--" if latent else "-"))
@@ -80,7 +80,7 @@ def fig1():
     arr("U", "S", ORANGE, 0.55)
     a.add_patch(FancyArrowPatch(edge(nodes["D"][:2], nodes["Y"][:2]), edge(nodes["Y"][:2], nodes["D"][:2]), arrowstyle="-|>",
                                 mutation_scale=8, color=INK, lw=0.9, connectionstyle="arc3,rad=-0.12", shrinkA=0, shrinkB=0))
-    a.text(9.6, 0.75, "Y = D·S", ha="center", fontsize=7.5, color=INK2)
+    a.text(9.6, 0.75, r"$Y = D \cdot S$", ha="center", fontsize=7.5, color=INK2)
     a.text(8.0, 7.05, "orange: inputs to\nverification", fontsize=6.8, color=ORANGE)
     a.text(0.0, 7.4, "a", fontsize=11, fontweight="bold")
     regions(b, 6)
@@ -206,8 +206,8 @@ def fig4():
 
 def figS1():
     sm = J("vr5_representation.json")["summary"]["ft"]
-    keys = [("decision", "Decision contrast"), ("layer3", "Layer-3 intervention"), ("readout_Y", "Common readout, target Y"),
-            ("readout_S", "Common readout, target S")]
+    keys = [("decision", "Decision contrast"), ("layer3", "Layer-3 intervention"), ("readout_Y", "Common readout, target $Y$"),
+            ("readout_S", "Common readout, target $S$")]
     fig, axes = plt.subplots(1, 4, figsize=(8.6, 2.9))
     cs = R.IMAGE_CONCEPTS
     for ax, (k, t) in zip(axes, keys):
@@ -219,7 +219,7 @@ def figS1():
         ax.set_yticks(range(len(cs))); ax.set_yticklabels([CL[c] for c in cs] if ax is axes[0] else [])
         ax.set_title(t, loc="left", fontsize=8)
     h, l = axes[0].get_legend_handles_labels()
-    fig.legend(h, ["M0 fine-tuned on Y", "M2 fine-tuned on verified lesions"], loc="upper center", ncol=2, frameon=False)
+    fig.legend(h, ["M0 fine-tuned on $Y$", "M2 fine-tuned on verified lesions"], loc="upper center", ncol=2, frameon=False)
     fig.tight_layout(rect=(0, 0, 1, 0.86)); save(fig, "figS2_finetune.png")
 
 
@@ -228,7 +228,7 @@ def figS2():
     rows = [r for r in d["sim_rows"] if r["method"] == "icdl_kl"]
     st = sorted({r["s_true"] for r in rows}); sa = sorted({r["s_assumed"] for r in rows})
     fig, axes = plt.subplots(1, 2, figsize=(7.4, 3.0))
-    for ax, key, title in ((axes[0], "true_p_in_oracle_interval", "True p inside oracle interval"),
+    for ax, key, title in ((axes[0], "true_p_in_oracle_interval", "True $p$ inside oracle interval"),
                            (axes[1], "abs_log_err", r"Mean $|\log \hat p - \log p|$")):
         M = np.full((len(st), len(sa)), np.nan)
         for r in rows:
