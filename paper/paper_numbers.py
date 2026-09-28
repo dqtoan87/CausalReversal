@@ -145,7 +145,7 @@ def abs_inference():
     txt = ("Within a post-inspection family of six comparisons, Bonferroni-adjusted intervals separated the signs for "
            + " and for ".join(parts))
     if ur:
-        txt += "; " + listing([nm(f, c) for f, c in ur]) + " was unresolved under Monte Carlo error"
+        txt += ". " + (lambda x: x[0].upper() + x[1:])(listing([nm(f, c) for f, c in ur])) + " was unresolved under Monte Carlo error"
     return txt + "."
 
 
@@ -164,8 +164,8 @@ def tau_sentence():
 
 
 def mc_rule():
-    return ("The Bonferroni endpoints lie in the extreme tails, so we resampled the stored replicates 2,000 times and call a "
-            "label resolved at the Monte Carlo resolution when at least 95 percent of these resamples reproduce it.")
+    return ("The Bonferroni endpoints lie in the extreme tails. We therefore resampled the stored replicates 2,000 times. A label "
+            "is called resolved at the Monte Carlo resolution when at least 95 percent of these resamples reproduce it.")
 
 
 def mc_text():
@@ -198,8 +198,8 @@ def jb_sentence():
     ur = _unresolved(); urk = {(f, c) for f, c, _ in ur}
     rc = [x for x in _robust_cells() if x not in urk]
     assert rc
-    txt = [f"Under the primary rule, with {B:,} joint resamples per family of the three-seed average, the learner reversal was "
-           f"Bonferroni sign-separated, with a label resolved at the Monte Carlo resolution, in {len(rc)} of the 6 primary cells: "
+    txt = [f"The primary rule uses {B:,} joint resamples per family of the three-seed average. Under it, the learner reversal was "
+           f"Bonferroni sign-separated, with a resolved label, in {len(rc)} of the 6 primary cells: "
            + listing([f"{lower(CL[c])} with {f} features" for f, c in rc]) + "."]
     nrest = 6 - len(rc) - len(ur)
     if nrest:
@@ -207,17 +207,17 @@ def jb_sentence():
                    f"the Bonferroni interval of Δ_M0 reached zero once training variability was included.")
     gaps = sum(1 for f in FAMS for c in CL
                if (lambda e: e["diff_ci95"][0] > 0 or e["diff_ci95"][1] < 0)(d["families"][f]["concepts"][c]))
-    txt.append(f"The 95 percent interval of the gap Δ_M0 − Δ_M2 excluded zero in {gaps} of the 10 primary and secondary cells, "
-               f"so the direction of the gap is more stable than the full reversal.")
+    txt.append(f"The 95 percent interval of the gap Δ_M0 − Δ_M2 excluded zero in {gaps} of the 10 primary and secondary cells. "
+               f"The direction of the gap is thus more stable than the full reversal.")
     se = max(v for f in FAMS for c in PRIMARY for v in d["families"][f]["concepts"][c]["mc_se_endpoints"])
     if ur:
         parts = []
         for f, c, v in ur:
             e = d["families"][f]["concepts"][c]
-            parts.append(f"for {lower(CL[c])} with {f} features the lower Bonferroni endpoint of Δ_M0 was {s(e['d0_ci_bonf'][0])}, "
-                         f"so the two intervals {'were' if e['robust_bonf'] else 'were not'} sign-separated in the full set of replicates, but this label was reproduced in only "
-                         f"{pct(v)} of Monte Carlo resamples, and we report it as unresolved")
-        txt.append(("; ".join(parts) + ".")[0].upper() + ("; ".join(parts) + ".")[1:])
+            parts.append(f"For {lower(CL[c])} with {f} features, the lower Bonferroni endpoint of Δ_M0 was {s(e['d0_ci_bonf'][0])}. "
+                         f"The two intervals {'were' if e['robust_bonf'] else 'were not'} therefore sign-separated in the full set of replicates. "
+                         f"This label, however, was reproduced in only {pct(v)} of Monte Carlo resamples, so we report it as unresolved.")
+        txt.append(" ".join(parts))
     else:
         mn = min(d["families"][f]["concepts"][c]["label_stability"] for f in FAMS for c in PRIMARY)
         txt.append(f"The Monte Carlo standard error of the Bonferroni endpoints was at most {u(se)}, and every primary label was "
@@ -231,10 +231,10 @@ def jb_sentence():
         txt.append(f"The {B19()}-replicate one-seed analysis, which targets the randomized one-seed training procedure, gave the same "
                    f"labels in all ten cells, with Monte Carlo standard errors of at most {u(se19)} (Supplementary Section S6).")
     else:
-        txt.append(f"The {B19()}-replicate one-seed analysis, which targets the randomized one-seed training procedure, gave the same "
-                   f"labels except for " + listing([f"{lower(CL[c])} with {f} features, whose one-seed Bonferroni interval of Δ_M0 was "
-                                                     f"{ci(d19['families'][f]['concepts'][c]['d0_ci_bonf'])}" for f, c in diff])
-                   + f", with Monte Carlo standard errors of at most {u(se19)} (Supplementary Section S6).")
+        txt.append(f"The {B19()}-replicate one-seed analysis targets the randomized one-seed training procedure. It gave the same labels, "
+                   f"with Monte Carlo standard errors of at most {u(se19)}, except for " + listing([f"{lower(CL[c])} with {f} features" for f, c in diff])
+                   + ". There the one-seed Bonferroni interval of Δ_M0 was "
+                   + listing([ci(d19['families'][f]['concepts'][c]['d0_ci_bonf']) for f, c in diff]) + " (Supplementary Section S6).")
     return " ".join(txt)
 
 
@@ -421,8 +421,8 @@ def site_sentence():
     h = a["site_heterogeneity"]["color_variegation"]
     assert h["range"][0] > 0, "log B_V không dương ở mọi cơ sở; sửa câu"
     txt = (f"The verified-benign contrast log *B*_V for color variegation was positive in all {h['k']} acquisition sites where it "
-           f"could be estimated, with a pooled value of {u(h['pooled_DL'])} {ci(h['pooled_ci'])} and substantial heterogeneity "
-           f"(I² = {u(h['I2'])}); two further sites were not estimable (Supplementary Section S6).")
+           f"could be estimated. Its pooled value was {u(h['pooled_DL'])} {ci(h['pooled_ci'])}, with substantial heterogeneity "
+           f"(I² = {u(h['I2'])}). Two further sites were not estimable (Supplementary Section S6).")
     if "leave_one_site_out" in a:
         lo = a["leave_one_site_out"]
         mn0 = min(v["color_variegation"][0] for f in lo for v in lo[f].values())
@@ -636,23 +636,24 @@ def dose_sentence():
     big = lc["image"]["3000"]["raw"]
     assert not big["crosses_zero"] and big["tau_ci95"][1] < 0
     lcr = [lc[f][n]["pred"]["ratio_raw"] for f in FAMS for n in ("1000", "3000")]
-    return (f"The main result is the training-selection effect of Section III-B. With 320 selected recorded negatives, close to the "
-            f"training size of the biopsy-only regime, τ̂_k(1, −1) of the selected concept was between {s(min(tau['tabular']))} and "
-            f"{s(max(tau['tabular']))} with tabular features and between {s(min(tau['image']))} and {s(max(tau['image']))} with image "
-            f"features, and every 95 percent interval lay below {s(hi_ci)}. These are bootstrap intervals over the 20 paired "
-            f"replicates, conditional on the cohort, patient split and test population; they average over the algorithmic "
-            f"randomness ω, including the validation-set draw used for early stopping, and do not represent patient sampling. At this size the mean contrast of the selected concept crossed zero in {ncross} "
-            f"of 6 combinations of concept and family and changed sign within the same replicate in {nsc} of {20 * 6} replicates, and "
-            f"the contrasts of the five concepts moved in the predicted direction in {ag} of the 30 combinations of family, selected "
-            f"concept and responding concept. Crossing zero depends on the baseline contrast and the dose range: with 3,000 selected "
-            f"recorded negatives, color variegation with image features had τ̂ = {s(big['tau_hat'])} {ci(big['tau_ci95'])}, but its "
-            f"mean contrast did not cross zero and changed sign in {big['n_sign_change']} of 20 replicates. The raw-logit slopes had "
-            f"the direction of the Bayes-optimal training-distribution shift, and their magnitudes were similar in this implementation, "
-            f"at {u(min(rat))} to {u(max(rat))} times the prediction with 320 recorded negatives and {u(min(lcr))} to {u(max(lcr))} "
-            f"times with 1,000 or 3,000. Raw finite-network logits need not equal the Bayes-optimal log-odds of the selected training "
-            f"distribution, so these ratios are descriptive and do not test the magnitude predicted by Proposition 1. Thus the paired experiment identifies the "
-            f"finite-pipeline effect τ, while Proposition 1 separately predicts the direction of the corresponding Bayes-optimal shift; "
-            f"their numerical agreement is diagnostic rather than an identification result (Supplementary Section S6).")
+    return (f"The main result is the training-selection effect of Section III-B. With 320 selected recorded negatives, close to "
+            f"the training size of the biopsy-only regime, τ̂_k(1, −1) of the selected concept was between {s(min(tau['tabular']))} "
+            f"and {s(max(tau['tabular']))} with tabular features. With image features, it was between {s(min(tau['image']))} and "
+            f"{s(max(tau['image']))}, and every 95 percent interval lay below {s(hi_ci)}. These are bootstrap intervals over the 20 "
+            f"paired replicates, conditional on the cohort, patient split and test population. They average over the algorithmic "
+            f"randomness ω, including the validation-set draw used for early stopping, and do not represent patient sampling. At this "
+            f"size, the mean contrast of the selected concept crossed zero in {ncross} of 6 combinations of concept and family. It "
+            f"changed sign within the same replicate in {nsc} of {20 * 6} replicates. The contrasts of the five concepts moved in the "
+            f"predicted direction in {ag} of the 30 combinations of family, selected concept and responding concept. Crossing zero "
+            f"also depends on the baseline contrast and the dose range. With 3,000 selected recorded negatives, color variegation with "
+            f"image features had τ̂ = {s(big['tau_hat'])} {ci(big['tau_ci95'])}. Its mean contrast, however, did not cross zero, and it "
+            f"changed sign in {big['n_sign_change']} of 20 replicates. The raw-logit slopes had the direction of the Bayes-optimal "
+            f"training-distribution shift. Their magnitudes were similar in this implementation: {u(min(rat))} to {u(max(rat))} times "
+            f"the prediction with 320 recorded negatives, and {u(min(lcr))} to {u(max(lcr))} times with 1,000 or 3,000. Raw "
+            f"finite-network logits need not equal the Bayes-optimal log-odds of the selected training distribution. These ratios are "
+            f"therefore descriptive and do not test the magnitude predicted by Proposition 1. Thus the paired experiment identifies "
+            f"the finite-pipeline effect τ. Proposition 1 separately predicts the direction of the corresponding Bayes-optimal shift, "
+            f"and their numerical agreement is diagnostic rather than an identification result (Supplementary Section S6).")
 
 
 def table2_dose_rows():
@@ -680,9 +681,9 @@ def bridge_sentence():
     sg = {k: sum(a[f][k]["n_concepts_975"] for f in FAMS) for k in ("mlp|all", "gbm|all")}
     cal = {k: [a[f][k]["concept_calibration"] for f in FAMS] for k in ("mlp|all", "gbm|all")}
     bs = {f: sm[f]["summary"]["bridge_slope"]["median"] for f in FAMS}; bg = {f: sm[f]["summary"]["bridge_slope_gbm"]["median"] for f in FAMS}
-    return (f"Proposition 1 is exact only for Bayes-optimal learners, so for trained networks we examine direction first. The predicted "
-            f"concept-level gap had the observed sign in at least 97.5 percent of joint resamples in {sg['mlp|all']} of 10 combinations of "
-            f"concept and family with a perceptron for ĝ and {sg['gbm|all']} of 10 with gradient boosting. Magnitude depended on the "
+    return (f"Proposition 1 is exact only for Bayes-optimal learners, so for trained networks we examine direction first. With a perceptron "
+            f"for ĝ, the predicted concept-level gap had the observed sign in at least 97.5 percent of joint resamples in {sg['mlp|all']} "
+            f"of 10 combinations of concept and family. With gradient boosting, it did so in {sg['gbm|all']} of 10. Magnitude depended on the "
             f"propensity model, with calibration slopes of observed on predicted gap of {u(min(cal['mlp|all']))} to {u(max(cal['mlp|all']))} "
             f"and {u(min(cal['gbm|all']))} to {u(max(cal['gbm|all']))}. Lesion by lesion, the calibrated logit gap rose with log ĝ with slope "
             f"{u(t_['pointwise_slope'])} {ci(t_['pointwise_slope_ci'])} and {u(i_['pointwise_slope'])} {ci(i_['pointwise_slope_ci'])}. Even where the "
@@ -792,7 +793,7 @@ def resample_sentence():
     assert all(rank[lab(d30["families"][f]["concepts"][c])] < rank[lab(dp["families"][f]["concepts"][c])] for f, c in ch), "nhãn tăng khi lấy lại val; sửa câu"
     down = [1 for f in FAMS for c in PRIMARY if (d36[f][c]["robust_bonf"], d36[f][c]["robust_95"]) < (dp["families"][f]["concepts"][c]["robust_bonf"], dp["families"][f]["concepts"][c]["robust_95"])]
     assert not down
-    head = f"Resampling validation patients as well, in {min(d30['B'].values()):,} one-seed replicates per family, "
+    head = f"We also resampled validation patients, in {min(d30['B'].values()):,} one-seed replicates per family. This "
     if not ch:
         mid = "left every label of Table 1 unchanged. "
     else:
@@ -866,9 +867,9 @@ def sigma_sentence():
 def tail_sentence():
     d = J("vr38_logit_tail.json")["families"]["tabular"]
     pl, iso = d["mlp_platt"], d["mlp_iso"]
-    return (f"Calibration approximately matches aggregate event risk, a sum of *q*, but not the mean of logit *q*, which is steep "
-            f"near zero: in the lower tertile of color variegation with tabular features, Platt and isotonic calibration expected "
-            f"{pl['0']['sum_q']:.1f} and {iso['0']['sum_q']:.1f} events against {pl['0']['observed']} observed, yet their mean logit *q* "
+    return (f"Calibration approximately matches aggregate event risk, a sum of *q*. It does not match the mean of logit *q*, which is "
+            f"steep near zero. In the lower tertile of color variegation with tabular features, Platt and isotonic calibration expected "
+            f"{pl['0']['sum_q']:.1f} and {iso['0']['sum_q']:.1f} events against {pl['0']['observed']} observed. Yet their mean logit *q* "
             f"differed by {abs(pl['0']['mean_logit_q'] - iso['0']['mean_logit_q']):.2f} (Supplementary Section S7). The logit-scale "
             f"target is thus empirically unstable to the estimator of *q* in the rare-event tail.")
 
@@ -881,13 +882,13 @@ def psi_est_sentence():
     npos = sum(d["tabular"]["diagnostics"]["mlp_platt"]["pos_by_tertile"]["color_variegation"])
     assert all(max(ll[f], key=ll[f].get) == "gbm_platt" for f in FAMS), "gradient boosting không phải tệ nhất; sửa câu"
     assert lb["image"]["gbm_platt"] is None or lb["image"]["gbm_platt"] != lb["image"]["gbm_platt"]
-    return (f"The plug-in tipping floor moved with the estimator of *q* far more than with sampling (Table 3). The point floor for the tabular-input "
-            f"target was {u(pt['tabular']['mlp_iso'])} with isotonic calibration and {u(pt['tabular']['gbm_platt'])} with gradient boosting, "
-            f"against {u(pt['tabular']['mlp_platt'])} with Platt calibration, and {u(pt['image']['mlp_iso'])} and {u(pt['image']['gbm_platt'])} "
-            f"against {u(pt['image']['mlp_platt'])} for the image-feature target. With "
+    return (f"The plug-in tipping floor moved with the estimator of *q* far more than with sampling (Table 3). For the tabular-input "
+            f"target, the point floor was {u(pt['tabular']['mlp_iso'])} with isotonic calibration and {u(pt['tabular']['gbm_platt'])} with "
+            f"gradient boosting, against {u(pt['tabular']['mlp_platt'])} with Platt calibration. For the image-feature target, it was "
+            f"{u(pt['image']['mlp_iso'])} and {u(pt['image']['gbm_platt'])} against {u(pt['image']['mlp_platt'])}. With "
             f"gradient boosting for the image-feature target, no floor up to one made "
             f"ψ_L positive in 95 percent of replicates, so nuisance uncertainty cannot be summarized by one threshold. Gradient boosting had the poorest calibration of "
-            f"tertile-level event counts among the three and the most conservative tipping behavior (Supplementary Section S7); we "
+            f"tertile-level event counts among the three and the most conservative tipping behavior (Supplementary Section S7). We "
             f"report it as a sensitivity specification rather than privileging any nuisance model.")
 
 
@@ -923,11 +924,11 @@ def psi_sim_sentence():
     assert lw == 0
     return (f"Proposition 2 identifies a population set, but its plug-in estimate need not be reliable. An overstated floor "
             f"certified the wrong sign in {pct(adv['oracle_wrong'])} of adversarial synthetic settings even with true nuisances. "
-            f"In semi-synthetic designs on the ISIC-2024 inputs, with disease risk built from the perceptron or from gradient boosting, "
-            f"no false-sign certification occurred at the true floor, but the plug-in sets contained the true target in only "
-            f"{round(100 * min(cov))} to {pct(max(cov))} of settings, with lower endpoints mostly below the oracle ones (mean "
-            f"differences {s(min(bias))} to {s(max(bias))}), so they have no demonstrated nominal coverage. When the floor failed only among the 30 "
-            f"percent of lesions with the lowest verification propensity, even the oracle set contained the true target in only "
+            f"In semi-synthetic designs on the ISIC-2024 inputs, disease risk was built from the perceptron or from gradient boosting. "
+            f"No false-sign certification occurred at the true floor. However, the plug-in sets contained the true target in only "
+            f"{round(100 * min(cov))} to {pct(max(cov))} of settings. Their lower endpoints were mostly below the oracle ones (mean "
+            f"differences {s(min(bias))} to {s(max(bias))}), so they have no demonstrated nominal coverage. In one design, the floor "
+            f"failed only among the 30 percent of lesions with the lowest verification propensity. There, even the oracle set contained the true target in only "
             f"{round(100 * min(lc_or))} to {pct(max(lc_or))} of settings (Supplementary Section S2).")
 
 
@@ -938,14 +939,14 @@ def rr_sentence():
     k = f"{fc:.2f}"
     assert c["verified_negative_count"] == B
     return (f"This analysis is neither an estimator nor a check of ψ, and it does not validate Proposition 2. It uses the whole "
-            f"cohort rather than the learner's evaluation population, and it asks a different question: whether the disease "
+            f"cohort rather than the learner's evaluation population. It asks a different question: whether the disease "
             f"association between the outer tertiles has the sign opposite to the verified-only association. Because RR_Y = RR_D·*A* "
-            f"exactly (Supplementary Section S1), the disease risk ratio exceeds one when *A* < RR_Y, and a floor π₀¹ ≥ *s*_min on the "
+            f"exactly (Supplementary Section S1), the disease risk ratio exceeds one when *A* < RR_Y. A floor π₀¹ ≥ *s*_min on the "
             f"average malignant verification in the lower tertile alone gives *A* ≤ 1/*s*_min. The analysis uses counts only. For "
             f"color variegation RR_Y was {u(c['rr_y'])} {ci(c['rr_y_ci95'])}, whereas the verified-only log odds ratio was "
             f"{s(c['log_or_verified'])} {ci(c['log_or_verified_ci95'])}. The marginal association reversal held in "
-            f"{c['joint_counts'][k]:,} of {B:,} patient-cluster resamples at a lower-tertile floor of {k}, the 95 percent resampling "
-            f"stability threshold on a grid of step 0.05, which corresponds on the continuous *A* scale to about {u(c['A_max95'])}. "
+            f"{c['joint_counts'][k]:,} of {B:,} patient-cluster resamples at a lower-tertile floor of {k}. This is the 95 percent resampling "
+            f"stability threshold on a grid of step 0.05. On the continuous *A* scale, it corresponds to about {u(c['A_max95'])}. "
             f"This threshold is not a confidence bound for the floor, and nothing controls error for the choice of concept and analysis, "
             f"both made after the primary results had been seen. On the test population alone the threshold was {_fl(ft)}.")
 
@@ -990,7 +991,7 @@ def local_sentence():
     lo = J("vr34_semisynth_local.json")["families"]
     lc = [lo[f]["summary"]["oracle"]["covers"] for f in FAMS]
     assert max(lc) < 0.8
-    return ("A floor that fails only where verification is rarest lowered even the oracle containment (Section IV-F), and the "
+    return ("A floor that fails only where verification is rarest lowered even the oracle containment (Section IV-F). The "
             "two-floor analysis of Supplementary Section S7 parameterizes this assumption more flexibly without testing it.")
 
 
@@ -1004,12 +1005,12 @@ def site_sentence_marg():
     word = {1: "one", 2: "two", 3: "three"}
     w6 = {5: "five", 6: "six", 7: "seven"}
     return (f"Under a common lower-tertile floor assumed to hold within every observed site, the site-standardized whole-cohort "
-            f"threshold was {u(st['joint_floor'])}, and leaving out one site at a time it ranged from {u(min(lo))} to {u(max(lo))}. "
-            f"This is a mixture estimand for the observed sites, not evidence of a reversal that holds in each site: site-specific RR_Y "
-            f"ranged from {u(min(v['rr_y'] for v in est))} to {u(max(v['rr_y'] for v in est))} across the {w6[len(est)]} estimable sites, "
-            f"the two sites with the most malignant lesions had {u(big[0]['rr_y'])} and {u(big[1]['rr_y'])}, implying point floors of "
-            f"{u(big[0]['floor'])} and {u(big[1]['floor'])}, {word[nmiss]} site could not be estimated, and in {word[npos_or]} site "
-            f"the verified-only log odds ratio was positive (Supplementary Section S7).")
+            f"threshold was {u(st['joint_floor'])}. Leaving out one site at a time, it ranged from {u(min(lo))} to {u(max(lo))}. "
+            f"This is a mixture estimand for the observed sites, not evidence of a reversal that holds in each site. Site-specific RR_Y "
+            f"ranged from {u(min(v['rr_y'] for v in est))} to {u(max(v['rr_y'] for v in est))} across the {w6[len(est)]} estimable sites. "
+            f"The two sites with the most malignant lesions had {u(big[0]['rr_y'])} and {u(big[1]['rr_y'])}, implying point floors of "
+            f"{u(big[0]['floor'])} and {u(big[1]['floor'])}. {word[nmiss].capitalize()} site could not be estimated, and in {word[npos_or]} "
+            f"site the verified-only log odds ratio was positive (Supplementary Section S7).")
 
 
 def benchmark_sentence():
@@ -1017,7 +1018,7 @@ def benchmark_sentence():
     c = J("vr35_marginal_rr.json")["populations"]["cohort"]["color_variegation"]
     return (f"Whether such a floor is plausible depends on how appearance dependence is transported from benign to malignant "
             f"verification, which the data cannot identify. The crude whole-cohort benign ratio *B*_V was {u(c['B_V'])} {ci(c['B_V_ci95'])}. On a "
-            f"ratio scale this would exceed every *A* compatible with π₀¹ above {u(d['ratio_ceiling_p0'])}; with the same logit gradient, "
+            f"ratio scale this would exceed every *A* compatible with π₀¹ above {u(d['ratio_ceiling_p0'])}. With the same logit gradient, "
             f"log *B*_V, *A* stays below {u(d['A_max95'])} once π₀¹ ≥ {u(d['p0_threshold'])} (Supplementary Fig. S3). Both are "
             f"benchmarks, not estimates of *A*.")
 
@@ -1028,9 +1029,9 @@ def balanced_sentence():
     g = lambda f, m, c: d[f"{f}|{m}|{c}"]
     sep = lambda f, c: (g(f, "M0", c)["ci"][0] > 0 and g(f, "M2", c)["ci"][1] < 0)
     assert sep("tabular", "color_variegation") and not sep("image", "size") and not sep("image", "color_variegation")
-    return (f"Balancing the tertiles on the other four measured concepts, a different estimand, removed the reversal of size with "
-            f"image features (M0 {s(g('image', 'M0', 'size')['est'])}, M2 {s(g('image', 'M2', 'size')['est'])}) and nearly that of "
-            f"color variegation with image features (M2 {s(g('image', 'M2', 'color_variegation')['est'])}), whereas color variegation "
+    return (f"Balancing the tertiles on the other four measured concepts defines a different estimand. It removed the reversal of size "
+            f"with image features (M0 {s(g('image', 'M0', 'size')['est'])}, M2 {s(g('image', 'M2', 'size')['est'])}) and nearly that of "
+            f"color variegation with image features (M2 {s(g('image', 'M2', 'color_variegation')['est'])}). Color variegation "
             f"with tabular features kept separated signs. These intervals condition on the fitted learners and are not part of the "
             f"primary joint-bootstrap multiplicity analysis (Supplementary Section S6).")
 
@@ -1040,8 +1041,8 @@ def sharp_sentence():
     c = "color_variegation"
     tb, im = d[f"tabular|{c}"], d[f"image|{c}"]
     assert tb["sharp_plugin"]["s_star"] == tb["tertile_formula"]["s_star"] and im["sharp_plugin"]["s_star"] < im["tertile_formula"]["s_star"]
-    return ("For the image-feature target these floors come from the outer stratum formula; an exploratory estimated-weight "
-            "approximation to the sharp set gave narrower bounds, but its finite-sample validity was not established, so it is not "
+    return ("For the image-feature target, these floors come from the outer stratum formula. An exploratory estimated-weight "
+            "approximation to the sharp set gave narrower bounds. Its finite-sample validity was not established, so it is not "
             "used for certification (Supplementary Section S7).")
 
 
@@ -1067,22 +1068,20 @@ def overlap_paragraph():
     tr2 = [d40["support"][f"{f}|M2|{nm}|{q}|{cc}"]["transported"] for f in FAMS for nm in ests for q in qs]
     assert max(tr2) < 0 and all(max(d40["support"][f"{f}|M0|{nm}|{q}|{cc}"]["transported"] for nm in ests for q in qs) < full[f] for f in FAMS)
     return (f"M2 learns from verified lesions but is evaluated on the whole test population, which could force extrapolation. We "
-            f"restricted the test population to lesions whose estimated verification propensity σ̂ reached the 1st, 5th or 10th "
-            f"percentile among verified training lesions, with σ̂ fitted on each learner's own input, as in Proposition 2, which kept "
-            f"{round(100 * min(ret))} to {pct(max(ret))} of test lesions, or on the tabular features, a common support that admits "
-            f"joint intervals. The M2 contrast stayed below zero throughout, with joint intervals below zero in {n_m2} of {n_cells} "
-            f"combinations of primary comparison and threshold, and size with image features kept 95 percent intervals on opposite "
-            f"sides of zero at every threshold under every estimate of σ. "
-            f"The M0 contrast of color variegation fell instead: with the input-matched σ̂ it was between {s(min(neg))} and "
-            f"{s(max(neg))} at the 5th and 10th thresholds, and under the common support the joint interval of M0 reached zero in "
-            f"{m0zero} of {n_cells} combinations. Standardizing the supported lesions on the five measured concepts did not restore it "
-            f"(from {s(min(tr0))} to {s(max(tr0))}, against {s(full['tabular'])} and {s(full['image'])} on the full population), while "
-            f"the standardized M2 contrast stayed between {s(min(tr2))} and {s(max(tr2))}. The loss of the color learner reversal in "
-            f"better-supported regions coincided with a smaller M0 contrast among lesions more likely to be verified; the "
-            f"restriction changes the evaluation population and does not identify why. The "
-            f"full-population learner reversal describes the held-out test population; the thresholds are a sensitivity analysis, not "
-            f"a proof of positivity (Supplementary Section S6).")
-
+            f"therefore restricted the test population to lesions whose estimated verification propensity σ̂ reached the 1st, 5th "
+            f"or 10th percentile among verified training lesions. The theory-matched σ̂ is fitted on each learner's own input, as in "
+            f"Proposition 2, and kept {round(100 * min(ret))} to {pct(max(ret))} of test lesions. A second σ̂ on the tabular features "
+            f"gives a common support that admits joint intervals. The M2 contrast stayed below zero throughout. Its joint intervals "
+            f"were below zero in {n_m2} of {n_cells} combinations of primary comparison and threshold. Size with image features kept "
+            f"95 percent intervals on opposite sides of zero at every threshold under every estimate of σ. The M0 contrast of color "
+            f"variegation fell instead. With the input-matched σ̂, it was between {s(min(neg))} and {s(max(neg))} at the 5th and 10th "
+            f"thresholds. Under the common support, the joint interval of M0 reached zero in {m0zero} of {n_cells} combinations. "
+            f"Standardizing the supported lesions on the five measured concepts did not restore it. It ranged from {s(min(tr0))} to "
+            f"{s(max(tr0))}, against {s(full['tabular'])} and {s(full['image'])} on the full population, while the standardized M2 "
+            f"contrast stayed between {s(min(tr2))} and {s(max(tr2))}. In better-supported regions, the loss of the color learner "
+            f"reversal thus coincided with a smaller M0 contrast among lesions more likely to be verified. The restriction changes the "
+            f"evaluation population and does not identify why. The full-population learner reversal describes the held-out test "
+            f"population, and the thresholds are a sensitivity analysis, not a proof of positivity (Supplementary Section S6).")
 
 NUM = {"overlap_paragraph": overlap_paragraph, "sharp_sentence": sharp_sentence, "balanced_sentence": balanced_sentence, "composition_sentence": composition_sentence, "partial_sentence": partial_sentence, "local_sentence": local_sentence, "site_sentence_marg": site_sentence_marg, "benchmark_sentence": benchmark_sentence, "floor_tab": lambda: _floor_rng("tabular"), "floor_img": lambda: _floor_rng("image"), "abs_boot": abs_boot, "size_defs_sentence": size_defs_sentence, "seed_sentence": seed_sentence, "resample_sentence": resample_sentence, "sigma_sentence": sigma_sentence, "abs_primary": lambda: abs_primary(), "abs_marg_floor": abs_marg_floor, "tail_sentence": tail_sentence, "concl_dose": lambda: ", and with tabular features at a rate that approached the predicted one as the training sample grew" if _tab_converges() else "", "abs_dose2": abs_dose2, "contrib_dose2": contrib_dose2, "overshoot_detail": overshoot_detail, "abs_floor_lo": lambda: abs_floor()[0], "abs_floor_hi": lambda: abs_floor()[1], "B30": B30, "subsample_sentence": subsample_sentence, "psi_primary_sentence": psi_primary_sentence, "psi_est_sentence": psi_est_sentence, "psi_support_sentence": psi_support_sentence, "val_sentence": val_sentence, "rr_sentence": rr_sentence, "B_primary": B_primary, "B19": B19, "mc_sentence": mc_sentence, "abs_dose": abs_dose, "contrib_dose": contrib_dose, "abs_robust": abs_robust, "abs_sstar": abs_sstar, "jb_sentence": jb_sentence, "mc_rule": mc_rule, "abs_inference": abs_inference, "tau_sentence": tau_sentence, "table1_mc": table1_mc, "mc_text": mc_text, "psi_sentence": psi_sentence,
        "support_sentence": support_sentence, "dose_sentence": dose_sentence, "arms_sentence": arms_sentence,

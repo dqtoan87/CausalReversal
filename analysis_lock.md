@@ -310,3 +310,7 @@ Không chạy thêm thí nghiệm. Trong vr46, tập validation được rút l�
 ## 28. Vòng kiểm chứng thứ hai mươi mốt (2026-09-27)
 
 Không chạy thêm thí nghiệm. Hai dòng thí nghiệm liều của Table 2: "Selection dose on training only; replicate-specific validation shared across doses" (không còn "validation fixed"). Cụm "fixed validation set" chỉ còn ở suy luận chính (Table 1), nơi đúng nghĩa. Lưu ý suy diễn giữ ở đoạn "In Table x, …" cạnh bảng theo quy tắc của tác giả. Bài trích v1.5-submission.
+
+## 29. Rà soát trình bày: câu ngắn (2026-09-28)
+
+Không chạy thêm thí nghiệm, không đổi số liệu (đã đối chiếu tập số trước/sau). Tách câu dài trong bài chính: độ dài trung bình 23,1 → 16,3 từ; câu trên 40 từ 33 → 0; chỉ còn 6 câu trên 30 từ, chủ yếu là định nghĩa có công thức. Giữ nguyên các qualifier đã chốt. Ký hiệu q in nghiêng ở tiêu đề và cột bảng; nhãn hình in nghiêng các biến. Bài trích v1.6-submission. Phụ lục chưa được tách câu (trung bình 20,9 từ).
