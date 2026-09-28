@@ -314,3 +314,7 @@ Không chạy thêm thí nghiệm. Hai dòng thí nghiệm liều của Table 2:
 ## 29. Rà soát trình bày: câu ngắn (2026-09-28)
 
 Không chạy thêm thí nghiệm, không đổi số liệu (đã đối chiếu tập số trước/sau). Tách câu dài trong bài chính: độ dài trung bình 23,1 → 16,3 từ; câu trên 40 từ 33 → 0; chỉ còn 6 câu trên 30 từ, chủ yếu là định nghĩa có công thức. Giữ nguyên các qualifier đã chốt. Ký hiệu q in nghiêng ở tiêu đề và cột bảng; nhãn hình in nghiêng các biến. Bài trích v1.6-submission. Phụ lục chưa được tách câu (trung bình 20,9 từ).
+
+## 30. Chỉnh văn phong bài chính (2026-09-28)
+
+Không đổi số liệu, không đổi claim. Văn phong tự nhiên hơn: giảm nối "therefore" 14 → 6, "thus" 7 → 3, "It is" 13 → 6, bỏ "however" lặp; chuyển sang chủ động ở III-G; IV-A tách ba đoạn (nhãn chính; ba kiểm tra lấy lại; các họ learner và định nghĩa concept), IV-B tách ba đoạn (thiết kế; hiệu ứng chính; qua 0 và độ lớn). Giữ câu ngắn (trung bình khoảng 17 từ), Abstract 249 từ, mọi qualifier đã chốt.

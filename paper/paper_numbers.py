@@ -164,8 +164,8 @@ def tau_sentence():
 
 
 def mc_rule():
-    return ("The Bonferroni endpoints lie in the extreme tails. We therefore resampled the stored replicates 2,000 times. A label "
-            "is called resolved at the Monte Carlo resolution when at least 95 percent of these resamples reproduce it.")
+    return ("Because the Bonferroni endpoints lie far in the tails, we resampled the stored replicates 2,000 times. We call a label "
+            "resolved at the Monte Carlo resolution when at least 95 percent of these resamples reproduce it.")
 
 
 def mc_text():
@@ -198,43 +198,29 @@ def jb_sentence():
     ur = _unresolved(); urk = {(f, c) for f, c, _ in ur}
     rc = [x for x in _robust_cells() if x not in urk]
     assert rc
-    txt = [f"The primary rule uses {B:,} joint resamples per family of the three-seed average. Under it, the learner reversal was "
-           f"Bonferroni sign-separated, with a resolved label, in {len(rc)} of the 6 primary cells: "
-           + listing([f"{lower(CL[c])} with {f} features" for f, c in rc]) + "."]
+    word = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six"}
+    cells = (listing([lower(CL[c]) for _, c in rc]) + f", both with {rc[0][0]} features" if len(rc) == 2 and rc[0][0] == rc[1][0]
+             else listing([f"{lower(CL[c])} with {f} features" for f, c in rc]))
+    txt = [f"The primary rule uses {B:,} joint resamples per family of the three-seed average. Under it, {word[len(rc)]} of the six "
+           f"primary cells showed a Bonferroni sign-separated learner reversal with a resolved label: {cells}."]
     nrest = 6 - len(rc) - len(ur)
     if nrest:
-        txt.append(f"In {'the other ' + ['', 'one', 'two', 'three', 'four'][nrest] if nrest < 5 else nrest} primary cells, whose labels were resolved, "
-                   f"the Bonferroni interval of Δ_M0 reached zero once training variability was included.")
+        txt.append(f"In {word[nrest]} other cells, whose labels were also resolved, the Bonferroni interval of Δ_M0 reached zero once "
+                   f"training variability was included.")
+    for f, c, v in ur:
+        e = d["families"][f]["concepts"][c]
+        txt.append(f"The remaining cell, {lower(CL[c])} with {f} features, sits on the boundary. Its lower Bonferroni endpoint of Δ_M0 "
+                   f"was {s(e['d0_ci_bonf'][0])}, so the two intervals {'were' if e['robust_bonf'] else 'were not'} sign-separated in the "
+                   f"full set of replicates. Yet this label was reproduced in only {pct(v)} of Monte Carlo resamples, and we report it as "
+                   f"unresolved.")
+    se = max(v for f in FAMS for c in PRIMARY for v in d["families"][f]["concepts"][c]["mc_se_endpoints"])
+    ok = [d["families"][f]["concepts"][c]["label_stability"] for f in FAMS for c in PRIMARY if d["families"][f]["concepts"][c]["label_stability"] >= 0.95]
+    txt.append(f"The other {word[len(ok)]} labels were reproduced in " + ("every" if min(ok) == 1 else f"at least {pct(min(ok))} of the")
+               + f" Monte Carlo resample{'' if min(ok) == 1 else 's'}, and the Monte Carlo standard error of the endpoints was at most {u(se)}.")
     gaps = sum(1 for f in FAMS for c in CL
                if (lambda e: e["diff_ci95"][0] > 0 or e["diff_ci95"][1] < 0)(d["families"][f]["concepts"][c]))
-    txt.append(f"The 95 percent interval of the gap Δ_M0 − Δ_M2 excluded zero in {gaps} of the 10 primary and secondary cells. "
-               f"The direction of the gap is thus more stable than the full reversal.")
-    se = max(v for f in FAMS for c in PRIMARY for v in d["families"][f]["concepts"][c]["mc_se_endpoints"])
-    if ur:
-        parts = []
-        for f, c, v in ur:
-            e = d["families"][f]["concepts"][c]
-            parts.append(f"For {lower(CL[c])} with {f} features, the lower Bonferroni endpoint of Δ_M0 was {s(e['d0_ci_bonf'][0])}. "
-                         f"The two intervals {'were' if e['robust_bonf'] else 'were not'} therefore sign-separated in the full set of replicates. "
-                         f"This label, however, was reproduced in only {pct(v)} of Monte Carlo resamples, so we report it as unresolved.")
-        txt.append(" ".join(parts))
-    else:
-        mn = min(d["families"][f]["concepts"][c]["label_stability"] for f in FAMS for c in PRIMARY)
-        txt.append(f"The Monte Carlo standard error of the Bonferroni endpoints was at most {u(se)}, and every primary label was "
-                   f"reproduced in at least {pct(mn)} of Monte Carlo resamples.")
-    diff = [(f, c) for f in FAMS for c in CL
-            if d["families"][f]["concepts"][c]["robust_bonf"] != d19["families"][f]["concepts"][c]["robust_bonf"]
-            or d["families"][f]["concepts"][c]["robust_95"] != d19["families"][f]["concepts"][c]["robust_95"]]
-    a = J("vr29_bootstrap_audit.json")["families"]
-    se19 = max(v for f in FAMS for c in PRIMARY for v in a[f][c]["mc_se_endpoints"].values())
-    if not diff:
-        txt.append(f"The {B19()}-replicate one-seed analysis, which targets the randomized one-seed training procedure, gave the same "
-                   f"labels in all ten cells, with Monte Carlo standard errors of at most {u(se19)} (Supplementary Section S6).")
-    else:
-        txt.append(f"The {B19()}-replicate one-seed analysis targets the randomized one-seed training procedure. It gave the same labels, "
-                   f"with Monte Carlo standard errors of at most {u(se19)}, except for " + listing([f"{lower(CL[c])} with {f} features" for f, c in diff])
-                   + ". There the one-seed Bonferroni interval of Δ_M0 was "
-                   + listing([ci(d19['families'][f]['concepts'][c]['d0_ci_bonf']) for f, c in diff]) + " (Supplementary Section S6).")
+    txt.append(f"The gap Δ_M0 − Δ_M2 was more stable than the full reversal: its 95 percent interval excluded zero in "
+               + ("all 10" if gaps == 10 else f"{gaps} of the 10") + " primary and secondary cells.")
     return " ".join(txt)
 
 
@@ -636,24 +622,25 @@ def dose_sentence():
     big = lc["image"]["3000"]["raw"]
     assert not big["crosses_zero"] and big["tau_ci95"][1] < 0
     lcr = [lc[f][n]["pred"]["ratio_raw"] for f in FAMS for n in ("1000", "3000")]
-    return (f"The main result is the training-selection effect of Section III-B. With 320 selected recorded negatives, close to "
-            f"the training size of the biopsy-only regime, τ̂_k(1, −1) of the selected concept was between {s(min(tau['tabular']))} "
-            f"and {s(max(tau['tabular']))} with tabular features. With image features, it was between {s(min(tau['image']))} and "
-            f"{s(max(tau['image']))}, and every 95 percent interval lay below {s(hi_ci)}. These are bootstrap intervals over the 20 "
-            f"paired replicates, conditional on the cohort, patient split and test population. They average over the algorithmic "
-            f"randomness ω, including the validation-set draw used for early stopping, and do not represent patient sampling. At this "
-            f"size, the mean contrast of the selected concept crossed zero in {ncross} of 6 combinations of concept and family. It "
-            f"changed sign within the same replicate in {nsc} of {20 * 6} replicates. The contrasts of the five concepts moved in the "
-            f"predicted direction in {ag} of the 30 combinations of family, selected concept and responding concept. Crossing zero "
-            f"also depends on the baseline contrast and the dose range. With 3,000 selected recorded negatives, color variegation with "
-            f"image features had τ̂ = {s(big['tau_hat'])} {ci(big['tau_ci95'])}. Its mean contrast, however, did not cross zero, and it "
-            f"changed sign in {big['n_sign_change']} of 20 replicates. The raw-logit slopes had the direction of the Bayes-optimal "
-            f"training-distribution shift. Their magnitudes were similar in this implementation: {u(min(rat))} to {u(max(rat))} times "
-            f"the prediction with 320 recorded negatives, and {u(min(lcr))} to {u(max(lcr))} times with 1,000 or 3,000. Raw "
-            f"finite-network logits need not equal the Bayes-optimal log-odds of the selected training distribution. These ratios are "
-            f"therefore descriptive and do not test the magnitude predicted by Proposition 1. Thus the paired experiment identifies "
-            f"the finite-pipeline effect τ. Proposition 1 separately predicts the direction of the corresponding Bayes-optimal shift, "
-            f"and their numerical agreement is diagnostic rather than an identification result (Supplementary Section S6).")
+    return (f"The main result is the training-selection effect τ of Section III-B. With 320 selected recorded negatives, close to "
+            f"the training size of the biopsy-only regime, τ̂_k(1, −1) of the selected concept ranged from {s(min(tau['tabular']))} to "
+            f"{s(max(tau['tabular']))} with tabular features. With image features it ranged from {s(min(tau['image']))} to "
+            f"{s(max(tau['image']))}, and every 95 percent interval lay below {s(hi_ci)}. These are bootstrap intervals over the 20 paired replicates, "
+            f"conditional on the cohort, patient split and test population. They average over the algorithmic randomness ω, including "
+            f"the validation-set draw used for early stopping, and do not reflect patient sampling. At this size, the mean contrast of the "
+            f"selected concept crossed zero in {ncross} of 6 combinations of concept and family. Within the same replicate, it changed "
+            f"sign in {nsc} of {20 * 6} replicates. The contrasts of the five concepts moved in the predicted direction in {ag} of "
+            f"the 30 combinations of family, selected concept and responding concept.\n\n"
+            f"Whether a contrast crosses zero also depends on its baseline value and on the dose range. With 3,000 selected recorded "
+            f"negatives, color variegation with image features had τ̂ = {s(big['tau_hat'])} {ci(big['tau_ci95'])}, yet its mean contrast "
+            f"did not cross zero and changed sign in only {big['n_sign_change']} of 20 replicates. The raw-logit slopes pointed in the "
+            f"direction of the Bayes-optimal training-distribution shift. Their sizes were also close to it in this implementation, at "
+            f"{u(min(rat))} to {u(max(rat))} times the prediction with 320 recorded negatives and {u(min(lcr))} to {u(max(lcr))} times "
+            f"with 1,000 or 3,000. Raw finite-network logits need not equal the Bayes-optimal log-odds of the selected training "
+            f"distribution, so these ratios are descriptive and do not test the magnitude predicted by Proposition 1. In short, the paired "
+            f"experiment identifies the finite-pipeline effect τ, and Proposition 1 separately predicts the direction of the matching "
+            f"Bayes-optimal shift. Their numerical agreement is a diagnostic, not an identification result (Supplementary Section S6).")
+
 
 
 def table2_dose_rows():
@@ -688,7 +675,7 @@ def bridge_sentence():
             f"and {u(min(cal['gbm|all']))} to {u(max(cal['gbm|all']))}. Lesion by lesion, the calibrated logit gap rose with log ĝ with slope "
             f"{u(t_['pointwise_slope'])} {ci(t_['pointwise_slope_ci'])} and {u(i_['pointwise_slope'])} {ci(i_['pointwise_slope_ci'])}. Even where the "
             f"identity holds exactly, in a semi-synthetic design, these slopes ranged from {u(min(list(bs.values()) + list(bg.values())))} "
-            f"to {u(max(list(bs.values()) + list(bg.values())))} across propensity models (Supplementary Section S2). The evidence supports directional correspondence across propensity models, and approximate size only for some.")
+            f"to {u(max(list(bs.values()) + list(bg.values())))} across propensity models (Supplementary Section S2). Direction thus agreed across propensity models, while size agreed only for some.")
 
 def psi_sim_sentence():
     v = J("vr23_psi_sim.json")["summary"]["valid_floor"]
@@ -785,22 +772,34 @@ def sigma_sentence():
             f"{min(rr)} to {max(rr)} of the three thresholds depending on the estimate and family (Supplementary Section S6).")
 
 def resample_sentence():
-    """So nhãn của hai phép lấy lại khác với nhãn chính của Table 1 (bootstrap ba seed, vr43)."""
-    dp, d30 = _vp(), _v30(); d36 = J("vr36_subsample.json")["families"]
+    """Nhãn của các phép lấy lại khác so với nhãn chính của Table 1; kiểm tra một seed (vr19), lấy lại cả val (vr30), lấy mẫu con (vr36)."""
+    dp, d30, d19 = _vp(), _v30(), _v19(); d36 = J("vr36_subsample.json")["families"]
     lab = lambda e: "Bonferroni" if e["robust_bonf"] else ("95" if e["robust_95"] else "no")
     rank = {"no": 0, "95": 1, "Bonferroni": 2}
     ch = [(f, c) for f in FAMS for c in CL if lab(dp["families"][f]["concepts"][c]) != lab(d30["families"][f]["concepts"][c])]
-    assert all(rank[lab(d30["families"][f]["concepts"][c])] < rank[lab(dp["families"][f]["concepts"][c])] for f, c in ch), "nhãn tăng khi lấy lại val; sửa câu"
+    assert all(rank[lab(d30["families"][f]["concepts"][c])] < rank[lab(dp["families"][f]["concepts"][c])] for f, c in ch)
     down = [1 for f in FAMS for c in PRIMARY if (d36[f][c]["robust_bonf"], d36[f][c]["robust_95"]) < (dp["families"][f]["concepts"][c]["robust_bonf"], dp["families"][f]["concepts"][c]["robust_95"])]
     assert not down
-    head = f"We also resampled validation patients, in {min(d30['B'].values()):,} one-seed replicates per family. This "
-    if not ch:
-        mid = "left every label of Table 1 unchanged. "
+    diff = [(f, c) for f in FAMS for c in CL
+            if (dp["families"][f]["concepts"][c]["robust_bonf"], dp["families"][f]["concepts"][c]["robust_95"])
+            != (d19["families"][f]["concepts"][c]["robust_bonf"], d19["families"][f]["concepts"][c]["robust_95"])]
+    a = J("vr29_bootstrap_audit.json")["families"]
+    se19 = max(v for f in FAMS for c in PRIMARY for v in a[f][c]["mc_se_endpoints"].values())
+    txt = [f"Three checks vary the resampling. The {B19()}-replicate one-seed analysis targets the randomized one-seed training "
+           f"procedure and had Monte Carlo standard errors of at most {u(se19)}."]
+    if diff:
+        txt.append("It agreed on every label except " + listing([f"{lower(CL[c])} with {f} features" for f, c in diff])
+                   + ", whose one-seed Bonferroni interval of Δ_M0 was "
+                   + listing([ci(d19['families'][f]['concepts'][c]['d0_ci_bonf']) for f, c in diff]) + ".")
     else:
-        mid = ("left every label of Table 1 unchanged except " + listing([f"{lower(CL[c])} with {f} features" for f, c in ch])
-               + (", whose Bonferroni interval of Δ_M0 then reached zero. " if all(dp["families"][f]["concepts"][c]["robust_bonf"] for f, c in ch)
-                  else ", which lost its sign separation. "))
-    return head + mid + "Half-sampling patients without replacement reversed no label; we use it only as this check (Supplementary Section S6)."
+        txt.append("It agreed on every label.")
+    txt.append(f"Resampling validation patients as well, in {min(d30['B'].values()):,} one-seed replicates per family, "
+               + ("changed no label." if not ch else "changed only the labels of "
+                  + (f"{lower(CL[ch[0][1]])} with " + listing([f for f, _ in ch]) + " features" if len({c for _, c in ch}) == 1
+                     else listing([f"{lower(CL[c])} with {f} features" for f, c in ch]))
+                  + ": their Bonferroni intervals of Δ_M0 then reached zero."))
+    txt.append("Half-sampling patients without replacement reversed no label, and we use it only as this check (Supplementary Section S6).")
+    return " ".join(txt)
 
 
 def abs_floor():
@@ -870,8 +869,8 @@ def tail_sentence():
     return (f"Calibration approximately matches aggregate event risk, a sum of *q*. It does not match the mean of logit *q*, which is "
             f"steep near zero. In the lower tertile of color variegation with tabular features, Platt and isotonic calibration expected "
             f"{pl['0']['sum_q']:.1f} and {iso['0']['sum_q']:.1f} events against {pl['0']['observed']} observed. Yet their mean logit *q* "
-            f"differed by {abs(pl['0']['mean_logit_q'] - iso['0']['mean_logit_q']):.2f} (Supplementary Section S7). The logit-scale "
-            f"target is thus empirically unstable to the estimator of *q* in the rare-event tail.")
+            f"differed by {abs(pl['0']['mean_logit_q'] - iso['0']['mean_logit_q']):.2f} (Supplementary Section S7). In the rare-event "
+            f"tail, the logit-scale target is therefore empirically unstable to the estimator of *q*.")
 
 
 def psi_est_sentence():
@@ -1029,7 +1028,7 @@ def balanced_sentence():
     g = lambda f, m, c: d[f"{f}|{m}|{c}"]
     sep = lambda f, c: (g(f, "M0", c)["ci"][0] > 0 and g(f, "M2", c)["ci"][1] < 0)
     assert sep("tabular", "color_variegation") and not sep("image", "size") and not sep("image", "color_variegation")
-    return (f"Balancing the tertiles on the other four measured concepts defines a different estimand. It removed the reversal of size "
+    return (f"Balancing the tertiles on the other four measured concepts changes the estimand. This removed the reversal of size "
             f"with image features (M0 {s(g('image', 'M0', 'size')['est'])}, M2 {s(g('image', 'M2', 'size')['est'])}) and nearly that of "
             f"color variegation with image features (M2 {s(g('image', 'M2', 'color_variegation')['est'])}). Color variegation "
             f"with tabular features kept separated signs. These intervals condition on the fitted learners and are not part of the "
