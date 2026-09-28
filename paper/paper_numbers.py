@@ -571,7 +571,7 @@ def rr_sentence():
 
 def t_psi_est():
     d = _v30()
-    out = ["| Features | Estimate of q | Plug-in point tipping floor | Bootstrap stability threshold [Monte Carlo range] | Joint count at 0.8 | Test log-loss |",
+    out = ["| Features | Estimate of *q* | Plug-in point tipping floor | Bootstrap stability threshold [Monte Carlo range] | Joint count at 0.8 | Test log-loss |",
            "| --- | --- | ---: | --- | ---: | ---: |"]
     for f in FAMS:
         for k in EST:

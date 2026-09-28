@@ -404,7 +404,7 @@ def _f(x):
 def t_full30():
     d = J("vr30_q_bootstrap.json"); d19 = J("vr19_primary_bootstrap.json")
     rb = lambda e: "Bonferroni" if e["robust_bonf"] else ("95 percent only" if e["robust_95"] else "no")
-    out = ["| Features | Concept | Robust, one seed per replicate: train and test / all three splits | Estimate of q | s∗: point, 95th percentile | Bootstrap stability threshold | Within support, point s∗ at the 1st / 5th / 10th percentile | Joint count at s = 0.7 / 0.8 / 0.9 |",
+    out = ["| Features | Concept | Robust, one seed per replicate: train and test / all three splits | Estimate of *q* | s∗: point, 95th percentile | Bootstrap stability threshold | Within support, point s∗ at the 1st / 5th / 10th percentile | Joint count at s = 0.7 / 0.8 / 0.9 |",
            "| --- | --- | --- | --- | --- | --- | --- | --- |"]
     for f in FAMS2:
         for c in PRIMARY_SUPP:
@@ -419,7 +419,7 @@ def t_full30():
 
 def t_qdiag30():
     d = J("vr30_q_bootstrap.json")
-    out = ["| Features | Estimate of q | Log-loss | Brier | Predicted risk below 0.0005: lesions; expected / observed malignant | 0.0005 to 0.002 | 0.002 to 0.01 | Above 0.01 |",
+    out = ["| Features | Estimate of *q* | Log-loss | Brier | Predicted risk below 0.0005: lesions; expected / observed malignant | 0.0005 to 0.002 | 0.002 to 0.01 | Above 0.01 |",
            "| --- | --- | ---: | ---: | --- | --- | --- | --- |"]
     labs = EST30 + [("mlp_raw", "perceptron, uncalibrated")]
     for f in FAMS2:
@@ -537,7 +537,7 @@ def t_sigma37():
 def t_tail38():
     d = J("vr38_logit_tail.json")["families"]
     lab = {"mlp_platt": "perceptron, Platt", "mlp_iso": "perceptron, isotonic", "gbm_platt": "gradient boosting, Platt"}
-    out = ["| Features | Estimate of q | Tertile | Lesions | Observed malignant | Expected (sum of q) | Mean q | Mean logit q | Share with q < 0.0005 |",
+    out = ["| Features | Estimate of *q* | Tertile | Lesions | Observed malignant | Expected (sum of *q*) | Mean *q* | Mean logit *q* | Share with *q* < 0.0005 |",
            "| --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |"]
     for f in FAMS2:
         for k, l in lab.items():
@@ -645,7 +645,7 @@ def t_sharp42():
 
 
 def t_semi34():
-    out = ["| Disease risk built from | Features | Estimate of q | Scenario | Mean ψ_L minus oracle | Containment rate | Sign certified | Wrong sign certified |",
+    out = ["| Disease risk built from | Features | Estimate of *q* | Scenario | Mean ψ_L minus oracle | Containment rate | Sign certified | Wrong sign certified |",
            "| --- | --- | --- | --- | ---: | ---: | ---: | ---: |"]
     for fn, dl in (("vr34_semisynth.json", "perceptron"), ("vr34_semisynth_gbm.json", "gradient boosting")):
         d = J(fn)["families"]
@@ -768,7 +768,7 @@ def t_psisens25():
     d = J("vr25_psi_sensitivity.json")["families"]
     lab = [("raw", "uncalibrated M0"), ("platt", "Platt"), ("iso", "isotonic"), ("beta", "beta calibration"), ("sigma_learner", "Platt, σ from the learner's input"),
            ("winsor", "Platt, winsorized at 1 and 99 percent")]
-    out = ["| Estimate of q | " + " | ".join(f"{f}, {CL[c].split()[0].lower().replace('lesion-skin', 'contrast')}" for f in FAMS2 for c in PRIMARY_SUPP) + " |",
+    out = ["| Estimate of *q* | " + " | ".join(f"{f}, {CL[c].split()[0].lower().replace('lesion-skin', 'contrast')}" for f in FAMS2 for c in PRIMARY_SUPP) + " |",
            "| --- | " + " | ".join("---:" for _ in range(6)) + " |"]
     for k, l in lab:
         out.append(f"| {l} | " + " | ".join(("none" if d[f][c]["s_star"][k] != d[f][c]["s_star"][k] else u(d[f][c]["s_star"][k])) for f in FAMS2 for c in PRIMARY_SUPP) + " |")

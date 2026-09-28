@@ -209,9 +209,9 @@ The plug-in tipping floor moved with the estimator of *q* far more than with sam
 
 In Table 3, the point floor uses the seed-averaged curve of ψ_L, and the Monte Carlo range of the stability threshold comes from 500 resamples of the replicates. Ranges across estimators of *q* summarize specification sensitivity and are not statistical confidence intervals. Joint counts are resampling frequencies under the stated plug-in procedure, not probabilities that a disease-relative reversal holds. Log-loss is on the test population for the original fits.
 
-**TABLE 3. Plug-in tipping floor for color variegation under three estimates of q.**
+**TABLE 3. Plug-in tipping floor for color variegation under three estimates of *q*.**
 
-| Features | Estimate of q | Plug-in point tipping floor | Bootstrap stability threshold [Monte Carlo range] | Joint count at 0.8 | Test log-loss |
+| Features | Estimate of *q* | Plug-in point tipping floor | Bootstrap stability threshold [Monte Carlo range] | Joint count at 0.8 | Test log-loss |
 | --- | --- | ---: | --- | ---: | ---: |
 | tabular | perceptron, Platt | 0.38 | 0.82 [0.79, 0.85] | 940 of 1,000 | 0.0058 |
 | tabular | perceptron, isotonic | 0.28 | 0.80 [0.76, 0.82] | 956 of 1,000 | 0.0060 |

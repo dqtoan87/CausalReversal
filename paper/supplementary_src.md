@@ -223,9 +223,9 @@ In Table {{T:joint19}}, the {{N:B19}} replicates per family target the randomize
 
 {{TABLE:joint19}}
 
-**Validation resampled, three estimates of q.** Early stopping and Platt calibration use the validation set, and M2 is calibrated on its verified lesions only. Script `vr30_q_bootstrap.py` therefore repeated the analysis in {{N:B30s}} replicates per family that resampled training, validation and test patients independently within each split. In every replicate it computed the plug-in ψ_L for three estimates of *q*: the perceptron M0 with Platt calibration, the same M0 with isotonic calibration, and gradient boosting of *Y* on the tabular features or on the first 64 principal components of the image features, with Platt calibration. Table {{T:full30}} compares the robustness labels and reports, for each estimate, the plug-in tipping floor s∗ on the seed-averaged curve, its 95th percentile over replicates, the bootstrap stability threshold, s∗ within the supported region, and the number of replicates in which ψ_L(s) > 0 and Δ_M2 < 0 held together. The bootstrap stability threshold is the smallest floor at which ψ_L(s) > 0 in at least 95 percent of replicates. Because ψ_L increases in s in every replicate, it equals the 95th percentile of s∗ when replicates in which no floor up to one makes ψ_L positive are counted as above one; both are computed this way. It describes sampling variability for one specification of *q*. It is not a confidence bound for ψ or for the identified set, and it does not account for the choice among estimates of *q*. Its Monte Carlo range is the 2.5th to 97.5th percentile of the same statistic over 500 resamples of the stored replicates.
+**Validation resampled, three estimates of *q*.** Early stopping and Platt calibration use the validation set, and M2 is calibrated on its verified lesions only. Script `vr30_q_bootstrap.py` therefore repeated the analysis in {{N:B30s}} replicates per family that resampled training, validation and test patients independently within each split. In every replicate it computed the plug-in ψ_L for three estimates of *q*: the perceptron M0 with Platt calibration, the same M0 with isotonic calibration, and gradient boosting of *Y* on the tabular features or on the first 64 principal components of the image features, with Platt calibration. Table {{T:full30}} compares the robustness labels and reports, for each estimate, the plug-in tipping floor s∗ on the seed-averaged curve, its 95th percentile over replicates, the bootstrap stability threshold, s∗ within the supported region, and the number of replicates in which ψ_L(s) > 0 and Δ_M2 < 0 held together. The bootstrap stability threshold is the smallest floor at which ψ_L(s) > 0 in at least 95 percent of replicates. Because ψ_L increases in s in every replicate, it equals the 95th percentile of s∗ when replicates in which no floor up to one makes ψ_L positive are counted as above one; both are computed this way. It describes sampling variability for one specification of *q*. It is not a confidence bound for ψ or for the identified set, and it does not account for the choice among estimates of *q*. Its Monte Carlo range is the 2.5th to 97.5th percentile of the same statistic over 500 resamples of the stored replicates.
 
-In Table {{T:full30}}, training, validation and test patients are resampled for three estimates of q, and "none" means that no floor up to one made ψ_L positive.
+In Table {{T:full30}}, training, validation and test patients are resampled for three estimates of *q*, and "none" means that no floor up to one made ψ_L positive.
 
 **TABLE {{T:full30}}. Robustness and plug-in tipping floor with all three splits resampled.**
 
@@ -409,7 +409,7 @@ In Table {{T:partial40}}, original fits are averaged over seeds 0 to 2.
 
 **Proposition 2 on ISIC-2024.** The nuisance *q* was the Platt-calibrated M0 and σ an out-of-fold gradient-boosting model, both fitted without the test fold. All sets in this section use the stratum formula, which is sharp for the tabular-input target and an outer set for the image-feature target. With these plug-ins the bounds are plug-in bounds, an estimate of the identified set and not the population set of Proposition 2. Table {{T:psi}} reports them at three floors, with the plug-in tipping floor s∗, the smallest floor on a grid of step 0.01 at which ψ_L > 0, computed on the seed-averaged curve. The last entry is the 95th percentile of s∗ over the {{N:B19}} one-seed joint replicates of training and test patients, with validation fixed. It is a bootstrap stability threshold, not a floor identified from the data. Table {{T:full30}} gives the bootstrap stability threshold with validation patients also resampled, for three estimates of *q*.
 
-In Table {{T:psi}}, bounds are under the stated malignant-verification floor for the frozen-feature families, averaged over seeds 0 to 2; they replace q and σ by estimates and are not the population identified set of Proposition 2.
+In Table {{T:psi}}, bounds are under the stated malignant-verification floor for the frozen-feature families, averaged over seeds 0 to 2; they replace *q* and σ by estimates and are not the population identified set of Proposition 2.
 
 **TABLE {{T:psi}}. Plug-in bounds for the disease target on the learner's scale.**
 
@@ -425,11 +425,11 @@ In Table {{T:sharp42}}, M0 is Platt-calibrated; sharpness holds for the populati
 
 **Calibration and nuisance choices.** Script `vr25_psi_sensitivity.py` recomputed s∗ on the original fits with six estimates built on the perceptron M0: uncalibrated, with Platt (Platt, 1999), isotonic (Zadrozny & Elkan, 2002) or beta calibration (Kull et al., 2017), with Platt calibration and σ replaced by a perceptron trained on the learner's input, and with Platt calibration and logit *q* and logit *U* winsorized at the 1st and 99th percentiles. On the logit scale a Platt slope multiplies the concept contrast, so the calibration step moves s∗. Table {{T:psisens25}} reports the results, and Table {{T:full30}} gives gradient boosting under the bootstrap. Beta calibration, the alternative σ and winsorizing left the Platt value almost unchanged. Isotonic calibration moved it by about 0.1. The uncalibrated image learner, whose Platt slope was about 0.45, lowered it to below 0.2.
 
-**Fit of the estimates of q.** Table {{T:qdiag30}} reports, for the original fits averaged over seeds 0 to 2, the test log-loss and Brier score of each estimate of *q* and its calibration by bins of predicted risk: the number of lesions, their mean predicted risk and the number of malignant lesions in each bin. Most test lesions fall below a predicted risk of 0.002, where the bins hold few malignant lesions, so these diagnostics cannot tell the estimates apart where ψ_L is decided.
+**Fit of the estimates of *q*.** Table {{T:qdiag30}} reports, for the original fits averaged over seeds 0 to 2, the test log-loss and Brier score of each estimate of *q* and its calibration by bins of predicted risk: the number of lesions, their mean predicted risk and the number of malignant lesions in each bin. Most test lesions fall below a predicted risk of 0.002, where the bins hold few malignant lesions, so these diagnostics cannot tell the estimates apart where ψ_L is decided.
 
 In Table {{T:qdiag30}}, original fits are averaged over seeds 0 to 2.
 
-**TABLE {{T:qdiag30}}. Fit of the estimates of q on the test population.**
+**TABLE {{T:qdiag30}}. Fit of the estimates of *q* on the test population.**
 
 {{TABLE:qdiag30}}
 
@@ -437,7 +437,7 @@ In Table {{T:qdiag30}}, original fits are averaged over seeds 0 to 2.
 
 In Table {{T:tail38}}, values are on the test population for the original fits averaged over seeds 0 to 2.
 
-**TABLE {{T:tail38}}. Events and logit-scale mean of q in the outer tertiles of color variegation.**
+**TABLE {{T:tail38}}. Events and logit-scale mean of *q* in the outer tertiles of color variegation.**
 
 {{TABLE:tail38}}
 
