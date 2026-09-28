@@ -148,18 +148,6 @@ def t_headswap():
     return "\n".join(out)
 
 
-def t_icdl():
-    d = J("vr3_icdl.json")["sim_rows"]
-    keep = {(0.5, 0.3), (0.5, 0.5), (0.5, 0.9), (0.7, 0.5), (0.7, 0.7), (0.7, 0.9), (0.9, 0.5), (0.9, 0.9)}
-    out = ["| True floor | Assumed floor | Oracle coverage of true *p* | Plug-in coverage of true *p* | Mean \\|log p̂ − log *p*\\| | AUROC for *D* | Concept sign errors |",
-           "| ---: | ---: | ---: | ---: | ---: | ---: | ---: |"]
-    for r in d:
-        if r["method"] == "icdl_kl" and (r["s_true"], r["s_assumed"]) in keep:
-            out.append(f"| {r['s_true']} | {r['s_assumed']} | {r['true_p_in_oracle_interval']:.3f} | {r['true_p_in_interval']:.3f} | "
-                       f"{r['abs_log_err']:.3f} | {r['auroc_D']:.3f} | {r['n_sign_wrong']} |")
-    return "\n".join(out)
-
-
 def t_repr():
     sm = J("vr5_representation.json")["summary"]["ft"]
     out = ["| Diagnostic | Concept | M0 | M2 | Seeds with opposite sign |", "| --- | --- | ---: | ---: | ---: |"]
@@ -791,7 +779,7 @@ PRIMARY_SUPP = ["color_variegation", "size", "lesion_skin_contrast"]
 
 
 TABLES = {"theory": t_theory, "definitions": t_definitions, "size_matched": t_size_matched, "quant": t_quant,
-          "pad": t_pad, "headswap": t_headswap, "icdl": t_icdl, "repr": t_repr, "dose": t_dose, "bridge": t_bridge,
+          "pad": t_pad, "headswap": t_headswap, "repr": t_repr, "dose": t_dose, "bridge": t_bridge,
           "within": t_within, "sites": t_sites, "overlap": t_overlap, "joint": t_joint, "joint19": t_joint19, "psi": t_psi,
           "support19": t_support19, "dose21": t_dose21, "ess21": t_ess21, "arms21": t_arms21, "pointwise22": t_pointwise22,
           "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "dose46": t_dose46, "spill46": t_spill46, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25}

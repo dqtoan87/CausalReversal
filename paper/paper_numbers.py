@@ -94,17 +94,6 @@ def mc_sentence():
             f"and each robustness label was reproduced in at least {pct(min(st))} of resamples.")
 
 
-def rr_sentence():
-    d = J("vr3_icdl.json")["isic"]
-    r = {f: d[f]["structured_contrast_s0.5"]["color_variegation"]["rect"] for f in FAMS}
-    tip = {f: 0.5 / r[f][0] if r[f][0] > 0 else None for f in FAMS}     # [RR_Y·s, RR_Y/s] với s = 0.5, nên RR_Y = 2·cận dưới
-    assert all(r[f][0] < 1 < r[f][1] for f in FAMS)
-    return (f"A companion analysis targets the marginal risk ratio of disease between the outer tertiles, a different estimand that "
-            f"needs no calibrated learner. At a floor of 0.5 its set for color variegation was {ci(r['tabular'], 3)} with tabular "
-            f"features and {ci(r['image'], 3)} with image features, so each set contains one. At the point estimate it identifies a positive "
-            f"sign only above floors of {u(tip['tabular'])} and {u(tip['image'])} (Supplementary Section S7).")
-
-
 def val_sentence():
     d19, d24 = _v19(), _v24()
     lab = lambda e: (e["robust_bonf"], e["robust_95"])

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # VILRR pipeline (proposal_v3.md). Chạy từ Code/:
 #   setsid nohup bash run_vr_pipeline.sh > ../Result/logs/vr_pipeline.log 2>&1 < /dev/null &
-# Bước nào đã có đầu ra JSON thì bỏ qua; vr4 bỏ qua run đã có .npz. Nếu vr2/vr3/vr4 đang chạy từ trước
+# Bước nào đã có đầu ra JSON thì bỏ qua; vr4 bỏ qua run đã có .npz. Nếu vr2/vr4 đang chạy từ trước
 # (đã khởi động riêng), script chờ chúng thay vì chạy lại.
 set -uo pipefail
 cd "$(dirname "$0")"
@@ -13,12 +13,8 @@ wait_for() { while pgrep -f "python3 $1" > /dev/null; do sleep 30; done; }
 
 wait_for vr2_phase_diagram.py
 [ -f $RS/vr2_phase_diagram.json ] || python3 vr2_phase_diagram.py > $L/vr2_phase_diagram.log 2>&1 &
-wait_for vr3_icdl.py
-[ -f $RS/vr3_icdl.json ] && grep -q '"isic"' $RS/vr3_icdl.json || python3 vr3_icdl.py > $L/vr3_icdl.log 2>&1 &
 wait_for vr4_finetune.py
 [ -f $RS/vr4_finetune.json ] || python3 vr4_finetune.py >> $L/vr4_finetune.log 2>&1
 wait
 python3 vr5_representation.py > $L/vr5_representation.log 2>&1
-python3 vr7_figures.py        > $L/vr7_figures.log 2>&1
-python3 vr8_summary.py        > $L/vr8_summary.log 2>&1
 echo "PIPELINE DONE $(date)"

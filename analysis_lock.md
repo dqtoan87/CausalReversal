@@ -331,3 +331,10 @@ Không đổi số liệu, không đổi kết luận. Sửa:
 - Lượt 3 (ký hiệu): s∗ thống nhất in nghiêng *s*∗, ψ_L(*s*), *s* = …; bỏ ký hiệu *Z* chưa định nghĩa, thay bằng *z*_k(*X*).
 - Lượt 4 (nói quá/lặp): "at the training size" → "near the training size" ở Abstract và Introduction (320 so với khoảng 400 âm tính của M2); Discussion: phase diagram không đảo khi xác minh lành tính không phụ thuộc hình thái (b′ = 0), thay vì "phụ thuộc yếu" (b′ = 0.5 đã đảo 50%); rút gọn ghi chú Table 2 trùng văn bản.
 - Lượt 5 (chú thích, trích dẫn): mọi bảng/hình chính và phụ lục đều được nhắc; tài liệu [1]–[44] trích theo thứ tự, 8 tài liệu phụ lục đều được trích; "Supplementary Sections S2 and S3"; check_split.py đọc được danh sách mục số nhiều.
+
+## 33. Bỏ nhánh constrained learner; thu hẹp diễn đạt thiết kế dose (2026-09-28)
+
+- Bỏ khỏi phụ lục toàn bộ nhánh "lesion-level sets and a constrained learner": đoạn lesion-level interval ở S1, tiểu mục S7, bảng và Fig. S4, dòng tái lập. Lý do: learner được ràng buộc bởi tập ước lượng (chứa xác suất thật ở 11–69% tổn thương), không có bảo đảm nối tập định danh với dấu của khái niệm; ổn định quyết định không nói gì về độ đúng với bệnh ẩn. Nhánh này là một đóng góp phương pháp khác, không thuộc chuỗi lập luận nhân quả của bài.
+- Xóa khỏi repo: `vr3_icdl.py`, `vr3_icdl.json`, `figS4_icdl.png`, và hai script cũ không dùng (`vr7_figures.py`, `vr8_summary.py`); cập nhật `run_vr_pipeline.sh`, `vr11_paper_figures.py`, `build_docx.py`. Bảng tái lập nay là Table S51 (README cập nhật).
+- Contribution 2: "mimics selective verification" → "a controlled, verification-like selection of training data. It does not intervene on clinical biopsy decisions."
+- Không có thí nghiệm mới; số liệu bài chính không đổi.

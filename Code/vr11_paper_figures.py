@@ -4,7 +4,7 @@
 VR11 — Hình cho bản thảo, chỉ đọc JSON đã khóa. Ghi vào Causal_VILRR/paper/figures/.
 
 Main:  fig1_mechanism.png, fig2_phase_diagram.png, fig3_learned_reversal.png, fig4_boundary.png
-Supp:  figS1_phase_diagram.png, figS2_finetune.png, figS4_icdl.png (figS3 from vr41)
+Supp:  figS1_phase_diagram.png, figS2_finetune.png (figS3 from vr41)
 Bảng màu: khe categorical đã kiểm (dataviz validate_palette); mọi chuỗi có hình dấu và chú giải riêng.
 """
 from __future__ import annotations
@@ -223,48 +223,6 @@ def figS1():
     fig.tight_layout(rect=(0, 0, 1, 0.86)); save(fig, "figS2_finetune.png")
 
 
-def figS2():
-    d = J("vr3_icdl.json")
-    rows = [r for r in d["sim_rows"] if r["method"] == "icdl_kl"]
-    st = sorted({r["s_true"] for r in rows}); sa = sorted({r["s_assumed"] for r in rows})
-    fig, axes = plt.subplots(1, 2, figsize=(7.4, 3.0))
-    for ax, key, title in ((axes[0], "true_p_in_oracle_interval", "True $p$ inside oracle interval"),
-                           (axes[1], "abs_log_err", r"Mean $|\log \hat p - \log p|$")):
-        M = np.full((len(st), len(sa)), np.nan)
-        for r in rows:
-            M[st.index(r["s_true"]), sa.index(r["s_assumed"])] = r[key]
-        im = ax.imshow(M, cmap="Blues", aspect="auto", origin="lower")
-        for i in range(len(st)):
-            for j in range(len(sa)):
-                ax.text(j, i, f"{M[i, j]:.2f}", ha="center", va="center", fontsize=6.3,
-                        color="white" if M[i, j] > np.nanpercentile(M, 70) else INK)
-        ax.set_xticks(range(len(sa))); ax.set_xticklabels([f"{s:g}" for s in sa])
-        ax.set_yticks(range(len(st))); ax.set_yticklabels([f"{s:g}" for s in st])
-        ax.set_xlabel(r"assumed $s_{\min}$"); ax.set_ylabel(r"true $s_{\min}$"); ax.set_title(title, loc="left", fontsize=8.5)
-        fig.colorbar(im, ax=ax, shrink=0.8)
-    fig.tight_layout(); save(fig, "figS4_icdl.png")
-
-
-def figS3():
-    sc = J("vr3_icdl.json")["isic"]["tabular"]["structured_contrast_s0.5"]
-    fig, ax = plt.subplots(figsize=(5.4, 2.9))
-    cs = list(sc)
-    for j, c in enumerate(cs):
-        for h, col, off, lab in (("rect", YELLOW, 0.2, r"per-lesion $s$ (Proposition 1)"), ("strata", BLUE, 0.0, r"$s$ shared in 5 strata"),
-                                 ("shared", ORANGE, -0.2, r"one shared $s$ ($A = 1$)")):
-            lo, hi = sc[c][h]
-            if h == "shared":
-                ax.plot([lo], [j + off], marker="D", color=col, ms=5, ls="none", label=lab if j == 0 else None)
-            else:
-                ax.plot([lo, hi], [j + off] * 2, color=col, lw=3, solid_capstyle="butt", label=lab if j == 0 else None)
-    ax.set_xscale("log"); ax.axvline(1, color=INK2, lw=1)
-    ax.set_xticks([0.5, 1, 2, 4]); ax.set_xticklabels(["0.5", "1", "2", "4"])
-    ax.set_yticks(range(len(cs))); ax.set_yticklabels([CL[c] for c in cs])
-    ax.set_xlabel(r"Identified set for $\mathrm{RR}_D$ at $s_{\min} = 0.5$"); ax.grid(axis="x", color=GRID, lw=0.6)
-    ax.legend(frameon=False, fontsize=7, loc="lower right", bbox_to_anchor=(1.0, 1.0), ncol=3)
-    fig.tight_layout(); save(fig, "figS3_identified_sets.png")
-
-
 if __name__ == "__main__":
-    for f in (fig1, fig2, fig_external, fig3, fig4, figS1, figS2):
+    for f in (fig1, fig2, fig_external, fig3, fig4, figS1):
         f()

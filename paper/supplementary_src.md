@@ -60,8 +60,6 @@ Table {{T:notation}} fixes the notation. The code uses the same names, so each s
 
 {{TABLE:theory42}}
 
-**Lesion-level interval.** The first step of the proof gives, for each lesion, P(*D* = 1 | *x̃*) ∈ [*q*(*x̃*), *U*(*x̃*)]. Section S7 uses this interval for a constrained learner.
-
 ## S2. Validation of the theory
 
 Table {{T:theory}} summarizes the checks.
@@ -339,8 +337,6 @@ In Table {{T:bridge33}}, the gap is calibrated, slopes are shown on the full and
 
 {{TABLE:bridge33}}
 
-
-
 **Verification pattern.** Among recorded negatives, verification was regressed on each concept split into its deviation from the patient's mean and the patient's mean, with sex, anatomical site, acquisition site and skin tone. Standard errors are clustered by patient. Table {{T:within}} reports the coefficients per standard deviation, to three decimals. The between-patient coefficients of asymmetry and border irregularity nearly coincide because the two measurements are highly correlated (Spearman 0.94).
 
 **TABLE {{T:within}}. Within-patient and between-patient dependence of verification on appearance among recorded negatives.**
@@ -477,21 +473,6 @@ In Table {{T:marginal35}}, values come from counts with patient-cluster bootstra
 
 {{TABLE:marginal35}}
 
-**Lesion-level sets and a constrained learner (exploratory).** Five true floors *s*_min ∈ {0.5, 0.6, 0.7, 0.8, 0.9} generate malignant verification π¹(*x*) = *s*_min + (1 − *s*_min)·expit(*w*₁ᵀ*c*), with eight features, five concepts with positive disease effects and 300,000 lesions. Benign verification is appearance-driven, with mean 0.3 percent. For each true floor we estimate *q* and σ by gradient boosting without using the test fold. We then train an identification-constrained learner at seven assumed floors from 0.3 to 0.9. For each lesion it minimizes the larger of the two Kullback-Leibler regrets at the endpoints of the lesion-level interval of Section S1. Table {{T:icdl}} shows selected cells and Fig. S4 the full grid.
-
-In Table {{T:icdl}}, only selected cells are shown. Coverage here is the share of lesions whose true disease probability lies in the lesion-level set, a containment rate rather than the coverage of a confidence procedure. Oracle coverage uses the true nuisance functions, and plug-in coverage uses estimated nuisances.
-
-**TABLE {{T:icdl}}. Constrained learner on the true-by-assumed floor grid.**
-
-{{TABLE:icdl}}
-
-The constrained learner never produced a concept sign error, whereas the verified-only learner produced three of five in every setting. The lesion-level set contained the true disease probability in every setting where the assumed floor did not exceed the true one, and lost coverage when the floor was overstated. The estimated set covered the truth for 11 to 69 percent of lesions, so estimation error in *q* dominates at the lesion level. At a decision threshold of 0.01 on ISIC-2024, 98.0 percent of constrained-learner decisions with tabular features did not change across floors from 0.3 to 0.9.
-
-In Fig. S4, the panels show oracle coverage and log error. The figure file is `figures/figS4_icdl.png`.
-
-**Fig. S4.** Constrained learner on the true-by-assumed floor grid.
-
-
 ## S8. Reproducibility
 
 Table {{T:repro}} maps every reported result to the script that produces it. The analysis lock, which fixed primary and secondary outcomes before the tests of alternative explanations, is in `analysis_lock.md`.
@@ -545,7 +526,6 @@ In Table {{T:repro}}, scripts are in `Code/` and outputs in `Result/` of the rep
 | Patient split; nuisance estimates of *q* and σ | `vl_common.py`, `vl1_identification.py`, `vl3_learning.py` | `vl_split.json`; `vl_nuisance.npz` and `vl_nuisance_image.npz`, not distributed |
 | Test AUROC of the tabular and frozen-image learners | `vl3_learning.py` | `vl3_learning.json` |
 | Frozen ResNet-50 embeddings | `vl0_embed.py` | `embeddings/`, not distributed |
-| Table {{T:icdl}}; Fig. S4 | `vr3_icdl.py` | `vr3_icdl.json` |
 | Interval for *B* on ISIC-2024 | `vl1_identification.py` | `vl1_identification.json` |
 | All figures | `vr11_paper_figures.py` | `paper/figures/` |
 | Tables and result sentences | `paper/build_paper.py`, `paper/build_supplementary.py`, `paper/paper_numbers.py` | generated from the files above |

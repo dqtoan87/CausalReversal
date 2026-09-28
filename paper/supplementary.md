@@ -73,8 +73,6 @@ Table S1 fixes the notation. The code uses the same names, so each symbol can be
 | 2.0 | 0.7 | +0.00 | [−0.30, 0.42] | [−0.08, 0.21] | +0.21 |
 | 2.0 | 0.9 | −0.19 | [−0.28, −0.07] | [−0.22, −0.13] | −0.13 |
 
-**Lesion-level interval.** The first step of the proof gives, for each lesion, P(*D* = 1 | *x̃*) ∈ [*q*(*x̃*), *U*(*x̃*)]. Section S7 uses this interval for a constrained learner.
-
 ## S2. Validation of the theory
 
 Table S3 summarizes the checks.
@@ -648,8 +646,6 @@ In Table S32, the gap is calibrated, slopes are shown on the full and supported 
 | image | gradient boosting | full | 0.85 [0.62, 2.52] | 0.23 | 5 of 5 | 1.81 [0.86, 8.36] |
 | image | gradient boosting | supported, 1st percentile | 0.76 [0.54, 1.98] | 0.20 | 5 of 5 | 1.50 [0.53, 6.45] |
 
-
-
 **Verification pattern.** Among recorded negatives, verification was regressed on each concept split into its deviation from the patient's mean and the patient's mean, with sex, anatomical site, acquisition site and skin tone. Standard errors are clustered by patient. Table S33 reports the coefficients per standard deviation, to three decimals. The between-patient coefficients of asymmetry and border irregularity nearly coincide because the two measurements are highly correlated (Spearman 0.94).
 
 **TABLE S33. Within-patient and between-patient dependence of verification on appearance among recorded negatives.**
@@ -999,37 +995,13 @@ In Table S50, values come from counts with patient-cluster bootstrap intervals, 
 | test population | Asymmetry | 23 / 35 | 1.41 [0.78, 2.47] | 0.71 | none | +1.31 [0.61, 2.07] | none | none | 0.38 [0.22, 0.61] |
 | test population | Border irregularity | 15 / 35 | 2.13 [1.20, 4.15] | 0.47 | 0.76 | +2.02 [1.28, 2.87] | none | none | 0.28 [0.16, 0.47] |
 
-**Lesion-level sets and a constrained learner (exploratory).** Five true floors *s*_min ∈ {0.5, 0.6, 0.7, 0.8, 0.9} generate malignant verification π¹(*x*) = *s*_min + (1 − *s*_min)·expit(*w*₁ᵀ*c*), with eight features, five concepts with positive disease effects and 300,000 lesions. Benign verification is appearance-driven, with mean 0.3 percent. For each true floor we estimate *q* and σ by gradient boosting without using the test fold. We then train an identification-constrained learner at seven assumed floors from 0.3 to 0.9. For each lesion it minimizes the larger of the two Kullback-Leibler regrets at the endpoints of the lesion-level interval of Section S1. Table S51 shows selected cells and Fig. S4 the full grid.
-
-In Table S51, only selected cells are shown. Coverage here is the share of lesions whose true disease probability lies in the lesion-level set, a containment rate rather than the coverage of a confidence procedure. Oracle coverage uses the true nuisance functions, and plug-in coverage uses estimated nuisances.
-
-**TABLE S51. Constrained learner on the true-by-assumed floor grid.**
-
-| True floor | Assumed floor | Oracle coverage of true *p* | Plug-in coverage of true *p* | Mean \|log p̂ − log *p*\| | AUROC for *D* | Concept sign errors |
-| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 0.5 | 0.3 | 1.000 | 0.663 | 0.658 | 0.740 | 0 |
-| 0.5 | 0.5 | 1.000 | 0.580 | 0.337 | 0.740 | 0 |
-| 0.5 | 0.9 | 0.166 | 0.109 | 0.227 | 0.739 | 0 |
-| 0.7 | 0.5 | 1.000 | 0.528 | 0.413 | 0.741 | 0 |
-| 0.7 | 0.7 | 1.000 | 0.377 | 0.239 | 0.741 | 0 |
-| 0.7 | 0.9 | 0.313 | 0.128 | 0.170 | 0.741 | 0 |
-| 0.9 | 0.5 | 1.000 | 0.451 | 0.493 | 0.725 | 0 |
-| 0.9 | 0.9 | 1.000 | 0.120 | 0.210 | 0.724 | 0 |
-
-The constrained learner never produced a concept sign error, whereas the verified-only learner produced three of five in every setting. The lesion-level set contained the true disease probability in every setting where the assumed floor did not exceed the true one, and lost coverage when the floor was overstated. The estimated set covered the truth for 11 to 69 percent of lesions, so estimation error in *q* dominates at the lesion level. At a decision threshold of 0.01 on ISIC-2024, 98.0 percent of constrained-learner decisions with tabular features did not change across floors from 0.3 to 0.9.
-
-In Fig. S4, the panels show oracle coverage and log error. The figure file is `figures/figS4_icdl.png`.
-
-**Fig. S4.** Constrained learner on the true-by-assumed floor grid.
-
-
 ## S8. Reproducibility
 
-Table S52 maps every reported result to the script that produces it. The analysis lock, which fixed primary and secondary outcomes before the tests of alternative explanations, is in `analysis_lock.md`.
+Table S51 maps every reported result to the script that produces it. The analysis lock, which fixed primary and secondary outcomes before the tests of alternative explanations, is in `analysis_lock.md`.
 
-In Table S52, scripts are in `Code/` and outputs in `Result/` of the repository.
+In Table S51, scripts are in `Code/` and outputs in `Result/` of the repository.
 
-**TABLE S52. Where each result comes from.**
+**TABLE S51. Where each result comes from.**
 
 | Result | Script | Output |
 | --- | --- | --- |
@@ -1076,7 +1048,6 @@ In Table S52, scripts are in `Code/` and outputs in `Result/` of the repository.
 | Patient split; nuisance estimates of *q* and σ | `vl_common.py`, `vl1_identification.py`, `vl3_learning.py` | `vl_split.json`; `vl_nuisance.npz` and `vl_nuisance_image.npz`, not distributed |
 | Test AUROC of the tabular and frozen-image learners | `vl3_learning.py` | `vl3_learning.json` |
 | Frozen ResNet-50 embeddings | `vl0_embed.py` | `embeddings/`, not distributed |
-| Table S51; Fig. S4 | `vr3_icdl.py` | `vr3_icdl.json` |
 | Interval for *B* on ISIC-2024 | `vl1_identification.py` | `vl1_identification.json` |
 | All figures | `vr11_paper_figures.py` | `paper/figures/` |
 | Tables and result sentences | `paper/build_paper.py`, `paper/build_supplementary.py`, `paper/paper_numbers.py` | generated from the files above |

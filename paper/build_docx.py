@@ -26,7 +26,7 @@ DISPLAY = {
 }
 WIDTHS = {8: [11, 14, 9, 15, 15, 15, 10, 11], 3: [22, 33, 45], 6: [11, 24, 13, 23, 15, 14]}   # relative column widths
 FIGS = {"1": "fig1_mechanism.png", "2": "fig2_learned_reversal.png", "3": "fig3_intervention_bridge.png", "4": "fig4_external_boundary.png",
-        "S1": "figS1_phase_diagram.png", "S2": "figS2_finetune.png", "S3": "figS3_logit_benchmark.png", "S4": "figS4_icdl.png"}
+        "S1": "figS1_phase_diagram.png", "S2": "figS2_finetune.png", "S3": "figS3_logit_benchmark.png"}
 DOCS = {"paper": ("paper.md", "paper.docx", True), "supplementary": ("supplementary.md", "supplementary.docx", False)}
 
 # a subscript follows an italic letter (*a*), a Greek letter, ĝ, E, OR or RR

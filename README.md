@@ -14,7 +14,7 @@ Quang Toan Dao and Viet Anh Nguyen, Institute of Information Technology, Vietnam
 | `paper/` | Manuscript and supplement sources (`paper_src.md`, `supplementary_src.md`), the builders that fill in every number from the JSON files, the built `paper.md` and `supplementary.md`, and the figures |
 | `analysis_lock.md` | Analysis lock: primary, secondary and exploratory outcomes and the claims allowed for each |
 
-Supplementary Table S48 maps every table, figure and number in the paper to the script and output that produce it.
+Supplementary Table S51 maps every table, figure and number in the paper to the script and output that produce it.
 
 ## Data
 
