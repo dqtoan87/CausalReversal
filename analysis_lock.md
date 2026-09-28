@@ -62,7 +62,7 @@ Khóa ngày 2026-09-25. Sau file này, dừng thí nghiệm và chuyển sang vi
 - S4. Proposition 1–3 trên ISIC-2024.
 
 **Thăm dò (exploratory), phải được ghi nhãn như vậy trong bài.**
-- E1. ICDL, dự đoán theo giả định, tipping point cá thể.
+- E1. ICDL, dự đoán theo giả định, tipping point cá thể. *(Đã bỏ khỏi bản nộp, xem Mục 33.)*
 - E2. ℋ có cấu trúc (theo tầng, dùng chung).
 - E3. Chẩn đoán representation: probe, alignment, can thiệp layer 3, readout chung, CKA.
 
@@ -80,9 +80,9 @@ Khóa ngày 2026-09-25. Sau file này, dừng thí nghiệm và chuyển sang vi
 | "can reverse", trong điều kiện δ vượt θ | đảo dấu là phổ quát |
 | decision/learning reversal | representation reversal tổng quát |
 | đảo dấu vững nhất ở color variegation (4/4 họ learner, 7/7 định nghĩa) | size đảo dấu vững sau fine-tune (CI của M2 chứa 0; 5/7 định nghĩa) |
-| ICDL tránh dự đoán ngoài tập định danh, an toàn khi s giả định ≤ s thật | ICDL vượt ERM hay vượt M2 |
+| ICDL tránh dự đoán ngoài tập định danh, an toàn khi s giả định ≤ s thật *(không còn dùng, Mục 33)* | ICDL vượt ERM hay vượt M2 |
 | thêm cấu trúc cho ℋ làm hẹp khoảng nhưng có thể làm mất coverage | ℋ theo tầng cho cận đáng tin trên ISIC-2024 |
-| PAD-UFES phù hợp với biên của Theorem 1 | PAD-UFES chứng minh ICDL tổng quát hoá |
+| PAD-UFES phù hợp với biên của Theorem 1 | PAD-UFES chứng minh ICDL tổng quát hoá *(ICDL không còn dùng, Mục 33)* |
 | M0 − M2 ≈ độ dốc xác minh lành (xấp xỉ, phần dư −0.11 đến +0.19) | đồng nhất thức đó đúng chính xác với learner một concept |
 
 ## 6. Kết quả then chốt đã khóa (nguồn)
