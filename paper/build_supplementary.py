@@ -820,7 +820,7 @@ def n_B30s():
 def n_semi_bridge():
     return ("Table {{T:semibridge34}} reports the lesion-level slope of the calibrated gap on log ĝ in the same settings, where the "
             "population identity holds exactly. Finite trained learners can depart from slope one even then, and the model class of ĝ "
-            "moves the slope, so the slopes on ISIC-2024 are read as agreement in direction and approximate size only.")
+            "moves the slope. We therefore read the slopes on ISIC-2024 as agreement in direction and approximate size only.")
 
 
 def n_B_primary():

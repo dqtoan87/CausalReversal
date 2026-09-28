@@ -318,3 +318,7 @@ Không chạy thêm thí nghiệm, không đổi số liệu (đã đối chiế
 ## 30. Chỉnh văn phong bài chính (2026-09-28)
 
 Không đổi số liệu, không đổi claim. Văn phong tự nhiên hơn: giảm nối "therefore" 14 → 6, "thus" 7 → 3, "It is" 13 → 6, bỏ "however" lặp; chuyển sang chủ động ở III-G; IV-A tách ba đoạn (nhãn chính; ba kiểm tra lấy lại; các họ learner và định nghĩa concept), IV-B tách ba đoạn (thiết kế; hiệu ứng chính; qua 0 và độ lớn). Giữ câu ngắn (trung bình khoảng 17 từ), Abstract 249 từ, mọi qualifier đã chốt.
+
+## 31. Câu ngắn và văn phong cho phụ lục (2026-09-28)
+
+Không đổi số liệu, không đổi claim (đã đối chiếu tập số trước/sau). Phụ lục: độ dài câu trung bình 20,9 → 17,4 từ; câu trên 40 từ 34 → 2, cả hai là định nghĩa hoặc công thức. Bớt "therefore" 13 → 8; bỏ các câu mở đầu bằng ký hiệu toán ("τ̂_k(1, −1) is…", và trong bài chính "ψ_k increases…").
