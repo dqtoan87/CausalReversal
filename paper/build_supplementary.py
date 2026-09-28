@@ -275,7 +275,7 @@ def t_joint19():
 
 def t_psi():
     d = J("vr19_primary_bootstrap.json")
-    out = ["| Features | Concept | ψ bounds at *s*_min = 0.5 | ψ bounds at *s*_min = 0.7 | ψ bounds at *s*_min = 0.9 | Tipping floor s∗, original / 95th percentile |",
+    out = ["| Features | Concept | ψ bounds at *s*_min = 0.5 | ψ bounds at *s*_min = 0.7 | ψ bounds at *s*_min = 0.9 | Tipping floor *s*∗, original / 95th percentile |",
            "| --- | --- | --- | --- | --- | --- |"]
     pc = lambda v: "none" if v is None else u(v)
     for f in FAMS2:
@@ -380,7 +380,7 @@ def t_psisim():
 def t_full24():
     d = J("vr24_full_bootstrap.json"); d19 = J("vr19_primary_bootstrap.json")
     fl = lambda x: "none" if x is None or x != x else u(x)
-    out = ["| Features | Concept | Robust, train and test / all three splits resampled | Plug-in s∗: point, 95th percentile, one-sided bound | Isotonic s∗: point, 95th percentile | s∗ within support at the 1st / 5th / 10th percentile | ψ_L > 0 and Δ_M2 < 0 at s = 0.7 / 0.8 / 0.9 |",
+    out = ["| Features | Concept | Robust, train and test / all three splits resampled | Plug-in *s*∗: point, 95th percentile, one-sided bound | Isotonic *s*∗: point, 95th percentile | *s*∗ within support at the 1st / 5th / 10th percentile | ψ_L > 0 and Δ_M2 < 0 at s = 0.7 / 0.8 / 0.9 |",
            "| --- | --- | --- | --- | --- | --- | --- |"]
     rb = lambda e: "Bonferroni" if e["robust_bonf"] else ("95 percent only" if e["robust_95"] else "no")
     for f in FAMS2:
@@ -404,7 +404,7 @@ def _f(x):
 def t_full30():
     d = J("vr30_q_bootstrap.json"); d19 = J("vr19_primary_bootstrap.json")
     rb = lambda e: "Bonferroni" if e["robust_bonf"] else ("95 percent only" if e["robust_95"] else "no")
-    out = ["| Features | Concept | Robust, one seed per replicate: train and test / all three splits | Estimate of *q* | s∗: point, 95th percentile | Bootstrap stability threshold | Within support, point s∗ at the 1st / 5th / 10th percentile | Joint count at s = 0.7 / 0.8 / 0.9 |",
+    out = ["| Features | Concept | Robust, one seed per replicate: train and test / all three splits | Estimate of *q* | *s*∗: point, 95th percentile | Bootstrap stability threshold | Within support, point *s*∗ at the 1st / 5th / 10th percentile | Joint count at *s* = 0.7 / 0.8 / 0.9 |",
            "| --- | --- | --- | --- | --- | --- | --- | --- |"]
     for f in FAMS2:
         for c in PRIMARY_SUPP:
@@ -751,7 +751,7 @@ def t_mc43():
 
 def t_mc29():
     d = J("vr29_bootstrap_audit.json")["families"]
-    out = ["| Features | Concept | Robust | Label reproduced | Monte Carlo SE of endpoints, Δ_M0 lower / upper, Δ_M2 lower / upper | s∗ quantiles 5 / 25 / 50 / 75 / 95 | ψ_L(s) > 0 and Δ_M2 < 0 at s = 0.5 / 0.7 / 0.9 |",
+    out = ["| Features | Concept | Robust | Label reproduced | Monte Carlo SE of endpoints, Δ_M0 lower / upper, Δ_M2 lower / upper | *s*∗ quantiles 5 / 25 / 50 / 75 / 95 | ψ_L(*s*) > 0 and Δ_M2 < 0 at *s* = 0.5 / 0.7 / 0.9 |",
            "| --- | --- | --- | ---: | --- | --- | --- |"]
     fl = lambda x: "none" if x is None else u(x)
     for f in FAMS2:
