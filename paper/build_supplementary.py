@@ -851,14 +851,27 @@ def t_alt():
     import paper_numbers as PN
     return """| Check | Setting | Result |
 | --- | --- | --- |
-| Size-matched control, color variegation | tabular; recorded negatives from all / flagged / verified lesions; validation drawn per arm | +1.22 [0.60, 2.14] / −0.79 [−1.21, −0.38] / −0.94 [−1.12, −0.70]; positive in 20 / 0 / 0 of 20 |
+| Size-matched control, color variegation | tabular; recorded negatives from all / flagged / biopsied lesions; validation drawn per arm | +1.22 [0.60, 2.14] / −0.79 [−1.21, −0.38] / −0.94 [−1.12, −0.70]; positive in 20 / 0 / 0 of 20 |
 | Size-matched control, color variegation | image; same three sources | +0.59 [0.31, 0.90] / −0.82 [−1.05, −0.58] / −0.63 [−0.81, −0.40]; positive in 20 / 0 / 0 of 20 |""" + "\n" + PN.table2_rows()
+
+
+def t_clip50():
+    d = J("vr50_logit_clip.json")["families"]
+    out = ["| Features | Learner | Share at the cap | Concept | Δ, clipped / direct | Share at the cap, lower / upper tertile |",
+           "| --- | --- | ---: | --- | --- | --- |"]
+    for f in ("tabular", "image"):
+        for r in ("M0", "M2"):
+            e = d[f][r]
+            for c, x in e["contrasts"].items():
+                out.append(f"| {f} | {r} | {100 * e['share_at_cap']:.2f} percent | {CL[c]} | {s(x['clipped'])} / {s(x['direct'])} | "
+                           f"{100 * x['share_at_cap_lower']:.1f} / {100 * x['share_at_cap_upper']:.1f} percent |")
+    return "\n".join(out)
 
 TABLES = {"theory": t_theory, "definitions": t_definitions, "size_matched": t_size_matched, "quant": t_quant,
           "pad": t_pad, "headswap": t_headswap, "repr": t_repr, "dose": t_dose, "bridge": t_bridge,
           "within": t_within, "sites": t_sites, "overlap": t_overlap, "joint": t_joint, "joint19": t_joint19, "psi": t_psi,
           "support19": t_support19, "dose21": t_dose21, "ess21": t_ess21, "arms21": t_arms21, "pointwise22": t_pointwise22,
-          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "dose46": t_dose46, "spill46": t_spill46, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25, "mc47": t_mc47, "site47": t_site47, "nuis48": t_nuis48, "ind49": t_ind49, "ind49b": t_ind49b, "alt": t_alt}
+          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "dose46": t_dose46, "spill46": t_spill46, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25, "mc47": t_mc47, "site47": t_site47, "nuis48": t_nuis48, "ind49": t_ind49, "ind49b": t_ind49b, "alt": t_alt, "clip50": t_clip50}
 
 
 def n_platt():

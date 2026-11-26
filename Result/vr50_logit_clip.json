@@ -1,0 +1,153 @@
+{
+  "cap": -16.118095550958316,
+  "families": {
+    "tabular": {
+      "M0": {
+        "share_at_cap": 0.0008394276629570748,
+        "min_direct": -24.214618682861328,
+        "contrasts": {
+          "color_variegation": {
+            "clipped": 1.0178918302169244,
+            "direct": 1.0187365393686718,
+            "share_at_cap_lower": 0.0015619661248596672,
+            "share_at_cap_upper": 0.0002357471219205532
+          },
+          "size": {
+            "clipped": 0.6538233085530223,
+            "direct": 0.654038437899669,
+            "share_at_cap_lower": 0.0007575475330029929,
+            "share_at_cap_upper": 0.000650095602294455
+          },
+          "lesion_skin_contrast": {
+            "clipped": 0.5240706450697245,
+            "direct": 0.5239379051281331,
+            "share_at_cap_lower": 0.0013411363082175079,
+            "share_at_cap_upper": 0.0006602490459401287
+          },
+          "asymmetry": {
+            "clipped": -0.28973038331301676,
+            "direct": -0.2902672056161452,
+            "share_at_cap_lower": 0.00045150923601981334,
+            "share_at_cap_upper": 0.0015878877400295418
+          },
+          "border_irregularity": {
+            "clipped": -0.1933018021384599,
+            "direct": -0.19359223697494107,
+            "share_at_cap_lower": 0.0005213346166185435,
+            "share_at_cap_upper": 0.001631420675213363
+          }
+        }
+      },
+      "M2": {
+        "share_at_cap": 0.0,
+        "min_direct": -6.816832542419434,
+        "contrasts": {
+          "color_variegation": {
+            "clipped": -0.9527465045813533,
+            "direct": -0.9527465049596379,
+            "share_at_cap_lower": 0.0,
+            "share_at_cap_upper": 0.0
+          },
+          "size": {
+            "clipped": -0.4616053457770584,
+            "direct": -0.4616053457395289,
+            "share_at_cap_lower": 0.0,
+            "share_at_cap_upper": 0.0
+          },
+          "lesion_skin_contrast": {
+            "clipped": -1.4957246206138413,
+            "direct": -1.4957246221427747,
+            "share_at_cap_lower": 0.0,
+            "share_at_cap_upper": 0.0
+          },
+          "asymmetry": {
+            "clipped": 1.3572893434503264,
+            "direct": 1.3572893447576997,
+            "share_at_cap_lower": 0.0,
+            "share_at_cap_upper": 0.0
+          },
+          "border_irregularity": {
+            "clipped": 1.513605773849268,
+            "direct": 1.513605775544227,
+            "share_at_cap_lower": 0.0,
+            "share_at_cap_upper": 0.0
+          }
+        }
+      }
+    },
+    "image": {
+      "M0": {
+        "share_at_cap": 0.11411976682564917,
+        "min_direct": -51.14863586425781,
+        "contrasts": {
+          "color_variegation": {
+            "clipped": 1.6406506609860891,
+            "direct": 1.7749752915889185,
+            "share_at_cap_lower": 0.1530970859569483,
+            "share_at_cap_upper": 0.0726232106138593
+          },
+          "size": {
+            "clipped": 1.5624112110453805,
+            "direct": 1.6768418598998143,
+            "share_at_cap_lower": 0.1374017361499199,
+            "share_at_cap_upper": 0.07920968769917143
+          },
+          "lesion_skin_contrast": {
+            "clipped": 1.0136832890580365,
+            "direct": 1.080297922752872,
+            "share_at_cap_lower": 0.13568641794684222,
+            "share_at_cap_upper": 0.07887335102800776
+          },
+          "asymmetry": {
+            "clipped": -0.4979576245337943,
+            "direct": -0.5823980250745494,
+            "share_at_cap_lower": 0.08688896856698936,
+            "share_at_cap_upper": 0.13365337272279668
+          },
+          "border_irregularity": {
+            "clipped": -0.09097109625540038,
+            "direct": -0.14578431271185485,
+            "share_at_cap_lower": 0.0927173564324671,
+            "share_at_cap_upper": 0.12662989882756856
+          }
+        }
+      },
+      "M2": {
+        "share_at_cap": 0.0,
+        "min_direct": -15.399373054504395,
+        "contrasts": {
+          "color_variegation": {
+            "clipped": -0.6567414903685137,
+            "direct": -0.6567414916473416,
+            "share_at_cap_lower": 0.0,
+            "share_at_cap_upper": 0.0
+          },
+          "size": {
+            "clipped": -0.32455293306960536,
+            "direct": -0.32455293360172793,
+            "share_at_cap_lower": 0.0,
+            "share_at_cap_upper": 0.0
+          },
+          "lesion_skin_contrast": {
+            "clipped": -1.0714840061527626,
+            "direct": -1.0714840084334616,
+            "share_at_cap_lower": 0.0,
+            "share_at_cap_upper": 0.0
+          },
+          "asymmetry": {
+            "clipped": 1.0931161249000256,
+            "direct": 1.0931161262479818,
+            "share_at_cap_lower": 0.0,
+            "share_at_cap_upper": 0.0
+          },
+          "border_irregularity": {
+            "clipped": 1.1756426413051477,
+            "direct": 1.175642642256797,
+            "share_at_cap_lower": 0.0,
+            "share_at_cap_upper": 0.0
+          }
+        }
+      }
+    }
+  }
+}

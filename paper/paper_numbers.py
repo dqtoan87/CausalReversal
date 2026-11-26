@@ -1662,3 +1662,71 @@ def balanced_sentence():
 
 
 NUM.update({"psi_est_sentence": psi_est_sentence, "balanced_sentence": balanced_sentence})
+
+
+# Third revision: output measure, validation filter, marginal scope.
+
+def clip_sentence():
+    d = J("vr50_logit_clip.json")["families"]
+    assert all(d[f]["M2"]["share_at_cap"] == 0 for f in FAMS) and d["tabular"]["M0"]["share_at_cap"] < 0.002
+    im = d["image"]["M0"]; cc = im["contrasts"]
+    assert all(cc[c]["clipped"] * cc[c]["direct"] > 0 and abs(cc[c]["direct"]) > abs(cc[c]["clipped"]) for c in cc)
+    for f in FAMS:
+        for c, x in d[f]["M0"]["contrasts"].items():
+            assert x["clipped"] * x["direct"] > 0
+    dif = [abs(cc[c]["direct"] - cc[c]["clipped"]) for c in cc]
+    lo = cc["color_variegation"]["share_at_cap_lower"]; up = cc["color_variegation"]["share_at_cap_upper"]
+    return (f"The logit cap of Section III-B binds only for M0 with image features, at {pct(im['share_at_cap'])} of test lesions, more often in the "
+            f"lower tertile of color variegation ({pct(lo)}) than in the upper one ({pct(up)}). With the direct network logits, all "
+            f"five contrasts kept their signs and moved away from zero by {u(min(dif))} to {u(max(dif))} (Supplementary Section S6).")
+
+
+_marg_rev = marg_paragraph
+
+
+def marg_paragraph():
+    t = _marg_rev()
+    v35 = J("vr35_marginal_rr.json")
+    B = v35["B"]
+    assert _joint_floor(v35["populations"]["test"]["size"]["joint_counts"], B) is None
+    rep = [("This post-inspection analysis concerns the marginal disease association between the outer tertiles and uses "
+            "whole-cohort counts.",
+            "The learner-scale floor of Section IV-F concerns mean log odds on the test population. This post-inspection "
+            "analysis instead concerns the marginal disease association, a ratio of mean risks between the outer tertiles, "
+            "and uses crude pooled whole-cohort counts."),
+           ("; a two-sided interval needs the floor in both tertiles (Supplementary Section S1).",
+            ". A two-sided interval with this floor uses it in both tertiles; without an upper-tertile floor the observed law "
+            "still bounds the upper-tertile risk by *q*₁ + 1 − σ₁ (Supplementary Section S1)."),
+           ("On the test population alone the threshold was ", "On the test population alone, the threshold for color variegation was "),
+           ("Coding indeterminate histopathology as unverified or as malignant kept both signs, with whole-cohort thresholds from",
+            "There, size did not reach the 95 percent rule at any floor. Coding indeterminate histopathology as unverified or as "
+            "malignant kept both signs, with whole-cohort thresholds for color variegation and size from"),
+           ("The two sites with the most malignant lesions would need floors of",
+            "At the two sites with the most malignant lesions, the sufficient point floors for color variegation were")]
+    for a, b in rep:
+        assert a in t, a[:40]
+        t = t.replace(a, b)
+    return t
+
+
+NUM.update({"clip_sentence": clip_sentence, "marg_paragraph": marg_paragraph})
+
+
+_marg_rev2 = marg_paragraph
+
+
+def marg_paragraph():
+    t = _marg_rev2()
+    d49 = J("vr49_indeterminate.json")["codings"]
+    fl = {d49[f"cohort|{k}|{c}"]["joint_floor"] for k in ("dataset", "exclude", "malign") for c in ("color_variegation", "size")}
+    a = t.index("Coding indeterminate histopathology"); b = t.index("Sites weaken the result.")
+    if len(fl) == 1:
+        new = (f"Coding indeterminate histopathology as unverified or as malignant kept both signs and the whole-cohort threshold of "
+               f"{fl.pop():.2f} for color variegation and size. ")
+    else:
+        new = (f"Coding indeterminate histopathology as unverified or as malignant kept both signs, with whole-cohort thresholds for "
+               f"color variegation and size from {min(fl):.2f} to {max(fl):.2f}. ")
+    return t[:a] + new + t[b:]
+
+
+NUM.update({"marg_paragraph": marg_paragraph})

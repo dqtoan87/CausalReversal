@@ -11,7 +11,7 @@ recorded label and are unaffected. For the disease side, three codings are compa
   malign   Indeterminate lesions are counted as malignant (an extreme coding)
 For each coding: the cross-table by split and outer tertile, RR of the (coded) label between the outer tertiles, the
 verified-only log odds ratio, the observed benign ratio B_V and the 95 percent resampling stability threshold of the marginal
-association reversal (lower-tertile floor grid step 0.05, 2,000 patient-cluster resamples), as in vr35.
+association reversal (lower-tertile floor grid step 0.05), on the same 2,000 patient-cluster resampling weights as vr35.
 Out -> Result/vr49_indeterminate.json
 """
 from __future__ import annotations
@@ -41,8 +41,8 @@ def main():
         T = R.SV.tertile(df, R.CONCEPTS[c]).to_numpy()
         out["crosstab"][c] = {f"t{t}": {"malignant": int(Y[T == t].sum()), "benign_biopsied": int(((dx == "Benign") & (S == 1) & (T == t)).sum()),
                                         "indeterminate": int(ind[T == t].sum())} for t in (0, 1)}
-    rng = np.random.default_rng(49)
-    for popn, mask in (("cohort", np.ones(len(df), bool)), ("test", fold == "test")):
+    rng = np.random.default_rng(35)            # the same resampling weights as vr35, in the same order
+    for popn, mask in (("test", fold == "test"), ("cohort", np.ones(len(df), bool))):
         ix = np.flatnonzero(mask); pats = np.unique(pid[ix]); pidx = {p: i for i, p in enumerate(pats)}
         pc = np.array([pidx[p] for p in pid[ix]])
         W = np.zeros((B, len(pats)))
@@ -69,6 +69,12 @@ def main():
                     "log_or_verified": float(lor0), "log_or_verified_ci95": np.percentile(bs[:, 1], [2.5, 97.5]).tolist(),
                     "B_V": float(bv0), "joint_floor": jf}
                 R.log(f"{popn} {cod} {c}: RR {rr0:.2f} logOR|S {lor0:+.2f} {np.round(np.percentile(bs[:, 1], [2.5, 97.5]), 2)} B_V {bv0:.2f} floor {jf}")
+    import json, os
+    v35 = json.load(open(os.path.join(R.RES, "vr35_marginal_rr.json")))["populations"]
+    for popn in ("cohort", "test"):
+        for c in ("color_variegation", "size", "lesion_skin_contrast"):
+            a, b = out["codings"][f"{popn}|dataset|{c}"], v35[popn][c]
+            assert np.allclose(a["rr_ci95"], b["rr_y_ci95"]) and np.allclose(a["log_or_verified_ci95"], b["log_or_verified_ci95"])
     R.save_json(out, "vr49_indeterminate.json")
 
 

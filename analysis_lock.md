@@ -365,3 +365,14 @@ Hậu nghiệm, không đổi nhãn Bảng 1. Sửa:
 - vr47: với hỗn hợp sáu site cố định, color không đạt 95% (tối đa 1,728/2,000); size đạt ở 0.72.
 - vr48 --iso-zero: các điểm isotonic ở cận 1e−6 gần như đều là 0 đúng của khớp.
 - Bảng 2 cũ chuyển sang phụ lục; Bảng 3 thành Bảng 2. PDF A4 23 trang.
+
+## 36. Sửa theo phản biện review_27_3 (2026-11-26)
+
+Hậu nghiệm, không đổi nhãn Bảng 1. Sửa:
+- M2 dừng sớm và hiệu chuẩn trên validation đã xác minh (lọc S = 1 trong vl_models.train); M0 trên toàn validation. Bài nay ghi đúng.
+- Thang đầu ra: logit của xác suất đã clip [1e−7, 1 − 1e−7] (cap ±16.12), gọi là "raw". vr50: cap chỉ chạm M0 ảnh (11%,
+  15% tertile dưới, 7% tertile trên color); logit trực tiếp giữ dấu cả 5 concept, |Δ_M0| tăng 0.05–0.13. Bootstrap không tính lại.
+- Ngưỡng overlap (vr19) cố định theo tập train gốc, không tính lại trong bootstrap.
+- vr49 dùng đúng trọng số bootstrap của vr35 (seed 35, cùng thứ tự); dòng cơ sở khớp tuyệt đối. Ngưỡng color và size = 0.65 ở cả ba mã hóa.
+- 70/400 biopsied recorded negatives của M2 là ca bất định; ảnh hưởng lên Δ_M2 khi huấn luyện lại chưa kiểm tra.
+- Kết luận về ψ chỉ ở mức "phân tích ISIC-2024 không thiết lập"; marginal gọi là "crude pooled", sáu site cố định không đạt tiêu chí.
