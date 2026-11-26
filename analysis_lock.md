@@ -338,3 +338,18 @@ Không đổi số liệu, không đổi kết luận. Sửa:
 - Xóa khỏi repo: `vr3_icdl.py`, `vr3_icdl.json`, `figS4_icdl.png`, và hai script cũ không dùng (`vr7_figures.py`, `vr8_summary.py`); cập nhật `run_vr_pipeline.sh`, `vr11_paper_figures.py`, `build_docx.py`. Bảng tái lập nay là Table S51 (README cập nhật).
 - Contribution 2: "mimics selective verification" → "a controlled, verification-like selection of training data. It does not intervene on clinical biopsy decisions."
 - Không có thí nghiệm mới; số liệu bài chính không đổi.
+
+## 34. Sửa theo phản biện review_25_3 (2026-11-26)
+
+Phân tích hậu nghiệm, không đổi giao thức chính và không đổi nhãn của Bảng 1. Sửa:
+- Hướng offset: chọn chỉ-đã-sinh-thiết cộng −log g vào logit Bayes; điều kiện đảo dấu Δ_M0(Δ_M0 − G_k) < 0.
+- Prop 2: sàn tới hạn tính từ cận chính xác; exp(−Δ_q) chỉ là xấp xỉ diễn giải (phản ví dụ q = 0.01/0.02, s = 0.497).
+  Cận trên đổi tên U → p̄. Khoảng marginal sharp là [q₁/p̄₀, p̄₁/q₀]; trùng [s·RR_Y, RR_Y/s] trên ISIC vì nhánh sàn hoạt động với s > 0.002.
+- Hình 4 vẽ lại từ số đếm toàn cohort (vr47): đường có độ dốc +1, θ − δ = log OR_{D|S}; bản cũ dùng OR hiệu chỉnh và độ dốc −1 là sai.
+- vr47: chuẩn hóa site cùng trọng số hai vế (ngưỡng color 0.63, size 0.59; loại site 3); kiểm toán Monte Carlo của vr30:
+  nhãn image color khi lấy lại cả val (95% only) chỉ tái lập 57%, nên chưa phân giải.
+- vr48: nhánh q + 1 − σ hoạt động ≤ 0.01% tertile thấp; σ̂ theo đúng input cho cùng sàn; isotonic tabular 37% ở cận 1e−6,
+  sàn 0.40 / 0.28 / 0.20 với cận 1e−5 / 1e−6 / 1e−7.
+- Lesion-skin contrast cũng giữ dấu điểm đối lập ở 7/7 định nghĩa, 4/4 họ: bỏ câu "color là concept duy nhất".
+- Dose: "320 kỳ vọng" (thực tế 282–360); giảm đơn điệu của trung bình ở 6/6; đối chứng cùng cỡ đổi cả validation theo arm.
+- S34 gọi đúng là log OR hiệu chỉnh của xác minh, không phải log B_V.

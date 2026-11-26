@@ -69,7 +69,7 @@ def t_definitions():
     out = ["| Family | Concept | tertile | quartile | quintile | median | slope | within-patient slope | rank slope |",
            "| --- | --- | --- | --- | --- | --- | --- | --- | --- |"]
     for f, lab in fams:
-        for c in ("color_variegation", "size"):
+        for c in ("color_variegation", "size", "lesion_skin_contrast"):
             x = d[f]["concepts"][c]
             out.append(f"| {lab} | {CL[c]} | " + " | ".join(f"{s(x[h]['M0'])} / {s(x[h]['M2'])}" for h in DEFS) + " |")
     return "\n".join(out)
@@ -111,7 +111,7 @@ def t_pad():
     lab = {"color_var": "Image color variegation", "contrast": "Image lesion-skin contrast", "asym": "Image asymmetry",
            "border": "Image border irregularity", "itch": "Itch", "grew": "Grew", "hurt": "Hurt", "changed": "Changed",
            "bleed": "Bleeding", "elevation": "Elevation"}
-    out = ["| Feature | Δ_M0 [95% CI] | Δ_M2 [95% CI] | Category | P(signs differ) |", "| --- | --- | --- | --- | ---: |"]
+    out = ["| Feature | Δ_M0 [95% CI] | Δ_M2 [95% CI] | Category by point estimates | Share of resamples with opposite signs |", "| --- | --- | --- | --- | ---: |"]
     for fam in ("clinical", "image"):
         for k, x in p["families"][fam].items():
             cat = x["category"] if abs(x["M0"]) > 0.1 else "unresolved (Δ_M0 near 0)"
@@ -224,7 +224,7 @@ def t_sites():
 def t_overlap():
     o = J("vr16_mechanism.json")["overlap"]
     lab = {"all_test": "all test lesions", "supported": "within support", "flagged": "flagged lesions"}
-    out = ["| Features | Population (share of test) | Concept | Δ_M0 [95% CI] | Δ_M2 [95% CI] | P(signs differ) |",
+    out = ["| Features | Population (share of test) | Concept | Δ_M0 [95% CI] | Δ_M2 [95% CI] | Share of resamples with opposite signs |",
            "| --- | --- | --- | --- | --- | ---: |"]
     for fam, f in o["families"].items():
         for sub, r in f.items():
@@ -336,7 +336,7 @@ def t_pointwise22():
 
 def t_sitehet():
     a = J("vr20_audit.json")
-    out = ["| Concept | Estimable sites | Q (df) | I² | τ² | Pooled log *B*_V [95% CI] | Site range |", "| --- | ---: | --- | ---: | ---: | --- | --- |"]
+    out = ["| Concept | Estimable sites | Q (df) | I² | Between-site variance τ² | Pooled adjusted log OR [95% CI] | Site range |", "| --- | ---: | --- | ---: | ---: | --- | --- |"]
     for c in PRIMARY_SUPP:
         h = a["site_heterogeneity"][c]
         out.append(f"| {CL[c]} | {h['k']} | {u(h['Q'], 1)} ({h['df']}) | {u(h['I2'])} | {u(h['tau2'], 3)} | {u(h['pooled_DL'])} {ci(h['pooled_ci'])} | {ci(h['range'])} |")
@@ -422,7 +422,7 @@ def t_marginal35():
     d = J("vr35_marginal_rr.json")["populations"]
     B = J("vr35_marginal_rr.json")["B"]
     jf = lambda jc: next((k for k, v in sorted(jc.items(), key=lambda z: float(z[0])) if v >= 0.95 * B), None)
-    out = ["| Population | Concept | Malignant, lower / upper tertile | RR_Y [95% CI] | Floor 1/RR_Y | Floor 1/q₀.₀₅ | Verified-only log OR [95% CI] | 95% resampling stability threshold | Largest *A* at 95% | *B*_V [95% CI] |",
+    out = ["| Population | Concept | Malignant, lower / upper tertile | RR_Y [95% CI] | Floor 1/RR_Y | Floor 1/(5th percentile of RR_Y) | Verified-only log OR [95% CI] | 95% resampling stability threshold | Largest *A* at 95% | *B*_V [95% CI] |",
            "| --- | --- | --- | --- | ---: | ---: | --- | ---: | ---: | --- |"]
     for pop, lab in (("cohort", "whole cohort"), ("test", "test population")):
         for c in CL:
@@ -778,11 +778,50 @@ def t_twofloor25():
 PRIMARY_SUPP = ["color_variegation", "size", "lesion_skin_contrast"]
 
 
+
+def t_mc47():
+    d = J("vr47_counts_audit.json")["allsplits_mc"]
+    lab = {"Bonferroni": "Bonferroni", "95": "95 percent only", "no": "no"}
+    out = ["| Features | Concept | Label, all three splits resampled | Bonferroni interval of Δ_M0 | Label reproduced | Replicates in each Bonferroni tail |",
+           "| --- | --- | --- | --- | ---: | ---: |"]
+    for f in ("tabular", "image"):
+        for c in ("color_variegation", "size", "lesion_skin_contrast"):
+            e = d[f][c]
+            out.append(f"| {f} | {CL[c]} | {lab[e['label']]} | {ci(e['d0_bonf'])} | {e['reproduced']:.2f} | {e['tail_count']} |")
+    return "\n".join(out)
+
+
+def t_site47():
+    d = J("vr47_counts_audit.json")["site_common_weights"]
+    out = ["| Concept | Sites used | Excluded | Standardized RR_Y [95% CI] | Point floor | Standardized verified-only log RR [95% CI] | 95% resampling stability threshold | Resamples dropping a site | Weights of Sites 1, 2, 4, 5, 6, 7 |",
+           "| --- | ---: | --- | --- | ---: | --- | ---: | ---: | --- |"]
+    for c in ("color_variegation", "size"):
+        e = d[c]
+        out.append(f"| {CL[c]} | {len(e['supported_sites'])} | Site 3 | {u(e['rr_y_std'])} {ci(e['rr_y_std_ci95'])} | {u(e['point_floor'])} | "
+                   f"{s(e['log_rr_verified_std'])} {ci(e['log_rr_verified_std_ci95'])} | {u(e['joint_floor'])} | {e['resamples_with_dropped_site']:,} of 2,000 | "
+                   + " / ".join(f"{e['weights'][x]:.2f}" for x in e["supported_sites"]) + " |")
+    sites = J("vr47_counts_audit.json")["site_common_weights"]["sites"]
+    assert all(d[c]["excluded_sites"] == [sites[2]] for c in ("color_variegation", "size"))
+    return "\n".join(out)
+
+
+def t_nuis48():
+    d = J("vr48_nuisance_audit.json")["families"]
+    out = ["| Features | q̂ > σ̂, common σ̂ / input-matched σ̂ | Second branch active, lower tertile | Isotonic at lower bound | Point floor: Platt / input-matched σ̂ | Isotonic point floor, lower bound 10⁻⁵ / 10⁻⁶ / 10⁻⁷ |",
+           "| --- | --- | ---: | ---: | --- | --- |"]
+    for f in ("tabular", "image"):
+        e = d[f]; st = e["stats_mean_over_seeds"]; ss = e["s_star"]
+        br = max(v["share_lower_tertile_second_branch"] for v in e["branch"].values())
+        out.append(f"| {f} | {100 * st['q_gt_sigma_common']:.1f} / {100 * st['q_gt_sigma_input']:.1f} percent | {100 * br:.3f} percent | "
+                   f"{100 * st['iso_at_lower']:.1f} percent | {u(ss['platt'])} / {u(ss['platt_sigma_input'])} | "
+                   f"{u(ss['iso_1e-5'])} / {u(ss['iso_1e-6'])} / {u(ss['iso_1e-7'])} |")
+    return "\n".join(out)
+
 TABLES = {"theory": t_theory, "definitions": t_definitions, "size_matched": t_size_matched, "quant": t_quant,
           "pad": t_pad, "headswap": t_headswap, "repr": t_repr, "dose": t_dose, "bridge": t_bridge,
           "within": t_within, "sites": t_sites, "overlap": t_overlap, "joint": t_joint, "joint19": t_joint19, "psi": t_psi,
           "support19": t_support19, "dose21": t_dose21, "ess21": t_ess21, "arms21": t_arms21, "pointwise22": t_pointwise22,
-          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "dose46": t_dose46, "spill46": t_spill46, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25}
+          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "dose46": t_dose46, "spill46": t_spill46, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25, "mc47": t_mc47, "site47": t_site47, "nuis48": t_nuis48}
 
 
 def n_platt():

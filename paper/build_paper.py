@@ -8,8 +8,8 @@ import re
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 REFS = {
-    "balachandar": "Balachandar, S., Garg, N., & Pierson, E. (2024). Domain constraints improve risk prediction when outcome data is missing. In *International Conference on Learning Representations (ICLR)*.",
-    "rambachan": "Rambachan, A., Coston, A., & Kennedy, E. H. (2022). Robust design and evaluation of predictive algorithms under unobserved confounding. *arXiv preprint* arXiv:2212.09844.",
+    "balachandar": "Balachandar, S., Garg, N., & Pierson, E. (2024). Domain constraints improve risk prediction when outcome data is missing. In *The Twelfth International Conference on Learning Representations (ICLR 2024)*.",
+    "rambachan": "Rambachan, A., Coston, A., & Kennedy, E. H. (in press). Robust design and evaluation of predictive algorithms under unobserved confounding. *The Review of Economics and Statistics*. https://doi.org/10.1162/REST.a.1815 (preprint arXiv:2212.09844).",
     "coston": "Coston, A., Rambachan, A., & Chouldechova, A. (2021). Characterizing fairness over the set of good models under selective labels. In *Proceedings of the 38th International Conference on Machine Learning*, PMLR 139 (pp. 2144–2155).",
     "mullainathan": "Mullainathan, S., & Obermeyer, Z. (2022). Diagnosing physician error: A machine learning approach to low-value health care. *The Quarterly Journal of Economics*, *137*(2), 679–727.",
     "fithian": "Fithian, W., & Hastie, T. (2014). Local case-control sampling: Efficient subsampling in imbalanced data sets. *The Annals of Statistics*, *42*(5), 1693–1724.",

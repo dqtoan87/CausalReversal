@@ -1,0 +1,74 @@
+{
+  "families": {
+    "tabular": {
+      "s_star": {
+        "platt": 0.38,
+        "platt_sigma_input": 0.38,
+        "iso_1e-6": 0.28,
+        "iso_1e-5": 0.4,
+        "iso_1e-7": 0.2
+      },
+      "stats_mean_over_seeds": {
+        "q_gt_sigma_common": 0.1270291467938527,
+        "q_gt_sigma_input": 0.13613990461049286,
+        "platt_at_clip": 0.0,
+        "iso_at_lower": 0.37169687334393214,
+        "iso_at_upper": 0.0
+      },
+      "branch": {
+        "platt|sigma_common": {
+          "floor": 0.38,
+          "share_lower_tertile_second_branch": 9.76228828037292e-05
+        },
+        "platt|sigma_input": {
+          "floor": 0.38,
+          "share_lower_tertile_second_branch": 8.542002245326305e-05
+        },
+        "iso_1e-6|sigma_common": {
+          "floor": 0.28,
+          "share_lower_tertile_second_branch": 9.76228828037292e-05
+        },
+        "iso_1e-6|sigma_input": {
+          "floor": 0.28,
+          "share_lower_tertile_second_branch": 9.76228828037292e-05
+        }
+      },
+      "n_lower": 27316
+    },
+    "image": {
+      "s_star": {
+        "platt": 0.49,
+        "platt_sigma_input": 0.49,
+        "iso_1e-6": 0.58,
+        "iso_1e-5": 0.58,
+        "iso_1e-7": 0.58
+      },
+      "stats_mean_over_seeds": {
+        "q_gt_sigma_common": 0.38036248012718604,
+        "q_gt_sigma_input": 0.0717541070482247,
+        "platt_at_clip": 0.0,
+        "iso_at_lower": 0.0,
+        "iso_at_upper": 0.0
+      },
+      "branch": {
+        "platt|sigma_common": {
+          "floor": 0.49,
+          "share_lower_tertile_second_branch": 0.0
+        },
+        "platt|sigma_input": {
+          "floor": 0.49,
+          "share_lower_tertile_second_branch": 0.0
+        },
+        "iso_1e-6|sigma_common": {
+          "floor": 0.58,
+          "share_lower_tertile_second_branch": 0.0
+        },
+        "iso_1e-6|sigma_input": {
+          "floor": 0.58,
+          "share_lower_tertile_second_branch": 0.0
+        }
+      },
+      "n_lower": 27316
+    }
+  }
+}

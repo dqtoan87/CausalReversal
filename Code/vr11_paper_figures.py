@@ -117,18 +117,19 @@ def fig2():
 def fig_external():
     fig, b = plt.subplots(1, 1, figsize=(4.2, 3.6))
     regions(b, 6)
-    pad, sv2 = J("vr6_pad_boundary.json"), J("sv2_bracket.json", R.MISS_RES)
+    pad, v47 = J("vr6_pad_boundary.json"), J("vr47_counts_audit.json")["fig4_paths"]
     f = pad["features"]
     b.scatter([v["logOR_D"] for v in f.values()], [v["logB"] - v["logA"] for v in f.values()], s=26, marker="D",
               color=VIOLET, edgecolor=SURF, linewidth=0.6, zorder=3, label="PAD-UFES-20, recorded diagnoses")
+    # ISIC-2024: exact paths from whole-cohort counts, π₀¹ = 0.5 and A in [0.5, 2]; each lies on δ = θ − c (Lemma 1)
     for c in ("color_variegation", "size", "lesion_skin_contrast"):
-        ad = sv2["proxies"][c]["adjusted"]
-        x, y = np.log(ad["OR_Y"]), np.log(ad["B"])
-        b.plot([x - np.log(2), x + np.log(2)], [y + np.log(2), y - np.log(2)], color=YELLOW, lw=2.0, zorder=2,
-               label="ISIC-2024 sensitivity path, A in [0.5, 2]" if c == "color_variegation" else None)
+        e = v47[c]; pth = e["paths"]["0.5"]
+        b.plot([r["theta"] for r in pth], [r["delta"] for r in pth], color=YELLOW, lw=2.0, zorder=2,
+               label=r"ISIC-2024 path, $A$ in [0.5, 2], $\pi_0^1 = 0.5$" if c == "color_variegation" else None)
+        r1 = e["reference_A1"]["0.5"]; x, y = r1["theta"], r1["delta"]
         b.scatter([x], [y], s=46, marker="o", facecolors=SURF, edgecolors=INK, linewidth=1.1, zorder=4,
-                  label="ISIC-2024 reference, A = 1" if c == "color_variegation" else None)
-        off = {"color_variegation": (8, 5), "size": (-8, -11), "lesion_skin_contrast": (-8, 6)}[c]
+                  label=r"ISIC-2024, $A = 1$" if c == "color_variegation" else None)
+        off = {"color_variegation": (10, 3), "size": (8, -10), "lesion_skin_contrast": (-6, 9)}[c]
         b.annotate(CL[c], (x, y), xytext=off, textcoords="offset points", fontsize=6.8, ha="right" if off[0] < 0 else "left")
     b.set_xlim(-0.6, 2.8); b.set_ylim(-0.6, 2.8)
     b.set_xlabel(r"$\theta = \log \mathrm{OR}_D$"); b.set_ylabel(r"$\delta = \log B - \log A$")
@@ -188,11 +189,12 @@ def fig4():
                 b.errorbar(x, y, xerr=[[x - v["predicted_ci"][0]], [v["predicted_ci"][1] - x]],
                            yerr=[[y - v["observed_ci"][0]], [v["observed_ci"][1] - y]], fmt=mk, color=col, ms=5, lw=0.8,
                            mec=SURF, mew=0.6, capsize=0, zorder=3, label=f"{fam}" if cc == "color_variegation" else None)
-                if fam == "tabular":
-                    off = {"color_variegation": (-6, 6), "lesion_skin_contrast": (6, -8), "size": (-6, 4),
-                           "asymmetry": (6, 4), "border_irregularity": (-6, -10)}[cc]
-                    b.annotate(CL[cc].split()[0].replace("Lesion-skin", "Contrast"), (x, y), xytext=off, textcoords="offset points",
-                               fontsize=6.3, ha="right" if off[0] < 0 else "left")
+                off = ({"color_variegation": (-6, 6), "lesion_skin_contrast": (6, -8), "size": (-6, 4),
+                        "asymmetry": (6, 4), "border_irregularity": (-6, -10)} if fam == "tabular" else
+                       {"color_variegation": (4, 7), "lesion_skin_contrast": (7, -9), "size": (-5, -10),
+                        "asymmetry": (8, 3), "border_irregularity": (-7, 5)})[cc]
+                b.annotate(CL[cc].split()[0].replace("Lesion-skin", "Contrast"), (x, y), xytext=off, textcoords="offset points",
+                           fontsize=6.0, color=col, ha="right" if off[0] < 0 else "left")
             lim = max(lim, *(abs(z) for cc in R.CONCEPTS for z in br[fam]["concepts"][cc]["observed_ci"] + br[fam]["concepts"][cc]["predicted_ci"]))
     lim = float(np.ceil(lim * 5) / 5)
     b.plot([-lim, lim], [-lim, lim], color=INK, lw=1); b.axhline(0, color=INK2, lw=0.8); b.axvline(0, color=INK2, lw=0.8)
@@ -206,8 +208,8 @@ def fig4():
 
 def figS1():
     sm = J("vr5_representation.json")["summary"]["ft"]
-    keys = [("decision", "Decision contrast"), ("layer3", "Layer-3 intervention"), ("readout_Y", "Common readout, target $Y$"),
-            ("readout_S", "Common readout, target $S$")]
+    keys = [("decision", "Decision contrast"), ("layer3", "Layer-3 intervention"), ("readout_Y", r"Common readout, logit $q$"),
+            ("readout_S", r"Common readout, logit $(q/\sigma)$")]
     fig, axes = plt.subplots(1, 4, figsize=(8.6, 2.9))
     cs = R.IMAGE_CONCEPTS
     for ax, (k, t) in zip(axes, keys):
