@@ -109,14 +109,18 @@ def part_b(df):
         ok = np.isfinite(bb[:, 0]) & np.isfinite(bb[:, 1])
         jc = {f"{s:.2f}": int(np.sum(ok & (bb[:, 0] * s > 1) & (bb[:, 1] < 0))) for s in FLOORS}
         jf = next((float(k) for k, v in jc.items() if v >= 0.95 * B), None)
-        out[c] = {"supported_sites": [sites[g] for g in sup], "excluded_sites": [s for g, s in enumerate(sites) if g not in sup],
+        fixed = ok & (bb[:, 2] == 0)            # fixed six-site mixture: resamples that drop a site count as undetermined
+        jcf = {f"{s:.2f}": int(np.sum(fixed & (bb[:, 0] * s > 1) & (bb[:, 1] < 0))) for s in FLOORS}
+        jff = next((float(k) for k, v in jcf.items() if v >= 0.95 * B), None)
+        out[c] = {"joint_counts_fixed": jcf, "joint_floor_fixed": jff, "resamples_fixed": int(fixed.sum()),"supported_sites": [sites[g] for g in sup], "excluded_sites": [s for g, s in enumerate(sites) if g not in sup],
                   "weights": wsup, "rr_y_std": float(rr0), "rr_y_std_ci95": np.nanpercentile(bb[:, 0], [2.5, 97.5]).tolist(),
                   "point_floor": float(1 / rr0) if rr0 > 1 else None,
                   "log_rr_verified_std": float(lrv0), "log_rr_verified_std_ci95": np.nanpercentile(bb[:, 1], [2.5, 97.5]).tolist(),
                   "share_verified_negative": float(np.mean(bb[ok, 1] < 0)), "resamples_with_dropped_site": int(np.sum(bb[:, 2] > 0)),
                   "joint_counts": jc, "joint_floor": jf}
         R.log(f"(b) {c}: sites {out[c]['supported_sites']}, RR_Y,std {rr0:.2f}, verified-only log RR,std {lrv0:+.2f}, "
-              f"joint floor {jf}, resamples with a dropped site {out[c]['resamples_with_dropped_site']}")
+              f"joint floor {jf}, resamples with a dropped site {out[c]['resamples_with_dropped_site']}, fixed-mixture floor {jff}, "
+              f"max fixed-mixture joint count {max(jcf.values())}")
     return out
 
 

@@ -353,3 +353,15 @@ Phân tích hậu nghiệm, không đổi giao thức chính và không đổi n
 - Lesion-skin contrast cũng giữ dấu điểm đối lập ở 7/7 định nghĩa, 4/4 họ: bỏ câu "color là concept duy nhất".
 - Dose: "320 kỳ vọng" (thực tế 282–360); giảm đơn điệu của trung bình ở 6/6; đối chứng cùng cỡ đổi cả validation theo arm.
 - S34 gọi đúng là log OR hiệu chỉnh của xác minh, không phải log B_V.
+
+## 35. Sửa theo phản biện review_26_4 (2026-11-26)
+
+Hậu nghiệm, không đổi nhãn Bảng 1. Sửa:
+- 114 ca Indeterminate (75 melanocytic, 39 epidermal) đều S = 1, Y = 0. Giữ quy tắc nhị phân của bộ dữ liệu: D = ác tính theo quy tắc đó;
+  ô S = 1, Y = 0 gọi là "biopsied recorded negatives". vr49: mã hóa loại khỏi xác minh hoặc coi là ác tính giữ mọi dấu; ngưỡng toàn cohort
+  color 0.65/0.65/0.60, size 0.65, contrast 0.95/0.95/0.85.
+- g_t = E[g(X̃) | t, Y = 0] chỉ khi t là hàm của X̃ hoặc S ⊥ t | X̃, Y = 0. 1.70 là log OR hiệu chỉnh gộp theo site, không phải log B_V.
+- Prop 2: giả định khả tích nằm trong mệnh đề; s∗ = inf{s: ψ_L > 0}; lưới 0.01 là cận trên.
+- vr47: với hỗn hợp sáu site cố định, color không đạt 95% (tối đa 1,728/2,000); size đạt ở 0.72.
+- vr48 --iso-zero: các điểm isotonic ở cận 1e−6 gần như đều là 0 đúng của khớp.
+- Bảng 2 cũ chuyển sang phụ lục; Bảng 3 thành Bảng 2. PDF A4 23 trang.

@@ -1,0 +1,328 @@
+{
+  "B": 2000,
+  "crosstab": {
+    "train": {
+      "malignant": 222,
+      "benign_biopsied": 330,
+      "indeterminate": 70
+    },
+    "val": {
+      "malignant": 92,
+      "benign_biopsied": 116,
+      "indeterminate": 23
+    },
+    "test": {
+      "malignant": 79,
+      "benign_biopsied": 115,
+      "indeterminate": 21
+    },
+    "color_variegation": {
+      "t0": {
+        "malignant": 118,
+        "benign_biopsied": 71,
+        "indeterminate": 29
+      },
+      "t1": {
+        "malignant": 232,
+        "benign_biopsied": 428,
+        "indeterminate": 68
+      }
+    },
+    "size": {
+      "t0": {
+        "malignant": 122,
+        "benign_biopsied": 95,
+        "indeterminate": 34
+      },
+      "t1": {
+        "malignant": 241,
+        "benign_biopsied": 402,
+        "indeterminate": 62
+      }
+    },
+    "lesion_skin_contrast": {
+      "t0": {
+        "malignant": 128,
+        "benign_biopsied": 68,
+        "indeterminate": 32
+      },
+      "t1": {
+        "malignant": 172,
+        "benign_biopsied": 423,
+        "indeterminate": 70
+      }
+    }
+  },
+  "codings": {
+    "cohort|dataset|color_variegation": {
+      "rr": 1.966101694915254,
+      "rr_ci95": [
+        1.5266563937090127,
+        2.6597287604595365
+      ],
+      "point_floor": 0.5086206896551725,
+      "log_or_verified": -0.9253529935361909,
+      "log_or_verified_ci95": [
+        -1.2568859701012853,
+        -0.5830989094938216
+      ],
+      "B_V": 4.96423693379791,
+      "joint_floor": 0.65
+    },
+    "cohort|dataset|size": {
+      "rr": 1.9775665421613178,
+      "rr_ci95": [
+        1.5649172314325246,
+        2.611856859120433
+      ],
+      "point_floor": 0.5056719855844053,
+      "log_or_verified": -0.5992962591071849,
+      "log_or_verified_ci95": [
+        -0.9128817054032613,
+        -0.2717038466273298
+      ],
+      "B_V": 3.6040398859584846,
+      "joint_floor": 0.65
+    },
+    "cohort|dataset|lesion_skin_contrast": {
+      "rr": 1.34375,
+      "rr_ci95": [
+        1.009800626676455,
+        1.8135671724502642
+      ],
+      "point_floor": 0.7441860465116279,
+      "log_or_verified": -1.2998747751607629,
+      "log_or_verified_ci95": [
+        -1.6218938634730007,
+        -0.9650650908054946
+      ],
+      "B_V": 4.931624686364828,
+      "joint_floor": 0.95
+    },
+    "cohort|exclude|color_variegation": {
+      "rr": 1.966101694915254,
+      "rr_ci95": [
+        1.5266563937090127,
+        2.6597287604595365
+      ],
+      "point_floor": 0.5086206896551725,
+      "log_or_verified": -1.1203905713398363,
+      "log_or_verified_ci95": [
+        -1.4941560607121402,
+        -0.7592633103581974
+      ],
+      "B_V": 6.033318399777104,
+      "joint_floor": 0.65
+    },
+    "cohort|exclude|size": {
+      "rr": 1.9775665421613178,
+      "rr_ci95": [
+        1.5649172314325246,
+        2.611856859120433
+      ],
+      "point_floor": 0.5056719855844053,
+      "log_or_verified": -0.7617993082610818,
+      "log_or_verified_ci95": [
+        -1.1070635471855998,
+        -0.4195867627964083
+      ],
+      "B_V": 4.2399795917884555,
+      "joint_floor": 0.65
+    },
+    "cohort|exclude|lesion_skin_contrast": {
+      "rr": 1.34375,
+      "rr_ci95": [
+        1.009800626676455,
+        1.8135671724502642
+      ],
+      "point_floor": 0.7441860465116279,
+      "log_or_verified": -1.5324002609763354,
+      "log_or_verified_ci95": [
+        -1.9135839426716932,
+        -1.1680622885409653
+      ],
+      "B_V": 6.222638236285413,
+      "joint_floor": 0.95
+    },
+    "cohort|malign|color_variegation": {
+      "rr": 2.0408163265306123,
+      "rr_ci95": [
+        1.6282104105549917,
+        2.6539047490861214
+      ],
+      "point_floor": 0.49,
+      "log_or_verified": -1.0830934306630167,
+      "log_or_verified_ci95": [
+        -1.4467021628289933,
+        -0.7451288831234751
+      ],
+      "B_V": 6.03508355492548,
+      "joint_floor": 0.6
+    },
+    "cohort|malign|size": {
+      "rr": 1.9444282582597956,
+      "rr_ci95": [
+        1.5752969508544545,
+        2.4875824237213147
+      ],
+      "point_floor": 0.5142899954020261,
+      "log_or_verified": -0.7786983987586482,
+      "log_or_verified_ci95": [
+        -1.1054433228945912,
+        -0.4563718950696957
+      ],
+      "B_V": 4.240871523153729,
+      "joint_floor": 0.65
+    },
+    "cohort|malign|lesion_skin_contrast": {
+      "rr": 1.5125000000000002,
+      "rr_ci95": [
+        1.1578399344350365,
+        1.9931140168692896
+      ],
+      "point_floor": 0.6611570247933883,
+      "log_or_verified": -1.4141005629473118,
+      "log_or_verified_ci95": [
+        -1.77501312143954,
+        -1.064753306474914
+      ],
+      "B_V": 6.224410695748193,
+      "joint_floor": 0.85
+    },
+    "test|dataset|color_variegation": {
+      "rr": 2.0177627598129737,
+      "rr_ci95": [
+        1.1241278846494018,
+        3.8941804375013658
+      ],
+      "point_floor": 0.49559840230805424,
+      "log_or_verified": -0.7871108988295333,
+      "log_or_verified_ci95": [
+        -1.6080486180292153,
+        -0.02874162633684967
+      ],
+      "B_V": 4.437241995440636,
+      "joint_floor": 0.9
+    },
+    "test|dataset|size": {
+      "rr": 1.847564053537285,
+      "rr_ci95": [
+        1.0288869553123223,
+        3.553595391549416
+      ],
+      "point_floor": 0.5412532237166192,
+      "log_or_verified": -0.5222543195896133,
+      "log_or_verified_ci95": [
+        -1.308752474717647,
+        0.21346672647305026
+      ],
+      "B_V": 3.117130421573355,
+      "joint_floor": null
+    },
+    "test|dataset|lesion_skin_contrast": {
+      "rr": 1.7535460089831598,
+      "rr_ci95": [
+        0.8912661079578559,
+        3.8836018583806227
+      ],
+      "point_floor": 0.570273032402427,
+      "log_or_verified": -0.9148190612626989,
+      "log_or_verified_ci95": [
+        -1.7379408560567091,
+        -0.021047152158630685
+      ],
+      "B_V": 4.379955240853134,
+      "joint_floor": null
+    },
+    "test|exclude|color_variegation": {
+      "rr": 2.0177627598129737,
+      "rr_ci95": [
+        1.1241278846494018,
+        3.8941804375013658
+      ],
+      "point_floor": 0.49559840230805424,
+      "log_or_verified": -0.9422341263661793,
+      "log_or_verified_ci95": [
+        -1.8897776740614884,
+        -0.14119966816779836
+      ],
+      "B_V": 5.1818194448303645,
+      "joint_floor": 0.9
+    },
+    "test|exclude|size": {
+      "rr": 1.847564053537285,
+      "rr_ci95": [
+        1.0288869553123223,
+        3.553595391549416
+      ],
+      "point_floor": 0.5412532237166192,
+      "log_or_verified": -0.5779649266036193,
+      "log_or_verified_ci95": [
+        -1.374873355981358,
+        0.16211794244708905
+      ],
+      "B_V": 3.295716018642661,
+      "joint_floor": null
+    },
+    "test|exclude|lesion_skin_contrast": {
+      "rr": 1.7535460089831598,
+      "rr_ci95": [
+        0.8912661079578559,
+        3.8836018583806227
+      ],
+      "point_floor": 0.570273032402427,
+      "log_or_verified": -1.115765367894359,
+      "log_or_verified_ci95": [
+        -1.9970863017716158,
+        -0.2214864883007639
+      ],
+      "B_V": 5.354754254432941,
+      "joint_floor": null
+    },
+    "test|malign|color_variegation": {
+      "rr": 2.0773123814134937,
+      "rr_ci95": [
+        1.2318161972206854,
+        3.7212884294857402
+      ],
+      "point_floor": 0.4813912481085567,
+      "log_or_verified": -0.9131485454710826,
+      "log_or_verified_ci95": [
+        -1.7848331771830905,
+        -0.16702736098344373
+      ],
+      "B_V": 5.183332676932771,
+      "joint_floor": 0.8
+    },
+    "test|malign|size": {
+      "rr": 1.915992351816444,
+      "rr_ci95": [
+        1.1490530842857372,
+        3.3630010382772646
+      ],
+      "point_floor": 0.5219227514410256,
+      "log_or_verified": -0.5415972824327444,
+      "log_or_verified_ci95": [
+        -1.2677037961267503,
+        0.1447438752588457
+      ],
+      "B_V": 3.296490572545413,
+      "joint_floor": null
+    },
+    "test|malign|lesion_skin_contrast": {
+      "rr": 1.8180146122545995,
+      "rr_ci95": [
+        1.0296148313776823,
+        3.4920990560598195
+      ],
+      "point_floor": 0.5500505844448941,
+      "log_or_verified": -1.0796603632522428,
+      "log_or_verified_ci95": [
+        -1.9076267244646283,
+        -0.30392064428844656
+      ],
+      "B_V": 5.356144299281866,
+      "joint_floor": 0.9
+    }
+  }
+}

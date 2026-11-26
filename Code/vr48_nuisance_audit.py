@@ -79,5 +79,29 @@ def main():
         R.save_json(out, "vr48_nuisance_audit.json")
 
 
+def iso_zero():
+    """Isotonic fit of the tabular M0 without clipping: share of test lesions whose fitted value is exactly 0, or positive
+    but below 1e-6, by outer tertile of color variegation. Adds key "iso_zero" to the existing output."""
+    import json
+    import vl_models as M
+    df, fold = R.load_isic()
+    Y = df.Y.to_numpy()
+    tr, va, te = (np.flatnonzero(fold == k) for k in ("train", "val", "test"))
+    T = R.SV.tertile(df, R.CONCEPTS[C]).fillna(-1).to_numpy()[te]
+    X, hid = features(df, "tabular"); A = arrays(df, X)
+    rows = []
+    for seed in range(3):
+        m0 = M.train("erm_y", A, tr, va, hid=hid, seed=seed)
+        pv, pt = M.predict(m0, X[va])["pD"], M.predict(m0, X[te])["pD"]
+        q = iso(pv, Y[va], 0.0).predict(pt)
+        rows.append({f"t{t}": {"zero": float(np.mean(q[T == t] == 0)), "below": float(np.mean((q[T == t] > 0) & (q[T == t] < 1e-6)))}
+                     for t in (0, 1)} | {"all": {"zero": float(np.mean(q == 0)), "below": float(np.mean((q > 0) & (q < 1e-6)))}})
+        R.log(f"iso zero seed {seed}: {rows[-1]}")
+    path = os.path.join(R.RES, "vr48_nuisance_audit.json"); out = json.load(open(path))
+    out["iso_zero"] = {k: {kk: float(np.mean([r[k][kk] for r in rows])) for kk in ("zero", "below")} for k in rows[0]}
+    R.save_json(out, "vr48_nuisance_audit.json")
+
+
 if __name__ == "__main__":
-    main()
+    import sys
+    iso_zero() if "--iso-zero" in sys.argv else main()

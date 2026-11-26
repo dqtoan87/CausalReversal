@@ -71,13 +71,14 @@ def t_definitions():
     for f, lab in fams:
         for c in ("color_variegation", "size", "lesion_skin_contrast"):
             x = d[f]["concepts"][c]
-            out.append(f"| {lab} | {CL[c]} | " + " | ".join(f"{s(x[h]['M0'])} / {s(x[h]['M2'])}" for h in DEFS) + " |")
+            sp = lambda v: s(v, 3) if abs(v) < 0.01 else s(v)
+            out.append(f"| {lab} | {CL[c]} | " + " | ".join(f"{sp(x[h]['M0'])} / {sp(x[h]['M2'])}" for h in DEFS) + " |")
     return "\n".join(out)
 
 
 def t_size_matched():
     a = J("vr12_claim_validation.json")["size_matched"]["results"]
-    out = ["| Features | Concept | Benign from all lesions | Benign from flagged, unverified | Benign from verified (M2) |",
+    out = ["| Features | Concept | Recorded negatives from all lesions | Recorded negatives, flagged and unverified | Biopsied recorded negatives (M2) |",
            "| --- | --- | --- | --- | --- |"]
     for f in ("tabular", "image"):
         for c in CL:
@@ -206,11 +207,11 @@ SITE_VB = {"ViDIR Group, Department of Dermatology, ": "7 in all tertiles"}     
 
 def t_sites():
     m = J("vr16_mechanism.json")["by_site"]
-    out = ["| Site | Verified benign lesions | " + " | ".join(CL[c] for c in PRIMARY_SUPP) + " |",
+    out = ["| Site | Biopsied recorded negatives | " + " | ".join(CL[c] for c in PRIMARY_SUPP) + " |",
            "| --- | ---: | " + " | ".join("---" for _ in PRIMARY_SUPP) + " |"]
     for i, st in enumerate(_site_order()):
         if st not in m["color_variegation"]["sites"]:
-            out.append(f"| Site {i + 1} | {SITE_VB.get(st, 'fewer than 10')} | " + " | ".join("fewer than ten verified benign" for _ in PRIMARY_SUPP) + " |")
+            out.append(f"| Site {i + 1} | {SITE_VB.get(st, 'fewer than 10')} | " + " | ".join("fewer than ten biopsied recorded negatives" for _ in PRIMARY_SUPP) + " |")
             continue
         n = m["color_variegation"]["sites"][st]["n_verified"]
         cells = []
@@ -336,7 +337,7 @@ def t_pointwise22():
 
 def t_sitehet():
     a = J("vr20_audit.json")
-    out = ["| Concept | Estimable sites | Q (df) | I² | Between-site variance τ² | Pooled adjusted log OR [95% CI] | Site range |", "| --- | ---: | --- | ---: | ---: | --- | --- |"]
+    out = ["| Concept | Estimable sites | Q (df) | I² | Between-site variance τ²_site | Pooled adjusted log OR [95% CI] | Site range |", "| --- | ---: | --- | ---: | ---: | --- | --- |"]
     for c in PRIMARY_SUPP:
         h = a["site_heterogeneity"][c]
         out.append(f"| {CL[c]} | {h['k']} | {u(h['Q'], 1)} ({h['df']}) | {u(h['I2'])} | {u(h['tau2'], 3)} | {u(h['pooled_DL'])} {ci(h['pooled_ci'])} | {ci(h['range'])} |")
@@ -445,8 +446,8 @@ def t_sub36():
 
 def t_dose46():
     d = J("vr46_dose_fixed_val.json")["families"]
-    out = ["| Features | Selected concept | Recorded negatives | Observed slope [range] | Predicted slope | Observed over predicted [95% CI] | τ̂(1, −1) [95% CI] | Mean contrast crosses zero | Replicates changing sign | Calibrated τ̂(1, −1) |",
-           "| --- | --- | ---: | --- | ---: | --- | --- | --- | ---: | ---: |"]
+    out = ["| Features | Selected concept | Expected recorded negatives | Mean raw Δ at η = −1 / 0 / +1 | Observed slope [range] | Predicted slope | Observed over predicted [95% CI] | τ̂(1, −1) [95% CI] | Mean contrast crosses zero | Replicates changing sign | Calibrated τ̂(1, −1) |",
+           "| --- | --- | ---: | --- | --- | ---: | --- | --- | --- | ---: | ---: |"]
     for f in FAMS2:
         for k in PRIMARY_SUPP:
             for n in ("320", "1000", "3000"):
@@ -454,7 +455,8 @@ def t_dose46():
                 if c is None:
                     continue
                 r, p = c["raw"], c["pred"]
-                out.append(f"| {f} | {CL[k]} | {int(n):,} | {s(r['obs_slope'])} {ci(r['obs_range95'])} | {s(p['slope'])} | "
+                mb = r["mean_by_eta"]; mb = [mb[str(e)] if isinstance(mb, dict) else mb[i] for i, e in ((0, -1.0), (2, 0.0), (4, 1.0))]
+                out.append(f"| {f} | {CL[k]} | {int(n):,} | " + " / ".join(s(x) for x in mb) + f" | {s(r['obs_slope'])} {ci(r['obs_range95'])} | {s(p['slope'])} | "
                            f"{u(p['ratio_raw'])} {ci(p['ratio_raw_ci95'])} | {s(r['tau_hat'])} {ci(r['tau_ci95'])} | "
                            f"{'yes' if r['crosses_zero'] else 'no'} | {r['n_sign_change']} of {c['n_rep']} | {s(c['cal']['tau_hat'])} |")
     return "\n".join(out)
@@ -472,7 +474,7 @@ def t_spill46():
 
 def t_dose32():
     d = J("vr32_dose_nuisance.json")["families"]
-    out = ["| Features | Selected concept | Recorded negatives | Observed slope [range] | Prediction | Predicted slope [range] | Observed over predicted [95% CI] |",
+    out = ["| Features | Selected concept | Expected recorded negatives | Observed slope [range] | Prediction | Predicted slope [range] | Observed over predicted [95% CI] |",
            "| --- | --- | ---: | --- | --- | --- | --- |"]
     lab = {"exact": "Bayes-optimal shift, concept in input", "ridge": "ridge conditional mean", "mlp": "perceptron conditional mean"}
     for f in FAMS2:
@@ -595,7 +597,7 @@ def t_partial40():
 def t_site41():
     d = J("vr41_marginal_site.json")
     order = _site_order()
-    out = ["| Concept | Site | Malignant, lower / upper tertile | Verified benign, lower / upper | RR_Y | Floor 1/RR_Y | Verified-only log OR | 95% resampling stability threshold without this site |",
+    out = ["| Concept | Site | Malignant, lower / upper tertile | Biopsied recorded negatives, lower / upper | RR_Y | Floor 1/RR_Y | Verified-only log OR | 95% resampling stability threshold without this site |",
            "| --- | --- | --- | --- | ---: | ---: | ---: | ---: |"]
     for c in ("color_variegation", "size"):
         e = d["concepts"][c]
@@ -714,7 +716,7 @@ def t_eiv27():
 
 def t_tau44():
     d = J("vr44_dose_estimand.json")["families"]
-    out = ["| Features | Concept | Mean Δ at η = −1 / η = 1 | τ̂(1, −1) [95% CI] | Predicted | Observed / predicted | Replicates changing sign |",
+    out = ["| Features | Concept | Mean Δ at η = −1 / η = 1 | τ̂_joint(1, −1) [95% CI] | Predicted | Observed / predicted | Replicates changing sign |",
            "| --- | --- | --- | --- | ---: | ---: | ---: |"]
     for f in FAMS2:
         for c in PRIMARY_SUPP:
@@ -793,12 +795,13 @@ def t_mc47():
 
 def t_site47():
     d = J("vr47_counts_audit.json")["site_common_weights"]
-    out = ["| Concept | Sites used | Excluded | Standardized RR_Y [95% CI] | Point floor | Standardized verified-only log RR [95% CI] | 95% resampling stability threshold | Resamples dropping a site | Weights of Sites 1, 2, 4, 5, 6, 7 |",
-           "| --- | ---: | --- | --- | ---: | --- | ---: | ---: | --- |"]
+    out = ["| Concept | Sites used | Excluded | Standardized RR_Y [95% CI] | Point floor | Standardized verified-only log RR [95% CI] | 95% resampling stability threshold | Resamples dropping a site | Threshold with the six-site mixture fixed [largest joint count] | Weights of Sites 1, 2, 4, 5, 6, 7 |",
+           "| --- | ---: | --- | --- | ---: | --- | ---: | ---: | --- | --- |"]
     for c in ("color_variegation", "size"):
         e = d[c]
         out.append(f"| {CL[c]} | {len(e['supported_sites'])} | Site 3 | {u(e['rr_y_std'])} {ci(e['rr_y_std_ci95'])} | {u(e['point_floor'])} | "
                    f"{s(e['log_rr_verified_std'])} {ci(e['log_rr_verified_std_ci95'])} | {u(e['joint_floor'])} | {e['resamples_with_dropped_site']:,} of 2,000 | "
+                   + f"{u(e['joint_floor_fixed']) if e['joint_floor_fixed'] is not None else 'none'} [{max(e['joint_counts_fixed'].values()):,} of 2,000] | "
                    + " / ".join(f"{e['weights'][x]:.2f}" for x in e["supported_sites"]) + " |")
     sites = J("vr47_counts_audit.json")["site_common_weights"]["sites"]
     assert all(d[c]["excluded_sites"] == [sites[2]] for c in ("color_variegation", "size"))
@@ -817,11 +820,45 @@ def t_nuis48():
                    f"{u(ss['iso_1e-5'])} / {u(ss['iso_1e-6'])} / {u(ss['iso_1e-7'])} |")
     return "\n".join(out)
 
+
+def t_ind49():
+    d = J("vr49_indeterminate.json")
+    ct = d["crosstab"]
+    out = ["| Group | Malignant | Benign, biopsied | Indeterminate, biopsied |", "| --- | ---: | ---: | ---: |"]
+    for k, lab in (("train", "training patients"), ("val", "validation patients"), ("test", "test patients")):
+        out.append(f"| {lab} | {ct[k]['malignant']} | {ct[k]['benign_biopsied']} | {ct[k]['indeterminate']} |")
+    for c in ("color_variegation", "size"):
+        for t, lab in (("t0", "lower"), ("t1", "upper")):
+            e = ct[c][t]
+            out.append(f"| {CL[c]}, {lab} tertile | {e['malignant']} | {e['benign_biopsied']} | {e['indeterminate']} |")
+    return "\n".join(out)
+
+
+def t_ind49b():
+    d = J("vr49_indeterminate.json")["codings"]
+    lab = {"dataset": "binary rule of the release", "exclude": "indeterminate as unverified", "malign": "indeterminate as malignant"}
+    out = ["| Concept | Coding | RR [95% CI] | Verified-only log OR [95% CI] | *B*_V | 95% resampling stability threshold |",
+           "| --- | --- | --- | --- | ---: | ---: |"]
+    for c in ("color_variegation", "size", "lesion_skin_contrast"):
+        for k in ("dataset", "exclude", "malign"):
+            e = d[f"cohort|{k}|{c}"]
+            out.append(f"| {CL[c]} | {lab[k]} | {u(e['rr'])} {ci(e['rr_ci95'])} | {s(e['log_or_verified'])} {ci(e['log_or_verified_ci95'])} | "
+                       f"{u(e['B_V'])} | {u(e['joint_floor']) if e['joint_floor'] is not None else 'none'} |")
+    return "\n".join(out)
+
+
+def t_alt():
+    import paper_numbers as PN
+    return """| Check | Setting | Result |
+| --- | --- | --- |
+| Size-matched control, color variegation | tabular; recorded negatives from all / flagged / verified lesions; validation drawn per arm | +1.22 [0.60, 2.14] / −0.79 [−1.21, −0.38] / −0.94 [−1.12, −0.70]; positive in 20 / 0 / 0 of 20 |
+| Size-matched control, color variegation | image; same three sources | +0.59 [0.31, 0.90] / −0.82 [−1.05, −0.58] / −0.63 [−0.81, −0.40]; positive in 20 / 0 / 0 of 20 |""" + "\n" + PN.table2_rows()
+
 TABLES = {"theory": t_theory, "definitions": t_definitions, "size_matched": t_size_matched, "quant": t_quant,
           "pad": t_pad, "headswap": t_headswap, "repr": t_repr, "dose": t_dose, "bridge": t_bridge,
           "within": t_within, "sites": t_sites, "overlap": t_overlap, "joint": t_joint, "joint19": t_joint19, "psi": t_psi,
           "support19": t_support19, "dose21": t_dose21, "ess21": t_ess21, "arms21": t_arms21, "pointwise22": t_pointwise22,
-          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "dose46": t_dose46, "spill46": t_spill46, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25, "mc47": t_mc47, "site47": t_site47, "nuis48": t_nuis48}
+          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "dose46": t_dose46, "spill46": t_spill46, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25, "mc47": t_mc47, "site47": t_site47, "nuis48": t_nuis48, "ind49": t_ind49, "ind49b": t_ind49b, "alt": t_alt}
 
 
 def n_platt():
