@@ -17,12 +17,12 @@ import zipfile
 HERE = os.path.dirname(os.path.abspath(__file__))
 
 DISPLAY = {
-    "ψ_k = E[logit *p*(*X̃*) | *t* = 1] − E[logit *p*(*X̃*) | *t* = 0].":
-        r"$$\psi_k = \text{E}\left[\text{logit}\, p(\tilde{X}) \mid t = 1\right] - \text{E}\left[\text{logit}\, p(\tilde{X}) \mid t = 0\right].$$",
+    "ψ_k = E[logit *p*(*X̃*) | *t* = 1] − E[logit *p*(*X̃*) | *t* = 0],":
+        r"$$\psi_k = \text{E}\left[\text{logit}\, p(\tilde{X}) \mid t = 1\right] - \text{E}\left[\text{logit}\, p(\tilde{X}) \mid t = 0\right],$$",
     "logit P(*Y* = 1 | *x̃*, *R* = 1) = logit P(*Y* = 1 | *x̃*) + log *r*₁(*x̃*) − log *r*₀(*x̃*).":
         r"$$\text{logit}\, P(Y = 1 \mid \tilde{x}, R = 1) = \text{logit}\, P(Y = 1 \mid \tilde{x}) + \log r_1(\tilde{x}) - \log r_0(\tilde{x}).$$",
-    "Δ_{M0,k} − Δ_{M2,k} = E[log *g*(*X̃*) | *t* = 1] − E[log *g*(*X̃*) | *t* = 0].":
-        r"$$\Delta_{M0,k} - \Delta_{M2,k} = \text{E}\left[\log g(\tilde{X}) \mid t = 1\right] - \text{E}\left[\log g(\tilde{X}) \mid t = 0\right].$$",
+    "Δ^Bayes_{M0,k} − Δ^Bayes_{M2,k} = E[log *g*(*X̃*) | *t* = 1] − E[log *g*(*X̃*) | *t* = 0].":
+        r"$$\Delta^{\text{Bayes}}_{M0,k} - \Delta^{\text{Bayes}}_{M2,k} = \text{E}\left[\log g(\tilde{X}) \mid t = 1\right] - \text{E}\left[\log g(\tilde{X}) \mid t = 0\right].$$",
 }
 WIDTHS = {8: [11, 14, 9, 15, 15, 15, 10, 11], 3: [22, 33, 45], 6: [11, 24, 13, 23, 15, 14]}   # relative column widths
 FIGS = {"1": "fig1_mechanism.png", "2": "fig2_learned_reversal.png", "3": "fig3_intervention_bridge.png", "4": "fig4_external_boundary.png",
@@ -75,6 +75,8 @@ def widths(sep, w=None):
 
 def math_segment(s):
     s = s.replace("π_t^d", "π~t~^d^")
+    s = re.sub(r"Δ\^Bayes_(\{[^}]*\}|[A-Za-z0-9]+)", lambda x: f"Δ^Bayes^~{sub_text(x.group(1))}~", s)
+    s = re.sub(r"Δ\^Bayes(?!\^)", "Δ^Bayes^", s)
     s = re.sub(r"(?:\*s\*|(?<![\w*])s)∗", "*s*^\\*^", s)
     for pat, rep in PLAIN:
         s = pat.sub(rep, s)
@@ -84,6 +86,9 @@ def math_segment(s):
 def convert(md, fixed_widths=True):
     out = []
     lines = md.split("\n")
+    if fixed_widths:                       # the paper: every display equation must be found, or the build stops
+        missing = [k for k in DISPLAY if k not in {x.strip() for x in lines}]
+        assert not missing, f"display equations not found in the markdown: {missing}"
     for k, line in enumerate(lines):
         if re.match(r"^\|\s*:?-{3,}", line):
             w = None

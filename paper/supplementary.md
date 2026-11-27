@@ -150,50 +150,50 @@ In Table S6, entries are fractions over settings and concepts, and ψ ≤ 0 coun
 | adversarial | valid | 70 | 42 | 1.00 / 0.96 / 0.99 | 0.14 / 0.10 / 0.11 | 0.00 / 0.00 / 0.00 |
 | adversarial | overstated | 50 | 30 | 0.44 / 0.56 / 0.50 | 0.54 / 0.46 / 0.48 | 0.20 / 0.14 / 0.14 |
 
-**Semi-synthetic test on the ISIC-2024 inputs.** The simulations above use eight synthetic features and do not reproduce the rare-event and support structure of ISIC-2024. Script `vr34_semisynth.py` keeps the real learner inputs and the real patient split. It also keeps three functions of the input, estimated once from the real data: a calibrated risk logit, a ridge prediction of color variegation, and the verification propensity among recorded negatives. The risk logit comes from the perceptron M0 in one design and from gradient boosting in a second, so that neither estimator of *q* is favored by the data-generating process. Disease is drawn with logit *p*(*x̃*) = α + ℓ(*x̃*) + *b*·*m*(*x̃*). Here ℓ is the standardized risk logit and *m* the standardized color prediction. The intercept α sets the prevalence to 0.2 or 0.5 percent, and *b* sets the true ψ for color variegation to about 0.6, 0 or −0.3. Malignant verification is *s*(*x̃*) = *s*_true + (1 − *s*_true)·expit(−1 + 1.5*m*(*x̃*)), with *s*_true of 0.5 or 0.8, so it rises with the concept, and benign verification is the real propensity. Recorded labels follow *Y* = *D*·*S*. For each of 24 settings per family and design, the same three estimates of *q* as in Section S6 were fitted to the simulated labels. The plug-in set was then evaluated at the true floor against the true ψ. The set uses the stratum formula, which is sharp for the tabular input and an outer set for image features. The containment rate is the share of settings in which the plug-in set contained the true ψ. It describes the plug-in set, not the coverage of a confidence procedure. Low containment means that the plug-in set was often displaced from the true target, mostly downward. No wrong sign was observed under the stated criterion. The shift was not always downward: in five cells with a negative target the lower endpoint was 0.10 to 0.23 above the oracle one, with containment of 0.50 to 0.75, and no sign was reported in those cells. M2 and ĝ, a perceptron or gradient boosting, were also fitted. We recorded the lesion-level slope of the calibrated gap on log ĝ, which the population identity fixes at one. Table S7 reports the results.
+**Semi-synthetic test on the ISIC-2024 inputs.** The simulations above use eight synthetic features and do not reproduce the rare-event and support structure of ISIC-2024. Script `vr34_semisynth.py` keeps the real learner inputs and the real patient split. It also keeps three functions of the input, estimated once from the real data: a calibrated risk logit, a ridge prediction of color variegation, and the verification propensity among recorded negatives. The risk logit comes from the perceptron M0 in one design and from gradient boosting in a second, so that neither estimator of *q* is favored by the data-generating process. Disease is drawn with logit *p*(*x̃*) = α + ℓ(*x̃*) + *b*·*m*(*x̃*). Here ℓ is the standardized risk logit and *m* the standardized color prediction. The intercept α sets the prevalence to 0.2 or 0.5 percent, and *b* sets the true ψ for color variegation to about 0.6, 0 or −0.3. Malignant verification is *s*(*x̃*) = *s*_true + (1 − *s*_true)·expit(−1 + 1.5*m*(*x̃*)), with *s*_true of 0.5 or 0.8, so it rises with the concept, and benign verification is the real propensity. Recorded labels follow *Y* = *D*·*S*. For each of 24 settings per family and design, the same three estimates of *q* as in Section S6 were fitted to the simulated labels. Each is clipped at 10⁻⁷ before the logit, as in the analysis of ISIC-2024. σ̂ is a perceptron trained on the simulated *S* and Platt-calibrated on the validation set. It is raised to *q̂* where it falls below it, which keeps the second branch at most one. The three estimates of *q* share each simulated draw and σ̂. The plug-in set was evaluated at the true floor. The set uses the stratum formula, which is sharp for the tabular input and an outer set for image features. The true ψ and the oracle set use the unclipped logit of Section III-B, so ψ = Δ_t ℓ + *b*·Δ_t *m*, with Δ_t the difference of tertile means on the test population. Script `vr53_semisynth_target.py` rebuilt ℓ, *m* and π₀. It reproduced the stored clipped ψ and oracle endpoints to within 10⁻⁵, and to within 0.008 for image features in the gradient-boosting design, where refitting gradient boosting is not bit-exact. It then recomputed both without clipping. Clipping had moved ψ by at most 0.0044 and the oracle endpoints by at most 0.0089, only in the gradient-boosting design with tabular features, where at most 0.04 percent of test lesions had *p* < 10⁻⁷. Each target scenario has 96 plug-in sets: 2 designs, 2 families, 8 settings and 3 estimates of *q*. No set excluded zero on the side opposite to a target with |ψ| > 0.05. With a zero target, 10 sets excluded zero, 7 above it and 3 below it, while no oracle set did. With a negative target, 11 sets excluded zero below it while the oracle set contained zero. Their upper endpoints were 0.024 to 0.441 below the oracle ones. With a positive target, the plug-in tipping floor was below the oracle one in 9 sets, equal in 1 and above in 86. With a zero target, it was below in 32 of 96. Every plug-in set combines *q̂* with σ̂, so these counts do not isolate the estimate of *q*. The containment rate is the share of settings in which the plug-in set contained the true ψ. It describes the plug-in set, not the coverage of a confidence procedure. Low containment means that the plug-in set was often displaced from the true target, mostly downward. M2 and ĝ, a perceptron or gradient boosting, were also fitted. We recorded the lesion-level slope of the calibrated gap on log ĝ, which the population identity fixes at one. Table S7 reports the results.
 
-In Table S7, disease risk is built from the perceptron or from gradient boosting on the ISIC-2024 inputs. A wrong sign counts a certified sign opposite to a true ψ beyond ±0.05.
+In Table S7, disease risk is built from the perceptron or from gradient boosting on the ISIC-2024 inputs, and ψ and the oracle set are on the unclipped scale. Counts are over the 8 settings of each row. A wrong sign is a set excluding zero on the side opposite to a ψ beyond ±0.05. "Excludes zero, oracle does not" counts sets that exclude zero while the oracle set contains it. A tipping floor below the oracle one includes sets whose lower endpoint turns positive on the grid while the oracle one does not.
 
 **TABLE S7. Semi-synthetic test of the plug-in set at the true floor.**
 
-| Disease risk built from | Features | Estimate of *q* | Scenario | Mean ψ_L minus oracle | Containment rate | Sign certified | Wrong sign certified |
-| --- | --- | --- | --- | ---: | ---: | ---: | ---: |
-| perceptron | tabular | perceptron, Platt | positive target | −0.17 | 0.88 | 0.88 | 0.00 |
-| perceptron | tabular | perceptron, Platt | target near zero | −0.15 | 1.00 | 0.00 | 0.00 |
-| perceptron | tabular | perceptron, Platt | negative target | −0.06 | 1.00 | 0.38 | 0.00 |
-| perceptron | tabular | perceptron, isotonic | positive target | +0.06 | 0.62 | 1.00 | 0.00 |
-| perceptron | tabular | perceptron, isotonic | target near zero | −0.19 | 0.88 | 0.12 | 0.00 |
-| perceptron | tabular | perceptron, isotonic | negative target | −0.06 | 0.88 | 0.38 | 0.00 |
-| perceptron | tabular | gradient boosting, Platt | positive target | −0.31 | 1.00 | 0.62 | 0.00 |
-| perceptron | tabular | gradient boosting, Platt | target near zero | −0.13 | 1.00 | 0.00 | 0.00 |
-| perceptron | tabular | gradient boosting, Platt | negative target | −0.00 | 0.88 | 0.12 | 0.00 |
-| perceptron | image | perceptron, Platt | positive target | −0.23 | 0.88 | 0.50 | 0.00 |
-| perceptron | image | perceptron, Platt | target near zero | −0.08 | 1.00 | 0.00 | 0.00 |
-| perceptron | image | perceptron, Platt | negative target | +0.02 | 0.88 | 0.25 | 0.00 |
-| perceptron | image | perceptron, isotonic | positive target | −0.16 | 0.75 | 0.62 | 0.00 |
-| perceptron | image | perceptron, isotonic | target near zero | −0.10 | 1.00 | 0.00 | 0.00 |
-| perceptron | image | perceptron, isotonic | negative target | −0.01 | 0.88 | 0.12 | 0.00 |
-| perceptron | image | gradient boosting, Platt | positive target | −0.33 | 1.00 | 0.50 | 0.00 |
-| perceptron | image | gradient boosting, Platt | target near zero | −0.03 | 1.00 | 0.00 | 0.00 |
-| perceptron | image | gradient boosting, Platt | negative target | +0.13 | 0.62 | 0.00 | 0.00 |
-| gradient boosting | tabular | perceptron, Platt | positive target | −0.32 | 0.88 | 0.38 | 0.00 |
-| gradient boosting | tabular | perceptron, Platt | target near zero | −0.20 | 0.75 | 0.25 | 0.00 |
-| gradient boosting | tabular | perceptron, Platt | negative target | −0.14 | 0.75 | 0.12 | 0.00 |
-| gradient boosting | tabular | perceptron, isotonic | positive target | −0.42 | 0.88 | 0.38 | 0.00 |
-| gradient boosting | tabular | perceptron, isotonic | target near zero | −0.16 | 0.75 | 0.25 | 0.00 |
-| gradient boosting | tabular | perceptron, isotonic | negative target | −0.06 | 0.75 | 0.00 | 0.00 |
-| gradient boosting | tabular | gradient boosting, Platt | positive target | −0.51 | 0.75 | 0.38 | 0.00 |
-| gradient boosting | tabular | gradient boosting, Platt | target near zero | −0.01 | 0.62 | 0.38 | 0.00 |
-| gradient boosting | tabular | gradient boosting, Platt | negative target | +0.18 | 0.50 | 0.00 | 0.00 |
-| gradient boosting | image | perceptron, Platt | positive target | −0.09 | 1.00 | 0.75 | 0.00 |
-| gradient boosting | image | perceptron, Platt | target near zero | +0.02 | 1.00 | 0.00 | 0.00 |
-| gradient boosting | image | perceptron, Platt | negative target | +0.10 | 0.75 | 0.00 | 0.00 |
-| gradient boosting | image | perceptron, isotonic | positive target | −0.30 | 0.88 | 0.50 | 0.00 |
-| gradient boosting | image | perceptron, isotonic | target near zero | −0.01 | 1.00 | 0.00 | 0.00 |
-| gradient boosting | image | perceptron, isotonic | negative target | +0.17 | 0.50 | 0.00 | 0.00 |
-| gradient boosting | image | gradient boosting, Platt | positive target | −0.36 | 0.75 | 0.50 | 0.00 |
-| gradient boosting | image | gradient boosting, Platt | target near zero | +0.01 | 0.75 | 0.25 | 0.00 |
-| gradient boosting | image | gradient boosting, Platt | negative target | +0.23 | 0.50 | 0.00 | 0.00 |
+| Disease risk built from | Features | Estimate of *q* | Scenario | Mean ψ_L minus oracle | Contains ψ | Excludes zero | Oracle excludes zero | Excludes zero, oracle does not | Wrong sign | Tipping floor below oracle |
+| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| perceptron | tabular | perceptron, Platt | positive target | −0.17 | 7 of 8 | 7 | 8 | 0 | 0 | 1 |
+| perceptron | tabular | perceptron, Platt | zero target | −0.15 | 8 of 8 | 0 | 0 | 0 | 0 | 0 |
+| perceptron | tabular | perceptron, Platt | negative target | −0.06 | 8 of 8 | 3 | 0 | 3 | 0 | 2 |
+| perceptron | tabular | perceptron, isotonic | positive target | +0.06 | 5 of 8 | 8 | 8 | 0 | 0 | 4 |
+| perceptron | tabular | perceptron, isotonic | zero target | −0.19 | 7 of 8 | 1 | 0 | 1 | 0 | 1 |
+| perceptron | tabular | perceptron, isotonic | negative target | −0.06 | 7 of 8 | 3 | 0 | 3 | 0 | 2 |
+| perceptron | tabular | gradient boosting, Platt | positive target | −0.31 | 8 of 8 | 5 | 8 | 0 | 0 | 0 |
+| perceptron | tabular | gradient boosting, Platt | zero target | −0.13 | 8 of 8 | 0 | 0 | 0 | 0 | 2 |
+| perceptron | tabular | gradient boosting, Platt | negative target | −0.00 | 7 of 8 | 1 | 0 | 1 | 0 | 2 |
+| perceptron | image | perceptron, Platt | positive target | −0.23 | 7 of 8 | 4 | 8 | 0 | 0 | 0 |
+| perceptron | image | perceptron, Platt | zero target | −0.08 | 8 of 8 | 0 | 0 | 0 | 0 | 2 |
+| perceptron | image | perceptron, Platt | negative target | +0.02 | 7 of 8 | 2 | 0 | 2 | 0 | 0 |
+| perceptron | image | perceptron, isotonic | positive target | −0.16 | 6 of 8 | 5 | 8 | 0 | 0 | 2 |
+| perceptron | image | perceptron, isotonic | zero target | −0.10 | 8 of 8 | 0 | 0 | 0 | 0 | 2 |
+| perceptron | image | perceptron, isotonic | negative target | −0.01 | 7 of 8 | 1 | 0 | 1 | 0 | 0 |
+| perceptron | image | gradient boosting, Platt | positive target | −0.33 | 8 of 8 | 4 | 8 | 0 | 0 | 0 |
+| perceptron | image | gradient boosting, Platt | zero target | −0.03 | 8 of 8 | 0 | 0 | 0 | 0 | 3 |
+| perceptron | image | gradient boosting, Platt | negative target | +0.13 | 5 of 8 | 0 | 0 | 0 | 0 | 5 |
+| gradient boosting | tabular | perceptron, Platt | positive target | −0.32 | 7 of 8 | 3 | 8 | 0 | 0 | 0 |
+| gradient boosting | tabular | perceptron, Platt | zero target | −0.20 | 6 of 8 | 2 | 0 | 2 | 0 | 1 |
+| gradient boosting | tabular | perceptron, Platt | negative target | −0.14 | 7 of 8 | 1 | 0 | 1 | 0 | 1 |
+| gradient boosting | tabular | perceptron, isotonic | positive target | −0.43 | 6 of 8 | 3 | 8 | 0 | 0 | 0 |
+| gradient boosting | tabular | perceptron, isotonic | zero target | −0.16 | 6 of 8 | 2 | 0 | 2 | 0 | 2 |
+| gradient boosting | tabular | perceptron, isotonic | negative target | −0.06 | 6 of 8 | 0 | 0 | 0 | 0 | 2 |
+| gradient boosting | tabular | gradient boosting, Platt | positive target | −0.51 | 6 of 8 | 3 | 8 | 0 | 0 | 0 |
+| gradient boosting | tabular | gradient boosting, Platt | zero target | −0.01 | 5 of 8 | 3 | 0 | 3 | 0 | 4 |
+| gradient boosting | tabular | gradient boosting, Platt | negative target | +0.18 | 4 of 8 | 0 | 0 | 0 | 0 | 5 |
+| gradient boosting | image | perceptron, Platt | positive target | −0.08 | 8 of 8 | 6 | 8 | 0 | 0 | 2 |
+| gradient boosting | image | perceptron, Platt | zero target | +0.03 | 8 of 8 | 0 | 0 | 0 | 0 | 5 |
+| gradient boosting | image | perceptron, Platt | negative target | +0.11 | 6 of 8 | 0 | 0 | 0 | 0 | 3 |
+| gradient boosting | image | perceptron, isotonic | positive target | −0.30 | 7 of 8 | 4 | 8 | 0 | 0 | 0 |
+| gradient boosting | image | perceptron, isotonic | zero target | −0.00 | 8 of 8 | 0 | 0 | 0 | 0 | 5 |
+| gradient boosting | image | perceptron, isotonic | negative target | +0.17 | 4 of 8 | 0 | 0 | 0 | 0 | 6 |
+| gradient boosting | image | gradient boosting, Platt | positive target | −0.35 | 6 of 8 | 4 | 8 | 0 | 0 | 0 |
+| gradient boosting | image | gradient boosting, Platt | zero target | +0.02 | 6 of 8 | 2 | 0 | 2 | 0 | 5 |
+| gradient boosting | image | gradient boosting, Platt | negative target | +0.23 | 4 of 8 | 0 | 0 | 0 | 0 | 8 |
 
 Table S8 reports the lesion-level slope of the calibrated gap on log ĝ in the same settings, where the population identity holds exactly. Finite trained learners can depart from slope one even then, and the model class of ĝ moves the slope. We therefore read the slopes on ISIC-2024 as agreement in direction and approximate size only.
 
@@ -208,7 +208,7 @@ In Table S8, the gap is calibrated and regressed on log ĝ in designs where Prop
 | gradient boosting | tabular | 0.76 [0.63, 0.94] | 1.35 [0.96, 1.98] | 0.74 |
 | gradient boosting | image | 0.95 [0.60, 1.58] | 0.96 [0.53, 1.68] | 0.68 |
 
-**Local violation of the floor.** The designs above satisfy the assumed floor everywhere. Running `vr34_semisynth.py` with the argument `local` keeps the perceptron design with one change. Malignant verification is set to 0.20 among the 30 percent of lesions with the lowest true overall verification propensity. This is below the assumed floor of 0.5 or 0.8, which still holds elsewhere. This mimics a floor that looks reasonable on average but fails where verification is rarest. The oracle set uses the true *q* and σ at the assumed floor, so its errors come from the assumption alone. Table S9 reports containment and certification over the 24 settings per family.
+**Local violation of the floor.** The designs above satisfy the assumed floor everywhere. Running `vr34_semisynth.py` with the argument `local` keeps the perceptron design with one change. Malignant verification is set to 0.20 among the 30 percent of lesions with the lowest true overall verification propensity. This is below the assumed floor of 0.5 or 0.8, which still holds elsewhere. This mimics a floor that looks reasonable on average but fails where verification is rarest. The oracle set uses the true *q* and σ at the assumed floor, so its errors come from the assumption alone. Clipping at 10⁻⁷ did not bind for ψ or the oracle set in this design (`vr53_semisynth_target.py`). Table S9 reports containment and certification over the 24 settings per family.
 
 In Table S9, sets are evaluated at the assumed floor. A wrong sign counts a certified sign opposite to a true ψ beyond ±0.05.
 
@@ -266,7 +266,7 @@ Under common-readout and head-swap diagnostics on the fine-tuned encoders, the t
 
 Table S11 lists the training settings.
 
-In Table S11, M0 and M2 share every setting except the lesions: M0 trains, early-stops and is calibrated on all training and validation lesions, M2 on the verified ones only.
+In Table S11, M0 and M2 of each family share every setting except the lesions. For the frozen-feature perceptrons, M0 trains, early-stops and is calibrated on all training and validation lesions, M2 on the verified ones only. The linear probe and the fine-tuned network run for a fixed number of steps, select the checkpoint by validation AUROC on the sets listed below and are not calibrated.
 
 **TABLE S11. Training settings of the learner families.**
 
@@ -373,11 +373,11 @@ In Table S15, values average the refits with seeds 0 to 2 on the test population
 | image | M2 | 0.00 percent | Asymmetry | +1.09 / +1.09 | 0.0 / 0.0 percent |
 | image | M2 | 0.00 percent | Border irregularity | +1.18 / +1.18 | 0.0 / 0.0 percent |
 
-In Table S16, intervals come from the 5,000 three-seed replicates of Table 1, refitted; the direct version is computed for image features only, where the cap binds, and reproduction is over 2,000 resamples of the replicates.
+In Table S16, intervals come from the 5,000 three-seed replicates of Table 1, refitted. As in Table 1, they are Bonferroni-adjusted for the primary concepts and 95 percent for asymmetry and border irregularity, which lie outside the six-comparison family; the direct version is computed for image features only, where the cap binds, and reproduction is over 2,000 resamples of the replicates.
 
 **TABLE S16. Primary bootstrap with direct logits and with M2 trained without indeterminate biopsies.**
 
-| Features | Concept | Version | Δ_M0, Bonferroni interval | Δ_M2, Bonferroni interval | Gap, 95% interval | Bonferroni sign-separated | Label reproduced |
+| Features | Concept | Version | Δ_M0 interval | Δ_M2 interval | Gap, 95% interval | Bonferroni sign-separated | Label reproduced |
 | --- | --- | --- | --- | --- | --- | --- | ---: |
 | tabular | Color variegation | clipped logit (Table 1) | [0.01, 1.88] | [−1.50, −0.51] | [1.23, 2.57] | yes | 0.72 |
 | tabular | Color variegation | M2 without indeterminate | [0.01, 1.88] | [−1.80, −0.61] | [1.43, 2.79] | yes | 0.71 |
@@ -385,10 +385,10 @@ In Table S16, intervals come from the 5,000 three-seed replicates of Table 1, re
 | tabular | Size | M2 without indeterminate | [−0.25, 1.38] | [−1.08, −0.16] | [0.53, 1.73] | no | 1.00 |
 | tabular | Lesion-skin contrast | clipped logit (Table 1) | [−0.76, 1.60] | [−2.17, −0.92] | [1.09, 2.68] | no | 1.00 |
 | tabular | Lesion-skin contrast | M2 without indeterminate | [−0.76, 1.60] | [−2.57, −1.09] | [1.38, 2.96] | no | 1.00 |
-| tabular | Asymmetry | clipped logit (Table 1) | [−1.64, 1.04] | [0.87, 2.08] | [−2.60, −0.84] | no | 1.00 |
-| tabular | Asymmetry | M2 without indeterminate | [−1.64, 1.04] | [0.98, 2.49] | [−2.83, −1.09] | no | 1.00 |
-| tabular | Border irregularity | clipped logit (Table 1) | [−1.67, 1.18] | [0.96, 2.29] | [−2.73, −0.84] | no | 1.00 |
-| tabular | Border irregularity | M2 without indeterminate | [−1.67, 1.18] | [1.07, 2.71] | [−2.97, −1.10] | no | 1.00 |
+| tabular | Asymmetry | clipped logit (Table 1) | [−1.28, 0.72] | [0.99, 1.91] | [−2.60, −0.84] | outside the family | not applicable |
+| tabular | Asymmetry | M2 without indeterminate | [−1.28, 0.72] | [1.13, 2.26] | [−2.83, −1.09] | outside the family | not applicable |
+| tabular | Border irregularity | clipped logit (Table 1) | [−1.26, 0.86] | [1.12, 2.09] | [−2.73, −0.84] | outside the family | not applicable |
+| tabular | Border irregularity | M2 without indeterminate | [−1.26, 0.86] | [1.25, 2.45] | [−2.97, −1.10] | outside the family | not applicable |
 | image | Color variegation | clipped logit (Table 1) | [0.26, 2.33] | [−1.24, −0.42] | [1.36, 2.81] | yes | 1.00 |
 | image | Color variegation | direct logit | [0.15, 3.43] | [−1.24, −0.42] | [1.28, 3.63] | yes | 1.00 |
 | image | Color variegation | M2 without indeterminate | [0.26, 2.33] | [−1.27, −0.45] | [1.40, 2.83] | yes | 1.00 |
@@ -398,12 +398,12 @@ In Table S16, intervals come from the 5,000 three-seed replicates of Table 1, re
 | image | Lesion-skin contrast | clipped logit (Table 1) | [−0.63, 1.93] | [−1.88, −0.73] | [1.00, 2.78] | no | 1.00 |
 | image | Lesion-skin contrast | direct logit | [−0.96, 2.94] | [−1.88, −0.73] | [0.79, 3.46] | no | 1.00 |
 | image | Lesion-skin contrast | M2 without indeterminate | [−0.63, 1.93] | [−1.93, −0.79] | [1.05, 2.83] | no | 1.00 |
-| image | Asymmetry | clipped logit (Table 1) | [−1.26, 0.90] | [0.79, 1.85] | [−2.20, −0.71] | no | 1.00 |
-| image | Asymmetry | direct logit | [−2.05, 1.24] | [0.79, 1.85] | [−2.74, −0.51] | no | 1.00 |
-| image | Asymmetry | M2 without indeterminate | [−1.26, 0.90] | [0.81, 1.91] | [−2.25, −0.74] | no | 1.00 |
-| image | Border irregularity | clipped logit (Table 1) | [−0.93, 1.33] | [0.84, 1.96] | [−1.93, −0.36] | no | 1.00 |
-| image | Border irregularity | direct logit | [−1.57, 1.72] | [0.84, 1.96] | [−2.36, −0.11] | no | 1.00 |
-| image | Border irregularity | M2 without indeterminate | [−0.93, 1.33] | [0.88, 2.05] | [−2.00, −0.42] | no | 1.00 |
+| image | Asymmetry | clipped logit (Table 1) | [−0.97, 0.62] | [0.90, 1.68] | [−2.20, −0.71] | outside the family | not applicable |
+| image | Asymmetry | direct logit | [−1.54, 0.86] | [0.90, 1.68] | [−2.74, −0.51] | outside the family | not applicable |
+| image | Asymmetry | M2 without indeterminate | [−0.97, 0.62] | [0.94, 1.73] | [−2.25, −0.74] | outside the family | not applicable |
+| image | Border irregularity | clipped logit (Table 1) | [−0.63, 1.04] | [0.96, 1.80] | [−1.93, −0.36] | outside the family | not applicable |
+| image | Border irregularity | direct logit | [−1.05, 1.33] | [0.96, 1.80] | [−2.36, −0.11] | outside the family | not applicable |
+| image | Border irregularity | M2 without indeterminate | [−0.63, 1.04] | [1.01, 1.86] | [−2.00, −0.42] | outside the family | not applicable |
 
 **Populations and intervals.** Every analysis conditions on unsupervised preprocessing fitted once on the whole cohort: the z-scores and median imputation of Table S12 and the tertile cut points. No label enters them. The principal components used by the image gradient-boosting model are fitted once on original training patients. In each bootstrap replicate *q̂* is refitted, while σ̂ is the fixed out-of-fold estimate. Results therefore describe this cohort-level protocol, not a pipeline that refits preprocessing on training patients only. Table S17 lists, for each quantity, the population, the randomness that its interval resamples or averages, what is held fixed, and how the interval should be read.
 
@@ -496,7 +496,7 @@ In Table S21, labels use one seed per replicate and 1,000 replicates per family,
 | image | Size | Bonferroni | [0.34, 2.10] | 1.00 | 4 |
 | image | Lesion-skin contrast | no | [−0.91, 1.92] | 1.00 | 4 |
 
-**Subsampling.** Resampling patients with replacement and refitting networks with early stopping may not behave as the percentile bootstrap assumes. Script `vr36_subsample.py` drew half of the training patients and half of the test patients without replacement in 300 replicates per family, and refitted M0 and M2. It then formed descriptive percentile intervals of the m-out-of-n form (Politis et al., 1999), [θ̂ − Q_{1−a/2}, θ̂ − Q_{a/2}] for a = 0.05 and a = 0.05/6. Here θ̂ is the point estimate of Table 1, θ*_m the estimate from a half-sample, and Q_a the a-quantile of √(m/n)(θ*_m − θ̂) with m/n = 1/2. The rescaling assumes that the learned contrast converges at the root-n rate, which fitted networks with early stopping need not satisfy. It also omits the finite-sampling factor: for a sample mean, half-sampling without replacement has conditional variance (1 − m/n)S²/m, so the rescaled spread is half of S²/n even at the root-n rate. These intervals therefore carry no nominal 95 percent or Bonferroni coverage; Table 1 remains the inferential basis. A learner trained on half of the patients may also target a different contrast. We therefore use subsampling only to check whether cells that the bootstrap separated stay separated. It also separated tabular size and image lesion-skin contrast, which we do not count as robust. Table S22 reports the intervals.
+**Subsampling.** Resampling patients with replacement and refitting networks with early stopping may not behave as the percentile bootstrap assumes. Script `vr36_subsample.py` drew half of the training patients and half of the test patients without replacement in 300 replicates per family, and refitted M0 and M2. It then formed descriptive percentile intervals of the m-out-of-n form (Politis et al., 1999), [θ̂ − Q_{1−a/2}, θ̂ − Q_{a/2}] for a = 0.05 and a = 0.05/6. Here θ̂ is the point estimate of Table 1, θ*_m the estimate from a half-sample, and Q_a the a-quantile of √(m/n)(θ*_m − θ̂) with m/n = 1/2. The rescaling assumes that the learned contrast converges at the root-n rate, which fitted networks with early stopping need not satisfy. It also omits the finite-sampling factor: for a sample mean, half-sampling without replacement has conditional variance (1 − m/n)S²/m, so the rescaled spread is half of S²/n even at the root-n rate. These intervals therefore carry no nominal 95 percent or Bonferroni coverage; Table 1 remains the inferential basis. A learner trained on half of the patients may also target a different contrast. We therefore use subsampling only to check whether cells that the bootstrap separated stay separated. It also separated tabular size and image lesion-skin contrast, which we do not count as robust. As a descriptive frequency, Δ_M0 > 0 > Δ_M2 held in all 300 half-samples for color variegation and size with image features, and in 254 to 292 of 300 for the other four primary cells. Table S22 reports the intervals.
 
 In Table S22, intervals are the descriptive rescaled half-sampling intervals defined above, from 300 half-samples per family.
 
@@ -607,7 +607,7 @@ In Table S25, size-matched intervals are 2.5 and 97.5 percentiles over 20 replic
 
 **Controlled selection dose.** Script `vr46_dose_fixed_val.py` gives the primary version. For each of the three primary concepts and both frozen-feature families, 20 replicates drew 178 malignant training lesions and a replicate-specific validation set. The validation set held malignant lesions and uniformly drawn recorded negatives. Both draws were shared by all doses of the replicate and were not selected by η. Each recorded-negative training lesion *i* received one uniform variable *u*_i per replicate. It entered training at dose η when *u*_i < ρ_η,i = min{1, κ_η exp(η*z*_k,i)}, for η ∈ {−1, −0.5, 0, 0.5, 1}, with κ_η set so that 320 are expected. These common random numbers couple the draws at different doses. Realized counts per fit ranged from 282 to 360 at 320 expected, from 933 to 1,068 at 1,000 and from 2,911 to 3,120 at 3,000. The optimizer seed was also shared, so a replicate fixes ω of Section III-B and the five fits are paired potential outcomes. Color variegation was repeated with 1,000 and 3,000 expected recorded negatives. Early stopping used the replicate-specific validation set. The outcome is the raw logit contrast. Platt calibration on the replicate-specific validation set targets the unselected distribution rather than the selected training distribution of Proposition 1. At η = 1, and at no other dose, its fitted slope was negative in 29 of 200 fits, which reverses the sign of a calibrated contrast. We report calibrated contrasts for completeness only. The prediction for the tabular learner is minus the stratum contrast of log ρ_η(*z*_k) on the test population, including the cap, which is the exact Bayes-optimal shift of the training distribution. For the image learner the prediction is the first-order input-aware form of Section S1. The mean contrast of the selected concept decreased at each step between the five doses in all six combinations, and single replicates did so in 50 to 90 percent of cases. The conditional mean *m*_k is estimated by ridge regression on recorded negatives of resampled training patients in each replicate. The estimate τ̂_k(1, −1) is the mean over replicates of the paired difference Δ_k(1, ω) − Δ_k(−1, ω), with a percentile bootstrap over the 20 replicates, 10,000 resamples; ratio intervals use 2,000. These intervals are conditional on the realized cohort, patient split and test population and summarize the paired pipeline randomness across replicates, including the validation-set draw used for early stopping. Table S28 reports all cells, and Table S29 compares observed and predicted slopes for all five concepts.
 
-In Table S28, the replicate-specific validation set is shared across doses, and replicates are paired. Slopes and τ̂(1, −1) are for the raw logit contrast of the selected concept. Ranges are 2.5 and 97.5 percentiles over replicates, and bracketed intervals are bootstrap intervals over the 20 replicates, conditional on the cohort, patient split and test population. The prediction is the Bayes-optimal training-distribution shift. Raw finite-network logits need not equal the Bayes-optimal log-odds of the selected training distribution, so the observed-over-predicted ratio is descriptive. It does not test the magnitude predicted by Proposition 1.
+In Table S28, the replicate-specific validation set is shared across doses, and replicates are paired. Slopes and τ̂(1, −1) are for the raw logit contrast of the selected concept. Ranges are 2.5 and 97.5 percentiles over replicates, and bracketed intervals are bootstrap intervals over the 20 replicates, conditional on the cohort, patient split and test population. The prediction is the Bayes-optimal training-distribution shift. Raw finite-network logits need not equal the Bayes-optimal log-odds of the selected training distribution, so the observed-over-predicted ratio is descriptive. It does not test the magnitude predicted by Proposition 1. "Replicates changing sign" counts replicates ω with Δ_k(−1, ω) > 0 and Δ_k(+1, ω) < 0 on the raw logit scale, both doses coming from the same replicate. For size with image features at 320 expected recorded negatives, Δ_k ranged from +0.57 to +1.64 at η = −1 and from −0.20 to −0.02 at η = +1, so every replicate changed sign although the mean at η = +1 was −0.09.
 
 **TABLE S28. Selection dose on training lesions only.**
 
@@ -1207,7 +1207,7 @@ In Table S61, values come from counts with patient-cluster bootstrap intervals, 
 
 Table S62 maps every reported result to the script that produces it. The analysis lock, which fixed primary and secondary outcomes before the tests of alternative explanations, is in `analysis_lock.md`. It is dated 25 September 2026 and is part of the first public commit of the repository; its later sections log each post-inspection change with its date.
 
-**Rebuilding the main results.** The driver `Code/run_vr_pipeline.sh` and the `Code/run_round*.sh` scripts record the order and arguments of every run. A minimal chain for Table 1 and Table S28 is as follows. `vl0_embed.py` computes the image features from the ISIC-2024 archive. `vl1_identification.py` fits the nuisances, and `vl_common.py` freezes the patient split. `vr19_primary_bootstrap.py --family tabular --start -3 --end 0` fits the three original models (seeds 0 to 2) that give the point estimates, and `--start 0 --end 5000` the one-seed replicates; the same for `image`, then `vr19_primary_bootstrap.py --summarize`. Running this chain from the data regenerates every replicate; building the text from the stored JSON needs only the last step below. `vr39_seed_variance.py` adds two seeds per replicate, and `vr43_three_seed_primary.py` gives the intervals and labels of Table 1. `vr46_dose_fixed_val.py --family tabular --cells color_variegation:320 size:320 lesion_skin_contrast:320`, the same for `image`, then `--summarize`, give Table S28. `paper/build_paper.py` and `paper/build_supplementary.py` rebuild the text. Embeddings, nuisance arrays and checkpoints are not distributed because of their size, but these scripts regenerate them from the public data. On other hardware, refits can differ slightly; the labels of Table 1 are stable to the Monte Carlo resolution reported in Section S6.
+**Rebuilding the main results.** The driver `Code/run_vr_pipeline.sh` and the `Code/run_round*.sh` scripts record the order and arguments of every run. A minimal chain for Table 1 and Table S28 is as follows. `vl0_embed.py --datasets isic2024` computes the image features from the ISIC-2024 archive with ResNet-50 weights IMAGENET1K_V2, pinned in the script and recorded in the output file. It needs only the ISIC-2024 archive; `--datasets padufes` adds the PAD-UFES-20 features of Section IV-E. `vr52_embed_provenance.py` recomputed the features of 256 ISIC-2024 and 64 PAD-UFES-20 images, drawn at random, under both torchvision weight sets. The stored features matched IMAGENET1K_V2 to half-precision rounding (cosine similarity at least 0.999999, largest absolute difference 0.0078). IMAGENET1K_V1 gave median cosine similarities of 0.08 and 0.13. Run from a copy of the release with an empty weight cache and a data folder holding only ISIC-2024 and PAD-UFES-20, `vl0_embed.py --datasets isic2024` downloaded IMAGENET1K_V2, recorded it in the output and reproduced all 401,059 stored feature vectors and concept proxies exactly. `vl1_identification.py` fits the nuisances, and `vl_common.py` freezes the patient split. `vr19_primary_bootstrap.py --family tabular --start -3 --end 0` fits the three original models (seeds 0 to 2) that give the point estimates, and `--start 0 --end 5000` the one-seed replicates; the same for `image`, then `vr19_primary_bootstrap.py --summarize`. Running this chain from the data regenerates every replicate; building the text from the stored JSON needs only the last step below. `vr39_seed_variance.py` adds two seeds per replicate, and `vr43_three_seed_primary.py` gives the intervals and labels of Table 1. `vr46_dose_fixed_val.py --family tabular --cells color_variegation:320 size:320 lesion_skin_contrast:320`, the same for `image`, then `--summarize`, give Table S28. `paper/build_paper.py` and `paper/build_supplementary.py` rebuild the text. Embeddings, nuisance arrays and checkpoints are not distributed because of their size, but these scripts regenerate them from the public data. On other hardware, refits can differ slightly; the labels of Table 1 are stable to the Monte Carlo resolution reported in Section S6.
 
 In Table S62, scripts are in `Code/` and outputs in `Result/` of the repository.
 
@@ -1234,7 +1234,8 @@ In Table S62, scripts are in `Code/` and outputs in `Result/` of the repository.
 | Fig. 3(a); dose results of Section IV-B; Tables S28 and S29 | `vr46_dose_fixed_val.py` | `vr46_dose_fixed_val.json`, `vr46/` |
 | Tables S30 and S32 (joint training-and-validation dose) | `vr32_dose_nuisance.py` | `vr32_dose_nuisance.json` |
 | Table S38 | `vr33_bridge_alt.py` | `vr33_bridge_alt.json` |
-| Tables S7 and S8 | `vr34_semisynth.py` (argument `mlp` or `gbm`) | `vr34_semisynth.json`, `vr34_semisynth_gbm.json` |
+| Table S8; simulated draws of Table S7 | `vr34_semisynth.py` (argument `mlp` or `gbm`) | `vr34_semisynth.json`, `vr34_semisynth_gbm.json` |
+| Table S7; unclipped ψ and oracle sets | `vr53_semisynth_target.py` | `vr53_semisynth_target.json` |
 | Table S45 | `vr37_overlap_sigma.py` | `vr37_overlap_sigma.json` |
 | Table S53 | `vr38_logit_tail.py` | `vr38_logit_tail.json` |
 | Two further seeds per replicate for the three-seed bootstrap; Table S18 | `vr39_seed_variance.py` | `vr39/`, `vr39_seed_variance.json` |
@@ -1263,6 +1264,7 @@ In Table S62, scripts are in `Code/` and outputs in `Result/` of the repository.
 | Patient split; nuisance estimates of *q* and σ | `vl_common.py`, `vl1_identification.py`, `vl3_learning.py` | `vl_split.json`; `vl_nuisance.npz` and `vl_nuisance_image.npz`, not distributed |
 | Test AUROC of the tabular and frozen-image learners | `vl3_learning.py` | `vl3_learning.json` |
 | Frozen ResNet-50 embeddings | `vl0_embed.py` | `embeddings/`, not distributed |
+| Weights of the stored embeddings | `vr52_embed_provenance.py` | `vr52_embed_provenance.json` |
 | Interval for *B* on ISIC-2024 | `vl1_identification.py` | `vl1_identification.json` |
 | All figures | `vr11_paper_figures.py` | `paper/figures/` |
 | Tables and result sentences | `paper/build_paper.py`, `paper/build_supplementary.py`, `paper/paper_numbers.py` | generated from the files above |

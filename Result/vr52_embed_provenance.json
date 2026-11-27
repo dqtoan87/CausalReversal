@@ -1,0 +1,49 @@
+{
+  "torchvision": "0.25.0+cu128",
+  "torch": "2.10.0+cu128",
+  "device": "cuda",
+  "datasets": {
+    "isic2024": {
+      "n": 256,
+      "concepts_max_abs_diff": 0.0,
+      "IMAGENET1K_V1": {
+        "cosine_min": 0.0247903261333704,
+        "cosine_median": 0.08007697016000748,
+        "max_abs_diff": 13.533370971679688,
+        "median_abs_diff": 0.06903076171875
+      },
+      "IMAGENET1K_V2": {
+        "cosine_min": 0.9999992847442627,
+        "cosine_median": 0.9999997019767761,
+        "max_abs_diff": 0.0078125,
+        "median_abs_diff": 0.0
+      },
+      "match": "IMAGENET1K_V2"
+    },
+    "padufes": {
+      "n": 64,
+      "concepts_max_abs_diff": 0.0,
+      "IMAGENET1K_V1": {
+        "cosine_min": 0.04020516574382782,
+        "cosine_median": 0.1300722062587738,
+        "max_abs_diff": 11.78070068359375,
+        "median_abs_diff": 0.1846923828125
+      },
+      "IMAGENET1K_V2": {
+        "cosine_min": 0.9999992251396179,
+        "cosine_median": 0.9999996423721313,
+        "max_abs_diff": 0.0078125,
+        "median_abs_diff": 0.0
+      },
+      "match": "IMAGENET1K_V2"
+    }
+  },
+  "full_rebuild": {
+    "n": 401059,
+    "weights_recorded": "IMAGENET1K_V2",
+    "cosine_min": 0.9999998807907104,
+    "max_abs_diff": 0.0,
+    "concepts_max_abs_diff": 0.0,
+    "note": "clean copy of the release files, empty torch cache (weights downloaded), data folder holding only ISIC-2024 and PAD-UFES-20, command vl0_embed.py --datasets isic2024"
+  }
+}

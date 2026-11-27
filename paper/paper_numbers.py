@@ -1848,3 +1848,163 @@ def t_psi_est():
 
 NUM.update({"clip_sentence": clip_sentence, "indet_sentence": indet_sentence, "psi_est_sentence": psi_est_sentence})
 TABLE.update({"psi_est": t_psi_est})
+
+
+def _semi_null():
+    """Plug-in sets that exclude zero when the designed target is zero (semi-synthetic, true floor)."""
+    rows = [r for fn in ("vr34_semisynth.json", "vr34_semisynth_gbm.json") for f in FAMS
+            for r in J(fn)["families"][f]["rows"] if r["scenario"] == "null"]
+    assert max(abs(r["psi"]) for r in rows) < 1e-5
+    cert = [(r, k) for r in rows for k in ("mlp_platt", "mlp_iso", "gbm_platt") if r["est"][k]["certifies"]]
+    return {"n": 3 * len(rows), "cert": len(cert), "settings": len(rows) // 4,
+            "pos": sum(r["est"][k]["L"] > 0 for r, k in cert), "neg": sum(r["est"][k]["U"] < 0 for r, k in cert),
+            "oracle": sum(r["oracle_L"] > 0 or r["oracle_U"] < 0 for r in rows)}
+
+
+def psi_sim_sentence():
+    st = J("vr28_psi_stress.json")["summary"]
+    sms = [J("vr34_semisynth.json")["families"], J("vr34_semisynth_gbm.json")["families"]]
+    lo = J("vr34_semisynth_local.json")["families"]
+    ks = ("mlp_platt", "mlp_iso", "gbm_platt")
+    cov = [sm[f]["summary"][k]["covers"] for sm in sms for f in FAMS for k in ks]
+    assert max(sm[f]["summary"][k]["wrong"] for sm in sms for f in FAMS for k in ks) == 0
+    lc_or = [lo[f]["summary"]["oracle"]["covers"] for f in FAMS]
+    z = _semi_null()
+    assert z["oracle"] == 0 and z["pos"] > 0 and z["neg"] > 0
+    return (f"In simulation, an overstated floor made even the oracle set exclude zero on the wrong side in "
+            f"{pct(st['adversarial|overstated']['oracle_wrong'])} of adversarial settings. In semi-synthetic designs on the ISIC-2024 "
+            f"inputs, sets were evaluated at the true floor. No plug-in set excluded zero on the side opposite to a true target with "
+            f"|ψ| > 0.05. When the true target was zero, however, {z['cert']} of {z['n']} plug-in sets excluded zero, on either side "
+            f"({z['settings']} settings per design, family and estimator of *q*; the three estimators share each simulated draw). No "
+            f"oracle set did. A plug-in sign near zero can therefore come from the estimate of *q* alone. The plug-in sets contained the true target in {round(100 * min(cov))} "
+            f"to {pct(max(cov))} of settings per design, family and estimator. Their lower endpoints were mostly below the oracle ones, "
+            f"yet up to 0.23 above them when the target was negative. A floor that failed only where verification is rarest left the "
+            f"oracle set containing the target in {round(100 * min(lc_or))} to {pct(max(lc_or))} of settings (Supplementary Section S2).")
+
+
+NUM.update({"psi_sim_sentence": psi_sim_sentence})
+
+
+_t_main_rev29 = t_main_reversal
+
+
+def t_main_reversal():
+    rows = _t_main_rev29().split("\n")
+    out = []
+    for r in rows:
+        if r.startswith("| Secondary |"):
+            cells = r.split(" | ")
+            cells[-1] = "outside the family |"
+            r = " | ".join(cells)
+        out.append(r)
+    return "\n".join(out)
+
+
+TABLE.update({"main_reversal": t_main_reversal})
+
+
+_resample_rev29 = resample_sentence
+
+
+def _half_opposite():
+    """Half-sampling replicates (vr36) in which Δ_M0 > 0 > Δ_M2, per family and primary concept."""
+    import glob as _g
+    out = {}
+    for f in FAMS:
+        reps = {}
+        for fn in _g.glob(os.path.join(RES, "vr36", f"{f}_*.json")):
+            reps.update(json.load(open(fn))["reps"])
+        reps = {k: v for k, v in reps.items() if int(k) >= 0}
+        out[f] = {c: (sum(v[c][0] > 0 > v[c][1] for v in reps.values()), len(reps)) for c in PRIMARY}
+    return out
+
+
+def resample_sentence():
+    t = _resample_rev29()
+    old = ("Half-sampling patients without replacement kept every bootstrap sign-separated cell separated, "
+           "and we use it only as this check (Supplementary Section S6).")
+    assert t.endswith(old)
+    h = _half_opposite()["image"]
+    assert h["color_variegation"][0] == h["color_variegation"][1] and h["size"][0] == h["size"][1]
+    return t[:-len(old)] + (
+        f"A third, descriptive check refitted both learners on half of the training and test patients, drawn without "
+        f"replacement, in {h['size'][1]} subsamples per family. Its intervals have no nominal coverage. With image features, "
+        f"Δ_M0 > 0 > Δ_M2 held in all {h['size'][1]} subsamples for color variegation and for size. The multiplicity-adjusted "
+        f"labels rest on the bootstrap alone (Supplementary Section S6).")
+
+
+NUM.update({"resample_sentence": resample_sentence})
+
+
+# review round: unclipped semi-synthetic target (vr53), shorter IV-F and IV-G
+
+def _v53():
+    d = J("vr53_semisynth_target.json")
+    sm = d["summary"]
+    key = lambda g, f, sc: sm[f"{g}|{f}|{sc}"]
+    tot = lambda sc, k: sum(key(g, f, sc)[k] for g in ("mlp", "gbm") for f in FAMS)
+    rep = max(d["designs"][g][f]["max_reproduction_error"] for g in ("mlp", "gbm") for f in FAMS)
+    clip_psi = max(key(g, f, sc)["clip_effect_psi_max"] for g in ("mlp", "gbm") for f in FAMS for sc in ("aligned", "null", "reversed"))
+    clip_or = max(key(g, f, sc)["clip_effect_oracle_max"] for g in ("mlp", "gbm") for f in FAMS for sc in ("aligned", "null", "reversed"))
+    dU = [x for g in ("mlp", "gbm") for f in FAMS for x in key(g, f, "reversed")["same_side_dU"]]
+    return dict(sm=sm, key=key, tot=tot, rep=rep, clip_psi=clip_psi, clip_or=clip_or, dU=dU,
+                n=tot("null", "n_sets"))
+
+
+def psi_sim_sentence():
+    st = J("vr28_psi_stress.json")["summary"]
+    lo = J("vr34_semisynth_local.json")["families"]
+    lc_or = [lo[f]["summary"]["oracle"]["covers"] for f in FAMS]
+    v = _v53(); tot = v["tot"]
+    assert all(tot(sc, "wrong") == 0 for sc in ("aligned", "null", "reversed"))
+    assert tot("null", "oracle_excludes_zero") == 0 and tot("reversed", "oracle_excludes_zero") == 0
+    assert tot("reversed", "same_side_oracle0") == tot("reversed", "excludes_zero")
+    assert v["n"] == tot("aligned", "n_sets") == tot("reversed", "n_sets")
+    return (f"In simulation, an overstated floor made even the oracle set exclude zero on the wrong side in "
+            f"{pct(st['adversarial|overstated']['oracle_wrong'])} of adversarial settings. In semi-synthetic designs on the ISIC-2024 "
+            f"inputs, sets were evaluated at the true floor against ψ on the unclipped scale, with {v['n']} plug-in sets per target "
+            f"scenario (Supplementary Section S2). No plug-in set excluded zero on the side opposite to a target with |ψ| > 0.05. "
+            f"Plug-in sets did exclude zero where the oracle set did not: {tot('null', 'null_exclusion')} with a zero target, on "
+            f"either side, and {tot('reversed', 'same_side_oracle0')} with a negative target, all below zero. These sets use both "
+            f"estimated nuisances, *q̂* and σ̂. With a positive target, the plug-in tipping floor was below the oracle one in "
+            f"{tot('aligned', 'tip_lower')} of {v['n']} sets and above it in {tot('aligned', 'tip_higher')}; with a zero target it was "
+            f"below in {tot('null', 'tip_lower')}. A plug-in floor such as those of Table 2 was thus mostly conservative in these designs, "
+            f"but it can also understate the floor required with known nuisances. A floor that failed only where verification is rarest left the oracle set "
+            f"containing the target in {round(100 * min(lc_or))} to {pct(max(lc_or))} of settings.")
+
+
+def tail_sentence():
+    t = J("vr48_nuisance_audit.json")["families"]["tabular"]
+    return (f"Calibration approximately matches aggregate event risk, a sum of *q*, but not the mean of logit *q*, which is steep "
+            f"near zero. Isotonic calibration also put {pct(t['stats_mean_over_seeds']['iso_at_lower'])} of tabular test lesions at "
+            f"its lower bound of 10⁻⁶, so that row of Table 2 is regularized by clipping (Supplementary Section S7).")
+
+
+_marg_rev3 = marg_paragraph
+
+
+def marg_paragraph():
+    import re as _re
+    t = _marg_rev3()
+    drop = ["A two-sided interval with this floor uses it in both tertiles;", "Coding indeterminate histopathology",
+            "At the two sites with the most malignant lesions", "The crude benign ratio"]
+    m = _re.search(r"with the six-site mixture fixed, color variegation reached at most (\d+) percent and size reached 95 percent "
+                   r"at ([\d.]+) \(Supplementary Section S7\)\.", t)
+    assert m
+    sents = _re.split(r"(?<=[.)])\s+(?=[A-Z])", t)
+    sents = [s for s in sents if not s.startswith("S3).")]
+    keep = []
+    for s in sents:
+        if any(s.startswith(d) for d in drop):
+            continue
+        if s.startswith("A standardized mixture of the six sites"):
+            s = (f"With the six-site mixture fixed, color variegation never reached the 95 percent rule, its joint frequency peaking "
+                 f"at {m.group(1)} percent, and size reached it at {m.group(2)}.")
+        keep.append(s)
+    assert len(keep) == len(sents) - len(drop)
+    keep.append("Supplementary Section S7 reports the bounds, site-level floors, other codings of indeterminate histopathology and "
+                "the benign-ratio benchmark for *A*.")
+    return " ".join(keep)
+
+
+NUM.update({"psi_sim_sentence": psi_sim_sentence, "tail_sentence": tail_sentence, "marg_paragraph": marg_paragraph})

@@ -395,3 +395,34 @@ Không chạy thí nghiệm mới; đối chiếu kết quả đã lưu. Sửa:
 - Sai khác tái lập vr51 trên toàn bộ: ≤ 1.37e−5. Size–tabular: M2 đổi dấu ở 3/5,000 lượt khi loại ca bất định; nhãn và dấu điểm giữ nguyên.
 - Half-sampling gọi là khoảng mô tả (thiếu hệ số lấy mẫu hữu hạn). Discussion marginal gắn với color/size, quần thể và cách chuẩn hóa.
 - S8 và README: thêm lệnh --start -3 --end 0 và trỏ đúng bảng ánh xạ.
+
+## 39. Sửa theo phản biện review_29_3 (2026-11-27)
+
+Một kiểm tra mới, nhỏ (vr52, vài phút GPU); còn lại đối chiếu kết quả đã lưu. Không đổi giao thức hay số liệu chính.
+- vr52_embed_provenance.py: tính lại embedding của 256 ảnh ISIC-2024 và 64 ảnh PAD-UFES-20 (rng 52) bằng V1 và V2.
+  Embedding đã lưu khớp IMAGENET1K_V2 (cosine ≥ 0.999999, sai khác tối đa 0.0078 = làm tròn float16); V1 cho cosine trung vị
+  0.08 / 0.13. Concept proxy khớp tuyệt đối.
+- vl0_embed.py: ghim --weights IMAGENET1K_V2, ghi tên trọng số vào npz, dừng nếu tệp tái dùng có trọng số khác; mặc định
+  --datasets isic2024,padufes (bỏ ISIC-2019, không dùng trong bài). S8 và README ghi lệnh --datasets isic2024 / padufes.
+- §IV-F, S2, Bảng S7: kịch bản ψ = 0 ở sàn thật, 10/96 khoảng plug-in loại 0 (7 trên, 3 dưới), oracle 0/32; thêm cột oracle.
+- Bảng 1 và S16: dòng thứ cấp ghi "outside the family"; S16 dùng khoảng 95% cho dòng thứ cấp (khớp Bảng 1).
+- §III-F, S5: dừng sớm/hiệu chuẩn theo validation chỉ cho hai họ perceptron; hai họ thứ cấp chọn checkpoint theo AUROC.
+- §IV-A, §VI, S6: lấy nửa mẫu là kiểm tra mô tả; image color và size Δ_M0 > 0 > Δ_M2 ở 300/300 mẫu con; bỏ khỏi §VI.
+- build_docx.py: cập nhật mẫu ψ_k (dấu phẩy) và đồng nhất thức Δ^Bayes; Δ^Bayes nội dòng thành chỉ số trên; bản dựng dừng
+  nếu thiếu công thức hiển thị. Đã kiểm tra: 3 phương trình OMML, mọi "Bayes" là superscript.
+
+## 40. Sửa theo phản biện review_30_3 (2026-11-27)
+
+Hậu nghiệm, không đổi giao thức. Hai kiểm tra mới, ngắn:
+- vr53_semisynth_target.py: dựng lại ℓ, m, π₀ của vr34 (tái lập ψ và cận oracle đã lưu ≤ 1e−5; 0.008 ở gbm–image do GBM không
+  bit-exact), tính ψ và cận oracle KHÔNG cắt ngưỡng. Cắt ngưỡng chỉ có tác dụng ở gbm–tabular (≤ 0.04% p < 1e−7): ψ dịch ≤ 0.0044,
+  cận oracle ≤ 0.0089; không nhãn nào đổi. Mỗi kịch bản 96 bộ plug-in: ngược dấu 0; ψ = 0: 10 loại 0 (7 dương, 3 âm), oracle 0;
+  ψ = −0.3: 11 loại 0 cùng phía, oracle chứa 0, ψ_U thấp hơn oracle 0.024–0.441; tipping floor plug-in thấp hơn oracle 9/96
+  (mục tiêu dương; cao hơn 86, bằng 1) và 32/96 (mục tiêu 0). σ̂ không tách được khỏi q̂ (không lưu) → bỏ phát biểu "q alone".
+  Bảng S7 dựng lại từ vr53. Thiết kế local: cắt ngưỡng không tác dụng.
+- Bản sao sạch (git ls-files, TORCH_HOME trống, data chỉ ISIC-2024 + PAD-UFES-20): vl0_embed.py --datasets isic2024 tải V2, ghi
+  weights, tái lập 401,059 vector đặc trưng và concept proxy y hệt (sai khác 0); --weights V1 trên tệp đó bị từ chối.
+  Lưu ở vr52_embed_provenance.json["full_rebuild"]. Mọi tệp S8 có trong bản phát hành (trừ .npz ghi "not distributed").
+- Rút gọn §IV-F (chi tiết hiệu chuẩn → S7) và §IV-G (công thức → S1; site, mã hóa ca bất định, B_V → S7). Abstract 249 từ.
+- S28: định nghĩa "Replicates changing sign" (cặp trong cùng replicate, logit thô); size–image tại η = +1: −0.20 đến −0.02.
+- Trích dẫn đổi sang v1.11-submission (chưa tạo tag). PDF qua soffice: 24 trang.

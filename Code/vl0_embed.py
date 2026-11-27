@@ -16,8 +16,13 @@ Concept proxy từ ảnh (cùng một định nghĩa trên mọi bộ dữ liệ
   asym      1 − IoU(mask, mask lật quanh trục chính)
   border    chu vi² / (4π·diện tích)                  (đối ứng tbp_lv_norm_border)
 
-Out -> Result/embeddings/{isic2024,isic2019,padufes}.npz  (emb float16 [n,2048], concepts, ids)
-Chạy:  python3 vl0_embed.py [--datasets isic2024,isic2019,padufes] [--batch 256] [--workers 24]
+Trọng số: ResNet-50 torchvision IMAGENET1K_V2, ghim cố định (--weights). Tệp đã lưu ghi tên trọng số; khi tái sử dụng,
+tệp được kiểm tra và dừng nếu tên khác. Tệp cũ không có trường này được xác minh bằng vr52_embed_provenance.py
+(embedding gốc của bài khớp IMAGENET1K_V2, Result/vr52_embed_provenance.json).
+Out -> Result/embeddings/{isic2024,padufes}.npz  (emb float16 [n,2048], concepts, ids, weights)
+Chạy:  python3 vl0_embed.py --datasets isic2024            (ISIC-2024, mọi phân tích chính)
+       python3 vl0_embed.py --datasets padufes             (PAD-UFES-20, Section IV-E)
+       isic2019 vẫn được hỗ trợ nhưng không dùng trong bài.
 """
 from __future__ import annotations
 
@@ -133,15 +138,19 @@ def items_for(kind):
 
 
 @torch.no_grad()
-def run(kind, batch, workers, dev):
+def run(kind, batch, workers, dev, weights):
     out = os.path.join(V.EMB, f"{kind}.npz")
     if os.path.exists(out):
-        V.log(f"{kind}: exists, skip"); return
+        with np.load(out) as z:
+            stored = str(z["weights"]) if "weights" in z.files else None
+        if stored is None:
+            V.log(f"{kind}: exists without a weights record, skip (verify with vr52_embed_provenance.py)"); return
+        if stored != weights:
+            raise SystemExit(f"{kind}: stored embeddings use {stored}, requested {weights}; remove {out} to recompute")
+        V.log(f"{kind}: exists ({stored}), skip"); return
     ids, items = items_for(kind)
-    V.log(f"{kind}: {len(ids)} images")
-    net = torchvision.models.resnet50(weights=torchvision.models.ResNet50_Weights.IMAGENET1K_V2
-                                      if os.path.exists(os.path.expanduser("~/.cache/torch/hub/checkpoints/resnet50-11ad3fa6.pth"))
-                                      else torchvision.models.ResNet50_Weights.IMAGENET1K_V1)
+    V.log(f"{kind}: {len(ids)} images, ResNet-50 {weights}")
+    net = torchvision.models.resnet50(weights=getattr(torchvision.models.ResNet50_Weights, weights))
     net.fc = torch.nn.Identity()
     net = net.eval().to(dev).to(memory_format=torch.channels_last)
     dl = DataLoader(Imgs(kind, items), batch_size=batch, num_workers=workers, pin_memory=True)
@@ -156,13 +165,14 @@ def run(kind, batch, workers, dev):
         if bi % 100 == 0:
             V.log(f"  {kind}: {k}/{len(ids)}")
     os.makedirs(V.EMB, exist_ok=True)
-    np.savez(out, emb=E, concepts=Cc, concept_names=np.array(CONCEPT_NAMES), ids=np.array(ids))
+    np.savez(out, emb=E, concepts=Cc, concept_names=np.array(CONCEPT_NAMES), ids=np.array(ids), weights=np.array(weights))
     V.log(f"wrote {out}")
 
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--datasets", default="padufes,isic2019,isic2024")
+    ap.add_argument("--datasets", default="isic2024,padufes")
+    ap.add_argument("--weights", default="IMAGENET1K_V2", choices=["IMAGENET1K_V2", "IMAGENET1K_V1"])
     ap.add_argument("--batch", type=int, default=256)
     ap.add_argument("--workers", type=int, default=32)
     ap.add_argument("--cpu", action="store_true")
@@ -170,7 +180,7 @@ def main():
     dev = torch.device("cpu" if a.cpu or not torch.cuda.is_available() else "cuda")
     torch.set_num_threads(16)
     for kind in a.datasets.split(","):
-        run(kind, a.batch, a.workers, dev)
+        run(kind, a.batch, a.workers, dev, a.weights)
 
 
 if __name__ == "__main__":

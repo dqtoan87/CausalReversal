@@ -29,7 +29,13 @@ Place both under `data/` at the repository root, or set `CAUSALREVERSAL_DATA` to
 export CAUSALREVERSAL_DATA=/path/to/data
 ```
 
-Model checkpoints, image embeddings (`Result/embeddings/`) and cached nuisance arrays (`Result/vl_nuisance*.npz`) are not included because of their size. `vl0_embed.py`, `vl1_identification.py` and `vl3_learning.py` recreate them. Keep `Result/vl_split.json` unchanged: rebuilding the split without retraining every model breaks the patient-disjoint property.
+Model checkpoints, image embeddings (`Result/embeddings/`) and cached nuisance arrays (`Result/vl_nuisance*.npz`) are not included because of their size. `vl0_embed.py`, `vl1_identification.py` and `vl3_learning.py` recreate them. The image features use ResNet-50 with torchvision weights `IMAGENET1K_V2`, pinned in `vl0_embed.py` and recorded in each embedding file; a reused file with other weights stops the script. `Code/vr52_embed_provenance.py` checks that the stored embeddings match these weights (`Result/vr52_embed_provenance.json`).
+
+```bash
+cd Code
+python3 vl0_embed.py --datasets isic2024   # ISIC-2024 only: every main analysis
+python3 vl0_embed.py --datasets padufes    # PAD-UFES-20: Section IV-E
+``` Keep `Result/vl_split.json` unchanged: rebuilding the split without retraining every model breaks the patient-disjoint property.
 
 ## Rebuilding the manuscript from the stored results
 

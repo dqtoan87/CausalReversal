@@ -6,6 +6,8 @@ import json
 import os
 import re
 
+import numpy as np
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 RES = os.path.join(os.path.dirname(HERE), "Result")
 CL = {"color_variegation": "Color variegation", "size": "Size", "lesion_skin_contrast": "Lesion-skin contrast",
@@ -635,16 +637,20 @@ def t_sharp42():
 
 
 def t_semi34():
-    out = ["| Disease risk built from | Features | Estimate of *q* | Scenario | Mean ψ_L minus oracle | Containment rate | Sign certified | Wrong sign certified |",
-           "| --- | --- | --- | --- | ---: | ---: | ---: | ---: |"]
-    for fn, dl in (("vr34_semisynth.json", "perceptron"), ("vr34_semisynth_gbm.json", "gradient boosting")):
-        d = J(fn)["families"]
+    d = J("vr53_semisynth_target.json")["designs"]
+    out = ["| Disease risk built from | Features | Estimate of *q* | Scenario | Mean ψ_L minus oracle | Contains ψ | Excludes zero | Oracle excludes zero | Excludes zero, oracle does not | Wrong sign | Tipping floor below oracle |",
+           "| --- | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |"]
+    fin = lambda x: x is not None and np.isfinite(x)
+    for g, dl in (("mlp", "perceptron"), ("gbm", "gradient boosting")):
         for f in FAMS2:
-            sm = d[f]["summary"]
+            rows = d[g][f]["rows"]
             for k, lab in EST30:
-                for sc, sl in (("aligned", "positive target"), ("null", "target near zero"), ("reversed", "negative target")):
-                    v = sm[k][sc]
-                    out.append(f"| {dl} | {f} | {lab} | {sl} | {s(v['bias_L'])} | {u(v['covers'])} | {u(v['certifies'])} | {u(v['wrong'])} |")
+                for sc, sl in (("aligned", "positive target"), ("null", "zero target"), ("reversed", "negative target")):
+                    rr = [r for r in rows if r["scenario"] == sc]; e = [r["est"][k] for r in rr]
+                    lower = sum(fin(x["tip"]) and (not fin(r["oracle_tip"]) or x["tip"] < r["oracle_tip"] - 1e-9) for r, x in zip(rr, e))
+                    exo = sum(x["excludes_zero"] and not r["oracle_excludes_zero"] for r, x in zip(rr, e))
+                    out.append(f"| {dl} | {f} | {lab} | {sl} | {s(float(np.mean([x['dL'] for x in e])))} | {sum(x['covers'] for x in e)} of {len(e)} | "
+                               f"{sum(x['excludes_zero'] for x in e)} | {sum(r['oracle_excludes_zero'] for r in rr)} | {exo} | {sum(x['wrong'] for x in e)} | {lower} |")
     return "\n".join(out)
 
 
@@ -871,16 +877,18 @@ def t_clip50():
 def t_vr51():
     d = J("vr51_direct_indeterminate.json")["families"]
     lab = {"clipped": "clipped logit (Table 1)", "direct": "direct logit", "excluded": "M2 without indeterminate"}
-    out = ["| Features | Concept | Version | Δ_M0, Bonferroni interval | Δ_M2, Bonferroni interval | Gap, 95% interval | Bonferroni sign-separated | Label reproduced |",
+    out = ["| Features | Concept | Version | Δ_M0 interval | Δ_M2 interval | Gap, 95% interval | Bonferroni sign-separated | Label reproduced |",
            "| --- | --- | --- | --- | --- | --- | --- | ---: |"]
     for f in ("tabular", "image"):
         for c in ("color_variegation", "size", "lesion_skin_contrast", "asymmetry", "border_irregularity"):
+            prim = c in ("color_variegation", "size", "lesion_skin_contrast")
             for k in ("clipped", "direct", "excluded"):
                 e = d[f]["concepts"][c].get(k)
                 if e is None:
                     continue
-                out.append(f"| {f} | {CL[c]} | {lab[k]} | {ci(e['d0_ci_bonf'])} | {ci(e['d2_ci_bonf'])} | {ci(e['diff_ci95'])} | "
-                           f"{'yes' if e['bonf'] else 'no'} | {e['reproduced']:.2f} |")
+                k0, k2 = ("d0_ci_bonf", "d2_ci_bonf") if prim else ("d0_ci95", "d2_ci95")
+                tail = f"{'yes' if e['bonf'] else 'no'} | {e['reproduced']:.2f}" if prim else "outside the family | not applicable"
+                out.append(f"| {f} | {CL[c]} | {lab[k]} | {ci(e[k0])} | {ci(e[k2])} | {ci(e['diff_ci95'])} | {tail} |")
     return "\n".join(out)
 
 
@@ -930,7 +938,101 @@ def n_B_primary():
     return f"{min(J('vr43_three_seed_primary.json')['B'].values()):,}"
 
 
-NUMS = {"B_primary": n_B_primary, "B30s": n_B30s, "semi_bridge": n_semi_bridge, "platt": n_platt, "B19": n_bootstrap_count}
+def n_semi_null():
+    rows = [r for fn in ("vr34_semisynth.json", "vr34_semisynth_gbm.json") for f in FAMS2
+            for r in J(fn)["families"][f]["rows"] if r["scenario"] == "null"]
+    assert max(abs(r["psi"]) for r in rows) < 1e-5 and not any(r["oracle_L"] > 0 or r["oracle_U"] < 0 for r in rows)
+    e = [r["est"][k] for r in rows for k in ("mlp_platt", "mlp_iso", "gbm_platt")]
+    c = [x for x in e if x["certifies"]]
+    return (f"With a zero target, {len(c)} of the {len(e)} plug-in sets excluded zero, {sum(x['L'] > 0 for x in c)} above it and "
+            f"{sum(x['U'] < 0 for x in c)} below it, while no oracle set did. These sets are not wrong signs under the criterion above, "
+            f"but they show that the estimate of *q* alone can make a plug-in set exclude zero.")
+
+
+def n_embed52():
+    d = J("vr52_embed_provenance.json")["datasets"]
+    a, b = d["isic2024"], d["padufes"]
+    assert a["match"] == b["match"] == "IMAGENET1K_V2" and a["concepts_max_abs_diff"] == b["concepts_max_abs_diff"] == 0
+    v2 = min(a["IMAGENET1K_V2"]["cosine_min"], b["IMAGENET1K_V2"]["cosine_min"])
+    return (f"`vr52_embed_provenance.py` recomputed the features of {a['n']} ISIC-2024 and {b['n']} PAD-UFES-20 images, drawn at "
+            f"random, under both torchvision weight sets. The stored features matched IMAGENET1K_V2 to half-precision rounding "
+            f"(cosine similarity at least {v2:.6f}, largest absolute difference {max(a['IMAGENET1K_V2']['max_abs_diff'], b['IMAGENET1K_V2']['max_abs_diff']):.4f}). "
+            f"IMAGENET1K_V1 gave median cosine similarities of {a['IMAGENET1K_V1']['cosine_median']:.2f} and "
+            f"{b['IMAGENET1K_V1']['cosine_median']:.2f}. " + _full_rebuild())
+
+
+def _full_rebuild():
+    f = J("vr52_embed_provenance.json")["full_rebuild"]
+    assert f["weights_recorded"] == "IMAGENET1K_V2" and f["max_abs_diff"] == 0 and f["concepts_max_abs_diff"] == 0
+    return (f"Run from a copy of the release with an empty weight cache and a data folder holding only ISIC-2024 and "
+            f"PAD-UFES-20, `vl0_embed.py --datasets isic2024` downloaded IMAGENET1K_V2, recorded it in the output and reproduced "
+            f"all {f['n']:,} stored feature vectors and concept proxies exactly.")
+
+
+def n_half36():
+    import glob as _g
+    cnt = {}
+    for f in FAMS2:
+        reps = {}
+        for fn in _g.glob(os.path.join(RES, "vr36", f"{f}_*.json")):
+            reps.update(json.load(open(fn))["reps"])
+        reps = [v for k, v in reps.items() if int(k) >= 0]
+        for c in ("color_variegation", "size", "lesion_skin_contrast"):
+            cnt[(f, c)] = (sum(v[c][0] > 0 > v[c][1] for v in reps), len(reps))
+    n = cnt[("image", "size")][1]
+    full = [k for k, v in cnt.items() if v[0] == v[1]]
+    assert sorted(full) == [("image", "color_variegation"), ("image", "size")]
+    rest = [v[0] for k, v in cnt.items() if k not in full]
+    return (f"As a descriptive frequency, Δ_M0 > 0 > Δ_M2 held in all {n} half-samples for color variegation and size with "
+            f"image features, and in {min(rest)} to {max(rest)} of {n} for the other four primary cells.")
+
+
+def n_dose46_note():
+    d = J("vr46/image_size_320.json")
+    et = [float(e) for e in d["etas"]]; i0, i1 = et.index(-1.0), et.index(1.0); k = d["concept"]
+    reps = [d["reps"][str(r)] for r in range(20)]
+    lo = [rp["raw"][i0][k] for rp in reps]; hi = [rp["raw"][i1][k] for rp in reps]
+    assert all(a > 0 > b for a, b in zip(lo, hi))
+    return (f"\"Replicates changing sign\" counts replicates ω with Δ_k(−1, ω) > 0 and Δ_k(+1, ω) < 0 on the raw logit scale, both "
+            f"doses coming from the same replicate. For size with image features at 320 expected recorded negatives, Δ_k ranged from "
+            f"{s(min(lo))} to {s(max(lo))} at η = −1 and from {s(min(hi))} to {s(max(hi))} at η = +1, so every replicate changed sign "
+            f"although the mean at η = +1 was {s(np.mean(hi))}.")
+
+
+def n_semi53():
+    d = J("vr53_semisynth_target.json"); sm = d["summary"]
+    G = ("mlp", "gbm"); SC = ("aligned", "null", "reversed")
+    tot = lambda sc, k: sum(sm[f"{g}|{f}|{sc}"][k] for g in G for f in FAMS2)
+    rep = {(g, f): d["designs"][g][f]["max_reproduction_error"] for g in G for f in FAMS2}
+    big = [k for k, v in rep.items() if v > 1e-4]
+    assert big == [("gbm", "image")]
+    assert max(v for k, v in rep.items() if k not in big) < 1e-5
+    cp = max(sm[f"{g}|{f}|{sc}"]["clip_effect_psi_max"] for g in G for f in FAMS2 for sc in SC)
+    co = max(sm[f"{g}|{f}|{sc}"]["clip_effect_oracle_max"] for g in G for f in FAMS2 for sc in SC)
+    clipped = [(g, f) for g in G for f in FAMS2 if max(sm[f"{g}|{f}|{sc}"]["share_p_clipped_max"] for sc in SC) > 0]
+    assert clipped == [("gbm", "tabular")]
+    sh = max(sm[f"gbm|tabular|{sc}"]["share_p_clipped_max"] for sc in SC)
+    dU = [x for g in G for f in FAMS2 for x in sm[f"{g}|{f}|reversed"]["same_side_dU"]]
+    n = tot("null", "n_sets")
+    assert all(tot(sc, "wrong") == 0 for sc in SC) and tot("null", "oracle_excludes_zero") == tot("reversed", "oracle_excludes_zero") == 0
+    assert tot("reversed", "same_side_oracle0") == len(dU) == tot("reversed", "excludes_zero")
+    return (f"The true ψ and the oracle set use the unclipped logit of Section III-B, so ψ = Δ_t ℓ + *b*·Δ_t *m*, with Δ_t the "
+            f"difference of tertile means on the test population. Script `vr53_semisynth_target.py` rebuilt ℓ, *m* and π₀. It "
+            f"reproduced the stored clipped ψ and oracle endpoints to within 10⁻⁵, and to within {rep[big[0]]:.3f} for image "
+            f"features in the gradient-boosting design, where refitting gradient boosting is not bit-exact. It then recomputed both "
+            f"without clipping. Clipping had moved ψ by at most {cp:.4f} and the oracle endpoints by at most {co:.4f}, only in the "
+            f"gradient-boosting design with tabular features, where at most {100 * sh:.2f} percent of test lesions had *p* < 10⁻⁷. "
+            f"Each target scenario has {n} plug-in sets: 2 designs, 2 families, 8 settings and 3 estimates of *q*. No set excluded "
+            f"zero on the side opposite to a target with |ψ| > 0.05. With a zero target, {tot('null', 'null_exclusion')} sets excluded "
+            f"zero, {tot('null', 'null_pos')} above it and {tot('null', 'null_neg')} below it, while no oracle set did. With a negative "
+            f"target, {len(dU)} sets excluded zero below it while the oracle set contained zero. Their upper endpoints were "
+            f"{-max(dU):.3f} to {-min(dU):.3f} below the oracle ones. With a positive target, the plug-in tipping floor was below the "
+            f"oracle one in {tot('aligned', 'tip_lower')} sets, equal in {tot('aligned', 'tip_equal')} and above in "
+            f"{tot('aligned', 'tip_higher')}. With a zero target, it was below in {tot('null', 'tip_lower')} of {n}. Every plug-in set "
+            f"combines *q̂* with σ̂, so these counts do not isolate the estimate of *q*.")
+
+
+NUMS = {"semi53": n_semi53, "dose46_note": n_dose46_note, "half36": n_half36, "embed52": n_embed52, "semi_null": n_semi_null, "B_primary": n_B_primary, "B30s": n_B30s, "semi_bridge": n_semi_bridge, "platt": n_platt, "B19": n_bootstrap_count}
 
 
 def main():
