@@ -867,11 +867,37 @@ def t_clip50():
                            f"{100 * x['share_at_cap_lower']:.1f} / {100 * x['share_at_cap_upper']:.1f} percent |")
     return "\n".join(out)
 
+
+def t_vr51():
+    d = J("vr51_direct_indeterminate.json")["families"]
+    lab = {"clipped": "clipped logit (Table 1)", "direct": "direct logit", "excluded": "M2 without indeterminate"}
+    out = ["| Features | Concept | Version | Δ_M0, Bonferroni interval | Δ_M2, Bonferroni interval | Gap, 95% interval | Bonferroni sign-separated | Label reproduced |",
+           "| --- | --- | --- | --- | --- | --- | --- | ---: |"]
+    for f in ("tabular", "image"):
+        for c in ("color_variegation", "size", "lesion_skin_contrast", "asymmetry", "border_irregularity"):
+            for k in ("clipped", "direct", "excluded"):
+                e = d[f]["concepts"][c].get(k)
+                if e is None:
+                    continue
+                out.append(f"| {f} | {CL[c]} | {lab[k]} | {ci(e['d0_ci_bonf'])} | {ci(e['d2_ci_bonf'])} | {ci(e['diff_ci95'])} | "
+                           f"{'yes' if e['bonf'] else 'no'} | {e['reproduced']:.2f} |")
+    return "\n".join(out)
+
+
+def t_vr51p():
+    d = J("vr51/points.json")
+    out = ["| Features | Concept | M0 | M2 | M2 without indeterminate | M0, indeterminate as malignant | M2, indeterminate as malignant |",
+           "| --- | --- | ---: | ---: | ---: | ---: | ---: |"]
+    for f in ("tabular", "image"):
+        for c in ("color_variegation", "size", "lesion_skin_contrast", "asymmetry", "border_irregularity"):
+            out.append(f"| {f} | {CL[c]} | " + " | ".join(s(d[f][k][c]["clip"]) for k in ("M0", "M2", "M2x", "M0m", "M2m")) + " |")
+    return "\n".join(out)
+
 TABLES = {"theory": t_theory, "definitions": t_definitions, "size_matched": t_size_matched, "quant": t_quant,
           "pad": t_pad, "headswap": t_headswap, "repr": t_repr, "dose": t_dose, "bridge": t_bridge,
           "within": t_within, "sites": t_sites, "overlap": t_overlap, "joint": t_joint, "joint19": t_joint19, "psi": t_psi,
           "support19": t_support19, "dose21": t_dose21, "ess21": t_ess21, "arms21": t_arms21, "pointwise22": t_pointwise22,
-          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "dose46": t_dose46, "spill46": t_spill46, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25, "mc47": t_mc47, "site47": t_site47, "nuis48": t_nuis48, "ind49": t_ind49, "ind49b": t_ind49b, "alt": t_alt, "clip50": t_clip50}
+          "sitehet": t_sitehet, "loso": t_loso, "psisim": t_psisim, "psistress": t_psistress, "full24": t_full24, "full30": t_full30, "qdiag30": t_qdiag30, "marginal35": t_marginal35, "sub36": t_sub36, "dose32": t_dose32, "dose46": t_dose46, "spill46": t_spill46, "spill32": t_spill32, "bridge33": t_bridge33, "semi34": t_semi34, "seed39": t_seed39, "theory42": t_theory42, "sharp42": t_sharp42, "comp40": t_comp40, "partial40": t_partial40, "site41": t_site41, "local34": t_local34, "semibridge34": t_semibridge34, "sigma37": t_sigma37, "tail38": t_tail38, "dose26": t_dose26, "lc26": t_lc26, "gumbel26": t_gumbel26, "eiv27": t_eiv27, "mc29": t_mc29, "mc43": t_mc43, "tau44": t_tau44, "psisens25": t_psisens25, "twofloor25": t_twofloor25, "mc47": t_mc47, "site47": t_site47, "nuis48": t_nuis48, "ind49": t_ind49, "ind49b": t_ind49b, "alt": t_alt, "clip50": t_clip50, "vr51": t_vr51, "vr51p": t_vr51p}
 
 
 def n_platt():

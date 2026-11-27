@@ -376,3 +376,11 @@ Hậu nghiệm, không đổi nhãn Bảng 1. Sửa:
 - vr49 dùng đúng trọng số bootstrap của vr35 (seed 35, cùng thứ tự); dòng cơ sở khớp tuyệt đối. Ngưỡng color và size = 0.65 ở cả ba mã hóa.
 - 70/400 biopsied recorded negatives của M2 là ca bất định; ảnh hưởng lên Δ_M2 khi huấn luyện lại chưa kiểm tra.
 - Kết luận về ψ chỉ ở mức "phân tích ISIC-2024 không thiết lập"; marginal gọi là "crude pooled", sáu site cố định không đạt tiêu chí.
+
+## 37. Bootstrap trên logit trực tiếp và M2 không có ca bất định (2026-11-27)
+
+Hậu nghiệm. vr51 dựng lại đúng 5,000 lượt × 3 seed của Bảng 1 (sai số tái lập ≤ 3e−6) và huấn luyện lại:
+- Ảnh, logit trực tiếp: mọi nhãn Bonferroni giữ nguyên, tái lập 100%; Δ_M0 color [0.15, 3.43] (so với [0.26, 2.33]), size [0.55, 2.82].
+- M2 không có 114 ca bất định (cả hai họ): mọi nhãn giữ nguyên; color–tabular vẫn chưa phân giải (0.71); gap 95% loại 0 ở 10/10 ô.
+- Ước lượng điểm khi coi ca bất định là ác tính (huấn luyện lại M0 và M2): mọi dấu giữ nguyên.
+Chạy bằng Code/supervise_vr51.sh (tách khỏi IDE, tự khởi động lại luồng khi GPU còn chỗ), 2026-11-26 22:10 → 2026-11-27 14:42.

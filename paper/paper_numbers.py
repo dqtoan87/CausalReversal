@@ -1730,3 +1730,50 @@ def marg_paragraph():
 
 
 NUM.update({"marg_paragraph": marg_paragraph})
+
+
+# vr51: primary bootstrap on direct logits, and M2 without indeterminate biopsies, on the same 5,000 three-seed replicates.
+
+def _v51():
+    d = J("vr51_direct_indeterminate.json")["families"]
+    v43 = _vp()["families"]
+    for f in FAMS:
+        assert d[f]["B"] == 5000 and d[f]["max_reproduction_error"] < 1e-4
+        for c in CL:
+            assert d[f]["concepts"][c]["clipped"]["bonf"] == v43[f]["concepts"][c]["robust_bonf"]
+    return d
+
+
+_clip_rev = clip_sentence
+
+
+def clip_sentence():
+    t = _clip_rev()
+    d = _v51()
+    im = d["image"]["concepts"]
+    assert all(im[c]["direct"]["bonf"] == im[c]["clipped"]["bonf"] for c in CL)
+    assert all(im[c]["direct"]["reproduced"] >= 0.95 for c in PRIMARY if im[c]["direct"]["bonf"])
+    e = im["color_variegation"]["direct"]["d0_ci_bonf"]
+    old = " (Supplementary Section S6)."
+    assert t.endswith(old)
+    return (t[: -len(old)] + ". Refitting the primary three-seed bootstrap with direct logits on the same 5,000 replicates left "
+            f"every label unchanged; the Bonferroni interval of Δ_M0 for color variegation with image features widened to {ci(e)} "
+            "(Supplementary Section S6).")
+
+
+def indet_sentence():
+    d = _v51()
+    pts = J("vr51/points.json")
+    for f in FAMS:
+        for c in CL:
+            e = d[f]["concepts"][c]
+            assert e["excluded"]["bonf"] == e["clipped"]["bonf"]
+            assert e["excluded"]["diff_ci95"][0] > 0 or e["excluded"]["diff_ci95"][1] < 0
+            for k in ("M2x", "M2m"):
+                assert pts[f][k][c]["clip"] * pts[f]["M2"][c]["clip"] > 0
+            assert pts[f]["M0m"][c]["clip"] * pts[f]["M0"][c]["clip"] > 0
+    return ("Retraining M2 without the indeterminate lesions, on the same 5,000 bootstrap replicates, left every sign and every "
+            "Bonferroni label unchanged, and counting them as malignant in both learners kept every sign of the original fits.")
+
+
+NUM.update({"clip_sentence": clip_sentence, "indet_sentence": indet_sentence})

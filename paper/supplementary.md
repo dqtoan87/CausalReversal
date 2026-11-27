@@ -337,9 +337,9 @@ In Fig. S2, the panels show the decision contrast, the layer-3 intervention and 
 
 ## S6. Joint bootstrap and tests of alternative explanations
 
-**Joint bootstrap.** For the two primary families, each of 5,000 replicates resampled training patients with replacement and refitted M0 and M2. Early stopping used the validation loss on all validation lesions for M0 and on the verified validation lesions for M2, the same filter that defines each training set. Each replicate then Platt-calibrated M0 on the full validation set and M2 on the verified validation lesions, resampled test patients and recomputed Δ, the plug-in set of Proposition 2 and the support-restricted contrasts. Calibrated contrasts serve only the plug-in analyses and the diagnostics; every robustness label uses raw contrasts. Replicate *b* resampled patients with generator seed 50,000 + *b* and trained both learners with seed *b*. Optimizer randomness thus varies independently across replicates, and the bootstrap distribution mixes patient resampling with training randomness. These 5,000 replicates alone describe the randomized one-seed training procedure and serve as a check. Point estimates average the three original fits with seeds 0 to 2. They target the same expectation over seeds with less variance but do not have the sampling distribution of the one-seed statistic. Script `vr39_seed_variance.py` therefore refitted each of the 5,000 replicates per family with two further seeds, *b* + 100,000 and *b* + 200,000, on the same resampled patients. Script `vr43_three_seed_primary.py` then bootstraps the three-seed average, which is the statistic of the point estimate. These three-seed replicates give the primary intervals and labels of Table 1. Table S17 splits the variance of the primary contrasts and compares the Bonferroni intervals and labels of the one-seed and three-seed statistics on the same replicates. Table S18 gives 95 percent percentile intervals and Bonferroni-adjusted percentile intervals at level 1 − 0.05/6, for raw and calibrated contrasts. Platt slopes over seeds 0 to 2 were 0.95 to 0.98 for tabular M0 and 0.86 to 1.12 for tabular M2, so tabular learners were close to calibrated. For image M0 they were 0.44 to 0.45 and for image M2 0.49 to 0.85, so the image learners, and image M0 in particular, were overconfident. Calibration rescales each learner's logit by a positive factor, so it does not change the sign of Δ.
+**Joint bootstrap.** For the two primary families, each of 5,000 replicates resampled training patients with replacement and refitted M0 and M2. Early stopping used the validation loss on all validation lesions for M0 and on the verified validation lesions for M2, the same filter that defines each training set. Each replicate then Platt-calibrated M0 on the full validation set and M2 on the verified validation lesions, resampled test patients and recomputed Δ, the plug-in set of Proposition 2 and the support-restricted contrasts. Calibrated contrasts serve only the plug-in analyses and the diagnostics; every robustness label uses raw contrasts. Replicate *b* resampled patients with generator seed 50,000 + *b* and trained both learners with seed *b*. Optimizer randomness thus varies independently across replicates, and the bootstrap distribution mixes patient resampling with training randomness. These 5,000 replicates alone describe the randomized one-seed training procedure and serve as a check. Point estimates average the three original fits with seeds 0 to 2. They target the same expectation over seeds with less variance but do not have the sampling distribution of the one-seed statistic. Script `vr39_seed_variance.py` therefore refitted each of the 5,000 replicates per family with two further seeds, *b* + 100,000 and *b* + 200,000, on the same resampled patients. Script `vr43_three_seed_primary.py` then bootstraps the three-seed average, which is the statistic of the point estimate. These three-seed replicates give the primary intervals and labels of Table 1. Table S18 splits the variance of the primary contrasts and compares the Bonferroni intervals and labels of the one-seed and three-seed statistics on the same replicates. Table S19 gives 95 percent percentile intervals and Bonferroni-adjusted percentile intervals at level 1 − 0.05/6, for raw and calibrated contrasts. Platt slopes over seeds 0 to 2 were 0.95 to 0.98 for tabular M0 and 0.86 to 1.12 for tabular M2, so tabular learners were close to calibrated. For image M0 they were 0.44 to 0.45 and for image M2 0.49 to 0.85, so the image learners, and image M0 in particular, were overconfident. Calibration rescales each learner's logit by a positive factor, so it does not change the sign of Δ.
 
-**Output scale.** Every learned contrast uses the logit of the predicted probability after clipping to [10⁻⁷, 1 − 10⁻⁷], so logits are capped at ±16.12. Script `vr50_logit_clip.py` refitted M0 and M2 with seeds 0 to 2, which reproduced the original point estimates, and compared this measure with the direct pre-sigmoid output (Table S15). The cap bound only for M0 with image features, whose direct logits reached about −51. There it raised the lowest logits, more often in the lower tertile of the three primary concepts, which shrank every contrast toward zero without changing its sign. The bootstrap intervals and labels use the clipped measure and were not recomputed with direct logits. The plug-in *q̂* of Proposition 2 is a Platt transform of the same clipped logits. The dose learners train on about 36 percent malignant lesions, like M2, whose outputs never reached the cap; their lesion-level outputs were not stored, so this was not checked directly.
+**Output scale.** Every learned contrast uses the logit of the predicted probability after clipping to [10⁻⁷, 1 − 10⁻⁷], so logits are capped at ±16.12. Script `vr50_logit_clip.py` refitted M0 and M2 with seeds 0 to 2, which reproduced the original point estimates, and compared this measure with the direct pre-sigmoid output (Table S15). The cap bound only for M0 with image features, whose direct logits reached about −51. There it raised the lowest logits, more often in the lower tertile of the three primary concepts, which shrank every contrast toward zero without changing its sign. Script `vr51_direct_indeterminate.py` then refitted the primary three-seed bootstrap on the same 5,000 replicates: the same patient resamples and seeds as Table 1, which it reproduced to within 10⁻⁵. With direct logits, every Bonferroni label was unchanged and reproduced in every Monte Carlo resample where it was positive (Table S16). The intervals of Δ_M0 widened, for color variegation with image features to [0.15, 3.43] against [0.26, 2.33], and stayed above zero. The plug-in *q̂* of Proposition 2 is a Platt transform of the same clipped logits. The dose learners train on about 36 percent malignant lesions, like M2, whose outputs never reached the cap; their lesion-level outputs were not stored, so this was not checked directly.
 
 In Table S15, values average the refits with seeds 0 to 2 on the test population.
 
@@ -368,9 +368,41 @@ In Table S15, values average the refits with seeds 0 to 2 on the test population
 | image | M2 | 0.00 percent | Asymmetry | +1.09 / +1.09 | 0.0 / 0.0 percent |
 | image | M2 | 0.00 percent | Border irregularity | +1.18 / +1.18 | 0.0 / 0.0 percent |
 
-**Populations and intervals.** Every analysis conditions on unsupervised preprocessing fitted once on the whole cohort: the z-scores and median imputation of Table S12 and the tertile cut points. No label enters them. The principal components used by the image gradient-boosting model are fitted once on original training patients. In each bootstrap replicate *q̂* is refitted, while σ̂ is the fixed out-of-fold estimate. Results therefore describe this cohort-level protocol, not a pipeline that refits preprocessing on training patients only. Table S16 lists, for each quantity, the population, the randomness that its interval resamples or averages, what is held fixed, and how the interval should be read.
+In Table S16, intervals come from the 5,000 three-seed replicates of Table 1, refitted; the direct version is computed for image features only, where the cap binds, and reproduction is over 2,000 resamples of the replicates.
 
-**TABLE S16. Populations, sources of randomness and meaning of the intervals.**
+**TABLE S16. Primary bootstrap with direct logits and with M2 trained without indeterminate biopsies.**
+
+| Features | Concept | Version | Δ_M0, Bonferroni interval | Δ_M2, Bonferroni interval | Gap, 95% interval | Bonferroni sign-separated | Label reproduced |
+| --- | --- | --- | --- | --- | --- | --- | ---: |
+| tabular | Color variegation | clipped logit (Table 1) | [0.01, 1.88] | [−1.50, −0.51] | [1.23, 2.57] | yes | 0.72 |
+| tabular | Color variegation | M2 without indeterminate | [0.01, 1.88] | [−1.80, −0.61] | [1.43, 2.79] | yes | 0.71 |
+| tabular | Size | clipped logit (Table 1) | [−0.25, 1.38] | [−0.79, −0.07] | [0.37, 1.55] | no | 1.00 |
+| tabular | Size | M2 without indeterminate | [−0.25, 1.38] | [−1.08, −0.16] | [0.53, 1.73] | no | 1.00 |
+| tabular | Lesion-skin contrast | clipped logit (Table 1) | [−0.76, 1.60] | [−2.17, −0.92] | [1.09, 2.68] | no | 1.00 |
+| tabular | Lesion-skin contrast | M2 without indeterminate | [−0.76, 1.60] | [−2.57, −1.09] | [1.38, 2.96] | no | 1.00 |
+| tabular | Asymmetry | clipped logit (Table 1) | [−1.64, 1.04] | [0.87, 2.08] | [−2.60, −0.84] | no | 1.00 |
+| tabular | Asymmetry | M2 without indeterminate | [−1.64, 1.04] | [0.98, 2.49] | [−2.83, −1.09] | no | 1.00 |
+| tabular | Border irregularity | clipped logit (Table 1) | [−1.67, 1.18] | [0.96, 2.29] | [−2.73, −0.84] | no | 1.00 |
+| tabular | Border irregularity | M2 without indeterminate | [−1.67, 1.18] | [1.07, 2.71] | [−2.97, −1.10] | no | 1.00 |
+| image | Color variegation | clipped logit (Table 1) | [0.26, 2.33] | [−1.24, −0.42] | [1.36, 2.81] | yes | 1.00 |
+| image | Color variegation | direct logit | [0.15, 3.43] | [−1.24, −0.42] | [1.28, 3.63] | yes | 1.00 |
+| image | Color variegation | M2 without indeterminate | [0.26, 2.33] | [−1.27, −0.45] | [1.40, 2.83] | yes | 1.00 |
+| image | Size | clipped logit (Table 1) | [0.55, 2.10] | [−0.72, −0.16] | [1.17, 2.35] | yes | 1.00 |
+| image | Size | direct logit | [0.55, 2.82] | [−0.72, −0.16] | [1.19, 2.85] | yes | 1.00 |
+| image | Size | M2 without indeterminate | [0.55, 2.10] | [−0.73, −0.18] | [1.19, 2.32] | yes | 1.00 |
+| image | Lesion-skin contrast | clipped logit (Table 1) | [−0.63, 1.93] | [−1.88, −0.73] | [1.00, 2.78] | no | 1.00 |
+| image | Lesion-skin contrast | direct logit | [−0.96, 2.94] | [−1.88, −0.73] | [0.79, 3.46] | no | 1.00 |
+| image | Lesion-skin contrast | M2 without indeterminate | [−0.63, 1.93] | [−1.93, −0.79] | [1.05, 2.83] | no | 1.00 |
+| image | Asymmetry | clipped logit (Table 1) | [−1.26, 0.90] | [0.79, 1.85] | [−2.20, −0.71] | no | 1.00 |
+| image | Asymmetry | direct logit | [−2.05, 1.24] | [0.79, 1.85] | [−2.74, −0.51] | no | 1.00 |
+| image | Asymmetry | M2 without indeterminate | [−1.26, 0.90] | [0.81, 1.91] | [−2.25, −0.74] | no | 1.00 |
+| image | Border irregularity | clipped logit (Table 1) | [−0.93, 1.33] | [0.84, 1.96] | [−1.93, −0.36] | no | 1.00 |
+| image | Border irregularity | direct logit | [−1.57, 1.72] | [0.84, 1.96] | [−2.36, −0.11] | no | 1.00 |
+| image | Border irregularity | M2 without indeterminate | [−0.93, 1.33] | [0.88, 2.05] | [−2.00, −0.42] | no | 1.00 |
+
+**Populations and intervals.** Every analysis conditions on unsupervised preprocessing fitted once on the whole cohort: the z-scores and median imputation of Table S12 and the tertile cut points. No label enters them. The principal components used by the image gradient-boosting model are fitted once on original training patients. In each bootstrap replicate *q̂* is refitted, while σ̂ is the fixed out-of-fold estimate. Results therefore describe this cohort-level protocol, not a pipeline that refits preprocessing on training patients only. Table S17 lists, for each quantity, the population, the randomness that its interval resamples or averages, what is held fixed, and how the interval should be read.
+
+**TABLE S17. Populations, sources of randomness and meaning of the intervals.**
 
 | Quantity | Population | Resampled or averaged | Held fixed | Meaning of the interval |
 | --- | --- | --- | --- | --- |
@@ -381,9 +413,9 @@ In Table S15, values average the refits with seeds 0 to 2 on the test population
 | Plug-in ψ_L and *s*∗, Table 2 | test population | training, validation and test patients; one seed | estimator of *q*; σ̂ | sampling variability of the plug-in for one nuisance specification; not a confidence bound |
 | RR_Y and verified-only log OR, Section IV-G | whole cohort | patient clusters, not stratified by site | tertile cut points; standardization weights *w*_g | resampling stability of the marginal sign under an assumed floor |
 
-In Table S17, each of the 5,000 joint replicates per family has three seeds, and labels follow the primary rule on these replicates.
+In Table S18, each of the 5,000 joint replicates per family has three seeds, and labels follow the primary rule on these replicates.
 
-**TABLE S17. Seed and patient-resampling variability of the primary contrasts.**
+**TABLE S18. Seed and patient-resampling variability of the primary contrasts.**
 
 | Features | Concept | Contrast | SD between seeds, same resample | SD of single-seed replicates | Share of variance from seeds | Bonferroni interval, single seed | Bonferroni interval, three-seed average | Label, single / three-seed |
 | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |
@@ -400,9 +432,9 @@ In Table S17, each of the 5,000 joint replicates per family has three seeds, and
 | image | Lesion-skin contrast | Δ_M0 | 0.25 | 0.54 | 0.20 | [−0.79, 2.00] | [−0.63, 1.93] | no / no |
 | image | Lesion-skin contrast | Δ_M2 | 0.20 | 0.27 | 0.56 | [−2.01, −0.61] | [−1.88, −0.73] | no / no |
 
-In Table S18, the 5,000 replicates per family target the randomized one-seed training procedure, the primary three-seed intervals are in Table 1, and robustness is judged on the raw contrasts.
+In Table S19, the 5,000 replicates per family target the randomized one-seed training procedure, the primary three-seed intervals are in Table 1, and robustness is judged on the raw contrasts.
 
-**TABLE S18. One-seed joint bootstrap intervals for the frozen-feature families.**
+**TABLE S19. One-seed joint bootstrap intervals for the frozen-feature families.**
 
 | Features | Concept | Δ_M0: estimate, 95% / Bonferroni | Δ_M2: estimate, 95% / Bonferroni | Calibrated Δ_M0 / Δ_M2, 95% | Robust, 95% / Bonferroni |
 | --- | --- | --- | --- | --- | --- |
@@ -417,11 +449,11 @@ In Table S18, the 5,000 replicates per family target the randomized one-seed tra
 | image | Asymmetry | −0.50, [−1.06, 0.69] / [−1.33, 1.05] | +1.09, [0.80, 1.79] / [0.66, 2.00] | [−0.39, 0.28] / [0.47, 0.90] | no / no |
 | image | Border irregularity | −0.09, [−0.71, 1.11] / [−0.98, 1.42] | +1.18, [0.87, 1.90] / [0.70, 2.13] | [−0.26, 0.45] / [0.50, 0.96] | no / no |
 
-**Validation resampled, three estimates of *q*.** Early stopping and Platt calibration use the validation set, and M2 is calibrated on its verified lesions only. Script `vr30_q_bootstrap.py` repeated the analysis in 1,000 replicates per family that resampled training, validation and test patients independently within each split. In every replicate it computed the plug-in ψ_L for three estimates of *q*. Two are the perceptron M0 with Platt or with isotonic calibration. The third is gradient boosting of *Y* on the tabular features, or on the first 64 principal components of the image features, with Platt calibration. Table S19 compares the robustness labels. For each estimate, it also reports the plug-in tipping floor *s*∗ on the seed-averaged curve, its 95th percentile over replicates and the bootstrap stability threshold. The last columns give *s*∗ within the supported region and the number of replicates in which ψ_L(*s*) > 0 and Δ_M2 < 0 held together. The bootstrap stability threshold is the smallest floor at which ψ_L(*s*) > 0 in at least 95 percent of replicates. Because ψ_L increases in s in every replicate, this threshold equals the 95th percentile of *s*∗ when replicates in which no floor up to one makes ψ_L positive are counted as above one. Both are computed this way. It describes sampling variability for one specification of *q*. It is not a confidence bound for ψ or for the identified set, and it does not account for the choice among estimates of *q*. Its Monte Carlo range is the 2.5th to 97.5th percentile of the same statistic over 500 resamples of the stored replicates.
+**Validation resampled, three estimates of *q*.** Early stopping and Platt calibration use the validation set, and M2 is calibrated on its verified lesions only. Script `vr30_q_bootstrap.py` repeated the analysis in 1,000 replicates per family that resampled training, validation and test patients independently within each split. In every replicate it computed the plug-in ψ_L for three estimates of *q*. Two are the perceptron M0 with Platt or with isotonic calibration. The third is gradient boosting of *Y* on the tabular features, or on the first 64 principal components of the image features, with Platt calibration. Table S20 compares the robustness labels. For each estimate, it also reports the plug-in tipping floor *s*∗ on the seed-averaged curve, its 95th percentile over replicates and the bootstrap stability threshold. The last columns give *s*∗ within the supported region and the number of replicates in which ψ_L(*s*) > 0 and Δ_M2 < 0 held together. The bootstrap stability threshold is the smallest floor at which ψ_L(*s*) > 0 in at least 95 percent of replicates. Because ψ_L increases in s in every replicate, this threshold equals the 95th percentile of *s*∗ when replicates in which no floor up to one makes ψ_L positive are counted as above one. Both are computed this way. It describes sampling variability for one specification of *q*. It is not a confidence bound for ψ or for the identified set, and it does not account for the choice among estimates of *q*. Its Monte Carlo range is the 2.5th to 97.5th percentile of the same statistic over 500 resamples of the stored replicates.
 
-In Table S19, training, validation and test patients are resampled for three estimates of *q*. In the point-floor columns, "none" means that the lower endpoint of the seed-averaged curve was not positive at any floor up to one. In the threshold column, it means that no floor reached the 95 percent rule, although some replicates can still have a positive lower endpoint.
+In Table S20, training, validation and test patients are resampled for three estimates of *q*. In the point-floor columns, "none" means that the lower endpoint of the seed-averaged curve was not positive at any floor up to one. In the threshold column, it means that no floor reached the 95 percent rule, although some replicates can still have a positive lower endpoint.
 
-**TABLE S19. Robustness and plug-in tipping floor with all three splits resampled.**
+**TABLE S20. Robustness and plug-in tipping floor with all three splits resampled.**
 
 | Features | Concept | Robust, one seed per replicate: train and test / all three splits | Estimate of *q* | *s*∗: point, 95th percentile | Bootstrap stability threshold | Within support, point *s*∗ at the 1st / 5th / 10th percentile | Joint count at *s* = 0.7 / 0.8 / 0.9 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -444,11 +476,11 @@ In Table S19, training, validation and test patients are resampled for three est
 | image | Lesion-skin contrast | no / no | perceptron, isotonic | 0.72, none | none | 1.00 / none / none | 133 / 376 / 673 of 1000 |
 | image | Lesion-skin contrast | no / no | gradient boosting, Platt | 0.94, none | none | none / none / none | 0 / 2 / 9 of 1000 |
 
-**Monte Carlo resolution with all splits resampled.** With 1,000 replicates, each Bonferroni tail holds about four replicates. Script `vr47_counts_audit.py` therefore resampled the stored replicates 2,000 times (Table S20). Against the one-seed check with validation fixed, only the label of color variegation with image features changed, from Bonferroni to 95 percent only. Its lower Bonferroni endpoint of Δ_M0 was −0.01, and the new label was reproduced in 57 percent of resamples, so the change is unresolved. Each other label was reproduced in at least 99 percent. The labels of Table S19 thus reflect both validation variability and the limited resolution of the tails.
+**Monte Carlo resolution with all splits resampled.** With 1,000 replicates, each Bonferroni tail holds about four replicates. Script `vr47_counts_audit.py` therefore resampled the stored replicates 2,000 times (Table S21). Against the one-seed check with validation fixed, only the label of color variegation with image features changed, from Bonferroni to 95 percent only. Its lower Bonferroni endpoint of Δ_M0 was −0.01, and the new label was reproduced in 57 percent of resamples, so the change is unresolved. Each other label was reproduced in at least 99 percent. The labels of Table S20 thus reflect both validation variability and the limited resolution of the tails.
 
-In Table S20, labels use one seed per replicate and 1,000 replicates per family, and reproduction is over 2,000 resamples of the stored replicates.
+In Table S21, labels use one seed per replicate and 1,000 replicates per family, and reproduction is over 2,000 resamples of the stored replicates.
 
-**TABLE S20. Monte Carlo resolution of the labels with all three splits resampled.**
+**TABLE S21. Monte Carlo resolution of the labels with all three splits resampled.**
 
 | Features | Concept | Label, all three splits resampled | Bonferroni interval of Δ_M0 | Label reproduced | Replicates in each Bonferroni tail |
 | --- | --- | --- | --- | ---: | ---: |
@@ -459,11 +491,11 @@ In Table S20, labels use one seed per replicate and 1,000 replicates per family,
 | image | Size | Bonferroni | [0.34, 2.10] | 1.00 | 4 |
 | image | Lesion-skin contrast | no | [−0.91, 1.92] | 1.00 | 4 |
 
-**Subsampling.** Resampling patients with replacement and refitting networks with early stopping may not behave as the percentile bootstrap assumes. Script `vr36_subsample.py` drew half of the training patients and half of the test patients without replacement in 300 replicates per family, and refitted M0 and M2. It then formed m-out-of-n intervals (Politis et al., 1999) [θ̂ − Q_{1−a/2}, θ̂ − Q_{a/2}] for a = 0.05 and a = 0.05/6. Here θ̂ is the point estimate of Table 1, θ*_m the estimate from a half-sample, and Q_a the a-quantile of √(m/n)(θ*_m − θ̂) with m/n = 1/2. The rescaling assumes that the learned contrast converges at the root-n rate, which fitted networks with early stopping need not satisfy. A learner trained on half of the patients may also target a different contrast. We therefore use subsampling only to check whether cells that the bootstrap separated stay separated. It also separated tabular size and image lesion-skin contrast, which we do not count as robust. Table S21 reports the intervals.
+**Subsampling.** Resampling patients with replacement and refitting networks with early stopping may not behave as the percentile bootstrap assumes. Script `vr36_subsample.py` drew half of the training patients and half of the test patients without replacement in 300 replicates per family, and refitted M0 and M2. It then formed m-out-of-n intervals (Politis et al., 1999) [θ̂ − Q_{1−a/2}, θ̂ − Q_{a/2}] for a = 0.05 and a = 0.05/6. Here θ̂ is the point estimate of Table 1, θ*_m the estimate from a half-sample, and Q_a the a-quantile of √(m/n)(θ*_m − θ̂) with m/n = 1/2. The rescaling assumes that the learned contrast converges at the root-n rate, which fitted networks with early stopping need not satisfy. A learner trained on half of the patients may also target a different contrast. We therefore use subsampling only to check whether cells that the bootstrap separated stay separated. It also separated tabular size and image lesion-skin contrast, which we do not count as robust. Table S22 reports the intervals.
 
-In Table S21, intervals are the rescaled half-sampling intervals defined above.
+In Table S22, intervals are the rescaled half-sampling intervals defined above.
 
-**TABLE S21. Primary comparisons under half-sampling of patients.**
+**TABLE S22. Primary comparisons under half-sampling of patients.**
 
 | Features | Concept | Δ_M0, Bonferroni-scaled interval | Δ_M2, Bonferroni-scaled interval | Sign separation of subsampling intervals, 95% / Bonferroni-scaled | Same sign in subsamples |
 | --- | --- | --- | --- | --- | ---: |
@@ -474,11 +506,11 @@ In Table S21, intervals are the rescaled half-sampling intervals defined above.
 | image | Size | [1.09, 2.23] | [−0.43, −0.09] | yes / yes | 0.00 |
 | image | Lesion-skin contrast | [0.32, 2.27] | [−1.51, −0.50] | yes / yes | 0.06 |
 
-**Monte Carlo error.** The Bonferroni endpoints are the 0.42 and 99.58 percentiles of the replicates, so they rest on few replicates in each tail. For the primary three-seed bootstrap, script `vr43_three_seed_primary.py` resampled the 5,000 stored three-seed replicates per family 2,000 times and recomputed the Bonferroni endpoints and the label in each resample. It reports the Monte Carlo standard error of each endpoint and the share of resamples that reproduce the label of Table 1. A label is called resolved at the Monte Carlo resolution when this share is at least 0.95. Table S22 gives the results. For the one-seed check, script `vr29_bootstrap_audit.py` applied the same procedure to the 5,000 stored one-seed replicates. It also reports the quantiles of *s*∗ and the joint event above. Table S23 gives the results.
+**Monte Carlo error.** The Bonferroni endpoints are the 0.42 and 99.58 percentiles of the replicates, so they rest on few replicates in each tail. For the primary three-seed bootstrap, script `vr43_three_seed_primary.py` resampled the 5,000 stored three-seed replicates per family 2,000 times and recomputed the Bonferroni endpoints and the label in each resample. It reports the Monte Carlo standard error of each endpoint and the share of resamples that reproduce the label of Table 1. A label is called resolved at the Monte Carlo resolution when this share is at least 0.95. Table S23 gives the results. For the one-seed check, script `vr29_bootstrap_audit.py` applied the same procedure to the 5,000 stored one-seed replicates. It also reports the quantiles of *s*∗ and the joint event above. Table S24 gives the results.
 
-In Table S22, the audit covers the replicates of Table 1 with 2,000 resamples of the stored replicates.
+In Table S23, the audit covers the replicates of Table 1 with 2,000 resamples of the stored replicates.
 
-**TABLE S22. Monte Carlo audit of the primary three-seed bootstrap.**
+**TABLE S23. Monte Carlo audit of the primary three-seed bootstrap.**
 
 | Features | Concept | Replicates | Bonferroni sign-separated | Label reproduced | Monte Carlo SE of endpoints, Δ_M0 lower / upper, Δ_M2 lower / upper | Resolved at the Monte Carlo resolution |
 | --- | --- | ---: | --- | ---: | --- | --- |
@@ -489,9 +521,9 @@ In Table S22, the audit covers the replicates of Table 1 with 2,000 resamples of
 | image | Size | 5,000 | yes | 1.00 | 0.019 / 0.018, 0.012 / 0.005 | yes |
 | image | Lesion-skin contrast | 5,000 | no | 1.00 | 0.033 / 0.066, 0.017 / 0.014 | yes |
 
-In Table S23, the table also gives the distribution of the plug-in tipping floor over the one-seed replicates.
+In Table S24, the table also gives the distribution of the plug-in tipping floor over the one-seed replicates.
 
-**TABLE S23. Monte Carlo error of the one-seed check.**
+**TABLE S24. Monte Carlo error of the one-seed check.**
 
 | Features | Concept | Robust | Label reproduced | Monte Carlo SE of endpoints, Δ_M0 lower / upper, Δ_M2 lower / upper | *s*∗ quantiles 5 / 25 / 50 / 75 / 95 | ψ_L(*s*) > 0 and Δ_M2 < 0 at *s* = 0.5 / 0.7 / 0.9 |
 | --- | --- | --- | ---: | --- | --- | --- |
@@ -502,11 +534,11 @@ In Table S23, the table also gives the distribution of the plug-in tipping floor
 | image | Size | yes | 1.00 | 0.041 / 0.010, 0.017 / 0.005 | 0.49 / 0.55 / 0.60 / 0.65 / 0.74 | 0.08 / 0.90 / 1.00 |
 | image | Lesion-skin contrast | no | 1.00 | 0.043 / 0.053, 0.024 / 0.017 | 0.57 / 0.67 / 0.77 / 0.89 / none | 0.01 / 0.32 / 0.77 |
 
-**Summary of the tests of alternative explanations.** Table S24 collects the tests of alternative explanations for the learner reversal; the paragraphs below report each in full.
+**Summary of the tests of alternative explanations.** Table S25 collects the tests of alternative explanations for the learner reversal; the paragraphs below report each in full.
 
-In Table S24, size-matched intervals are 2.5 and 97.5 percentiles over 20 replicates, and each arm drew its own validation set. Dose rows use 320 expected recorded negatives and paired-replicate bootstrap intervals, and their ratios are descriptive. Predicted-shift rows use 10 replicates per arm. Lesion-level rows use 200 one-seed joint resamples, or 100 for the errors-in-variables diagnostic. Overlap rows are point estimates of the original fits, and the PAD-UFES-20 row uses 200 joint resamples.
+In Table S25, size-matched intervals are 2.5 and 97.5 percentiles over 20 replicates, and each arm drew its own validation set. Dose rows use 320 expected recorded negatives and paired-replicate bootstrap intervals, and their ratios are descriptive. Predicted-shift rows use 10 replicates per arm. Lesion-level rows use 200 one-seed joint resamples, or 100 for the errors-in-variables diagnostic. Overlap rows are point estimates of the original fits, and the PAD-UFES-20 row uses 200 joint resamples.
 
-**TABLE S24. Tests of alternative explanations for the learner reversal.**
+**TABLE S25. Tests of alternative explanations for the learner reversal.**
 
 | Check | Setting | Result |
 | --- | --- | --- |
@@ -524,9 +556,9 @@ In Table S24, size-matched intervals are 2.5 and 97.5 percentiles over 20 replic
 | Overlap sensitivity, color variegation, common tabular σ̂ | image; Δ_M0 against Δ_M2 | 1st percentile +0.78 against −0.70; 5th percentile +0.13 against −0.81; 10th percentile +0.34 against −0.84 |
 | PAD-UFES-20 learners | six symptoms / image color | 6 of 6 attenuated, opposite signs in at most 4 percent of resamples / +2.06 [1.47, 2.84] to +0.70 [0.22, 1.23] |
 
-**Size-matched control.** Every malignant training lesion is verified, so M0 and M2 differ in the size of the training set and in the source of the recorded negatives. In each of 20 replicates we drew 178 of the 222 malignant training lesions and 320 recorded negatives. The negatives came from one of three pools: all 241,263 recorded-negative training lesions, the 12,271 flagged but unverified ones, or the 400 biopsied ones, which include indeterminate histopathology. The malignant lesions were shared by the three arms within a replicate, and each arm drew its validation lesions from its own pool by the same rule. The arms therefore differ in the validation data used for early stopping as well as in the training negatives. Training used the same code, batch rule and early stopping as M2. Table S25 reports the mean learned contrast on the test population, the 2.5 and 97.5 percentiles over replicates and the number of positive replicates.
+**Size-matched control.** Every malignant training lesion is verified, so M0 and M2 differ in the size of the training set and in the source of the recorded negatives. In each of 20 replicates we drew 178 of the 222 malignant training lesions and 320 recorded negatives. The negatives came from one of three pools: all 241,263 recorded-negative training lesions, the 12,271 flagged but unverified ones, or the 400 biopsied ones, which include indeterminate histopathology. The malignant lesions were shared by the three arms within a replicate, and each arm drew its validation lesions from its own pool by the same rule. The arms therefore differ in the validation data used for early stopping as well as in the training negatives. Training used the same code, batch rule and early stopping as M2. Table S26 reports the mean learned contrast on the test population, the 2.5 and 97.5 percentiles over replicates and the number of positive replicates.
 
-**TABLE S25. Size-matched control, 20 replicates per arm.**
+**TABLE S26. Size-matched control, 20 replicates per arm.**
 
 | Features | Concept | Recorded negatives from all lesions | Recorded negatives, flagged and unverified | Biopsied recorded negatives (M2) |
 | --- | --- | --- | --- | --- |
@@ -541,9 +573,9 @@ In Table S24, size-matched intervals are 2.5 and 97.5 percentiles over 20 replic
 | image | Asymmetry | +0.31 [−0.18, 0.83], 17 of 20 positive | +1.58 [1.06, 2.13], 20 of 20 positive | +1.01 [0.71, 1.36], 20 of 20 positive |
 | image | Border irregularity | +0.60 [−0.11, 1.18], 18 of 20 positive | +1.76 [1.16, 2.35], 20 of 20 positive | +1.07 [0.78, 1.46], 20 of 20 positive |
 
-**Quantitative prediction for the arms.** Relative to the random arm, the flagged and verified arms select recorded negatives with *r*₀(*x*) proportional to the probability that a recorded negative with appearance *x* belongs to the arm's pool. Proposition 1 then predicts the shift in Δ from the random arm as minus the stratum contrast of log ĝ_arm. Here ĝ_arm(*x̃*) is that probability, estimated with the same perceptron and input as the learner. Script `vr21_dose_calibrated.py` reran the arms with 10 replicates and calibrated learners for this comparison and computed both shifts. Table S26 compares observed and predicted shifts for all five concepts.
+**Quantitative prediction for the arms.** Relative to the random arm, the flagged and verified arms select recorded negatives with *r*₀(*x*) proportional to the probability that a recorded negative with appearance *x* belongs to the arm's pool. Proposition 1 then predicts the shift in Δ from the random arm as minus the stratum contrast of log ĝ_arm. Here ĝ_arm(*x̃*) is that probability, estimated with the same perceptron and input as the learner. Script `vr21_dose_calibrated.py` reran the arms with 10 replicates and calibrated learners for this comparison and computed both shifts. Table S27 compares observed and predicted shifts for all five concepts.
 
-**TABLE S26. Observed and predicted shift of the learned contrast from the random arm, calibrated learners.**
+**TABLE S27. Observed and predicted shift of the learned contrast from the random arm, calibrated learners.**
 
 | Features | Arm | Concept | Observed shift from random arm | Predicted shift |
 | --- | --- | --- | ---: | ---: |
@@ -568,11 +600,11 @@ In Table S24, size-matched intervals are 2.5 and 97.5 percentiles over 20 replic
 | image | flagged, unverified | Asymmetry | +1.24 | +1.14 |
 | image | flagged, unverified | Border irregularity | +1.20 | +1.09 |
 
-**Controlled selection dose.** Script `vr46_dose_fixed_val.py` gives the primary version. For each of the three primary concepts and both frozen-feature families, 20 replicates drew 178 malignant training lesions and a replicate-specific validation set. The validation set held malignant lesions and uniformly drawn recorded negatives. Both draws were shared by all doses of the replicate and were not selected by η. Each recorded-negative training lesion *i* received one uniform variable *u*_i per replicate. It entered training at dose η when *u*_i < ρ_η,i = min{1, κ_η exp(η*z*_k,i)}, for η ∈ {−1, −0.5, 0, 0.5, 1}, with κ_η set so that 320 are expected. These common random numbers couple the draws at different doses. Realized counts per fit ranged from 282 to 360 at 320 expected, from 933 to 1,068 at 1,000 and from 2,911 to 3,120 at 3,000. The optimizer seed was also shared, so a replicate fixes ω of Section III-B and the five fits are paired potential outcomes. Color variegation was repeated with 1,000 and 3,000 expected recorded negatives. Early stopping used the replicate-specific validation set. The outcome is the raw logit contrast. Platt calibration on the replicate-specific validation set targets the unselected distribution rather than the selected training distribution of Proposition 1. At η = 1, and at no other dose, its fitted slope was negative in 29 of 200 fits, which reverses the sign of a calibrated contrast. We report calibrated contrasts for completeness only. The prediction for the tabular learner is minus the stratum contrast of log ρ_η(*z*_k) on the test population, including the cap, which is the exact Bayes-optimal shift of the training distribution. For the image learner the prediction is the first-order input-aware form of Section S1. The mean contrast of the selected concept decreased at each step between the five doses in all six combinations, and single replicates did so in 50 to 90 percent of cases. The conditional mean *m*_k is estimated by ridge regression on recorded negatives of resampled training patients in each replicate. The estimate τ̂_k(1, −1) is the mean over replicates of the paired difference Δ_k(1, ω) − Δ_k(−1, ω), with a percentile bootstrap over the 20 replicates, 10,000 resamples; ratio intervals use 2,000. These intervals are conditional on the realized cohort, patient split and test population and summarize the paired pipeline randomness across replicates, including the validation-set draw used for early stopping. Table S27 reports all cells, and Table S28 compares observed and predicted slopes for all five concepts.
+**Controlled selection dose.** Script `vr46_dose_fixed_val.py` gives the primary version. For each of the three primary concepts and both frozen-feature families, 20 replicates drew 178 malignant training lesions and a replicate-specific validation set. The validation set held malignant lesions and uniformly drawn recorded negatives. Both draws were shared by all doses of the replicate and were not selected by η. Each recorded-negative training lesion *i* received one uniform variable *u*_i per replicate. It entered training at dose η when *u*_i < ρ_η,i = min{1, κ_η exp(η*z*_k,i)}, for η ∈ {−1, −0.5, 0, 0.5, 1}, with κ_η set so that 320 are expected. These common random numbers couple the draws at different doses. Realized counts per fit ranged from 282 to 360 at 320 expected, from 933 to 1,068 at 1,000 and from 2,911 to 3,120 at 3,000. The optimizer seed was also shared, so a replicate fixes ω of Section III-B and the five fits are paired potential outcomes. Color variegation was repeated with 1,000 and 3,000 expected recorded negatives. Early stopping used the replicate-specific validation set. The outcome is the raw logit contrast. Platt calibration on the replicate-specific validation set targets the unselected distribution rather than the selected training distribution of Proposition 1. At η = 1, and at no other dose, its fitted slope was negative in 29 of 200 fits, which reverses the sign of a calibrated contrast. We report calibrated contrasts for completeness only. The prediction for the tabular learner is minus the stratum contrast of log ρ_η(*z*_k) on the test population, including the cap, which is the exact Bayes-optimal shift of the training distribution. For the image learner the prediction is the first-order input-aware form of Section S1. The mean contrast of the selected concept decreased at each step between the five doses in all six combinations, and single replicates did so in 50 to 90 percent of cases. The conditional mean *m*_k is estimated by ridge regression on recorded negatives of resampled training patients in each replicate. The estimate τ̂_k(1, −1) is the mean over replicates of the paired difference Δ_k(1, ω) − Δ_k(−1, ω), with a percentile bootstrap over the 20 replicates, 10,000 resamples; ratio intervals use 2,000. These intervals are conditional on the realized cohort, patient split and test population and summarize the paired pipeline randomness across replicates, including the validation-set draw used for early stopping. Table S28 reports all cells, and Table S29 compares observed and predicted slopes for all five concepts.
 
-In Table S27, the replicate-specific validation set is shared across doses, and replicates are paired. Slopes and τ̂(1, −1) are for the raw logit contrast of the selected concept. Ranges are 2.5 and 97.5 percentiles over replicates, and bracketed intervals are bootstrap intervals over the 20 replicates, conditional on the cohort, patient split and test population. The prediction is the Bayes-optimal training-distribution shift. Raw finite-network logits need not equal the Bayes-optimal log-odds of the selected training distribution, so the observed-over-predicted ratio is descriptive. It does not test the magnitude predicted by Proposition 1.
+In Table S28, the replicate-specific validation set is shared across doses, and replicates are paired. Slopes and τ̂(1, −1) are for the raw logit contrast of the selected concept. Ranges are 2.5 and 97.5 percentiles over replicates, and bracketed intervals are bootstrap intervals over the 20 replicates, conditional on the cohort, patient split and test population. The prediction is the Bayes-optimal training-distribution shift. Raw finite-network logits need not equal the Bayes-optimal log-odds of the selected training distribution, so the observed-over-predicted ratio is descriptive. It does not test the magnitude predicted by Proposition 1.
 
-**TABLE S27. Selection dose on training lesions only.**
+**TABLE S28. Selection dose on training lesions only.**
 
 | Features | Selected concept | Expected recorded negatives | Mean raw Δ at η = −1 / 0 / +1 | Observed slope [range] | Predicted slope | Observed over predicted [95% CI] | τ̂(1, −1) [95% CI] | Mean contrast crosses zero | Replicates changing sign | Calibrated τ̂(1, −1) |
 | --- | --- | ---: | --- | --- | ---: | --- | --- | --- | ---: | ---: |
@@ -587,9 +619,9 @@ In Table S27, the replicate-specific validation set is shared across doses, and 
 | image | Size | 320 | +1.02 / +0.79 / −0.09 | −0.63 [−0.89, −0.41] | −0.71 | 0.88 [0.79, 0.98] | −1.11 [−1.25, −0.99] | yes | 20 of 20 | −0.90 |
 | image | Lesion-skin contrast | 320 | +1.57 / +0.19 / −1.47 | −1.61 [−1.86, −1.38] | −1.46 | 1.10 [1.06, 1.15] | −3.04 [−3.17, −2.91] | yes | 20 of 20 | −2.21 |
 
-In Table S28, entries are observed / predicted slopes of raw logit contrasts with 320 expected recorded negatives and the validation set shared across doses within each replicate.
+In Table S29, entries are observed / predicted slopes of raw logit contrasts with 320 expected recorded negatives and the validation set shared across doses within each replicate.
 
-**TABLE S28. Dose slopes of all five concepts under the training-only dose.**
+**TABLE S29. Dose slopes of all five concepts under the training-only dose.**
 
 | Features | Selected concept | Color variegation | Size | Lesion-skin contrast | Asymmetry | Border irregularity |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -600,11 +632,11 @@ In Table S28, entries are observed / predicted slopes of raw logit contrasts wit
 | image | Size | −0.44 / −0.54 | −0.63 / −0.71 | −0.25 / −0.42 | +0.11 / +0.27 | −0.07 / +0.10 |
 | image | Lesion-skin contrast | −1.25 / −1.11 | −0.67 / −0.65 | −1.61 / −1.46 | +1.24 / +0.93 | +1.27 / +0.93 |
 
-**Joint training-and-validation dose.** Script `vr32_dose_nuisance.py` ran a second design in which validation negatives were drawn under the same rule as training negatives, without common random numbers. Each learner was Platt-calibrated on its own validation lesions. The dose then acts on training, early stopping and calibration together. This design estimates the effect of a joint selection rule for development data, not the training-selection effect, and its agreement in magnitude with Proposition 1 is only diagnostic. Its calibrated contrast crossed zero in the same six combinations, and script `vr44_dose_estimand.py` gives its paired effects. Table S29 reports it, Table S30 gives the paired effects and Table S31 the slopes of all five concepts. Script `vr26_dose_poisson.py` ran the same joint design with 10 replicates and the ridge prediction only, with the same pattern.
+**Joint training-and-validation dose.** Script `vr32_dose_nuisance.py` ran a second design in which validation negatives were drawn under the same rule as training negatives, without common random numbers. Each learner was Platt-calibrated on its own validation lesions. The dose then acts on training, early stopping and calibration together. This design estimates the effect of a joint selection rule for development data, not the training-selection effect, and its agreement in magnitude with Proposition 1 is only diagnostic. Its calibrated contrast crossed zero in the same six combinations, and script `vr44_dose_estimand.py` gives its paired effects. Table S30 reports it, Table S31 gives the paired effects and Table S32 the slopes of all five concepts. Script `vr26_dose_poisson.py` ran the same joint design with 10 replicates and the ridge prediction only, with the same pattern.
 
-In Table S29, contrasts are calibrated, there are 20 replicates, and ranges are 2.5 and 97.5 percentiles over replicates.
+In Table S30, contrasts are calibrated, there are 20 replicates, and ranges are 2.5 and 97.5 percentiles over replicates.
 
-**TABLE S29. Joint training-and-validation dose.**
+**TABLE S30. Joint training-and-validation dose.**
 
 | Features | Selected concept | Expected recorded negatives | Observed slope [range] | Prediction | Predicted slope [range] | Observed over predicted [95% CI] |
 | --- | --- | ---: | --- | --- | --- | --- |
@@ -624,9 +656,9 @@ In Table S29, contrasts are calibrated, there are 20 replicates, and ranges are 
 | image | Color variegation | 3,000 | −0.73 [−1.06, −0.35] | ridge conditional mean | −1.03 [−1.04, −1.01] | 0.72 [0.63, 0.80] |
 | image | Color variegation | 3,000 | −0.73 [−1.06, −0.35] | perceptron conditional mean | −1.04 [−1.10, −1.00] | 0.70 [0.61, 0.79] |
 
-In Table S30, the outcome is the calibrated contrast of the selected concept with 320 expected recorded negatives. Intervals are bootstrap intervals over the 20 replicates, conditional on the fixed cohort.
+In Table S31, the outcome is the calibrated contrast of the selected concept with 320 expected recorded negatives. Intervals are bootstrap intervals over the 20 replicates, conditional on the fixed cohort.
 
-**TABLE S30. Effect of the joint training-and-validation dose.**
+**TABLE S31. Effect of the joint training-and-validation dose.**
 
 | Features | Concept | Mean Δ at η = −1 / η = 1 | τ̂_joint(1, −1) [95% CI] | Predicted | Observed / predicted | Replicates changing sign |
 | --- | --- | --- | --- | ---: | ---: | ---: |
@@ -637,9 +669,9 @@ In Table S30, the outcome is the calibrated contrast of the selected concept wit
 | image | Size | +1.11 / −0.11 | −1.22 [−1.30, −1.15] | −1.41 | 0.86 | 18 of 20 |
 | image | Lesion-skin contrast | +1.49 / −1.15 | −2.65 [−2.80, −2.49] | −2.91 | 0.91 | 20 of 20 |
 
-In Table S31, entries are observed / predicted slopes with 320 expected recorded negatives.
+In Table S32, entries are observed / predicted slopes with 320 expected recorded negatives.
 
-**TABLE S31. Dose slopes of all five concepts under the joint dose.**
+**TABLE S32. Dose slopes of all five concepts under the joint dose.**
 
 | Features | Selected concept | Prediction | Color variegation | Size | Lesion-skin contrast | Asymmetry | Border irregularity |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -653,9 +685,9 @@ In Table S31, entries are observed / predicted slopes with 320 expected recorded
 | image | Lesion-skin contrast | ridge | −1.17 / −1.11 | −0.68 / −0.65 | −1.41 / −1.46 | +1.07 / +0.93 | +1.06 / +0.93 |
 | image | Lesion-skin contrast | mlp | −1.17 / −1.15 | −0.68 / −0.68 | −1.41 / −1.51 | +1.07 / +0.97 | +1.06 / +0.97 |
 
-**Sampling without replacement.** Script `vr21_dose_calibrated.py` ran a joint design with exactly 320 recorded negatives drawn without replacement by the Gumbel top-*k* construction, for η up to 3. Its inclusion probabilities are not proportional to *w* (Section S1). Script `vr26_dose_poisson.py` computed Table S32, which compares the nominal and actual expected number of upper-tertile lesions, checked by 300 Monte Carlo draws, and the predicted change in the contrast. For size, a few lesions with extreme area would have nominal probabilities above one, so the composition of the sample differs from the nominal one at η = 0.5. The predicted contrast changes by less than one percent in every case, because it averages the log inclusion probability of this design, written π^G, over the test population. Table S33 gives the results of this design, which also drew validation lesions by the same rule and agrees with Table S29. Table S34 gives the effective sample size of its selection weights, which fell steeply for η > 1.
+**Sampling without replacement.** Script `vr21_dose_calibrated.py` ran a joint design with exactly 320 recorded negatives drawn without replacement by the Gumbel top-*k* construction, for η up to 3. Its inclusion probabilities are not proportional to *w* (Section S1). Script `vr26_dose_poisson.py` computed Table S33, which compares the nominal and actual expected number of upper-tertile lesions, checked by 300 Monte Carlo draws, and the predicted change in the contrast. For size, a few lesions with extreme area would have nominal probabilities above one, so the composition of the sample differs from the nominal one at η = 0.5. The predicted contrast changes by less than one percent in every case, because it averages the log inclusion probability of this design, written π^G, over the test population. Table S34 gives the results of this design, which also drew validation lesions by the same rule and agrees with Table S30. Table S35 gives the effective sample size of its selection weights, which fell steeply for η > 1.
 
-**TABLE S32. Inclusion probabilities under sampling without replacement, recorded-negative training pool of 241,263 lesions, 320 draws.**
+**TABLE S33. Inclusion probabilities under sampling without replacement, recorded-negative training pool of 241,263 lesions, 320 draws.**
 
 | Concept | η | Expected upper-tertile draws, nominal / actual / Monte Carlo | Predicted contrast change, nominal / actual |
 | --- | ---: | --- | --- |
@@ -669,9 +701,9 @@ In Table S31, entries are observed / predicted slopes with 320 expected recorded
 | Lesion-skin contrast | +0.5 | 186.4 / 186.3 / 186.7 | −1.024 / −1.024 |
 | Lesion-skin contrast | +1.0 | 268.9 / 267.7 / 268.2 | −2.049 / −2.047 |
 
-In Table S33, ranges are 2.5 and 97.5 percentiles over replicates.
+In Table S34, ranges are 2.5 and 97.5 percentiles over replicates.
 
-**TABLE S33. Selection dose under sampling without replacement.**
+**TABLE S34. Selection dose under sampling without replacement.**
 
 | Features | Selected concept | Calibrated slope, η in [−1, 1] [replicate range] | Raw slope | Predicted from input | Predicted if z_k observed | Crossing, observed / predicted | Concepts moving as predicted |
 | --- | --- | --- | ---: | ---: | ---: | --- | ---: |
@@ -682,9 +714,9 @@ In Table S33, ranges are 2.5 and 97.5 percentiles over replicates.
 | image | Size | −0.67 [−0.75, −0.57] | −0.74 | −0.71 | −1.38 | 0.51 / 0.87 | 3 of 5 |
 | image | Lesion-skin contrast | −1.46 [−1.75, −1.26] | −1.74 | −1.46 | −2.05 | 0.07 / 0.08 | 5 of 5 |
 
-In Table S34, the effective sample size is Kish's (Kish, 1965), as a share of the 241,263 recorded-negative training lesions. Shares are the selection weight falling in the lower and upper tertiles.
+In Table S35, the effective sample size is Kish's (Kish, 1965), as a share of the 241,263 recorded-negative training lesions. Shares are the selection weight falling in the lower and upper tertiles.
 
-**TABLE S34. Support of the selection dose for color variegation.**
+**TABLE S35. Support of the selection dose for color variegation.**
 
 | η | Effective sample size, share of pool | Share of selection weight in lower tertile | Share in upper tertile |
 | ---: | ---: | ---: | ---: |
@@ -697,9 +729,9 @@ In Table S34, the effective sample size is Kish's (Kish, 1965), as a share of th
 | 2.0 | 0.040 | 0.003 | 0.983 |
 | 3.0 | 0.023 | 0.000 | 0.999 |
 
-**Proposition 1 at the lesion level.** Script `vr22_pointwise_bridge.py` ran 200 joint bootstrap replicates for each frozen-feature family. Each replicate resampled training patients and trained M0, M2 and a propensity model ĝ with the same perceptron and input. Each model was Platt-calibrated on validation lesions from its own population: all validation lesions for M0, verified ones for M2, and recorded negatives for ĝ, with *S* as the label. After resampling test patients, the lesion-level calibrated gap logit *f*₀ − logit *f*₂ was regressed on log ĝ, for which Proposition 1 predicts slope one. The concept-level observed gap was compared with the stratum contrast of log ĝ. Table S35 reports medians and 95 percent percentile intervals over replicates.
+**Proposition 1 at the lesion level.** Script `vr22_pointwise_bridge.py` ran 200 joint bootstrap replicates for each frozen-feature family. Each replicate resampled training patients and trained M0, M2 and a propensity model ĝ with the same perceptron and input. Each model was Platt-calibrated on validation lesions from its own population: all validation lesions for M0, verified ones for M2, and recorded negatives for ĝ, with *S* as the label. After resampling test patients, the lesion-level calibrated gap logit *f*₀ − logit *f*₂ was regressed on log ĝ, for which Proposition 1 predicts slope one. The concept-level observed gap was compared with the stratum contrast of log ĝ. Table S36 reports medians and 95 percent percentile intervals over replicates.
 
-**TABLE S35. Observed and predicted learner gap Δ_M0 − Δ_M2, calibrated learners, 200 joint resamples.**
+**TABLE S36. Observed and predicted learner gap Δ_M0 − Δ_M2, calibrated learners, 200 joint resamples.**
 
 | Features | Concept | Observed gap [95% CI] | Predicted gap [95% CI] | Same sign in resamples |
 | --- | --- | --- | --- | ---: |
@@ -716,22 +748,22 @@ In Table S34, the effective sample size is Kish's (Kish, 1965), as a share of th
 | image | Border irregularity | −0.60 [−1.12, −0.18] | −0.85 [−1.09, −0.57] | 0.995 |
 | image | lesion-level slope, median R² | 0.86 [0.66, 1.08] | R² 0.71 | |
 
-**Split-sample errors-in-variables diagnostic.** The regressor log ĝ is estimated. Under classical measurement error, a least-squares slope can be attenuated toward zero. Script `vr27_bridge_eiv.py` ran 100 joint replicates per family in which two propensity models, ĝ_A and ĝ_B, were fitted on disjoint halves of the resampled training patients. The slope of the calibrated gap on log ĝ_A was instrumented by log ĝ_B, averaged over both orders, The two halves split the unique patients of the resampled training set, so no patient enters both. The instrumented slope is consistent only if the estimation errors of the two halves are independent of each other, of the true log *g* and of the residual of the gap. Both halves share the validation set used for early stopping. M0, M2 and ĝ also use the same resampled patients, and biopsied recorded negatives enter both ĝ and M2, which can make their errors dependent in an unknown direction. The correlation of log ĝ_A and log ĝ_B estimates the reliability of a single estimate. Table S36 reports the results. The instrumented point estimates exceed one. The lesion-level regression is an association diagnostic rather than a test that the slope equals one.
+**Split-sample errors-in-variables diagnostic.** The regressor log ĝ is estimated. Under classical measurement error, a least-squares slope can be attenuated toward zero. Script `vr27_bridge_eiv.py` ran 100 joint replicates per family in which two propensity models, ĝ_A and ĝ_B, were fitted on disjoint halves of the resampled training patients. The slope of the calibrated gap on log ĝ_A was instrumented by log ĝ_B, averaged over both orders, The two halves split the unique patients of the resampled training set, so no patient enters both. The instrumented slope is consistent only if the estimation errors of the two halves are independent of each other, of the true log *g* and of the residual of the gap. Both halves share the validation set used for early stopping. M0, M2 and ĝ also use the same resampled patients, and biopsied recorded negatives enter both ĝ and M2, which can make their errors dependent in an unknown direction. The correlation of log ĝ_A and log ĝ_B estimates the reliability of a single estimate. Table S37 reports the results. The instrumented point estimates exceed one. The lesion-level regression is an association diagnostic rather than a test that the slope equals one.
 
-In Table S36, the slope is that of the learner gap on log ĝ, with 100 joint replicates per family.
+In Table S37, the slope is that of the learner gap on log ĝ, with 100 joint replicates per family.
 
-**TABLE S36. Split-sample errors-in-variables diagnostic for the lesion-level slope.**
+**TABLE S37. Split-sample errors-in-variables diagnostic for the lesion-level slope.**
 
 | Features | Least-squares slope on log ĝ_A [95% CI] | Instrumented slope [95% CI] | Reliability of log ĝ [95% CI] |
 | --- | --- | --- | --- |
 | tabular | 0.98 [0.72, 1.20] | 1.33 [1.01, 1.69] | 0.74 [0.61, 0.83] |
 | image | 0.98 [0.72, 1.28] | 1.32 [0.92, 1.75] | 0.76 [0.57, 0.85] |
 
-Models of the same class can also share systematic error. The instrumented slope is therefore a sensitivity diagnostic, not a correction that recovers the true slope. Script `vr33_bridge_alt.py` repeated the lesion-level analysis in 100 joint replicates per family, with a second model class for ĝ and on the supported test population. The second class is gradient boosting of *S* among recorded negatives. Table S37 reports the results. Section S2 gives the slope that the same trained learners attain in a semi-synthetic design where the population identity holds exactly.
+Models of the same class can also share systematic error. The instrumented slope is therefore a sensitivity diagnostic, not a correction that recovers the true slope. Script `vr33_bridge_alt.py` repeated the lesion-level analysis in 100 joint replicates per family, with a second model class for ĝ and on the supported test population. The second class is gradient boosting of *S* among recorded negatives. Table S38 reports the results. Section S2 gives the slope that the same trained learners attain in a semi-synthetic design where the population identity holds exactly.
 
-In Table S37, the gap is calibrated, slopes are shown on the full and supported test populations, and there are 100 joint replicates per family.
+In Table S38, the gap is calibrated, slopes are shown on the full and supported test populations, and there are 100 joint replicates per family.
 
-**TABLE S37. Lesion-level slope of the learner gap for two model classes of ĝ.**
+**TABLE S38. Lesion-level slope of the learner gap for two model classes of ĝ.**
 
 | Features | Model for ĝ | Test population | Slope [95% CI] | Median R² | Concepts with sign agreement ≥ 97.5% | Concept calibration slope [95% CI] |
 | --- | --- | --- | --- | ---: | ---: | --- |
@@ -744,9 +776,9 @@ In Table S37, the gap is calibrated, slopes are shown on the full and supported 
 | image | gradient boosting | full | 0.85 [0.62, 2.52] | 0.23 | 5 of 5 | 1.81 [0.86, 8.36] |
 | image | gradient boosting | supported, 1st percentile | 0.76 [0.54, 1.98] | 0.20 | 5 of 5 | 1.50 [0.53, 6.45] |
 
-**Verification pattern.** Among recorded negatives, verification was regressed on each concept split into its deviation from the patient's mean and the patient's mean, with sex, anatomical site, acquisition site and skin tone. Standard errors are clustered by patient. Table S38 reports the coefficients per standard deviation, to three decimals. The between-patient coefficients of asymmetry and border irregularity nearly coincide because the two measurements are highly correlated (Spearman 0.94).
+**Verification pattern.** Among recorded negatives, verification was regressed on each concept split into its deviation from the patient's mean and the patient's mean, with sex, anatomical site, acquisition site and skin tone. Standard errors are clustered by patient. Table S39 reports the coefficients per standard deviation, to three decimals. The between-patient coefficients of asymmetry and border irregularity nearly coincide because the two measurements are highly correlated (Spearman 0.94).
 
-**TABLE S38. Within-patient and between-patient dependence of verification on appearance among recorded negatives.**
+**TABLE S39. Within-patient and between-patient dependence of verification on appearance among recorded negatives.**
 
 | Concept | Within patient (SE) | Between patients (SE) |
 | --- | --- | --- |
@@ -756,9 +788,9 @@ In Table S37, the gap is calibrated, slopes are shown on the full and supported 
 | Asymmetry | −0.518 (0.073) | −0.699 (0.152) |
 | Border irregularity | −0.329 (0.072) | −0.700 (0.148) |
 
-**Acquisition sites.** Table S39 reports, per acquisition site, the adjusted log odds ratio of verification among recorded negatives between the upper and lower tertiles. It comes from a logistic model with sex, anatomical site and skin tone. It approximates log *B*_V when verification is rare, but it is a logit coefficient and not the crude ratio *B*_V of Table S59. The table covers sites with at least ten biopsied recorded negatives in the two outer tertiles. Site 3 had 15 biopsied recorded negatives, all in the upper tertile, so its contrast is not estimable. Site 7 had 7 biopsied recorded negatives and falls below the threshold. Sites are numbered alphabetically by name in Tables S39 and S41. Values are given to three decimals. Color variegation and lesion-skin contrast give similar values at Sites 4 and 5 because the two measurements are correlated (Spearman 0.65) and not because a value was reused. The fits use different lesions, for example 230 and 221 biopsied recorded negatives at Site 5. Table S40 pools the estimable sites with a DerSimonian-Laird random-effects model (DerSimonian & Laird, 1986). τ² is the DerSimonian-Laird between-site variance. Table S41 retrains M0 and M2, three seeds each, after removing one site's patients from training, validation and test. Both color variegation contrasts kept their signs for every left-out site in both families. Lesion-skin contrast with image features did not: its M0 contrast was −0.08 without Site 2 or Site 6.
+**Acquisition sites.** Table S40 reports, per acquisition site, the adjusted log odds ratio of verification among recorded negatives between the upper and lower tertiles. It comes from a logistic model with sex, anatomical site and skin tone. It approximates log *B*_V when verification is rare, but it is a logit coefficient and not the crude ratio *B*_V of Table S61. The table covers sites with at least ten biopsied recorded negatives in the two outer tertiles. Site 3 had 15 biopsied recorded negatives, all in the upper tertile, so its contrast is not estimable. Site 7 had 7 biopsied recorded negatives and falls below the threshold. Sites are numbered alphabetically by name in Tables S40 and S42. Values are given to three decimals. Color variegation and lesion-skin contrast give similar values at Sites 4 and 5 because the two measurements are correlated (Spearman 0.65) and not because a value was reused. The fits use different lesions, for example 230 and 221 biopsied recorded negatives at Site 5. Table S41 pools the estimable sites with a DerSimonian-Laird random-effects model (DerSimonian & Laird, 1986). τ² is the DerSimonian-Laird between-site variance. Table S42 retrains M0 and M2, three seeds each, after removing one site's patients from training, validation and test. Both color variegation contrasts kept their signs for every left-out site in both families. Lesion-skin contrast with image features did not: its M0 contrast was −0.08 without Site 2 or Site 6.
 
-**TABLE S39. Adjusted log odds ratio of verification among recorded negatives by acquisition site, with standard errors.**
+**TABLE S40. Adjusted log odds ratio of verification among recorded negatives by acquisition site, with standard errors.**
 
 | Site | Biopsied recorded negatives | Color variegation | Size | Lesion-skin contrast |
 | --- | ---: | --- | --- | --- |
@@ -770,7 +802,7 @@ In Table S37, the gap is calibrated, slopes are shown on the full and supported 
 | Site 6 | 120 | +1.308 (0.275) | +0.972 (0.217) | +1.791 (0.361) |
 | Site 7 | 7 in all tertiles | fewer than ten biopsied recorded negatives | fewer than ten biopsied recorded negatives | fewer than ten biopsied recorded negatives |
 
-**TABLE S40. Heterogeneity of the adjusted log odds ratio of verification across acquisition sites.**
+**TABLE S41. Heterogeneity of the adjusted log odds ratio of verification across acquisition sites.**
 
 | Concept | Estimable sites | Q (df) | I² | Between-site variance τ²_site | Pooled adjusted log OR [95% CI] | Site range |
 | --- | ---: | --- | ---: | ---: | --- | --- |
@@ -778,7 +810,7 @@ In Table S37, the gap is calibrated, slopes are shown on the full and supported 
 | Size | 5 | 8.8 (4) | 0.55 | 0.076 | 1.30 [0.96, 1.65] | [0.97, 2.46] |
 | Lesion-skin contrast | 5 | 11.9 (4) | 0.66 | 0.199 | 1.75 [1.23, 2.28] | [1.21, 3.08] |
 
-**TABLE S41. Learned contrasts with one acquisition site left out, mean over seeds 0 to 2.**
+**TABLE S42. Learned contrasts with one acquisition site left out, mean over seeds 0 to 2.**
 
 | Features | Site left out | Color Δ_M0 / Δ_M2 | Size Δ_M0 / Δ_M2 | Contrast Δ_M0 / Δ_M2 |
 | --- | --- | --- | --- | --- |
@@ -797,11 +829,11 @@ In Table S37, the gap is calibrated, slopes are shown on the full and supported 
 | image | Site 6 | +0.62 / −0.56 | +0.81 / −0.29 | −0.08 / −0.93 |
 | image | Site 7 | +1.31 / −0.75 | +1.32 / −0.39 | +0.59 / −1.17 |
 
-**Overlap.** The common verification propensity σ̂ is a gradient-boosting model on the tabular features, used as one clinical support definition for both families and estimated without using the test fold. The thresholds are the 1st, 5th and 10th percentiles of σ̂ among verified lesions of the original training set. σ̂ and the thresholds are held fixed in every replicate, and each replicate restricts its resampled test lesions to those with σ̂ at or above a threshold. The intervals therefore condition on this support definition and do not reflect variation in it. Table S42 reports the contrasts. Table S43 reports the full, support-restricted and flagged test populations for the original fits.
+**Overlap.** The common verification propensity σ̂ is a gradient-boosting model on the tabular features, used as one clinical support definition for both families and estimated without using the test fold. The thresholds are the 1st, 5th and 10th percentiles of σ̂ among verified lesions of the original training set. σ̂ and the thresholds are held fixed in every replicate, and each replicate restricts its resampled test lesions to those with σ̂ at or above a threshold. The intervals therefore condition on this support definition and do not reflect variation in it. Table S43 reports the contrasts. Table S44 reports the full, support-restricted and flagged test populations for the original fits.
 
-In Table S42, intervals come from the one-seed joint bootstrap with 5,000 replicates per family, with σ̂ and the support thresholds fixed from the original training set.
+In Table S43, intervals come from the one-seed joint bootstrap with 5,000 replicates per family, with σ̂ and the support thresholds fixed from the original training set.
 
-**TABLE S42. Learned contrasts within the support of verified training lesions.**
+**TABLE S43. Learned contrasts within the support of verified training lesions.**
 
 | Features | Concept | Threshold percentile | Δ_M0 [95% CI] | Δ_M2 [95% CI] | Robust at 95% |
 | --- | --- | ---: | --- | --- | --- |
@@ -824,9 +856,9 @@ In Table S42, intervals come from the one-seed joint bootstrap with 5,000 replic
 | image | Lesion-skin contrast | 5 | −0.77 [−2.12, 0.22] | −1.27 [−2.10, −0.90] | no |
 | image | Lesion-skin contrast | 10 | −0.66 [−2.02, 0.33] | −1.31 [−2.19, −0.92] | no |
 
-In Table S43, intervals are patient bootstrap intervals conditional on the fitted models.
+In Table S44, intervals are patient bootstrap intervals conditional on the fitted models.
 
-**TABLE S43. Learned contrasts on the full, support-restricted and flagged test populations.**
+**TABLE S44. Learned contrasts on the full, support-restricted and flagged test populations.**
 
 | Features | Population (share of test) | Concept | Δ_M0 [95% CI] | Δ_M2 [95% CI] | Share of resamples with opposite signs |
 | --- | --- | --- | --- | --- | ---: |
@@ -849,9 +881,9 @@ In Table S43, intervals are patient bootstrap intervals conditional on the fitte
 | image | flagged lesions (6 percent) | Size | +1.95 [1.58, 2.33] | −0.39 [−0.61, −0.15] | 1.000 |
 | image | flagged lesions (6 percent) | Lesion-skin contrast | +0.03 [−0.55, 0.56] | −1.23 [−1.41, −1.04] | 0.503 |
 
-**Other estimates of σ.** Support membership depends on the estimate of σ. Proposition 2 defines σ on each learner's input, so the perceptron trained on that input is the theory-matched definition. The tabular gradient-boosting estimate is a common clinical definition for both families and the only one with joint intervals. Script `vr37_overlap_sigma.py` repeated the overlap analysis with two further estimates: perceptrons trained on the tabular or on the image features, Platt-calibrated on validation data and averaged over seeds 0 to 2. It also reran the common estimate under the same procedure, with the original fits of M0 and M2 averaged over seeds 0 to 2 and 2,000 bootstrap resamples of test patients. These intervals condition on the fitted learners and are narrower than the joint intervals of Table S42. Table S44 reports the share of test lesions retained and the share that changed membership relative to the common estimate.
+**Other estimates of σ.** Support membership depends on the estimate of σ. Proposition 2 defines σ on each learner's input, so the perceptron trained on that input is the theory-matched definition. The tabular gradient-boosting estimate is a common clinical definition for both families and the only one with joint intervals. Script `vr37_overlap_sigma.py` repeated the overlap analysis with two further estimates: perceptrons trained on the tabular or on the image features, Platt-calibrated on validation data and averaged over seeds 0 to 2. It also reran the common estimate under the same procedure, with the original fits of M0 and M2 averaged over seeds 0 to 2 and 2,000 bootstrap resamples of test patients. These intervals condition on the fitted learners and are narrower than the joint intervals of Table S43. Table S45 reports the share of test lesions retained and the share that changed membership relative to the common estimate.
 
-**TABLE S44. Overlap analysis under three estimates of σ, test-patient bootstrap conditional on the fitted learners.**
+**TABLE S45. Overlap analysis under three estimates of σ, test-patient bootstrap conditional on the fitted learners.**
 
 | Features | Estimate of σ | Threshold | Test retained | Changed membership | Color Δ_M0 [95% CI] | Color Δ_M2 [95% CI] | Robust at 95%: color / size / contrast |
 | --- | --- | ---: | ---: | ---: | --- | --- | --- |
@@ -874,11 +906,11 @@ In Table S43, intervals are patient bootstrap intervals conditional on the fitte
 | image | perceptron, image | 5th | 0.42 | 0.31 | −0.29 [−0.54, −0.06] | −0.76 [−0.88, −0.64] | no / yes / no |
 | image | perceptron, image | 10th | 0.22 | 0.23 | −0.82 [−1.10, −0.56] | −0.83 [−0.98, −0.69] | no / yes / no |
 
-**Composition of the supported population.** Restricting the test population to σ̂ ≥ *c* changes the joint distribution of the concepts within each tertile, so Δ can change even when the prediction function does not. Within each tertile, script `vr40_support_composition.py` reweights the supported lesions by the inverse of their estimated probability of being supported given the five standardized concepts. That probability comes from a logistic model fitted on the lesions of the tertile in the full test population, and the weights are truncated at their 99th percentile. The reweighted contrast compares supported lesions with the concept composition of the full population. Intervals come from 300 test-patient bootstrap resamples, refitting the weighting model, conditional on the fitted learners. Table S45 reports color variegation. The reweighting did not restore the full-population M0 contrast in any setting, and M2 stayed negative. Standardizing the supported lesions on the five measured concepts thus left the attenuation within support in place. This weighting model does not balance unmeasured appearance, patient or site variables. The analysis changes the evaluation population and does not isolate extrapolation by M2.
+**Composition of the supported population.** Restricting the test population to σ̂ ≥ *c* changes the joint distribution of the concepts within each tertile, so Δ can change even when the prediction function does not. Within each tertile, script `vr40_support_composition.py` reweights the supported lesions by the inverse of their estimated probability of being supported given the five standardized concepts. That probability comes from a logistic model fitted on the lesions of the tertile in the full test population, and the weights are truncated at their 99th percentile. The reweighted contrast compares supported lesions with the concept composition of the full population. Intervals come from 300 test-patient bootstrap resamples, refitting the weighting model, conditional on the fitted learners. Table S46 reports color variegation. The reweighting did not restore the full-population M0 contrast in any setting, and M2 stayed negative. Standardizing the supported lesions on the five measured concepts thus left the attenuation within support in place. This weighting model does not balance unmeasured appearance, patient or site variables. The analysis changes the evaluation population and does not isolate extrapolation by M2.
 
-In Table S45, reweighting targets the full-population concept composition within each tertile, and original fits are averaged over seeds 0 to 2.
+In Table S46, reweighting targets the full-population concept composition within each tertile, and original fits are averaged over seeds 0 to 2.
 
-**TABLE S45. Supported contrasts of color variegation, raw and reweighted.**
+**TABLE S46. Supported contrasts of color variegation, raw and reweighted.**
 
 | Features | Estimate of σ | Threshold | Share of test | M0: raw / reweighted [95% CI] | M2: raw / reweighted [95% CI] |
 | --- | --- | ---: | ---: | --- | --- |
@@ -903,11 +935,11 @@ In Table S45, reweighting targets the full-population concept composition within
 | image | gradient boosting, tabular | 5th | 0.36 | +0.13 / −0.09 [−0.47, 0.34] | −0.81 / −0.66 [−0.78, −0.55] |
 | image | gradient boosting, tabular | 10th | 0.23 | +0.34 / −0.30 [−0.68, 0.27] | −0.84 / −0.66 [−0.84, −0.51] |
 
-**Marginal and conditional contrasts.** The tertile contrast is marginal over the other concepts. The same script also balanced the two tertiles of each primary concept on the other four concepts by inverse probability weighting on the full test population. This is a different estimand, the contrast with the other concepts held at a common distribution. Table S46 shows that it differs substantially from the marginal contrast because the concepts are correlated. The learned contrasts in this paper are therefore not effects of one concept with the others held fixed.
+**Marginal and conditional contrasts.** The tertile contrast is marginal over the other concepts. The same script also balanced the two tertiles of each primary concept on the other four concepts by inverse probability weighting on the full test population. This is a different estimand, the contrast with the other concepts held at a common distribution. Table S47 shows that it differs substantially from the marginal contrast because the concepts are correlated. The learned contrasts in this paper are therefore not effects of one concept with the others held fixed.
 
-In Table S46, original fits are averaged over seeds 0 to 2.
+In Table S47, original fits are averaged over seeds 0 to 2.
 
-**TABLE S46. Marginal tertile contrasts and contrasts balanced on the other concepts.**
+**TABLE S47. Marginal tertile contrasts and contrasts balanced on the other concepts.**
 
 | Features | Concept | Δ_M0: marginal / balanced on other concepts [95% CI] | Δ_M2: marginal / balanced on other concepts [95% CI] |
 | --- | --- | --- | --- |
@@ -918,9 +950,9 @@ In Table S46, original fits are averaged over seeds 0 to 2.
 | image | Size | +1.56 / +0.09 [−0.55, 0.77] | −0.32 / +0.30 [0.12, 0.51] |
 | image | Lesion-skin contrast | +1.01 / +0.35 [−0.36, 0.89] | −1.07 / −0.06 [−0.25, 0.13] |
 
-**PAD-UFES-20.** The release holds 2,298 images of 1,641 lesions from 1,373 patients, and each learner was trained and evaluated on images. The association analysis of Fig. 4 uses eleven features: six symptoms, an age tertile and four image measures. The learner analysis evaluates ten features, because age and body region enter the clinical learner as inputs and the age tertile is not evaluated separately. Patients were split 60/20/20 with a fixed seed. M0 was trained on all 1,402 training images with the recorded diagnosis, and M2 on the 814 biopsied training images. Both used L2-regularized logistic regression on frozen image features or on clinical features, namely age, body region and six symptoms, and were evaluated on the same 463 test images. Intervals and probabilities come from 200 joint bootstrap resamples of training and test patients, with refitting. Table S47 reports each feature. Every image has equal weight, so a lesion with several images contributes several. Categories classify point estimates. For image asymmetry and border irregularity, the M2 interval contains zero and opposite signs occurred in 19 and 39 percent of resamples, so their attenuation is not a stable conclusion.
+**PAD-UFES-20.** The release holds 2,298 images of 1,641 lesions from 1,373 patients, and each learner was trained and evaluated on images. The association analysis of Fig. 4 uses eleven features: six symptoms, an age tertile and four image measures. The learner analysis evaluates ten features, because age and body region enter the clinical learner as inputs and the age tertile is not evaluated separately. Patients were split 60/20/20 with a fixed seed. M0 was trained on all 1,402 training images with the recorded diagnosis, and M2 on the 814 biopsied training images. Both used L2-regularized logistic regression on frozen image features or on clinical features, namely age, body region and six symptoms, and were evaluated on the same 463 test images. Intervals and probabilities come from 200 joint bootstrap resamples of training and test patients, with refitting. Table S48 reports each feature. Every image has equal weight, so a lesion with several images contributes several. Categories classify point estimates. For image asymmetry and border irregularity, the M2 interval contains zero and opposite signs occurred in 19 and 39 percent of resamples, so their attenuation is not a stable conclusion.
 
-**TABLE S47. Learned contrasts on PAD-UFES-20.**
+**TABLE S48. Learned contrasts on PAD-UFES-20.**
 
 | Feature | Δ_M0 [95% CI] | Δ_M2 [95% CI] | Category by point estimates | Share of resamples with opposite signs |
 | --- | --- | --- | --- | ---: |
@@ -939,11 +971,11 @@ In Table S46, original fits are averaged over seeds 0 to 2.
 
 ## S7. Plug-in bounds for the disease target
 
-**Proposition 2 on ISIC-2024.** The nuisance *q* was the Platt-calibrated M0 on the learner's input, and σ an out-of-fold gradient-boosting model on the tabular features for both families, both fitted without the test fold. All sets in this section use the stratum formula, which is sharp for the tabular-input target and an outer set for the image-feature target. With these plug-ins the bounds are plug-in bounds, an estimate of the identified set and not the population set of Proposition 2. Table S48 reports them at three floors, together with the plug-in tipping floor *s*∗. This is the smallest floor on a grid of step 0.01 at which ψ_L > 0, computed on the seed-averaged curve. The last entry is the 95th percentile of *s*∗ over the 5,000 one-seed joint replicates of training and test patients, with validation fixed. It is a bootstrap stability threshold, not a floor identified from the data. Table S19 gives the bootstrap stability threshold with validation patients also resampled, for three estimates of *q*.
+**Proposition 2 on ISIC-2024.** The nuisance *q* was the Platt-calibrated M0 on the learner's input, and σ an out-of-fold gradient-boosting model on the tabular features for both families, both fitted without the test fold. All sets in this section use the stratum formula, which is sharp for the tabular-input target and an outer set for the image-feature target. With these plug-ins the bounds are plug-in bounds, an estimate of the identified set and not the population set of Proposition 2. Table S49 reports them at three floors, together with the plug-in tipping floor *s*∗. This is the smallest floor on a grid of step 0.01 at which ψ_L > 0, computed on the seed-averaged curve. The last entry is the 95th percentile of *s*∗ over the 5,000 one-seed joint replicates of training and test patients, with validation fixed. It is a bootstrap stability threshold, not a floor identified from the data. Table S20 gives the bootstrap stability threshold with validation patients also resampled, for three estimates of *q*.
 
-In Table S48, bounds are under the stated malignant-verification floor for the frozen-feature families, averaged over seeds 0 to 2. They replace *q* and σ by estimates and are not the population identified set of Proposition 2.
+In Table S49, bounds are under the stated malignant-verification floor for the frozen-feature families, averaged over seeds 0 to 2. They replace *q* and σ by estimates and are not the population identified set of Proposition 2.
 
-**TABLE S48. Plug-in bounds for the disease target on the learner's scale.**
+**TABLE S49. Plug-in bounds for the disease target on the learner's scale.**
 
 | Features | Concept | ψ bounds at *s*_min = 0.5 | ψ bounds at *s*_min = 0.7 | ψ bounds at *s*_min = 0.9 | Tipping floor *s*∗, original / 95th percentile |
 | --- | --- | --- | --- | --- | --- |
@@ -954,11 +986,11 @@ In Table S48, bounds are under the stated malignant-verification floor for the f
 | image | Size | [0.00, 1.39] | [0.34, 1.06] | [0.59, 0.80] | 0.50 / 0.74 |
 | image | Lesion-skin contrast | [−0.24, 1.15] | [0.09, 0.81] | [0.35, 0.56] | 0.64 / none |
 
-**Estimated-weight approximation for the image-feature target.** Script `vr42_sharp_weighted.py` refitted M0 with seeds 0 to 2 and Platt calibration. It estimated P(*t* | *x̃*) by gradient boosting on the tabular features or on 64 principal components of the image features, cross-fitted over five folds of test patients. It then computed the outer set and an estimated-weight approximation to the sharp set on the seed-averaged curve. Stability thresholds use 1,000 test-patient resamples conditional on the fitted learners and weights, so they are not comparable to the joint thresholds of Table S19. Table S49 reports the results. The agreement column is the share of outer-tertile test lesions whose estimated weight has the sign of their observed stratum. Because the stratum is not a function of the image input, the sign of *a*_k need not match a lesion's observed stratum. This share measures how well the input predicts the stratum; it is not the accuracy of the weight sign. The estimated-weight result is exploratory.
+**Estimated-weight approximation for the image-feature target.** Script `vr42_sharp_weighted.py` refitted M0 with seeds 0 to 2 and Platt calibration. It estimated P(*t* | *x̃*) by gradient boosting on the tabular features or on 64 principal components of the image features, cross-fitted over five folds of test patients. It then computed the outer set and an estimated-weight approximation to the sharp set on the seed-averaged curve. Stability thresholds use 1,000 test-patient resamples conditional on the fitted learners and weights, so they are not comparable to the joint thresholds of Table S20. Table S50 reports the results. The agreement column is the share of outer-tertile test lesions whose estimated weight has the sign of their observed stratum. Because the stratum is not a function of the image input, the sign of *a*_k need not match a lesion's observed stratum. This share measures how well the input predicts the stratum; it is not the accuracy of the weight sign. The estimated-weight result is exploratory.
 
-In Table S49, M0 is Platt-calibrated, and stability thresholds resample test patients only, with the learners and weights fixed, unlike the refitted thresholds of Table 2; sharpness holds for the population set with the true weight and is not guaranteed after replacing it by an estimate.
+In Table S50, M0 is Platt-calibrated, and stability thresholds resample test patients only, with the learners and weights fixed, unlike the refitted thresholds of Table 2; sharpness holds for the population set with the true weight and is not guaranteed after replacing it by an estimate.
 
-**TABLE S49. Plug-in tipping floor from the stratum formula and an estimated-weight approximation.**
+**TABLE S50. Plug-in tipping floor from the stratum formula and an estimated-weight approximation.**
 
 | Features | Concept | Agreement of estimated weight sign with observed stratum | Stratum formula (outer set): point floor / stability threshold | Estimated-weight approximation: point floor / stability threshold |
 | --- | --- | ---: | --- | --- |
@@ -969,24 +1001,24 @@ In Table S49, M0 is Platt-calibrated, and stability thresholds resample test pat
 | image | Size | 0.74 | 0.50 / 0.55 | 0.24 / 0.29 |
 | image | Lesion-skin contrast | 0.87 | 0.64 / 0.74 | 0.55 / 0.66 |
 
-**Inputs, branches and clipping.** Proposition 2 takes *q* and σ on the same input, while the primary plug-in uses one tabular σ̂ for both families. Script `vr48_nuisance_audit.py` refitted M0 with seeds 0 to 2 and checked three points (Table S50). First, σ̂ enters ψ_L only through the second branch *q̂* + 1 − σ̂ of *p̄*. At the point floor it was active for at most 0.01 percent of lower-tertile lesions, and replacing σ̂ by a perceptron on the learner's input left the floors unchanged. Second, *q̂* exceeded σ̂ for some lesions, which is impossible in the population because *Y* ≤ *S*. Such lesions only push the second branch above one, so they leave the bound unchanged, but they show that the two nuisances are not jointly coherent. Third, isotonic calibration of the tabular learner put many test lesions at its lower bound of 10⁻⁶, so its point floor depends on that arbitrary bound. In a separate refit without clipping, almost all of these lesions had an isotonic estimate of exactly zero; fewer than 0.01 percent had a positive estimate below 10⁻⁶. The second branch is chosen before clipping, and the minimum is then clipped to [10⁻⁷, 1 − 10⁻⁷]. The σ̂ is the fixed out-of-fold estimate in every bootstrap replicate, so the input-matched check covers the point floor of color variegation only. Platt calibration put no lesion at the clipping bound, and the isotonic fit of the image learner reached neither bound.
+**Inputs, branches and clipping.** Proposition 2 takes *q* and σ on the same input, while the primary plug-in uses one tabular σ̂ for both families. Script `vr48_nuisance_audit.py` refitted M0 with seeds 0 to 2 and checked three points (Table S51). First, σ̂ enters ψ_L only through the second branch *q̂* + 1 − σ̂ of *p̄*. At the point floor it was active for at most 0.01 percent of lower-tertile lesions, and replacing σ̂ by a perceptron on the learner's input left the floors unchanged. Second, *q̂* exceeded σ̂ for some lesions, which is impossible in the population because *Y* ≤ *S*. Such lesions only push the second branch above one, so they leave the bound unchanged, but they show that the two nuisances are not jointly coherent. Third, isotonic calibration of the tabular learner put many test lesions at its lower bound of 10⁻⁶, so its point floor depends on that arbitrary bound. In a separate refit without clipping, almost all of these lesions had an isotonic estimate of exactly zero; fewer than 0.01 percent had a positive estimate below 10⁻⁶. The second branch is chosen before clipping, and the minimum is then clipped to [10⁻⁷, 1 − 10⁻⁷]. The σ̂ is the fixed out-of-fold estimate in every bootstrap replicate, so the input-matched check covers the point floor of color variegation only. Platt calibration put no lesion at the clipping bound, and the isotonic fit of the image learner reached neither bound.
 
-In Table S50, shares are over test lesions and averaged over seeds 0 to 2, and floors use the seed-averaged curve of the exact bound.
+In Table S51, shares are over test lesions and averaged over seeds 0 to 2, and floors use the seed-averaged curve of the exact bound.
 
-**TABLE S50. Nuisance inputs, active branch and clipping of the plug-in bound for color variegation.**
+**TABLE S51. Nuisance inputs, active branch and clipping of the plug-in bound for color variegation.**
 
 | Features | q̂ > σ̂, common σ̂ / input-matched σ̂ | Second branch active, lower tertile | Isotonic at lower bound | Point floor: Platt / input-matched σ̂ | Isotonic point floor, lower bound 10⁻⁵ / 10⁻⁶ / 10⁻⁷ |
 | --- | --- | ---: | ---: | --- | --- |
 | tabular | 12.7 / 13.6 percent | 0.010 percent | 37.2 percent | 0.38 / 0.38 | 0.40 / 0.28 / 0.20 |
 | image | 38.0 / 7.2 percent | 0.000 percent | 0.0 percent | 0.49 / 0.49 | 0.58 / 0.58 / 0.58 |
 
-**Calibration and nuisance choices.** Script `vr25_psi_sensitivity.py` recomputed *s*∗ on the original fits with six estimates built on the perceptron M0. Four vary the calibration: none, Platt (Platt, 1999), isotonic (Zadrozny & Elkan, 2002) or beta calibration (Kull et al., 2017). The other two use Platt calibration, either with σ replaced by max(σ̂, *q̂*) from a perceptron trained on the learner's input or with logit *q* and logit *p̄* winsorized at the 1st and 99th percentiles. On the logit scale a Platt slope multiplies the concept contrast, so the calibration step moves *s*∗. Table S53 reports the results, and Table S19 gives gradient boosting under the bootstrap. Beta calibration, the alternative σ and winsorizing left the Platt value almost unchanged. Isotonic calibration moved it by about 0.1. The uncalibrated image learner, whose Platt slope was about 0.45, lowered it to below 0.2.
+**Calibration and nuisance choices.** Script `vr25_psi_sensitivity.py` recomputed *s*∗ on the original fits with six estimates built on the perceptron M0. Four vary the calibration: none, Platt (Platt, 1999), isotonic (Zadrozny & Elkan, 2002) or beta calibration (Kull et al., 2017). The other two use Platt calibration, either with σ replaced by max(σ̂, *q̂*) from a perceptron trained on the learner's input or with logit *q* and logit *p̄* winsorized at the 1st and 99th percentiles. On the logit scale a Platt slope multiplies the concept contrast, so the calibration step moves *s*∗. Table S54 reports the results, and Table S20 gives gradient boosting under the bootstrap. Beta calibration, the alternative σ and winsorizing left the Platt value almost unchanged. Isotonic calibration moved it by about 0.1. The uncalibrated image learner, whose Platt slope was about 0.45, lowered it to below 0.2.
 
-**Fit of the estimates of *q*.** Table S51 reports the test log-loss and Brier score of each estimate of *q* for the original fits, averaged over seeds 0 to 2. It also shows calibration by bins of predicted risk: the number of lesions, their mean predicted risk and the number of malignant lesions in each bin. Most test lesions fall below a predicted risk of 0.002, where the bins hold few malignant lesions, so these diagnostics cannot tell the estimates apart where ψ_L is decided. Event counts by tertile in Table S52 are diagnostics, not tests: they ignore patient clustering and nuisance uncertainty. For the tabular input, *t* is a function of *x̃*, so a correct *q* matches the expected count of each tertile in the population. For image features *t* can carry information on *Y* beyond *x̃*, so even a correct *q* need not match it.
+**Fit of the estimates of *q*.** Table S52 reports the test log-loss and Brier score of each estimate of *q* for the original fits, averaged over seeds 0 to 2. It also shows calibration by bins of predicted risk: the number of lesions, their mean predicted risk and the number of malignant lesions in each bin. Most test lesions fall below a predicted risk of 0.002, where the bins hold few malignant lesions, so these diagnostics cannot tell the estimates apart where ψ_L is decided. Event counts by tertile in Table S53 are diagnostics, not tests: they ignore patient clustering and nuisance uncertainty. For the tabular input, *t* is a function of *x̃*, so a correct *q* matches the expected count of each tertile in the population. For image features *t* can carry information on *Y* beyond *x̃*, so even a correct *q* need not match it.
 
-In Table S51, original fits are averaged over seeds 0 to 2.
+In Table S52, original fits are averaged over seeds 0 to 2.
 
-**TABLE S51. Fit of the estimates of *q* on the test population.**
+**TABLE S52. Fit of the estimates of *q* on the test population.**
 
 | Features | Estimate of *q* | Log-loss | Brier | Predicted risk below 0.0005: lesions; expected / observed malignant | 0.0005 to 0.002 | 0.002 to 0.01 | Above 0.01 |
 | --- | --- | ---: | ---: | --- | --- | --- | --- |
@@ -999,11 +1031,11 @@ In Table S51, original fits are averaged over seeds 0 to 2.
 | image | gradient boosting, Platt | 0.00750 | 0.001041 | 9,171; 1.9 / 3.0 | 64,828; 60.1 / 41.7 | 4,280; 14.0 / 27.0 | 346; 17.6 / 7.3 |
 | image | perceptron, uncalibrated | 0.00802 | 0.001024 | 64,875; 3.6 / 29.7 | 6,966; 7.2 / 9.3 | 4,638; 20.9 / 16.0 | 2,146; 66.6 / 24.0 |
 
-**Why the estimates differ.** Script `vr38_logit_tail.py` works within the outer tertiles of color variegation on the test population. It compares the observed number of malignant lesions, the expected number under each estimate of *q*, the mean of *q* and the mean of logit *q*. Empirical calibration approximately matches aggregate event risk, a sum of *q* over lesions, although it is not an exact constraint for every calibration method or bin. The disease target averages logit *q*, which is steep and concave near zero. Estimates with nearly the same expected events can differ widely in mean logit *q* when most lesions have very small *q*. Table S52 reports the values.
+**Why the estimates differ.** Script `vr38_logit_tail.py` works within the outer tertiles of color variegation on the test population. It compares the observed number of malignant lesions, the expected number under each estimate of *q*, the mean of *q* and the mean of logit *q*. Empirical calibration approximately matches aggregate event risk, a sum of *q* over lesions, although it is not an exact constraint for every calibration method or bin. The disease target averages logit *q*, which is steep and concave near zero. Estimates with nearly the same expected events can differ widely in mean logit *q* when most lesions have very small *q*. Table S53 reports the values.
 
-In Table S52, values are on the test population for the original fits averaged over seeds 0 to 2.
+In Table S53, values are on the test population for the original fits averaged over seeds 0 to 2.
 
-**TABLE S52. Events and logit-scale mean of *q* in the outer tertiles of color variegation.**
+**TABLE S53. Events and logit-scale mean of *q* in the outer tertiles of color variegation.**
 
 | Features | Estimate of *q* | Tertile | Lesions | Observed malignant | Expected (sum of *q*) | Mean *q* | Mean logit *q* | Share with *q* < 0.0005 |
 | --- | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -1020,9 +1052,9 @@ In Table S52, values are on the test population for the original fits averaged o
 | image | gradient boosting, Platt | lower | 27,316 | 25 | 27.9 | 0.00102 | −7.11 | 0.14 |
 | image | gradient boosting, Platt | upper | 25,451 | 47 | 38.4 | 0.00151 | −6.93 | 0.09 |
 
-In Table S53, all rows use the perceptron M0 and the seed-averaged curve, and "none" means that no floor up to one made ψ_L positive.
+In Table S54, all rows use the perceptron M0 and the seed-averaged curve, and "none" means that no floor up to one made ψ_L positive.
 
-**TABLE S53. Plug-in tipping floor under calibration and nuisance choices.**
+**TABLE S54. Plug-in tipping floor under calibration and nuisance choices.**
 
 | Estimate of *q* | tabular, color | tabular, size | tabular, contrast | image, color | image, size | image, contrast |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -1033,11 +1065,11 @@ In Table S53, all rows use the perceptron M0 and the seed-averaged curve, and "n
 | Platt, σ from the learner's input | 0.38 | 0.54 | 0.61 | 0.49 | 0.50 | 0.64 |
 | Platt, winsorized at 1 and 99 percent | 0.39 | 0.54 | 0.61 | 0.49 | 0.51 | 0.64 |
 
-**Two floors.** A single floor on the lower stratum must hold even where verification is rarest. Let the floor be s_low for test lesions whose σ̂ lies below the 1st or 5th percentile threshold of Section S6 and s_high elsewhere. Table S54 gives, on a grid of step 0.05, the smallest s_low at which ψ_L > 0 for each s_high. A strong floor outside the low-support region lets a weaker one suffice inside it. This analysis uses the Platt-calibrated M0 only and is exploratory; the dependence on the estimator of *q* shown in Table S19 applies to it as well.
+**Two floors.** A single floor on the lower stratum must hold even where verification is rarest. Let the floor be s_low for test lesions whose σ̂ lies below the 1st or 5th percentile threshold of Section S6 and s_high elsewhere. Table S55 gives, on a grid of step 0.05, the smallest s_low at which ψ_L > 0 for each s_high. A strong floor outside the low-support region lets a weaker one suffice inside it. This analysis uses the Platt-calibrated M0 only and is exploratory; the dependence on the estimator of *q* shown in Table S20 applies to it as well.
 
-In Table S54, the floor elsewhere is given, and M0 is Platt-calibrated.
+In Table S55, the floor elsewhere is given, and M0 is Platt-calibrated.
 
-**TABLE S54. Smallest low-support floor that keeps ψ_L positive.**
+**TABLE S55. Smallest low-support floor that keeps ψ_L positive.**
 
 | Features | Concept | Low-support region | s_low needed at s_high = 0.5 / 0.6 / 0.7 / 0.8 / 0.9 / 1.0 |
 | --- | --- | --- | --- |
@@ -1054,13 +1086,30 @@ In Table S54, the floor elsewhere is given, and M0 is Platt-calibrated.
 | image | Lesion-skin contrast | below the 1st percentile, 32 percent of test lesions | 0.85 / 0.70 / 0.60 / 0.50 / 0.45 / 0.40 |
 | image | Lesion-skin contrast | below the 5th percentile, 64 percent of test lesions | 0.70 / 0.65 / 0.65 / 0.65 / 0.60 / 0.60 |
 
-**Marginal risk ratio.** The marginal version of Section S1 identifies the disease risk ratio between the outer tertiles as above one exactly when *A* < RR_Y. A floor *s*_min on the average malignant verification in the lower tertile alone implies *A* ≤ 1/*s*_min. This analysis was specified after color variegation had emerged as the central case and is a post-inspection sensitivity analysis. Script `vr35_marginal_rr.py` computes RR_Y directly from counts, with no learner, on the test population and on the whole cohort, with 2,000 patient-cluster bootstrap replicates. RR_D > 1 is identified at lower-tertile floors above 1/RR_Y, and the next column replaces RR_Y by its 5th percentile over resamples. Table S59 also gives the log odds ratio of the recorded label between the tertiles among verified lesions, the verified-only association of Lemma 1. The 95 percent resampling stability threshold is the smallest floor at which two events held together in at least 95 percent of the same patient-cluster resamples: RR_D > 1 was identified, and the verified-only log odds ratio was negative. This joint event is the marginal association reversal, conditional on that floor. The next column gives the same threshold on the scale of *A*. Both are thresholds of a resampling procedure, not lower confidence bounds for malignant verification, and nothing controls error for the post-inspection choice of concept and analysis. The last column is the observed benign ratio *B*_V = *g*₁/*g*₀, a plausibility benchmark for *A* rather than an estimate of it. Malignant and benign lesions may reach biopsy through different routes. The whole cohort is used because the estimand needs no fitted learner; the test population, on which the learner analyses are evaluated, is reported alongside. It is a different estimand from ψ on a different scale and population, so it is neither an estimator nor a check of ψ and does not validate Proposition 2. The site-standardized row describes the observed mixture of sites under a common within-site floor; it is a mixture estimand and does not show a reversal in each site.
+**Marginal risk ratio.** The marginal version of Section S1 identifies the disease risk ratio between the outer tertiles as above one exactly when *A* < RR_Y. A floor *s*_min on the average malignant verification in the lower tertile alone implies *A* ≤ 1/*s*_min. This analysis was specified after color variegation had emerged as the central case and is a post-inspection sensitivity analysis. Script `vr35_marginal_rr.py` computes RR_Y directly from counts, with no learner, on the test population and on the whole cohort, with 2,000 patient-cluster bootstrap replicates. RR_D > 1 is identified at lower-tertile floors above 1/RR_Y, and the next column replaces RR_Y by its 5th percentile over resamples. Table S61 also gives the log odds ratio of the recorded label between the tertiles among verified lesions, the verified-only association of Lemma 1. The 95 percent resampling stability threshold is the smallest floor at which two events held together in at least 95 percent of the same patient-cluster resamples: RR_D > 1 was identified, and the verified-only log odds ratio was negative. This joint event is the marginal association reversal, conditional on that floor. The next column gives the same threshold on the scale of *A*. Both are thresholds of a resampling procedure, not lower confidence bounds for malignant verification, and nothing controls error for the post-inspection choice of concept and analysis. The last column is the observed benign ratio *B*_V = *g*₁/*g*₀, a plausibility benchmark for *A* rather than an estimate of it. Malignant and benign lesions may reach biopsy through different routes. The whole cohort is used because the estimand needs no fitted learner; the test population, on which the learner analyses are evaluated, is reported alongside. It is a different estimand from ψ on a different scale and population, so it is neither an estimator nor a check of ψ and does not validate Proposition 2. The site-standardized row describes the observed mixture of sites under a common within-site floor; it is a mixture estimand and does not show a reversal in each site.
 
-**Indeterminate histopathology.** The release records 114 biopsied lesions as Indeterminate, and its binary target counts them as not malignant (Table S55). Script `vr49_indeterminate.py` repeats the whole-cohort count analysis under three codings. The first is the binary rule of the release, used throughout. The second treats indeterminate lesions as unverified for disease, so the verified set holds only Malignant and Benign histopathology. The third counts them as malignant. Table S56 reports the results with 2,000 patient-cluster resamples. Every coding kept RR above one and the verified-only log odds ratio below zero for the three primary concepts, and the thresholds changed by at most 0.10. The learners are trained on the released label, and this table recomputes only the count analyses. Of the 400 biopsied recorded negatives that train M2, 70 are indeterminate. Recoding them changes the counts, for example *B*_V for color variegation from 4.96 to 6.03, but whether it would change Δ_M2 after retraining was not examined. In Proposition 2, excluding indeterminate lesions from verification changes only σ, which enters the inactive second branch of *p̄*.
+**Indeterminate histopathology.** The release records 114 biopsied lesions as Indeterminate, and its binary target counts them as not malignant (Table S57). Script `vr49_indeterminate.py` repeats the whole-cohort count analysis under three codings. The first is the binary rule of the release, used throughout. The second treats indeterminate lesions as unverified for disease, so the verified set holds only Malignant and Benign histopathology. The third counts them as malignant. Table S58 reports the results with 2,000 patient-cluster resamples. Every coding kept RR above one and the verified-only log odds ratio below zero for the three primary concepts, and the thresholds changed by at most 0.10. The learners are trained on the released label, and this table recomputes only the count analyses. Of the 400 biopsied recorded negatives that train M2, 70 are indeterminate. Recoding them changes the counts, for example *B*_V for color variegation from 4.96 to 6.03. Script `vr51_direct_indeterminate.py` therefore retrained M2 without the indeterminate lesions in training and early stopping, on the 5,000 three-seed replicates of Table 1. Every Bonferroni label was unchanged (Table S16); with tabular features the M2 contrasts became more negative, for example color variegation from −0.95 to −1.19 in the original fits, while image features barely moved. Counting the indeterminate lesions as malignant and retraining both learners kept every sign of the original fits (Table S56).
 
-In Table S55, counts are lesions with a linked histopathology diagnosis, by patient split and by outer tertile over the whole cohort.
+In Table S56, entries are tertile contrasts of the original fits averaged over seeds 0 to 2 on the test population.
 
-**TABLE S55. Histopathology diagnoses of biopsied lesions.**
+**TABLE S56. Learned contrasts under three codings of indeterminate histopathology.**
+
+| Features | Concept | M0 | M2 | M2 without indeterminate | M0, indeterminate as malignant | M2, indeterminate as malignant |
+| --- | --- | ---: | ---: | ---: | ---: | ---: |
+| tabular | Color variegation | +1.02 | −0.95 | −1.19 | +1.26 | −0.90 |
+| tabular | Size | +0.65 | −0.46 | −0.64 | +0.66 | −0.64 |
+| tabular | Lesion-skin contrast | +0.52 | −1.50 | −1.86 | +0.90 | −1.28 |
+| tabular | Asymmetry | −0.29 | +1.36 | +1.61 | −0.41 | +1.05 |
+| tabular | Border irregularity | −0.19 | +1.51 | +1.78 | −0.41 | +1.11 |
+| image | Color variegation | +1.64 | −0.66 | −0.66 | +1.17 | −0.65 |
+| image | Size | +1.56 | −0.32 | −0.33 | +0.96 | −0.35 |
+| image | Lesion-skin contrast | +1.01 | −1.07 | −1.06 | +0.75 | −1.09 |
+| image | Asymmetry | −0.50 | +1.09 | +1.07 | −0.42 | +1.12 |
+| image | Border irregularity | −0.09 | +1.18 | +1.15 | −0.18 | +1.21 | In Proposition 2, excluding indeterminate lesions from verification changes only σ, which enters the inactive second branch of *p̄*.
+
+In Table S57, counts are lesions with a linked histopathology diagnosis, by patient split and by outer tertile over the whole cohort.
+
+**TABLE S57. Histopathology diagnoses of biopsied lesions.**
 
 | Group | Malignant | Benign, biopsied | Indeterminate, biopsied |
 | --- | ---: | ---: | ---: |
@@ -1072,9 +1121,9 @@ In Table S55, counts are lesions with a linked histopathology diagnosis, by pati
 | Size, lower tertile | 122 | 95 | 34 |
 | Size, upper tertile | 241 | 402 | 62 |
 
-In Table S56, values come from whole-cohort counts with patient-cluster bootstrap intervals, and the threshold lies on a grid of step 0.05.
+In Table S58, values come from whole-cohort counts with patient-cluster bootstrap intervals, and the threshold lies on a grid of step 0.05.
 
-**TABLE S56. Marginal analysis under three codings of indeterminate histopathology.**
+**TABLE S58. Marginal analysis under three codings of indeterminate histopathology.**
 
 | Concept | Coding | RR [95% CI] | Verified-only log OR [95% CI] | *B*_V | 95% resampling stability threshold |
 | --- | --- | --- | --- | ---: | ---: |
@@ -1090,26 +1139,26 @@ In Table S56, values come from whole-cohort counts with patient-cluster bootstra
 
 **Marginal risk ratio and the learner-scale target.** RR_D is a ratio of mean risks between the outer tertiles, whereas ψ contrasts mean logits of *p*(*x̃*) on the test population. For the tabular input, *t* is a function of *x̃*, so E[*p*(*X̃*) | *t*] = P(*D* = 1 | *t*) and the ratio of these means is RR_D on the same population. For image features this needs P(*D* = 1 | *x̃*, *t*) = P(*D* = 1 | *x̃*). If the input carries no information, for example, the ratio of mean *p*(*x̃*) is one while RR_D can be three. The marginal analysis also uses the whole cohort, whereas Table 2 uses the test population.
 
-**Sites and the scale of the benchmark.** Script `vr41_marginal_site.py` repeats the marginal analysis by acquisition site, standardized across sites and with one site left out at a time. The standardized risk ratio is Σ_g *w*_g P(*Y* = 1 | *t* = 1, *g*) / Σ_g *w*_g P(*Y* = 1 | *t* = 0, *g*), with one reference distribution *w*_g, the share of outer-tertile lesions in site *g*, used for both tertiles. Suppose the lower-tertile floor π₀¹(*g*) ≥ *s* holds in every site *g*. Then the standardized disease risk ratio is at least *s* times the standardized RR_Y. Each site's upper-tertile disease risk is at least its recorded risk, its lower-tertile disease risk is at most its recorded risk divided by *s*, and the common weights carry both inequalities to the sums. The same one-sided argument applies with site-specific verification. The result describes the observed mixture of sites and does not by itself identify the corresponding result at a new site. The verified-only association is pooled with the Mantel-Haenszel odds ratio, so the two sides use different weights. Table S57 therefore also standardizes the verified-only side with the same weights *w*_g, as a risk ratio among verified lesions. It uses the six sites with verified lesions in both outer tertiles. Site 3 has none in the lower tertile and is excluded from both sides. In a resample where another site loses verified lesions in one tertile, that site is dropped from both sides. Script `vr47_counts_audit.py` computes this version. The threshold in Table S57 is thus for an adaptive procedure whose site set can change between resamples. If a resample that drops a site counts as undetermined, so that the six-site mixture stays fixed, color variegation never reaches 95 percent, and size reaches it at a higher floor (Table S57). Table S58 reports the results for color variegation and size. The pooled conclusion survived standardization, but the association differed across sites. For color variegation, the two sites with the most malignant lesions would need floors near 0.8 on their own.
+**Sites and the scale of the benchmark.** Script `vr41_marginal_site.py` repeats the marginal analysis by acquisition site, standardized across sites and with one site left out at a time. The standardized risk ratio is Σ_g *w*_g P(*Y* = 1 | *t* = 1, *g*) / Σ_g *w*_g P(*Y* = 1 | *t* = 0, *g*), with one reference distribution *w*_g, the share of outer-tertile lesions in site *g*, used for both tertiles. Suppose the lower-tertile floor π₀¹(*g*) ≥ *s* holds in every site *g*. Then the standardized disease risk ratio is at least *s* times the standardized RR_Y. Each site's upper-tertile disease risk is at least its recorded risk, its lower-tertile disease risk is at most its recorded risk divided by *s*, and the common weights carry both inequalities to the sums. The same one-sided argument applies with site-specific verification. The result describes the observed mixture of sites and does not by itself identify the corresponding result at a new site. The verified-only association is pooled with the Mantel-Haenszel odds ratio, so the two sides use different weights. Table S59 therefore also standardizes the verified-only side with the same weights *w*_g, as a risk ratio among verified lesions. It uses the six sites with verified lesions in both outer tertiles. Site 3 has none in the lower tertile and is excluded from both sides. In a resample where another site loses verified lesions in one tertile, that site is dropped from both sides. Script `vr47_counts_audit.py` computes this version. The threshold in Table S59 is thus for an adaptive procedure whose site set can change between resamples. If a resample that drops a site counts as undetermined, so that the six-site mixture stays fixed, color variegation never reaches 95 percent, and size reaches it at a higher floor (Table S59). Table S60 reports the results for color variegation and size. The pooled conclusion survived standardization, but the association differed across sites. For color variegation, the two sites with the most malignant lesions would need floors near 0.8 on their own.
 
-The script also compares two ways of transporting the appearance dependence of benign verification to malignant verification. On the ratio scale, *A* = *B*_V is impossible once π₀¹ > 1/*B*_V. On the logit scale, a common gradient γ = log *B*_V gives *A*(π₀¹, γ) = expit(logit π₀¹ + γ)/π₀¹, which falls below the largest *A* of Table S59 once π₀¹ exceeds the value marked in Fig. S3. Neither scale is identified, and clinicians may use information that differs between malignant and benign lesions, so both are benchmarks.
+The script also compares two ways of transporting the appearance dependence of benign verification to malignant verification. On the ratio scale, *A* = *B*_V is impossible once π₀¹ > 1/*B*_V. On the logit scale, a common gradient γ = log *B*_V gives *A*(π₀¹, γ) = expit(logit π₀¹ + γ)/π₀¹, which falls below the largest *A* of Table S61 once π₀¹ exceeds the value marked in Fig. S3. Neither scale is identified, and clinicians may use information that differs between malignant and benign lesions, so both are benchmarks.
 
-In Fig. S3, the contour lies in the plane of lower-tertile malignant verification π₀¹ and its logit gradient γ, for color variegation and size. To the right of each curve *A* is below the threshold and the positive disease sign is identified. As γ grows the curve approaches π₀¹ = 1/*A*, the lower-tertile floor of Table S59. Points mark γ = log *B*_V. The figure file is `figures/figS3_logit_benchmark.png`.
+In Fig. S3, the contour lies in the plane of lower-tertile malignant verification π₀¹ and its logit gradient γ, for color variegation and size. To the right of each curve *A* is below the threshold and the positive disease sign is identified. As γ grows the curve approaches π₀¹ = 1/*A*, the lower-tertile floor of Table S61. Points mark γ = log *B*_V. The figure file is `figures/figS3_logit_benchmark.png`.
 
 **Fig. S3.** Largest *A* compatible with the marginal association reversal.
 
-In Table S57, weights are shares of outer-tertile lesions renormalized over the six sites, and the threshold uses 2,000 patient-cluster resamples on a grid of step 0.01.
+In Table S59, weights are shares of outer-tertile lesions renormalized over the six sites, and the threshold uses 2,000 patient-cluster resamples on a grid of step 0.01.
 
-**TABLE S57. Site standardization with common weights on both sides.**
+**TABLE S59. Site standardization with common weights on both sides.**
 
 | Concept | Sites used | Excluded | Standardized RR_Y [95% CI] | Point floor | Standardized verified-only log RR [95% CI] | 95% resampling stability threshold | Resamples dropping a site | Threshold with the six-site mixture fixed [largest joint count] | Weights of Sites 1, 2, 4, 5, 6, 7 |
 | --- | ---: | --- | --- | ---: | --- | ---: | ---: | --- | --- |
 | Color variegation | 6 | Site 3 | 2.02 [1.53, 2.65] | 0.49 | −0.50 [−0.70, −0.30] | 0.63 | 272 of 2,000 | none [1,728 of 2,000] | 0.07 / 0.27 / 0.14 / 0.32 / 0.16 / 0.03 |
 | Size | 6 | Site 3 | 2.12 [1.66, 2.77] | 0.47 | −0.33 [−0.54, −0.12] | 0.59 | 95 of 2,000 | 0.72 [1,900 of 2,000] | 0.07 / 0.27 / 0.14 / 0.32 / 0.16 / 0.03 |
 
-In Table S58, floors are point values; Site 3 has no malignant lesion in the lower tertile, so its RR_Y and floor are not defined; the 95 percent resampling stability threshold without a site uses 500 patient-cluster resamples and the standardized row 2,000.
+In Table S60, floors are point values; Site 3 has no malignant lesion in the lower tertile, so its RR_Y and floor are not defined; the 95 percent resampling stability threshold without a site uses 500 patient-cluster resamples and the standardized row 2,000.
 
-**TABLE S58. Marginal analysis by acquisition site.**
+**TABLE S60. Marginal analysis by acquisition site.**
 
 | Concept | Site | Malignant, lower / upper tertile | Biopsied recorded negatives, lower / upper | RR_Y | Floor 1/RR_Y | Verified-only log OR | 95% resampling stability threshold without this site |
 | --- | --- | --- | --- | ---: | ---: | ---: | ---: |
@@ -1130,9 +1179,9 @@ In Table S58, floors are point values; Site 3 has no malignant lesion in the low
 | Size | Site 7 | 1 / 13 | 2 / 4 | 10.49 | 0.10 | +1.87 | 0.59 |
 | Size | standardized across sites | | | 2.15 [1.67, 2.82] | | −0.68 [−1.04, −0.36] | 0.58 (all sites) |
 
-In Table S59, values come from counts with patient-cluster bootstrap intervals, and floors refer to the average malignant verification in the lower tertile. The stability threshold and the largest *A* are thresholds of the resampling procedure, not confidence bounds. The threshold lies on a grid of step 0.05 and the largest *A* on a grid of step 0.01, so they are not exact reciprocals. The observed benign ratio *B*_V is a plausibility benchmark for *A*, not an estimate of it.
+In Table S61, values come from counts with patient-cluster bootstrap intervals, and floors refer to the average malignant verification in the lower tertile. The stability threshold and the largest *A* are thresholds of the resampling procedure, not confidence bounds. The threshold lies on a grid of step 0.05 and the largest *A* on a grid of step 0.01, so they are not exact reciprocals. The observed benign ratio *B*_V is a plausibility benchmark for *A*, not an estimate of it.
 
-**TABLE S59. Marginal risk ratio of the recorded label between the outer tertiles.**
+**TABLE S61. Marginal risk ratio of the recorded label between the outer tertiles.**
 
 | Population | Concept | Malignant, lower / upper tertile | RR_Y [95% CI] | Floor 1/RR_Y | Floor 1/(5th percentile of RR_Y) | Verified-only log OR [95% CI] | 95% resampling stability threshold | Largest *A* at 95% | *B*_V [95% CI] |
 | --- | --- | --- | --- | ---: | ---: | --- | ---: | ---: | --- |
@@ -1149,13 +1198,13 @@ In Table S59, values come from counts with patient-cluster bootstrap intervals, 
 
 ## S8. Reproducibility
 
-Table S60 maps every reported result to the script that produces it. The analysis lock, which fixed primary and secondary outcomes before the tests of alternative explanations, is in `analysis_lock.md`. It is dated 25 September 2026 and is part of the first public commit of the repository; its later sections log each post-inspection change with its date.
+Table S62 maps every reported result to the script that produces it. The analysis lock, which fixed primary and secondary outcomes before the tests of alternative explanations, is in `analysis_lock.md`. It is dated 25 September 2026 and is part of the first public commit of the repository; its later sections log each post-inspection change with its date.
 
-**Rebuilding the main results.** The driver `Code/run_vr_pipeline.sh` and the `Code/run_round*.sh` scripts record the order and arguments of every run. A minimal chain for Table 1 and Table S27 is as follows. `vl0_embed.py` computes the image features from the ISIC-2024 archive. `vl1_identification.py` fits the nuisances, and `vl_common.py` freezes the patient split. `vr19_primary_bootstrap.py --family tabular --start 0 --end 5000` and the same for `image`, then `--summarize`, give the one-seed replicates. `vr39_seed_variance.py` adds two seeds per replicate, and `vr43_three_seed_primary.py` gives the intervals and labels of Table 1. `vr46_dose_fixed_val.py --family tabular --cells color_variegation:320 size:320 lesion_skin_contrast:320`, the same for `image`, then `--summarize`, give Table S27. `paper/build_paper.py` and `paper/build_supplementary.py` rebuild the text. Embeddings, nuisance arrays and checkpoints are not distributed because of their size, but these scripts regenerate them from the public data. On other hardware, refits can differ slightly; the labels of Table 1 are stable to the Monte Carlo resolution reported in Section S6.
+**Rebuilding the main results.** The driver `Code/run_vr_pipeline.sh` and the `Code/run_round*.sh` scripts record the order and arguments of every run. A minimal chain for Table 1 and Table S28 is as follows. `vl0_embed.py` computes the image features from the ISIC-2024 archive. `vl1_identification.py` fits the nuisances, and `vl_common.py` freezes the patient split. `vr19_primary_bootstrap.py --family tabular --start 0 --end 5000` and the same for `image`, then `--summarize`, give the one-seed replicates. `vr39_seed_variance.py` adds two seeds per replicate, and `vr43_three_seed_primary.py` gives the intervals and labels of Table 1. `vr46_dose_fixed_val.py --family tabular --cells color_variegation:320 size:320 lesion_skin_contrast:320`, the same for `image`, then `--summarize`, give Table S28. `paper/build_paper.py` and `paper/build_supplementary.py` rebuild the text. Embeddings, nuisance arrays and checkpoints are not distributed because of their size, but these scripts regenerate them from the public data. On other hardware, refits can differ slightly; the labels of Table 1 are stable to the Monte Carlo resolution reported in Section S6.
 
-In Table S60, scripts are in `Code/` and outputs in `Result/` of the repository.
+In Table S62, scripts are in `Code/` and outputs in `Result/` of the repository.
 
-**TABLE S60. Where each result comes from.**
+**TABLE S62. Where each result comes from.**
 
 | Result | Script | Output |
 | --- | --- | --- |
@@ -1166,43 +1215,44 @@ In Table S60, scripts are in `Code/` and outputs in `Result/` of the repository.
 | Table S6 | `vr28_psi_stress.py` | `vr28_psi_stress.json` |
 | Fig. S1 | `vr2_phase_diagram.py` | `vr2_phase_diagram.json` |
 | Fig. 2; Table S10 | `vr9_closing.py` | `vr9_closing.json`; `closing_heads.npz`, not distributed |
-| Table 1 point estimates (original fits, seeds 0 to 2); one-seed check in Tables S18, S42 and S48 | `vr19_primary_bootstrap.py` | `vr19_primary_bootstrap.json`, `vr19/` |
-| Plug-in point tipping floor in Table S48 | `vr24_full_bootstrap.py` | `vr24_full_bootstrap.json` |
-| Tables S26, S33 and S34 | `vr21_dose_calibrated.py` | `vr21_dose_calibrated.json` |
-| Table S32 | `vr26_dose_poisson.py` | `vr26_dose_poisson.json` |
-| Table S30 | `vr44_dose_estimand.py` | `vr44_dose_estimand.json` |
+| Table 1 point estimates (original fits, seeds 0 to 2); one-seed check in Tables S19, S43 and S49 | `vr19_primary_bootstrap.py` | `vr19_primary_bootstrap.json`, `vr19/` |
+| Plug-in point tipping floor in Table S49 | `vr24_full_bootstrap.py` | `vr24_full_bootstrap.json` |
+| Tables S27, S34 and S35 | `vr21_dose_calibrated.py` | `vr21_dose_calibrated.json` |
+| Table S33 | `vr26_dose_poisson.py` | `vr26_dose_poisson.json` |
+| Table S31 | `vr44_dose_estimand.py` | `vr44_dose_estimand.json` |
 | Share of test lesions retained at each support threshold, Section IV-D | `vr45_support_retention.py` | `vr45_support_retention.json` |
-| Table S36 | `vr27_bridge_eiv.py` | `vr27_bridge_eiv.json` |
-| Table 2; Tables S19 and S51 | `vr30_q_bootstrap.py` | `vr30_q_bootstrap.json`, `vr30/` |
-| Table S21 | `vr36_subsample.py` | `vr36_subsample.json`, `vr36/` |
-| Fig. 3(a); dose results of Section IV-B; Tables S27 and S28 | `vr46_dose_fixed_val.py` | `vr46_dose_fixed_val.json`, `vr46/` |
-| Tables S29 and S31 (joint training-and-validation dose) | `vr32_dose_nuisance.py` | `vr32_dose_nuisance.json` |
-| Table S37 | `vr33_bridge_alt.py` | `vr33_bridge_alt.json` |
+| Table S37 | `vr27_bridge_eiv.py` | `vr27_bridge_eiv.json` |
+| Table 2; Tables S20 and S52 | `vr30_q_bootstrap.py` | `vr30_q_bootstrap.json`, `vr30/` |
+| Table S22 | `vr36_subsample.py` | `vr36_subsample.json`, `vr36/` |
+| Fig. 3(a); dose results of Section IV-B; Tables S28 and S29 | `vr46_dose_fixed_val.py` | `vr46_dose_fixed_val.json`, `vr46/` |
+| Tables S30 and S32 (joint training-and-validation dose) | `vr32_dose_nuisance.py` | `vr32_dose_nuisance.json` |
+| Table S38 | `vr33_bridge_alt.py` | `vr33_bridge_alt.json` |
 | Tables S7 and S8 | `vr34_semisynth.py` (argument `mlp` or `gbm`) | `vr34_semisynth.json`, `vr34_semisynth_gbm.json` |
-| Table S44 | `vr37_overlap_sigma.py` | `vr37_overlap_sigma.json` |
-| Table S52 | `vr38_logit_tail.py` | `vr38_logit_tail.json` |
-| Two further seeds per replicate for the three-seed bootstrap; Table S17 | `vr39_seed_variance.py` | `vr39/`, `vr39_seed_variance.json` |
+| Table S45 | `vr37_overlap_sigma.py` | `vr37_overlap_sigma.json` |
+| Table S53 | `vr38_logit_tail.py` | `vr38_logit_tail.json` |
+| Two further seeds per replicate for the three-seed bootstrap; Table S18 | `vr39_seed_variance.py` | `vr39/`, `vr39_seed_variance.json` |
 | Table S9 | `vr34_semisynth.py` (argument `local`) | `vr34_semisynth_local.json` |
-| Tables S45 and S46 | `vr40_support_composition.py` | `vr40_support_composition.json`; `vr40_sigma.npz`, not distributed |
-| Table S58, Fig. S3 | `vr41_marginal_site.py` | `vr41_marginal_site.json` |
-| Tables S2 and S49 | `vr42_sharp_weighted.py` | `vr42_sharp_weighted.json` |
-| Table 1 intervals and labels (primary three-seed bootstrap, from `vr19/` and `vr39/`); Table S22 | `vr43_three_seed_primary.py` | `vr43_three_seed_primary.json` |
-| Table S59 | `vr35_marginal_rr.py` | `vr35_marginal_rr.json` |
-| Table S23 (Monte Carlo audit of the one-seed check) | `vr29_bootstrap_audit.py` | `vr29_bootstrap_audit.json` |
-| Tables S53 and S54 | `vr25_psi_sensitivity.py` | `vr25_psi_sensitivity.json` |
-| Fig. 3(b); Table S35 | `vr22_pointwise_bridge.py` | `vr22_pointwise_bridge.json` |
-| Tables S38, S39 and S43 | `vr16_mechanism.py` | `vr16_mechanism.json` |
-| Tables S40 and S41; PAD-UFES-20 counts | `vr20_audit.py` | `vr20_audit.json` |
-| Tables S25 and S47 | `vr12_claim_validation.py` | `vr12_claim_validation.json` |
+| Tables S46 and S47 | `vr40_support_composition.py` | `vr40_support_composition.json`; `vr40_sigma.npz`, not distributed |
+| Table S60, Fig. S3 | `vr41_marginal_site.py` | `vr41_marginal_site.json` |
+| Tables S2 and S50 | `vr42_sharp_weighted.py` | `vr42_sharp_weighted.json` |
+| Table 1 intervals and labels (primary three-seed bootstrap, from `vr19/` and `vr39/`); Table S23 | `vr43_three_seed_primary.py` | `vr43_three_seed_primary.json` |
+| Table S61 | `vr35_marginal_rr.py` | `vr35_marginal_rr.json` |
+| Table S24 (Monte Carlo audit of the one-seed check) | `vr29_bootstrap_audit.py` | `vr29_bootstrap_audit.json` |
+| Tables S54 and S55 | `vr25_psi_sensitivity.py` | `vr25_psi_sensitivity.json` |
+| Fig. 3(b); Table S36 | `vr22_pointwise_bridge.py` | `vr22_pointwise_bridge.json` |
+| Tables S39, S40 and S44 | `vr16_mechanism.py` | `vr16_mechanism.json` |
+| Tables S41 and S42; PAD-UFES-20 counts | `vr20_audit.py` | `vr20_audit.json` |
+| Tables S26 and S48 | `vr12_claim_validation.py` | `vr12_claim_validation.json` |
 | Slope version of the gap | `vr12_claim_validation.py --parts b` | `vr12_quantitative.json` |
 | Fine-tuned and linear-probe models | `vr4_finetune.py` | `vr4_finetune.json`; `finetune/*.npz` and checkpoints, not distributed |
 | Table S13; Fig. S2 | `vr5_representation.py` | `vr5_representation.json` |
 | Table S14 | `vr13_headswap.py` | `vr13_headswap.json` |
 | Fig. 4; PAD-UFES-20 associations | `vr6_pad_boundary.py`; ISIC-2024 paths from `vr47_counts_audit.py` | `vr6_pad_boundary.json`, `vr47_counts_audit.json` |
-| Tables S20 and S57; sharp marginal interval | `vr47_counts_audit.py` | `vr47_counts_audit.json` |
+| Tables S21 and S59; sharp marginal interval | `vr47_counts_audit.py` | `vr47_counts_audit.json` |
 | Table S15 | `vr50_logit_clip.py` | `vr50_logit_clip.json` |
-| Table S50; isotonic zeros (argument `--iso-zero`) | `vr48_nuisance_audit.py` | `vr48_nuisance_audit.json` |
-| Tables S55 and S56 | `vr49_indeterminate.py` | `vr49_indeterminate.json` |
+| Tables S16 and S56 | `vr51_direct_indeterminate.py`, driven by `supervise_vr51.sh` | `vr51_direct_indeterminate.json`, `vr51/` |
+| Table S51; isotonic zeros (argument `--iso-zero`) | `vr48_nuisance_audit.py` | `vr48_nuisance_audit.json` |
+| Tables S57 and S58 | `vr49_indeterminate.py` | `vr49_indeterminate.json` |
 | Patient split; nuisance estimates of *q* and σ | `vl_common.py`, `vl1_identification.py`, `vl3_learning.py` | `vl_split.json`; `vl_nuisance.npz` and `vl_nuisance_image.npz`, not distributed |
 | Test AUROC of the tabular and frozen-image learners | `vl3_learning.py` | `vl3_learning.json` |
 | Frozen ResNet-50 embeddings | `vl0_embed.py` | `embeddings/`, not distributed |
