@@ -384,3 +384,14 @@ Hậu nghiệm. vr51 dựng lại đúng 5,000 lượt × 3 seed của Bảng 1 
 - M2 không có 114 ca bất định (cả hai họ): mọi nhãn giữ nguyên; color–tabular vẫn chưa phân giải (0.71); gap 95% loại 0 ở 10/10 ô.
 - Ước lượng điểm khi coi ca bất định là ác tính (huấn luyện lại M0 và M2): mọi dấu giữ nguyên.
 Chạy bằng Code/supervise_vr51.sh (tách khỏi IDE, tự khởi động lại luồng khi GPU còn chỗ), 2026-11-26 22:10 → 2026-11-27 14:42.
+
+## 38. Sửa theo phản biện review_28_3 (2026-11-27)
+
+Không chạy thí nghiệm mới; đối chiếu kết quả đã lưu. Sửa:
+- Ký hiệu Δ^Bayes cho tương phản logit Bayes chưa clip (Prop 1, điều kiện đảo dấu, dose tuyến tính, S1); Δ là thống kê thực nghiệm sau clip.
+  Δ_q cho q thật, Δ̂_q cho ước lượng (Bảng 2). ψ dùng p chưa clip.
+- Hai họ thứ cấp: checkpoint theo AUROC validation (mỗi 500 bước), validation M0 = toàn bộ dương + 10,000 âm lấy mẫu, logit trước
+  sigmoid, đánh giá trên 30,000 tổn thương / 207 bệnh nhân (S11, chú thích Hình 2).
+- Sai khác tái lập vr51 trên toàn bộ: ≤ 1.37e−5. Size–tabular: M2 đổi dấu ở 3/5,000 lượt khi loại ca bất định; nhãn và dấu điểm giữ nguyên.
+- Half-sampling gọi là khoảng mô tả (thiếu hệ số lấy mẫu hữu hạn). Discussion marginal gắn với color/size, quần thể và cách chuẩn hóa.
+- S8 và README: thêm lệnh --start -3 --end 0 và trỏ đúng bảng ánh xạ.

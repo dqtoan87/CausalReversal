@@ -1777,3 +1777,74 @@ def indet_sentence():
 
 
 NUM.update({"clip_sentence": clip_sentence, "indet_sentence": indet_sentence})
+
+
+# Fourth revision: Bayes versus empirical contrasts, scope of the refit checks.
+
+def _vr51_full_error():
+    import glob as G
+    err = 0.0
+    for fam in FAMS:
+        reps = {}
+        for f in G.glob(os.path.join(os.path.dirname(HERE), "Result", "vr51", f"{fam}_*.json")):
+            reps.update(json.load(open(f))["reps"])
+        v19 = {}
+        for f in G.glob(os.path.join(os.path.dirname(HERE), "Result", "vr19", f"{fam}_*.json")):
+            for k, v in json.load(open(f))["reps"].items():
+                if int(k) >= 0:
+                    v19[int(k)] = v["concepts"]
+        v39 = {}
+        for f in G.glob(os.path.join(os.path.dirname(HERE), "Result", "vr39", f"{fam}_*.json")):
+            v39.update(json.load(open(f))["reps"])
+        for key, r in reps.items():
+            b, o = map(int, key.split("|")); st = v19[b] if o == 0 else v39[key]
+            for c in st:
+                err = max(err, abs(r["M2"][c]["clip"] - st[c]["d2"]))
+                if "M0" in r:
+                    err = max(err, abs(r["M0"][c]["clip"] - st[c]["d0"]))
+    return err
+
+
+def clip_sentence():
+    d = J("vr50_logit_clip.json")["families"]
+    im = d["image"]["M0"]; cc = im["contrasts"]
+    assert all(d[f]["M2"]["share_at_cap"] == 0 for f in FAMS)
+    assert all(cc[c]["clipped"] * cc[c]["direct"] > 0 and abs(cc[c]["direct"]) > abs(cc[c]["clipped"]) for c in cc)
+    dif = [abs(cc[c]["direct"] - cc[c]["clipped"]) for c in cc]
+    lo = cc["color_variegation"]["share_at_cap_lower"]; up = cc["color_variegation"]["share_at_cap_upper"]
+    v = _v51()["image"]["concepts"]
+    assert all(v[c]["direct"]["bonf"] == v[c]["clipped"]["bonf"] for c in CL)
+    err = _vr51_full_error(); assert err < 2e-5
+    return (f"The logit cap of Section III-B binds mainly for M0 with image features, at {pct(im['share_at_cap'])} of test lesions, "
+            f"more often in the lower tertile of color variegation ({pct(lo)}) than in the upper one ({pct(up)}); with tabular "
+            f"features it binds for {100 * d['tabular']['M0']['share_at_cap']:.2f} percent and never for M2. In refits with seeds 0 to "
+            f"2, direct network logits kept all five image-feature contrasts of M0 on the same side of zero and moved them away from "
+            f"zero by {u(min(dif))} to {u(max(dif))}. Refitting the image-feature primary bootstrap with direct logits on the same "
+            f"5,000 three-seed replicates left every label unchanged, and the Bonferroni interval of Δ_M0 for color variegation "
+            f"widened to {ci(v['color_variegation']['direct']['d0_ci_bonf'])} (Supplementary Section S6).")
+
+
+def indet_sentence():
+    t = _v51()
+    assert t["tabular"]["concepts"]["color_variegation"]["excluded"]["reproduced"] < 0.95
+    return ("Retraining M2 without the indeterminate lesions, on the same 5,000 bootstrap replicates, left the sign of every point "
+            "estimate and every Bonferroni label unchanged, with color variegation for tabular features still unresolved. Counting "
+            "them as malignant in both learners kept the sign of every point estimate of the original fits.")
+
+
+_psi_est_rev3 = psi_est_sentence
+
+
+def psi_est_sentence():
+    return _psi_est_rev3().replace("exp(−Δ_q)", "exp(−Δ̂_q)")
+
+
+_t_psi_est_rev2 = t_psi_est
+
+
+def t_psi_est():
+    return _t_psi_est_rev2().replace("| Δ_q | exp(−Δ_q) |", "| Δ̂_q | exp(−Δ̂_q) |")
+
+
+NUM.update({"clip_sentence": clip_sentence, "indet_sentence": indet_sentence, "psi_est_sentence": psi_est_sentence})
+TABLE.update({"psi_est": t_psi_est})

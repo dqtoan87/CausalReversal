@@ -10,11 +10,11 @@ Quang Toan Dao and Viet Anh Nguyen, Institute of Information Technology, Vietnam
 | Path | Contents |
 | --- | --- |
 | `Code/` | Analysis scripts `vr*.py`, their drivers `run_*.sh`, the shared modules (`sv_common.py`, `vl_common.py`, `vl_models.py`) and the scripts that build the frozen inputs (`vl0_embed.py`, `vl1_identification.py`, `vl3_learning.py`, `sv2_bracket.py`) |
-| `Result/` | JSON output of every script, including per-replicate bootstrap files in `vr19/`, `vr24/`, `vr30/`, `vr36/` and `vr39/`, and the frozen patient split `vl_split.json` |
+| `Result/` | JSON output of every script, including per-replicate bootstrap files in `vr19/`, `vr24/`, `vr30/`, `vr36/`, `vr39/`, `vr46/` and `vr51/`, and the frozen patient split `vl_split.json` |
 | `paper/` | Manuscript and supplement sources (`paper_src.md`, `supplementary_src.md`), the builders that fill in every number from the JSON files, the built `paper.md` and `supplementary.md`, and the figures |
 | `analysis_lock.md` | Analysis lock: primary, secondary and exploratory outcomes and the claims allowed for each |
 
-Supplementary Table S51 maps every table, figure and number in the paper to the script and output that produce it.
+The last table of Supplementary Section S8 maps every table, figure and number in the paper to the script and output that produce it. Section S8 also gives the command chain that regenerates Table 1 from the data, including the three original fits (`--start -3 --end 0`).
 
 ## Data
 
